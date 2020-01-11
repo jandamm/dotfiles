@@ -1,45 +1,45 @@
+" vim:set foldmethod=marker:
+
+" ===============================================================================================
+" Plugins {{{
+" ===============================================================================================
 call plug#begin('~/.local/share/nvim/plugged')
-" Usage {{{
+
+" Usage
+" =======================
 Plug 'tpope/vim-surround'
 Plug 'justinmk/vim-sneak'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-" }}}
 
-" Themes {{{
-Plug 'dracula/vim', { 'as': 'dracula' }
+" Themes
+" =======================
 Plug 'joshdick/onedark.vim'
-Plug 'rakr/vim-one'
-" }}}
 
-" User Interface {{{
-"Plug 'itchyny/lightline.vim'
+" User Interface
+" =======================
 Plug 'ap/vim-buftabline'
-
 Plug 'mhinz/vim-signify'
-"Plug 'dpc/vim-smarttabs'
-" }}}
 
-" Auto Completion {{{
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2-bufword'
-if strlen($TMUX) && executable('tmux')
-  Plug 'ncm2/ncm2-tmux'
-endif
-Plug 'ncm2/ncm2-path', { 'for': ['sh', 'zsh', 'nvim', 'vim'] }
+" Auto Completion
+" =======================
+"Plug 'ncm2/ncm2'
+"Plug 'roxma/nvim-yarp'
+"Plug 'ncm2/ncm2-bufword'
+"if strlen($TMUX) && executable('tmux')
+"  Plug 'ncm2/ncm2-tmux'
+"endif
+"Plug 'ncm2/ncm2-path', { 'for': ['sh', 'zsh', 'nvim', 'vim'] }
 Plug 'dustinknopoff/TeaCode-Vim-Extension'
-" }}}
 
-" Syntax Highlighting {{{
+" Languages
+" =======================
 Plug 'keith/swift.vim', { 'for': 'swift' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-" }}}
+
 call plug#end()
+" }}}
 
-
-" move to after
-autocmd FileType * setlocal noexpandtab
 
 set guioptions=M
 set number
