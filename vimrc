@@ -38,11 +38,8 @@ Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 call plug#end()
 
 
-" filetypes
-au BufRead,BufNewFile *.tmux set filetype=tmux
-au BufRead,BufNewFile *file set filetype=ruby " Podfile, Appfile, Matchfile, Fastfile
+" move to after
 autocmd FileType * setlocal noexpandtab
-au BufRead,BufNewFile .swiftlint.yml set expandtab
 
 set guioptions=M
 set number
