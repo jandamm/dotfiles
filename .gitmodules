@@ -2,3 +2,6 @@
 	path = config/doom/modules/ui/minimap
 	url = https://github.com/jandamm/doom-emacs-minimap.git
 	branch = master
+[submodule "plugman/tpm"]
+	path = plugman/tpm
+	url = https://github.com/tmux-plugins/tpm

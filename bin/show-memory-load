@@ -1,0 +1,47 @@
+#!/bin/zsh
+
+mem_low_color="#[fg=green]"
+mem_medium_color="#[fg=yellow]"
+mem_high_color="#[fg=red]"
+
+memory_load() {
+    case $(uname) in
+         "Darwin") memory_osx;;
+    esac
+}
+
+memory_osx() {
+    local free_mem
+    free_mem=$(memory_pressure | grep '^System-wide memory' | sed 's/System-wide memory free percentage: \([0-9]*\)%/\1/')
+    press_mem=$((100 - free_mem))
+    echo "$press_mem%"
+}
+
+fcomp() {
+  awk -v n1="$1" -v n2="$2" 'BEGIN {if (n1<n2) exit 0; exit 1}'
+}
+
+tmux-color() {
+    local color
+    if fcomp 75 "$1"
+    then color="$mem_high_color"
+    elif fcomp 50 "$1"
+    then color="$mem_medium_color"
+    else color="$mem_low_color"
+    fi
+    echo -n "$color"
+}
+
+
+main() {
+    local load
+    load=$(memory_load)
+
+    case "$1" in
+        "--tmux") tmux-color "$load"
+    esac
+
+    echo "$load"
+}
+
+main "$1"

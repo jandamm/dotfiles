@@ -9,6 +9,7 @@ exit 1
 # TMUX {{{
 
 # install tmux terminal
+# run tpm install plugins (leader I)
 
 # }}}
 
