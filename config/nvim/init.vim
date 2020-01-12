@@ -7,6 +7,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Usage
 Plug 'tpope/vim-surround'
 Plug 'justinmk/vim-sneak'
+
+" Search
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
@@ -17,19 +19,29 @@ Plug 'joshdick/onedark.vim'
 Plug 'ap/vim-buftabline'
 Plug 'mhinz/vim-signify'
 
+" Tmux
+"Plug 'christoomey/vim-tmux-navigator'
+"Plug 'christoomey/vim-tmux-runner'
+
 " Auto Completion
-"Plug 'ncm2/ncm2'
-"Plug 'roxma/nvim-yarp'
-"Plug 'ncm2/ncm2-bufword'
-"if strlen($TMUX) && executable('tmux')
-"  Plug 'ncm2/ncm2-tmux'
-"endif
-"Plug 'ncm2/ncm2-path', { 'for': ['sh', 'zsh', 'nvim', 'vim'] }
 Plug 'dustinknopoff/TeaCode-Vim-Extension'
+Plug 'SirVer/ultisnips'
+
+" LSP
+Plug 'prabirshrestha/asyncomplete.vim', { 'for': ['swift'] }
+Plug 'prabirshrestha/async.vim', { 'for': ['swift'] }
+Plug 'prabirshrestha/vim-lsp', { 'for': ['swift'] }
+Plug 'prabirshrestha/asyncomplete-lsp.vim', { 'for': ['swift'] }
+Plug 'thomasfaingnaert/vim-lsp-snippets', { 'for': ['swift'] }
+Plug 'thomasfaingnaert/vim-lsp-ultisnips', { 'for': ['swift'] }
 
 " Languages
 Plug 'keith/swift.vim', { 'for': 'swift' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+
+" Misc
+" Asynchronous file linting/formatting
+"Plug 'w0rp/ale'
 
 call plug#end()
 
@@ -68,8 +80,21 @@ set colorcolumn=140,200
 " }}}
 
 " Completion {{{
+ if executable('sourcekit-lsp')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'sourcekit-lsp',
+        \ 'cmd': {server_info->['sourcekit-lsp']},
+        \ 'whitelist': ['swift'],
+        \ })
+endif
 
 imap <c-x><c-x> <c-x><c-o>
+
+set completeopt+=menuone
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " TeaCode Shortcut
 inoremap <C-M-e> <C-O>:call TeaCodeExpand()<CR>
