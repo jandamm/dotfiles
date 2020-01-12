@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# vim:set foldmethod=marker:
+
+echo "Not yet impletemented"
+exit 1
+
+# install Brewfile
+
+# TMUX {{{
+
+# install tmux terminal
+
+# }}}
+
+# ALACRITTY {{{
+
+# install extras
+
+# }}}
+
+# ZSH {{{
+
+# rezsh
+
+# }}}
+
+# NVIM {{{
+
+# install plugins
+# nvim -u plugins.vim +PlugInstall +qa
+
+# }}}
+
+# DOOM {{{
+
+# download doom?
+
+# }}}
+
+# BAT {{{
+
+# recompile with theme
+# after rcup
+
+# }}}
+
+# rcup
