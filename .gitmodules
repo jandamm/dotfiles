@@ -1,0 +1,4 @@
+[submodule "config/doom/modules/ui/minimap"]
+	path = config/doom/modules/ui/minimap
+	url = https://github.com/jandamm/doom-emacs-minimap.git
+	branch = master

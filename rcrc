@@ -1,1 +1,2 @@
 EXCLUDES="README.md Brewfile resources setup"
+ SYMLINK_DIRS="config/doom config/alacritty"
