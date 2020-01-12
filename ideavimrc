@@ -1,0 +1,14 @@
+set surround
+
+set incsearch
+set ignorecase
+set smartcase
+
+nmap <cr> o<esc>k
+nmap <S-cr> O<esc>j
+
+nmap Y y$
+
+nnoremap U <C-r>
+xmap s S
+
