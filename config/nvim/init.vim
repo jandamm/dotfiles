@@ -80,18 +80,33 @@ set colorcolumn=140,200
 " }}}
 
 " Completion {{{
- if executable('sourcekit-lsp')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'sourcekit-lsp',
-        \ 'cmd': {server_info->['sourcekit-lsp']},
-        \ 'whitelist': ['swift'],
-        \ })
+
+if executable('sourcekit-lsp')
+	au User lsp_setup call lsp#register_server({
+				\ 'name': 'sourcekit-lsp',
+				\ 'cmd': {server_info->['sourcekit-lsp']},
+				\ 'whitelist': ['swift'],
+				\ })
 endif
 
+" only if asynccomplete.
+" -> if has_key(plugs, "asyncomplete.vim")
+" Use asynccomplete as omnifunc without auto hud.
+" This seems to be a bit slow sometimes?
+" With auto hud disable everything exept c-x c-o mapping
+"imap <c-x><c-o> <Plug>(asyncomplete_force_refresh)
+"let g:asyncomplete_auto_popup = 0
+"let g:asyncomplete_popup_delay = 0
+"let g:asyncomplete_auto_completeopt = 0
+"set completeopt=menu,preview
+
+" Use Enter to comfirm completion
+inoremap <silent><expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+
+" Use c-x c-x as omnicomplete
 imap <c-x><c-x> <c-x><c-o>
 
-set completeopt+=menuone
-
+" Use tabs for UltiSnips
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
