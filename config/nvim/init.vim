@@ -105,6 +105,8 @@ inoremap <silent><expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
 
 " Use c-x c-x as omnicomplete
 imap <c-x><c-x> <c-x><c-o>
+" Use c-cr as omnicomplete
+imap <c-cr> <c-x><c-o>
 
 " Use tabs for UltiSnips
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -156,6 +158,7 @@ nmap <c-w><c-f> :bp<cr>
 
 " New Line in normal mode
 nmap <cr> o<esc>Dk
+nmap <s-cr> O<esc>Dj
 
 " Correct Y yank behavior
 nmap Y y$

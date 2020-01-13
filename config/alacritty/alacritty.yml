@@ -535,7 +535,7 @@ shell:
 # binding with the same triggers is defined. To unset a default binding, it can
 # be mapped to the `ReceiveChar` action. Alternatively, you can use `None` for
 # a no-op if you do not wish to receive input characters for that binding.
-#key_bindings:
+key_bindings:
   # (Windows/Linux only)
   #- { key: V,        mods: Control|Shift, action: Paste            }
   #- { key: C,        mods: Control|Shift, action: Copy             }
@@ -569,3 +569,6 @@ shell:
   #- { key: PageDown,  mods: Shift,   action: ScrollPageDown, mode: ~Alt       }
   #- { key: Home,      mods: Shift,   action: ScrollToTop,    mode: ~Alt       }
   #- { key: End,       mods: Shift,   action: ScrollToBottom, mode: ~Alt       }
+  # https://stackoverflow.com/a/42461580
+  - { key: Return,   mods: Shift,   chars: "\x1b[13;2u" } # Allow mapping <S-cr> in vim
+  - { key: Return,   mods: Control, chars: "\x1b[13;5u" } # Allow mapping <C-cr> in vim
