@@ -9,8 +9,8 @@ Plug 'tpope/vim-surround'
 Plug 'justinmk/vim-sneak'
 
 " Search
-Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+	Plug '/usr/local/opt/fzf'
 
 " Themes
 Plug 'joshdick/onedark.vim'
@@ -30,7 +30,7 @@ Plug 'prabirshrestha/asyncomplete.vim'
 
 " LSP
 Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/async.vim'
+	Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'thomasfaingnaert/vim-lsp-snippets'
 Plug 'thomasfaingnaert/vim-lsp-ultisnips'
