@@ -163,9 +163,14 @@ nmap <s-cr> O<esc>Dj
 " Correct Y yank behavior
 nmap Y y$
 
-" Remap U to C-R
+" Esc twice to clear last search
+nmap <esc><esc> :noh<cr>
+
+" Remap U Redo
 nnoremap U <C-r>
-xmap s S
+
+" What does this mapping?
+"xmap s S
 
 " }}}
 
