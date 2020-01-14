@@ -26,14 +26,14 @@ Plug 'mhinz/vim-signify'
 " Auto Completion
 Plug 'dustinknopoff/TeaCode-Vim-Extension'
 Plug 'SirVer/ultisnips'
+Plug 'prabirshrestha/asyncomplete.vim'
 
 " LSP
-Plug 'prabirshrestha/asyncomplete.vim', { 'for': ['swift'] }
-Plug 'prabirshrestha/async.vim', { 'for': ['swift'] }
-Plug 'prabirshrestha/vim-lsp', { 'for': ['swift'] }
-Plug 'prabirshrestha/asyncomplete-lsp.vim', { 'for': ['swift'] }
-Plug 'thomasfaingnaert/vim-lsp-snippets', { 'for': ['swift'] }
-Plug 'thomasfaingnaert/vim-lsp-ultisnips', { 'for': ['swift'] }
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'thomasfaingnaert/vim-lsp-snippets'
+Plug 'thomasfaingnaert/vim-lsp-ultisnips'
 
 " Languages
 Plug 'keith/swift.vim', { 'for': 'swift' }
@@ -81,6 +81,7 @@ set colorcolumn=120,160
 
 " Completion {{{
 
+" TODO: Move to ftplugin/swift.vim
 if executable('sourcekit-lsp')
 	au User lsp_setup call lsp#register_server({
 				\ 'name': 'sourcekit-lsp',
@@ -89,22 +90,19 @@ if executable('sourcekit-lsp')
 				\ })
 endif
 
-" only if asynccomplete.
-" -> if has_key(plugs, "asyncomplete.vim")
-" Use asynccomplete as omnifunc without auto hud.
-" This seems to be a bit slow sometimes?
-" With auto hud disable everything exept c-x c-o mapping
-"imap <c-x><c-o> <Plug>(asyncomplete_force_refresh)
-"let g:asyncomplete_auto_popup = 0
-"let g:asyncomplete_popup_delay = 0
-"let g:asyncomplete_auto_completeopt = 0
-"set completeopt=menu,preview
+" Use asyncomplete as omnifunc without auto hud.
+" Map omnicomplete shortcut to asyncomplete
+imap <c-x><c-o> <Plug>(asyncomplete_force_refresh)
+" Disable asyncomplete auto popup
+let g:asyncomplete_auto_popup = 0
+let g:asyncomplete_popup_delay = 0
+" Set my own completeopt instead of asyncomplete
+let g:asyncomplete_auto_completeopt = 0
+set completeopt=menu,preview
 
 " Use Enter to comfirm completion
 inoremap <silent><expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
 
-" Use c-x c-x as omnicomplete
-imap <c-x><c-x> <c-x><c-o>
 " Use c-cr as omnicomplete
 imap <c-cr> <c-x><c-o>
 
