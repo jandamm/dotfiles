@@ -1,2 +1,2 @@
-EXCLUDES="README.md Brewfile resources plugman"
+EXCLUDES="README.md Brewfile resources plugman scripts"
 SYMLINK_DIRS="config/doom config/alacritty"

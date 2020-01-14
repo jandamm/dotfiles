@@ -62,7 +62,7 @@ endif
 colorscheme onedark
 let g:onedark_hide_endofbuffer=0
 let g:onedark_termcolors=256
-let g:onedark_terminal_italics=0 " Currently doesn't work with my tmux setup
+let g:onedark_terminal_italics=1
 set background=dark
 
 " More prominent line color
