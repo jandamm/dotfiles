@@ -75,7 +75,7 @@ set guioptions=M
 set number
 set relativenumber
 
-set colorcolumn=140,200
+set colorcolumn=120,160
 
 " }}}
 
