@@ -13,7 +13,7 @@ Plug 'junegunn/fzf.vim'
 	Plug '/usr/local/opt/fzf'
 
 " Themes
-Plug 'joshdick/onedark.vim'
+Plug 'rakr/vim-one'
 
 " User Interface
 Plug 'ap/vim-buftabline'
@@ -59,14 +59,18 @@ if (has("termguicolors"))
 	set termguicolors
 endif
 
-colorscheme onedark
-let g:onedark_hide_endofbuffer=0
-let g:onedark_termcolors=256
-let g:onedark_terminal_italics=1
+colorscheme one
+set t_8b=^[[48;2;%lu;%lu;%lum
+set t_8f=^[[38;2;%lu;%lu;%lum
+let g:one_allow_italics=1
 set background=dark
 
-" More prominent line color
-hi LineNr guifg=#5c6370
+set laststatus=0
+
+" TabLine Theming
+"hi TabLine guifg=#abb2bf
+"hi TabLineSel guibg=#61afef
+"hi TabLineSel guifg=#282c34
 
 " enable syntax highligthing
 syntax on
