@@ -170,7 +170,7 @@ nmap <s-cr> O<esc>Dj
 nmap Y y$
 
 " Esc twice to clear last search
-nmap <esc><esc> :noh<cr>
+nmap <esc><esc> :noh<cr>:<bs>
 
 " Remap U Redo
 nnoremap U <C-r>
