@@ -150,6 +150,9 @@ set cinoptions=(0,u0,U0
 set listchars=tab:>-,trail:·
 set list
 
+" Mark trailing whitespace as error (red)
+let w:m2=matchadd('ErrorMsg', '\s\+$', -1)
+
 " Wrapping lines
 set wrap
 set linebreak
