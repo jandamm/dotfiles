@@ -146,6 +146,10 @@ set softtabstop=0
 set cindent
 set cinoptions=(0,u0,U0
 
+" Show tabs and trailing whitespace
+set listchars=tab:>-,trail:·
+set list
+
 " Wrapping lines
 set wrap
 set linebreak
