@@ -130,6 +130,9 @@ set wildmenu
 
 " Editor {{{
 
+" Allow changed files to be hidden
+set hidden
+
 " Set split commands work more as expected
 set splitbelow
 set splitright
@@ -150,6 +153,7 @@ if exists('+breakindent')
   set breakindent
   set breakindentopt=shift:2
 endif
+
 " }}}
 
 " Keybindings {{{
