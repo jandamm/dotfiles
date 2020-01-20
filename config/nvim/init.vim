@@ -138,12 +138,15 @@ nmap <esc><esc> :noh<cr>:<bs>
 " Remap U Redo
 nnoremap U <C-r>
 
-" What does this mapping?
-"xmap s S
+" Use surround.vim with s
+xmap s S
 
 " Sneak:
 " Always include first typed character
 onoremap <silent> z :call sneak#wrap(v:operator, 2, 0, 1, 1)<cr>
+" Use z and Z in visual mode
+xnoremap <silent> z :call sneak#wrap(visualmode(), 2, 0, 1, 1)<cr>
+xnoremap <silent> Z :call sneak#wrap(visualmode(), 2, 1, 1, 1)<cr>
 
 " }}}
 
