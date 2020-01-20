@@ -1,4 +1,5 @@
 cask 'alacritty'
+cask 'font-jetbrains-mono'
 brew 'ctags'
 brew 'git'
 brew 'fzf'
