@@ -12,6 +12,9 @@ Plug 'junegunn/fzf.vim'
 " Themes
 Plug 'rakr/vim-one'
 
+" Ctags
+Plug 'ludovicchabant/vim-gutentags'
+
 " User Interface
 Plug 'ap/vim-buftabline'
 Plug 'mhinz/vim-signify'
