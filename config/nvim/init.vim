@@ -141,6 +141,10 @@ nnoremap U <C-r>
 " What does this mapping?
 "xmap s S
 
+" Sneak:
+" Always include first typed character
+onoremap <silent> z :call sneak#wrap(v:operator, 2, 0, 1, 1)<cr>
+
 " }}}
 
 " Keybindings Leader {{{
