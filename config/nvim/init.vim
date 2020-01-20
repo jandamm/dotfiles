@@ -5,10 +5,11 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Usage
-Plug 'tpope/vim-surround'
-Plug 'justinmk/vim-sneak'
+Plug 'tpope/vim-surround' " Add(y)/change(c)/remove(d) surroundings
+Plug 'tpope/vim-repeat' " Add . macro to supported plugins
+Plug 'justinmk/vim-sneak' " Add f like jumps with two chars
 
-" Search
+" Fuzzy finding
 Plug 'junegunn/fzf.vim'
 	Plug '/usr/local/opt/fzf'
 
@@ -41,7 +42,7 @@ Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 
 " Misc
 " Asynchronous file linting/formatting
-"Plug 'w0rp/ale'
+"Plug 'dense-analysis/ale'
 
 call plug#end()
 
