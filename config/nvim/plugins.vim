@@ -35,9 +35,8 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'thomasfaingnaert/vim-lsp-snippets'
 Plug 'thomasfaingnaert/vim-lsp-ultisnips'
 
-" Languages
-Plug 'keith/swift.vim', { 'for': 'swift' }
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+" 'All' Languages
+Plug 'sheerun/vim-polyglot'
 
 " Misc
 " Asynchronous file linting/formatting
