@@ -122,18 +122,18 @@ endif
 " Keybindings {{{
 
 " Buffer/Tab navigation
-nmap <c-w><c-p> :bn<cr>
-nmap <c-w><c-f> :bp<cr>
+noremap <c-n> :bn<cr>
+noremap <c-p> :bp<cr>
 
 " New Line in normal mode
-nmap <cr> o<esc>Dk
-nmap <s-cr> O<esc>Dj
+noremap <cr> o<esc>Dk
+noremap <s-cr> O<esc>Dj
 
 " Correct Y yank behavior
 nmap Y y$
 
 " Esc twice to clear last search
-nmap <esc><esc> :noh<cr>:<bs>
+noremap <esc><esc> :noh<cr>:<bs>
 
 " Remap U Redo
 nnoremap U <C-r>
