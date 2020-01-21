@@ -16,6 +16,7 @@ exit 1
 # ALACRITTY {{{
 
 # install extras
+bash "$DOTFILES/scripts/install_alacritty"
 
 # }}}
 

@@ -155,14 +155,14 @@ font:
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   offset:
     x: 1
-    y: 8
+    y: 5
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
   # increasing `y` moves the glyph upwards.
   glyph_offset:
     x: 0
-    y: 3 # Should be rougly 30% of font.offset.y
+    y: 2 # Should be rougly 30% of font.offset.y
 
   # Thin stroke font rendering (macOS only)
   #
@@ -178,7 +178,7 @@ font:
   #
   # This is a global setting and will require a log out or restart to take
   # effect.
-  #use_thin_strokes: true
+  use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: true
@@ -568,6 +568,7 @@ key_bindings:
   #- { key: PageDown,  mods: Shift,   action: ScrollPageDown, mode: ~Alt       }
   #- { key: Home,      mods: Shift,   action: ScrollToTop,    mode: ~Alt       }
   #- { key: End,       mods: Shift,   action: ScrollToBottom, mode: ~Alt       }
+
   # https://stackoverflow.com/a/42461580
   - { key: Return,   mods: Shift,   chars: "\x1b[13;2u" } # Allow mapping <S-cr> in vim
   - { key: Return,   mods: Control, chars: "\x1b[13;5u" } # Allow mapping <C-cr> in vim
