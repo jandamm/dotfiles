@@ -103,7 +103,7 @@ set cindent
 set cinoptions=(0,u0,U0
 
 " Show tabs and trailing whitespace
-set listchars=tab:>-,trail:·
+set listchars=tab:⟩‐,trail:·
 set list
 
 " Mark trailing whitespace as error (red)
