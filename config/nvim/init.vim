@@ -18,6 +18,7 @@ endif
 set background=dark
 colorscheme one
 let g:one_allow_italics=1
+autocmd VimEnter * call one#highlight('gitcommitSummary', 'e5c07b', '', 'none')
 
 set laststatus=0
 
