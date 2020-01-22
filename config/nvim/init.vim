@@ -177,6 +177,15 @@ set mouse=a
 " Syntax
 syntax on
 
+" Clipboard
+if has('clipboard')     " If the feature is available
+  set clipboard=unnamed " copy to the system clipboard
+
+  if has('unnamedplus')
+    set clipboard+=unnamedplus
+  endif
+endif
+
 " }}}
 
 " Search {{{
