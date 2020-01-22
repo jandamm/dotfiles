@@ -15,11 +15,9 @@ if (has("termguicolors"))
 	set termguicolors
 endif
 
-colorscheme one
-set t_8b=^[[48;2;%lu;%lu;%lum
-set t_8f=^[[38;2;%lu;%lu;%lum
-let g:one_allow_italics=1
 set background=dark
+colorscheme one
+let g:one_allow_italics=1
 
 set laststatus=0
 
