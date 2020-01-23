@@ -106,8 +106,9 @@ set listchars=tab:⟩‐,trail:·
 set list
 
 " Mark trailing whitespace as error (red)
-let w:m2=matchadd('ErrorMsg', '\s\+$', -1)
-let w:m2=matchadd('ErrorMsg', '[^\t]\zs\t\+', -1)
+hi link tabsError ErrorMsg
+let w:w1=matchadd('ErrorMsg', '\s\+$', -1)
+let w:w2=matchadd('tabsError', '[^\t]\zs\t\+', -1)
 
 " Wrapping lines
 set wrap
