@@ -1,10 +1,11 @@
 ## NeoVim Plugin/Configuration paths
 
 ### after
-Loaded after plugins and init.vim
-
-#### /ftplugin
-See ftplugin (but after plugins/init.vim)
+Loaded after plugins and init.vim.
+Use to modify external plugins.
+- ftplugin
+- plugin
+- colors
 
 ### ftdetect
 Short files only to define the filetype.
