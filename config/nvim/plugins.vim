@@ -6,6 +6,7 @@ Plug 'tpope/vim-repeat' " Add . macro to supported plugins
 Plug 'justinmk/vim-sneak' " Add f like jumps with two chars
 Plug 'tpope/vim-speeddating' " Fix i_Ctrl+a for dates
 Plug 'tpope/vim-commentary' " gc to comment in/out
+Plug 'junegunn/vim-easy-align' " ga to align
 
 " Fuzzy finding
 Plug 'junegunn/fzf.vim'

@@ -155,6 +155,15 @@ nnoremap U <C-r>
 " Use surround.vim with s
 xmap s S
 
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+" Set ga to gA (ga is vim-align)
+nnoremap gA ga
+
 " Sneak:
 " Always include first typed character
 onoremap <silent> z :call sneak#wrap(v:operator, 2, 0, 1, 1)<cr>
