@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env bash
 
 mem_low_color="#[fg=green]"
 mem_medium_color="#[fg=yellow]"
@@ -31,7 +31,6 @@ tmux-color() {
     fi
     echo -n "$color"
 }
-
 
 main() {
     local load
