@@ -126,8 +126,20 @@ noremap <c-n> :bn<cr>
 noremap <c-p> :bp<cr>
 
 " New Line in normal mode
-noremap <cr> o<esc>Dk
-noremap <s-cr> O<esc>Dj
+noremap <cr> o<C-u><esc>k
+noremap <s-cr> O<C-u><esc>j
+
+" Enter and comments
+function! EnterEnter()
+  if getline(".") =~ '^\s*\(//\|#\|"\)\s*$'
+    return "\<C-u>"
+  else
+    return "\<CR>"
+  endif
+endfunction
+
+imap <expr> <CR> EnterEnter()
+imap <S-CR> <CR><C-u>
 
 " Correct Y yank behavior
 nmap Y y$
