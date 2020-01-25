@@ -43,6 +43,7 @@ Plug 'sheerun/vim-polyglot'
 " Misc
 " Asynchronous file linting/formatting
 "Plug 'dense-analysis/ale'
+Plug 'neomake/neomake'
 
 call plug#end()
 

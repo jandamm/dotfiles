@@ -117,6 +117,8 @@ if exists('+breakindent')
   set breakindentopt=shift:2
 endif
 
+autocmd VimEnter * call neomake#configure#automake('nw', 500)
+
 " }}}
 
 " Keybindings {{{
@@ -174,6 +176,9 @@ nmap <Leader>qq :q<cr>
 nmap <Leader>bn :bn<cr><esc>
 nmap <Leader>bp :bp<cr><esc>
 nmap <Leader><Space> :Files<cr>
+
+nmap <Leader>e :lnext<cr>
+nmap <Leader>E :lprev<cr>
 
 " }}}
 
