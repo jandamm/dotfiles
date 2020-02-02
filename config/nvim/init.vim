@@ -206,6 +206,11 @@ call neomake#configure#automake('rnw', 500)
 
 " Keybindings {{{
 
+map <F13> [
+map <C-F13> <C-[>
+map <F16> ]
+map <C-F16> <C-]>
+
 " Buffer/Tab navigation
 nnoremap <c-n> :bn<cr>
 nnoremap <c-p> :bp<cr>
