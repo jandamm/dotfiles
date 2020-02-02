@@ -8,8 +8,8 @@ let g:gutentags_project_root=['.root']
 
 " Update signify after x ms
 set updatetime=150
-" Prefer .root file over .git folder
-let g:rooter_patterns = ['.root', 'Rakefile', '.git/']
+" Prefer .root file over submodule over .git folder
+let g:rooter_patterns = ['.root', '.git', '.git/']
 
 " Swiftlint maker
 let g:neomake_swift_swiftlint_maker = {
@@ -169,6 +169,7 @@ inoremap <C-M-e> <C-O>:call TeaCodeExpand()<CR>
 
 " Simple Menu Completion
 set wildmode=longest:full,full
+set wildignore+=.root                                  " Custom project root marker
 set wildignore+=.hg,.git,.svn                          " Version control
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg         " binary images
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest,*.pyc " compiled object files
