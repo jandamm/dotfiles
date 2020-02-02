@@ -13,3 +13,5 @@
 [color "diff"]
 	meta = blue
 	frag = yellow bold
+[credential]
+	helper = osxkeychain
