@@ -3,3 +3,24 @@ function! ${1:Name}() abort
 	$0
 endfunction
 endsnippet
+
+snippet augroup
+augroup ${1:name}
+	au!
+	${2:autocommand ${3:VimEnter} }$0
+augroup END
+endsnippet
+
+snippet "islo(aded)?" "" br
+if exists('${1:g:${2:loaded$3}}')
+	finish
+endif
+let $1 = 1
+endsnippet
+
+snippet "isa(uto)?l(oaded)?" "" br
+if exists('${1:g:${2:loaded$3}}')
+	finish
+endif
+let $1 = 1
+endsnippet
