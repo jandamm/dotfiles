@@ -3,6 +3,28 @@
 " Load plugins (Extracted to file to ease first installation)
 runtime plugins.vim
 
+set laststatus=2
+set statusline=
+set statusline+=%#IncSearch#%{&paste?'\ \ PASTE\ ':''}%*
+set statusline+=\ %#mystatuslineFile#%f%*
+set statusline+=\ %Y
+set statusline+=\ %M
+set statusline+=\ %R
+set statusline+=%=
+set statusline+=%#mystatuslineNeomake#%{NeomakeStatusline()}%*
+set statusline+=\ \ %P
+set statusline+=-%l
+set statusline+=-%c
+
+function NeomakeStatusline()
+	let stats = []
+	let lcounts = neomake#statusline#LoclistCounts()
+	for key in sort(keys(lcounts))
+		call add(stats, printf('%s:%d', key, lcounts[key]))
+	endfor
+	return join(stats, ' ')
+endfunction
+
 " Appearance {{{
 
 " Git Bar always visible
@@ -19,9 +41,9 @@ set background=dark
 colorscheme one
 let g:one_allow_italics=1
 autocmd VimEnter * ++once call one#highlight('gitcommitSummary', 'e5c07b', '', 'none')
+autocmd VimEnter * ++once call one#highlight('mystatuslineFile', 'e5c07b', '2c323c', 'none')
+autocmd VimEnter * ++once call one#highlight('mystatuslineNeomake', 'e06c75', '2c323c', 'none')
 highlight link gitcommitOverflow ErrorMsg
-
-set laststatus=0
 
 " TabLine Theming
 "hi TabLine guifg=#abb2bf
