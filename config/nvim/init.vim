@@ -177,6 +177,7 @@ set spelllang=en_us
 " Set split commands work more as expected
 set splitbelow
 set splitright
+let g:UltiSnipsEditSplit='vertical'
 
 " Spacing
 " https://vim.fandom.com/wiki/Indent_with_tabs,_align_with_spaces
