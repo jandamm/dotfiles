@@ -170,9 +170,9 @@ set completeopt=menu,preview
 " Use C-CR as omnicomplete
 imap <C-CR> <C-x><C-o>
 
-" Use own mappings for UltiSnips
+" Use own mappings for UltiSnips Expand
 let g:UltiSnipsExpandTrigger="<NUL>"
-let g:UltiSnipsJumpForwardTrigger="<NUL>"
+let g:UltiSnipsJumpForwardTrigger="<TAB>"
 let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
 
 " Simple Menu Completion
@@ -242,10 +242,12 @@ nnoremap <expr>   <CR>   &modifiable ? ":call my#keybinds#EnterNewline()\<CR>" :
 nnoremap          <S-CR> :call my#keybinds#EnterNewlineAbove()<CR>
 
 " Tab for indent otherwise shiftwidth spaces
-inoremap <silent> <TAB>  <C-R>=(my#keybinds#UltiExpandOrJump() > 0) ? '' : my#keybinds#SmartTab()<CR>
+inoremap <silent> <TAB>   <C-R>=(my#keybinds#UltiExpandOrJump() > 0) ? '' : my#keybinds#SmartTab()<CR>
 " Default mappings for UltiSnips
-snoremap <silent> <TAB> <ESC>:call UltiSnips#ExpandSnippetOrJump()<CR>
-xnoremap <silent> <TAB> :call UltiSnips#SaveLastVisualSelection()<CR>gvs
+snoremap <silent> <TAB>   <ESC>:call UltiSnips#ExpandSnippetOrJump()<CR>
+xnoremap <silent> <TAB>   :call UltiSnips#SaveLastVisualSelection()<CR>gvs
+" Shift Tab for next/previous in pum else UltiSnips
+inoremap <expr>   <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 " Use Enter to comfirm completion
 " Enter twice adds newline without comment
