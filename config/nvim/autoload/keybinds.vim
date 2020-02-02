@@ -1,52 +1,76 @@
-function s:deleteNonEmptyLine()
+function! s:deleteNonEmptyLine() abort
 	call setline('.', '')
 endfunction
+function! s:matchesCommentsOrWhitespace(input) abort
+	return a:input =~? '^\s\+$' || s:matchesComments(a:input, 1)
+endfunction
 
-function! keybinds#EnterNewline()
+function! s:matchesComments(input, ...) abort
+	let l:match = '^\s*\(//\+\|#\|"\)\s*'
+	if a:0 == 0 || a:1 == 1
+		let l:match .= '$'
+	endif
+	return a:input =~? l:match
+endfunction
+
+function! s:shiftwidthSpaces() abort
+	if &expandtab
+		return "\<TAB>"
+	else
+		let l:spaces = ''
+		for i in range(1, &shiftwidth)
+			let l:spaces .= ' '
+		endfor
+		return l:spaces
+	endif
+endfunction
+
+function! keybinds#EnterNewline() abort
 	let l:pos = getcurpos()
 	normal! o
 	call s:deleteNonEmptyLine()
 	call cursor(l:pos[1], l:pos[2])
 endfunction
 
-function! keybinds#EnterNewlineAbove()
+function! keybinds#EnterNewlineAbove() abort
 	let l:pos = getcurpos()
-  normal! O
+	normal! O
 	call s:deleteNonEmptyLine()
 	call cursor(l:pos[1] + 1, l:pos[2])
 endfunction
 
-function! keybinds#EnterEnter()
+function! keybinds#EnterEnter() abort
 	if pumvisible()
 		return "\<C-y>"
-	elseif getline('.') =~? '^\s*\(\s\|//\|#\|"\)\s*$'
+	elseif s:matchesCommentsOrWhitespace(getline('.'))
 		return "\<C-u>"
 	elseif exists('*EndwiseDiscretionary')
 		return "\<CR>\<C-r>=EndwiseDiscretionary()\<CR>"
-  else
+	else
 		return "\<CR>"
-  endif
+	endif
 endfunction
 
 let g:ulti_expand_or_jump_res = 0 "default value, just set once
 " see :h UltiSnips-trigger-functions
-function! keybinds#Ulti()
+function! keybinds#UltiExpandOrJump() abort
 	call UltiSnips#ExpandSnippetOrJump()
 	return g:ulti_expand_or_jump_res
 endfunction
 
-function! keybinds#SmartTab()
-	" Only with tabs enabled
-	if &et
-		return "\<TAB>"
+function! keybinds#SmartTab() abort
+	if pumvisible()
+		return "\<C-n>"
 	else
 		" Check if line has only tabs before the cursor
-		let l:before = strpart(getline('.'), 0, getcurpos()[2]-1)
-		if l:before =~ '^\t*$'
+		let l:before = strpart(getline('.'), 0, getcurpos()[2] - 1)
+		if l:before =~? '^\t*$'
 			return "\<TAB>"
+		elseif s:matchesComments(l:before, 0)
+					\ || l:before =~? '\s$'
+			return s:shiftwidthSpaces()
 		else
-			" Insert shiftwidth spaces (max 12)
-			return strpart("            ", 0, &shiftwidth)
+			return asyncomplete#force_refresh()
 		endif
 	endif
 endfunction

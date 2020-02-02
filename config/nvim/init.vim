@@ -222,7 +222,7 @@ nnoremap <expr> <CR>   &modifiable ? ":call keybinds#EnterNewline()\<CR>" : "\<C
 nnoremap        <S-CR> :call keybinds#EnterNewlineAbove()<CR>
 
 " Tab for indent otherwise shiftwidth spaces
-inoremap <TAB> <C-R>=(keybinds#Ulti() > 0) ? "" : keybinds#SmartTab()<CR>
+inoremap <TAB> <C-R>=(keybinds#UltiExpandOrJump() > 0) ? '' : keybinds#SmartTab()<CR>
 
 " Use Enter to comfirm completion
 " Enter twice adds newline without comment
