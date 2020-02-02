@@ -25,21 +25,21 @@ function! s:shiftwidthSpaces() abort
 	endif
 endfunction
 
-function! keybinds#EnterNewline() abort
+function! my#keybinds#EnterNewline() abort
 	let l:pos = getcurpos()
 	normal! o
 	call s:deleteNonEmptyLine()
 	call cursor(l:pos[1], l:pos[2])
 endfunction
 
-function! keybinds#EnterNewlineAbove() abort
+function! my#keybinds#EnterNewlineAbove() abort
 	let l:pos = getcurpos()
 	normal! O
 	call s:deleteNonEmptyLine()
 	call cursor(l:pos[1] + 1, l:pos[2])
 endfunction
 
-function! keybinds#EnterEnter() abort
+function! my#keybinds#EnterEnter() abort
 	if pumvisible()
 		return "\<C-y>"
 	elseif s:matchesCommentsOrWhitespace(getline('.'))
@@ -53,12 +53,12 @@ endfunction
 
 let g:ulti_expand_or_jump_res = 0 "default value, just set once
 " see :h UltiSnips-trigger-functions
-function! keybinds#UltiExpandOrJump() abort
+function! my#keybinds#UltiExpandOrJump() abort
 	call UltiSnips#ExpandSnippetOrJump()
 	return g:ulti_expand_or_jump_res
 endfunction
 
-function! keybinds#SmartTab() abort
+function! my#keybinds#SmartTab() abort
 	if pumvisible()
 		return "\<C-n>"
 	else

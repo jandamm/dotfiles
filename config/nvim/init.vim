@@ -229,16 +229,16 @@ nnoremap <C-p> :bp<CR>
 " Insert empty line below/above
 " modifiable: :lopen and other not modifiable buffers should have the default
 " <CR> mapping
-nnoremap <expr>   <CR>   &modifiable ? ":call keybinds#EnterNewline()\<CR>" : "\<CR>"
-nnoremap          <S-CR> :call keybinds#EnterNewlineAbove()<CR>
+nnoremap <expr>   <CR>   &modifiable ? ":call my#keybinds#EnterNewline()\<CR>" : "\<CR>"
+nnoremap          <S-CR> :call my#keybinds#EnterNewlineAbove()<CR>
 
 " Tab for indent otherwise shiftwidth spaces
-inoremap <silent> <TAB>  <C-R>=(keybinds#UltiExpandOrJump() > 0) ? '' : keybinds#SmartTab()<CR>
+inoremap <silent> <TAB>  <C-R>=(my#keybinds#UltiExpandOrJump() > 0) ? '' : my#keybinds#SmartTab()<CR>
 
 " Use Enter to comfirm completion
 " Enter twice adds newline without comment
 let g:endwise_no_mappings=1
-inoremap <expr> <CR> keybinds#EnterEnter()
+inoremap <expr> <CR> my#keybinds#EnterEnter()
 
 " Correct Y yank behavior
 nmap Y y$
