@@ -72,9 +72,11 @@ function NeomakeStatusline()
 	return join(stats, ' ')
 endfunction
 
-" function MyBufTabLine()
-" 	return 'hiho' . buftabline#render() . '%=hoho'
-" endfunction
+function MyTabline()
+	return buftabline#render() . '%=%{getcwd()}'
+endfunction
+set tabline=%!MyTabline()
+let g:buftabline_enabled=0
 
 " function MyStatus(...)
 " 	let actual_curbuf = bufnr("%")
@@ -89,7 +91,7 @@ endfunction
 set signcolumn=yes
 
 " Buffer Tabs
-let g:buftabline_show=1
+set showtabline=2
 
 if (has('termguicolors'))
 	set termguicolors
