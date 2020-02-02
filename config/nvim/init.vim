@@ -39,16 +39,18 @@ let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 
 set laststatus=2
 
+" Quick and dirty statusline (needs better colors and refinement)
 set statusline=                        " Reset
-" set statusline+=%#IncSearch#%{&paste?'\ \ PASTE\ ':''}%*
 set statusline+=%1*                    " Color 1
 set statusline+=λ                      " Symbol
 set statusline+=\ %f                   " filename
 set statusline+=%*                     " Default color
 set statusline+=\ (%n)                 " Buffer number
+set statusline+=%{GitBranch()}         " Git branch
 set statusline+=\ %y                   " filetype with [ft]
 set statusline+=%4m                    " modified ' [+]' (always 4 chars)
 set statusline+=%5r                    " readonly with ' [RO]' (always 5 chars)
+" set statusline+=%#IncSearch#%{&paste?'\ \ PASTE\ ':''}%* " show paste mode
 set statusline+=%=                     " right align from here
 set statusline+=%2*                    " Color 2
 set statusline+=%{NeomakeStatusline()} " Quick hack for Neomake Errors/Warnings
@@ -57,6 +59,10 @@ set statusline+=\ \ %P                 " viewport of buffer (Top / % / Bot)
 set statusline+=-%l                    " current line
 set statusline+=-%c                    " current column
 
+function! GitBranch() abort
+	let l:branch = fugitive#head()
+	return len(l:branch) > 0 ? ' ' . l:branch : ''
+endfunction
 function NeomakeStatusline()
 	let stats = []
 	let lcounts = neomake#statusline#LoclistCounts()
