@@ -7,6 +7,8 @@ Plug 'justinmk/vim-sneak' " Add f like jumps with two chars
 Plug 'tpope/vim-speeddating' " Fix i_Ctrl+a for dates
 Plug 'tpope/vim-commentary' " gc to comment in/out
 Plug 'junegunn/vim-easy-align' " ga to align
+Plug 'tpope/vim-endwise' " Insert endif etc automatically
+Plug 'majutsushi/tagbar' " Show file overview with tags
 
 Plug 'airblade/vim-rooter' " Always cd into root of project
 
@@ -42,6 +44,7 @@ Plug 'thomasfaingnaert/vim-lsp-ultisnips'
 
 " 'All' Languages
 Plug 'sheerun/vim-polyglot'
+Plug 'keith/xcconfig.vim'
 
 " Misc
 " Asynchronous file linting/formatting
