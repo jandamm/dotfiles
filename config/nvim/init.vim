@@ -207,11 +207,12 @@ nnoremap <expr> <CR>   &modifiable ? ":call keybinds#EnterNewline()\<CR>" : "\<C
 nnoremap        <S-CR> :call keybinds#EnterNewlineAbove()<CR>
 
 " Tab for indent otherwise shiftwidth spaces
-inoremap <TAB> <C-R>=(keybinds#Ulti() > 0)?"":keybinds#SmartTab()<CR>
+inoremap <TAB> <C-R>=(keybinds#Ulti() > 0) ? "" : keybinds#SmartTab()<CR>
 
 " Use Enter to comfirm completion
 " Enter twice adds newline without comment
-inoremap <silent><expr> <cr> pumvisible() ? "\<C-y>" : keybinds#EnterEnter()
+let g:endwise_no_mappings=1
+inoremap <expr> <CR> keybinds#EnterEnter()
 
 " Correct Y yank behavior
 nmap Y y$

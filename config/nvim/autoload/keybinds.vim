@@ -17,10 +17,14 @@ function! keybinds#EnterNewlineAbove()
 endfunction
 
 function! keybinds#EnterEnter()
-	if getline(".") =~ '^\s*\(//\|#\|"\)\s*$'
-    return "\<C-u>"
+	if pumvisible()
+		return "\<C-y>"
+	elseif getline('.') =~? '^\s*\(\s\|//\|#\|"\)\s*$'
+		return "\<C-u>"
+	elseif exists('*EndwiseDiscretionary')
+		return "\<CR>\<C-r>=EndwiseDiscretionary()\<CR>"
   else
-    return "\<CR>"
+		return "\<CR>"
   endif
 endfunction
 
