@@ -48,7 +48,9 @@ brew bundle
 # NVIM {{{
 
 # install plugins
+# Pipfile:
 # pip3 install vim-vint
+# pip3 install pynvim
 # nvim -u plugins.vim +PlugInstall +qa
 # nvim -u plugins.vim +PlugUpgrade +PlugUpdate +qa
 
