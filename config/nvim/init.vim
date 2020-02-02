@@ -288,6 +288,7 @@ nmap <Leader>r       :echo 'No run target defined'<CR>
 nmap <Leader>t       :TagbarToggle<CR>
 nmap <Leader>u       :echo 'No test target defined'<CR>
 nmap <Leader><Space> :Files<CR>
+nmap <Leader>/       :Rg 
 
 " }}}
 
