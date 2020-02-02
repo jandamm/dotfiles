@@ -83,9 +83,6 @@ let g:asyncomplete_popup_delay = 0
 let g:asyncomplete_auto_completeopt = 0
 set completeopt=menu,preview
 
-" Use Enter to comfirm completion
-inoremap <silent><expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
-
 " Use c-cr as omnicomplete
 imap <c-cr> <c-x><c-o>
 
@@ -151,26 +148,21 @@ noremap <c-n> :bn<cr>
 noremap <c-p> :bp<cr>
 
 " New Line in normal mode
-noremap <cr> o<C-u><esc>k
-noremap <s-cr> O<C-u><esc>j
+nnoremap <CR> :call keybinds#EnterNewline()<CR>
+nnoremap <S-CR> :call keybinds#EnterNewlineAbove()<CR>
 
-" Enter and comments
-function! EnterEnter()
-  if getline(".") =~ '^\s*\(//\|#\|"\)\s*$'
-    return "\<C-u>"
-  else
-    return "\<CR>"
-  endif
-endfunction
+" Not working -> Conflict with ultisnips
+inoremap <expr> <TAB> keybinds#SmartTab()
 
-imap <expr> <CR> EnterEnter()
-imap <S-CR> <CR><C-u>
+" Use Enter to comfirm completion
+" Enter twice adds newline wirhout comment
+inoremap <silent><expr> <cr> pumvisible() ? "\<C-y>" : keybinds#EnterEnter()
 
 " Correct Y yank behavior
 nmap Y y$
 
 " Esc twice to clear last search
-noremap <esc><esc> :noh<cr>:<bs>
+nnoremap <ESC><ESC> :nohlsearch<CR>:<BS>
 
 " Remap U Redo
 nnoremap U <C-r>
