@@ -1,21 +1,24 @@
-## NeoVim Plugin/Configuration paths
+# NeoVim Plugin/Configuration paths
 
-### after
+## after
 Loaded after plugins and init.vim.
 Use to modify external plugins.
 - ftplugin
 - plugin
-- colors
 
-### ftdetect
+## autoload
+Functions that aren't loaded with init.vim
+Usage: `some#lazy#function` should be defined in `autoload/some/lazy.vim`
+
+## ftdetect
 Short files only to define the filetype.
 
-### ftplugin
+## ftplugin
 Plugin folder (load for language).
 Modification for languages. Either `swift.vim` or `swift/some.vim`.
 
-### plugin
+## plugin
 Plugin folder (load always)
 
-### syntax
+## syntax
 Add syntax definitions
