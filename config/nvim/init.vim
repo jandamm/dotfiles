@@ -240,6 +240,9 @@ nnoremap          <S-CR> :call my#keybinds#EnterNewlineAbove()<CR>
 
 " Tab for indent otherwise shiftwidth spaces
 inoremap <silent> <TAB>  <C-R>=(my#keybinds#UltiExpandOrJump() > 0) ? '' : my#keybinds#SmartTab()<CR>
+" Default mappings for UltiSnips
+snoremap <silent> <TAB> <ESC>:call UltiSnips#ExpandSnippetOrJump()<CR>
+xnoremap <silent> <TAB> :call UltiSnips#SaveLastVisualSelection()<CR>gvs
 
 " Use Enter to comfirm completion
 " Enter twice adds newline without comment
