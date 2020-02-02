@@ -4,7 +4,7 @@
 runtime plugins.vim
 
 set laststatus=2
-set statusline=
+set statusline=%<
 set statusline+=%#IncSearch#%{&paste?'\ \ PASTE\ ':''}%*
 set statusline+=\ %#mystatuslineFile#%f%*
 set statusline+=\ %Y
