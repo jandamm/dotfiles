@@ -198,8 +198,8 @@ noremap <c-p> :bp<cr>
 " Insert empty line below/above
 " modifiable: :lopen and other not modifiable buffers should have the default
 " <CR> mapping
-nnoremap <CR> :call keybinds#EnterNewline()<CR>
-nnoremap <S-CR> :call keybinds#EnterNewlineAbove()<CR>
+nnoremap <expr> <CR>   &modifiable ? ":call keybinds#EnterNewline()\<CR>" : "\<CR>"
+nnoremap        <S-CR> :call keybinds#EnterNewlineAbove()<CR>
 
 " Tab for indent otherwise shiftwidth spaces
 inoremap <TAB> <C-R>=(keybinds#Ulti() > 0)?"":keybinds#SmartTab()<CR>
