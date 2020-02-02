@@ -38,9 +38,8 @@ let g:lsp_diagnostics_enabled = 0
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 
 set laststatus=2
-" Colorscheme isn't working good
-" Use hi User1-9
-set statusline=
+
+set statusline=                        " Reset
 " set statusline+=%#IncSearch#%{&paste?'\ \ PASTE\ ':''}%*
 set statusline+=%1*                    " Color 1
 set statusline+=λ                      " Symbol
