@@ -47,5 +47,3 @@ Plug 'sheerun/vim-polyglot'
 Plug 'neomake/neomake'
 
 call plug#end()
-
-" }}}

@@ -4,7 +4,7 @@ endfunction
 
 function! keybinds#EnterNewline()
 	let l:pos = getcurpos()
-  normal! o
+	normal! o
 	call s:deleteNonEmptyLine()
 	call cursor(l:pos[1], l:pos[2])
 endfunction
@@ -17,7 +17,7 @@ function! keybinds#EnterNewlineAbove()
 endfunction
 
 function! keybinds#EnterEnter()
-  if getline(".") =~ '^\s*\(//\|#\|"\)\s*$'
+	if getline(".") =~ '^\s*\(//\|#\|"\)\s*$'
     return "\<C-u>"
   else
     return "\<CR>"

@@ -154,15 +154,17 @@ call neomake#configure#automake('rnw', 500)
 noremap <c-n> :bn<cr>
 noremap <c-p> :bp<cr>
 
-" New Line in normal mode
+" Insert empty line below/above
+" modifiable: :lopen and other not modifiable buffers should have the default
+" <CR> mapping
 nnoremap <CR> :call keybinds#EnterNewline()<CR>
 nnoremap <S-CR> :call keybinds#EnterNewlineAbove()<CR>
 
-" Not working -> Conflict with ultisnips
-inoremap <TAB>  <C-R>=(keybinds#Ulti() > 0)?"":keybinds#SmartTab()<CR>
+" Tab for indent otherwise shiftwidth spaces
+inoremap <TAB> <C-R>=(keybinds#Ulti() > 0)?"":keybinds#SmartTab()<CR>
 
 " Use Enter to comfirm completion
-" Enter twice adds newline wirhout comment
+" Enter twice adds newline without comment
 inoremap <silent><expr> <cr> pumvisible() ? "\<C-y>" : keybinds#EnterEnter()
 
 " Correct Y yank behavior
@@ -183,7 +185,7 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-" Set ga to gA (ga is vim-align)
+" Set ga to gA (ga is vim-align, gA is print ascii)
 nnoremap gA ga
 
 " Sneak:
