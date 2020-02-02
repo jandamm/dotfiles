@@ -25,6 +25,13 @@ function NeomakeStatusline()
 	return join(stats, ' ')
 endfunction
 
+" function MyStatus(...)
+" 	let actual_curbuf = bufnr("%")
+" 	return "%c  " .  neomake#statusline#get(actual_curbuf)
+" endfunction
+
+" set statusline=%!MyStatus()
+
 " Appearance {{{
 
 " Git Bar always visible
