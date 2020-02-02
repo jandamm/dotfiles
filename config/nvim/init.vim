@@ -3,6 +3,9 @@ scriptencoding utf-8
 " Load plugins (Extracted to file to ease first installation)
 runtime plugins.vim
 
+" Update signify after x ms
+set updatetime=200
+
 " Swiftlint maker
 let g:neomake_swift_swiftlint_maker = {
 			\ 'args': ['lint'],
