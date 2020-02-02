@@ -1,5 +1,9 @@
 --langmap=vim:+(vimrc)
 
+--langdef=UltiSnips
+--langmap=UltiSnips:.snippets
+--regex-UltiSnips=/^snippet (.*)/\1/s,snippet/
+
 --exclude=.git
 --exclude=.config
 --exclude=.cache
