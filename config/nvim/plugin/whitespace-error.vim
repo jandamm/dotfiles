@@ -3,10 +3,10 @@ function MatchWhitespaceErrors()
 	" https://vim.fandom.com/wiki/Highlight_long_lines
 	if !exists('w:no_whitespace_error')
 		if !exists('w:no_whitespace_error_trail')
-			let w:w1=matchadd('ErrorMsg', '\s\+$', -1)
+			let w:w1=matchadd('Error', '\s\+$', -1)
 		endif
 		if !exists('w:no_whitespace_error_tabs')
-			let w:w2=matchadd('ErrorMsg', '[^\t]\zs\t\+', -1)
+			let w:w2=matchadd('Error', '[^\t]\zs\t\+', -1)
 		endif
 	endif
 endfunction
