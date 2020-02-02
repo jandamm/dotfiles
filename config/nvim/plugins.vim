@@ -14,6 +14,7 @@ Plug 'majutsushi/tagbar' " Show file overview with tags
 " Change case styles with cr{char}
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-fugitive'
 
 Plug 'airblade/vim-rooter' " Always cd into root of project
 

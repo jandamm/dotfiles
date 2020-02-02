@@ -275,23 +275,70 @@ xnoremap <silent> Z :call sneak#wrap(visualmode(), 2, 1, 1, 1)<CR>
 
 " Keybindings Leader {{{
 
+function! s:open_branch_fzf(line)
+  let l:parser = split(a:line)
+  let l:branch = l:parser[0]
+  if l:branch ==? '*'
+    let l:branch = l:parser[1]
+  endif
+  execute '!git checkout ' . l:branch
+endfunction
+
+command! -bang -nargs=0 GSwitch
+  \ call fzf#vim#grep(
+  \   'git branch --verbose', 0,
+  \   {
+  \     'sink': function('s:open_branch_fzf')
+  \   },
+  \   <bang>0
+  \ )
+command! -bang -nargs=0 GSwitchAll
+  \ call fzf#vim#grep(
+  \   'git branch --all --verbose', 0,
+  \   {
+  \     'sink': function('s:open_branch_fzf')
+  \   },
+  \   <bang>0
+  \ )
+
 " Use Space & \ as Leader
 nmap <SPACE> <Leader>
 
 " Leader Keybindings
 " Some mappings should be overwritten in ftplugins
 " Mainly c, f, r, u
-" TODO: Replace l with lopen, select window, lclose
 nmap <Leader>b       :Buffers<CR>
 nmap <Leader>c       :echo 'No compiler defined'<CR>
-nmap <Leader>f       gg=G``zz
+" d -> Directory
+" TODO Only Sexplore if one window
 nmap <Leader>d       :Sexplore<CR>
+" f -> Format
+nmap <Leader>f       gg=G``zz
+" Fugitive/Git
+nmap <Leader>gb      :GSwitch<CR>
+nmap <Leader>gB      :GSwitchAll<CR>
+nmap <Leader>gc      :Gcommit<CR>
+nmap <Leader>gd      :Gdiff<CR>
+nmap <Leader>gf      :Gfetch<CR>
+nmap <Leader>gF      :Gpull<CR>
+nmap <Leader>gg      :Git 
+nmap <Leader>gl      :Glog<CR>
+nmap <Leader>gm      :Gmerge<CR>
+nmap <Leader>gp      :Gpush<CR>
+nmap <Leader>gr      :Grebase<CR>
+nmap <Leader>gs      :Gstatus<CR>
+" TODO Replace l with lopen, select window, lclose
 nmap <Leader>l       :lopen<CR>
+" o -> Outline
+nmap <Leader>o       :TagbarToggle<CR>
 nmap <Leader>r       :echo 'No run target defined'<CR>
-nmap <Leader>t       :TagbarToggle<CR>
+nmap <Leader>t       :Tags<CR>
+" u -> Unit test
 nmap <Leader>u       :echo 'No test target defined'<CR>
+" TODO Replace with GFiles if in git
 nmap <Leader><SPACE> :Files<CR>
-nmap <Leader>/       :Rg 
+nmap <Leader>/       :Lines<CR>
+nmap <Leader>?       :Rg 
 
 " }}}
 
