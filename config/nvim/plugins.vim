@@ -38,13 +38,15 @@ Plug 'mhinz/vim-signify'
 Plug 'dustinknopoff/TeaCode-Vim-Extension'
 Plug 'SirVer/ultisnips'
 Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-necovim.vim'
+	Plug 'Shougo/neco-vim'
 
 " LSP
 Plug 'prabirshrestha/vim-lsp'
 	Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'thomasfaingnaert/vim-lsp-snippets'
 Plug 'thomasfaingnaert/vim-lsp-ultisnips'
+	Plug 'thomasfaingnaert/vim-lsp-snippets'
 
 " 'All' Languages
 Plug 'sheerun/vim-polyglot'
