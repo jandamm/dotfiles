@@ -87,8 +87,8 @@ set completeopt=menu,preview
 imap <c-cr> <c-x><c-o>
 
 " Use tabs for UltiSnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<NUL>"
+let g:UltiSnipsJumpForwardTrigger="<NUL>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " TeaCode Shortcut
@@ -152,7 +152,7 @@ nnoremap <CR> :call keybinds#EnterNewline()<CR>
 nnoremap <S-CR> :call keybinds#EnterNewlineAbove()<CR>
 
 " Not working -> Conflict with ultisnips
-inoremap <expr> <TAB> keybinds#SmartTab()
+inoremap <TAB>  <C-R>=(keybinds#Ulti() > 0)?"":keybinds#SmartTab()<CR>
 
 " Use Enter to comfirm completion
 " Enter twice adds newline wirhout comment

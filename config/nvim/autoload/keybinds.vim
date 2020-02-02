@@ -24,6 +24,13 @@ function! keybinds#EnterEnter()
   endif
 endfunction
 
+let g:ulti_expand_or_jump_res = 0 "default value, just set once
+" see :h UltiSnips-trigger-functions
+function! keybinds#Ulti()
+	call UltiSnips#ExpandSnippetOrJump()
+	return g:ulti_expand_or_jump_res
+endfunction
+
 function! keybinds#SmartTab()
 	" Only with tabs enabled
 	if &et
