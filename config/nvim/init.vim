@@ -34,22 +34,6 @@ let g:neomake_swift_swiftpmjd_maker = {
 let g:neomake_swift_enabled_makers = ['swiftpmjd', 'swiftlint']
 let g:lsp_diagnostics_enabled = 0
 
-function! s:on_lsp_buffer_enabled() abort
-	setlocal omnifunc=lsp#complete
-	set foldmethod=expr
-				\ foldexpr=lsp#ui#vim#folding#foldexpr()
-				\ foldtext=lsp#ui#vim#folding#foldtext()
-	set nofoldenable
-
-	" refer to doc to add more commands
-endfunction
-
-augroup lsp_install
-	au!
-	" call s:on_lsp_buffer_enabled only for languages that has the server registered.
-	autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
-
 set laststatus=2
 " Colorscheme isn't working good
 " Use hi User1-9
@@ -129,9 +113,31 @@ if executable('sourcekit-lsp')
 				\ })
 endif
 
-" Use asyncomplete as omnifunc without auto hud.
 " Map omnicomplete shortcut to asyncomplete
 imap <c-x><c-o> <Plug>(asyncomplete_force_refresh)
+function! s:on_lsp_buffer_enabled() abort
+	set foldmethod=expr
+				\ foldexpr=lsp#ui#vim#folding#foldexpr()
+				\ foldtext=lsp#ui#vim#folding#foldtext()
+	set nofoldenable
+	set completeopt+=menuone
+
+	" refer to doc to add more commands
+endfunction
+
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#necovim#get_source_options({
+    \ 'name': 'necovim',
+    \ 'whitelist': ['vim'],
+    \ 'completor': function('asyncomplete#sources#necovim#completor'),
+    \ }))
+
+augroup lsp_install
+	au!
+	" call s:on_lsp_buffer_enabled only for languages that has the server registered.
+	autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
+" Use asyncomplete as omnifunc without auto hud.
 " Disable asyncomplete auto popup
 let g:asyncomplete_auto_popup = 0
 let g:asyncomplete_popup_delay = 0
