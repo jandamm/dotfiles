@@ -38,7 +38,6 @@ Plug 'mhinz/vim-signify'
 "Plug 'christoomey/vim-tmux-runner'
 
 " Auto Completion
-Plug 'dustinknopoff/TeaCode-Vim-Extension'
 Plug 'SirVer/ultisnips'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-necovim.vim'

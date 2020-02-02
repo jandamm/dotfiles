@@ -166,9 +166,6 @@ let g:UltiSnipsExpandTrigger="<NUL>"
 let g:UltiSnipsJumpForwardTrigger="<NUL>"
 let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
 
-" TeaCode Shortcut
-inoremap <C-M-e> <C-O>:call TeaCodeExpand()<CR>
-
 " Simple Menu Completion
 set wildmode=longest:full,full
 set wildignore+=.root                                  " Custom project root marker
