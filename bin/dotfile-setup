@@ -16,11 +16,12 @@ done
 echo "Not yet impletemented"
 exit 1
 
-
 # install Brewfile
-brew bundle
+brew bundle install --global
 
-# set env (DOTFILES)
+# install pips
+# -U -> Update if available
+# pip3 install -U -r pip-requirements.txt
 
 # TMUX {{{
 
@@ -48,9 +49,6 @@ brew bundle
 # NVIM {{{
 
 # install plugins
-# Pipfile:
-# pip3 install vim-vint
-# pip3 install pynvim
 # nvim -u plugins.vim +PlugInstall +qa
 # nvim -u plugins.vim +PlugUpgrade +PlugUpdate +qa
 
