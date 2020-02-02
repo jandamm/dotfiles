@@ -3,6 +3,29 @@
 " Load plugins (Extracted to file to ease first installation)
 runtime plugins.vim
 
+" Swiftlint maker
+let g:neomake_swift_swiftlint_maker = {
+        \ 'args': ['lint'],
+        \ 'errorformat':
+            \ '%E%f:%l:%c: error: %m,' .
+            \ '%W%f:%l:%c: warning: %m,' .
+            \ '%Z%\s%#^~%#,' .
+            \ '%-G%.%#',
+        \ }
+
+" single file maker
+let g:neomake_swift_swiftpmjd_maker = {
+			\ 'exe': 'swift',
+        \ 'errorformat':
+            \ '%E%f:%l:%c: error: %m,' .
+            \ '%E%f:%l: error: %m,' .
+            \ '%W%f:%l:%c: warning: %m,' .
+            \ '%Z%\s%#^~%#,' .
+            \ '%-G%.%#',
+        \ }
+let g:neomake_swift_enabled_makers = ['swiftpmjd', 'swiftlint']
+let g:lsp_diagnostics_enabled = 0
+
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
 		set foldmethod=expr
