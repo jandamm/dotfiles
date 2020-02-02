@@ -9,6 +9,10 @@ Plug 'tpope/vim-commentary' " gc to comment in/out
 Plug 'junegunn/vim-easy-align' " ga to align
 Plug 'tpope/vim-endwise' " Insert endif etc automatically
 Plug 'majutsushi/tagbar' " Show file overview with tags
+" Better iabbrev
+" Better :s/abba/bobby/g with :S/{a,A}bba/{b,B}obby/g
+" Change case styles with cr{char}
+Plug 'tpope/vim-abolish'
 
 Plug 'airblade/vim-rooter' " Always cd into root of project
 
