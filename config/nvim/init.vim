@@ -3,6 +3,9 @@ scriptencoding utf-8
 " Load plugins (Extracted to file to ease first installation)
 runtime plugins.vim
 
+" Allow folder specific tags with .root file
+let g:gutentags_project_root=['.root']
+
 " Update signify after x ms
 set updatetime=200
 " Prefer .root file over .git folder
