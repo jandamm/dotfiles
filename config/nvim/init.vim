@@ -4,9 +4,11 @@
 runtime plugins.vim
 
 set laststatus=2
+" Colorscheme isn't working good
+" Use hi User1-9
 set statusline=%<
-set statusline+=%#IncSearch#%{&paste?'\ \ PASTE\ ':''}%*
-set statusline+=\ %#mystatuslineFile#%f%*
+" set statusline+=%#IncSearch#%{&paste?'\ \ PASTE\ ':''}%*
+set statusline+=%#mystatuslineFile#%f%*
 set statusline+=\ %Y
 set statusline+=\ %M
 set statusline+=\ %R
