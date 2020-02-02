@@ -51,6 +51,7 @@ Plug 'thomasfaingnaert/vim-lsp-ultisnips'
 " 'All' Languages
 Plug 'sheerun/vim-polyglot'
 Plug 'keith/xcconfig.vim'
+Plug 'zinit-zsh/zplugin-vim-syntax'
 
 " Misc
 " Asynchronous file linting/formatting
