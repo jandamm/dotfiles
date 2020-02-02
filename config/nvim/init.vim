@@ -37,17 +37,23 @@ let g:lsp_diagnostics_enabled = 0
 set laststatus=2
 " Colorscheme isn't working good
 " Use hi User1-9
-set statusline=%<
+set statusline=
 " set statusline+=%#IncSearch#%{&paste?'\ \ PASTE\ ':''}%*
-set statusline+=%#mystatuslineFile#%f%*
-set statusline+=\ %Y
-set statusline+=\ %M
-set statusline+=\ %R
-set statusline+=%=
-set statusline+=%#mystatuslineNeomake#%{NeomakeStatusline()}%*
-set statusline+=\ \ %P
-set statusline+=-%l
-set statusline+=-%c
+set statusline+=%1*                    " Color 1
+set statusline+=λ                      " Symbol
+set statusline+=\ %f                   " filename
+set statusline+=%*                     " Default color
+set statusline+=\ (%n)                 " Buffer number
+set statusline+=\ %y                   " filetype with [ft]
+set statusline+=%4m                    " modified ' [+]' (always 4 chars)
+set statusline+=%5r                    " readonly with ' [RO]' (always 5 chars)
+set statusline+=%=                     " right align from here
+set statusline+=%2*                    " Color 2
+set statusline+=%{NeomakeStatusline()} " Quick hack for Neomake Errors/Warnings
+set statusline+=%*                     " Default color
+set statusline+=\ \ %P                 " viewport of buffer (Top / % / Bot)
+set statusline+=-%l                    " current line
+set statusline+=-%c                    " current column
 
 function NeomakeStatusline()
 	let stats = []
@@ -81,9 +87,10 @@ set background=dark
 colorscheme one
 let g:one_allow_italics=1
 autocmd VimEnter * ++once call one#highlight('gitcommitSummary', 'e5c07b', '', 'none')
-autocmd VimEnter * ++once call one#highlight('mystatuslineFile', 'e5c07b', '2c323c', 'none')
-autocmd VimEnter * ++once call one#highlight('mystatuslineNeomake', 'e06c75', '2c323c', 'none')
+autocmd VimEnter * ++once call one#highlight('User1', '61afef', '2c323c', 'none')
+autocmd VimEnter * ++once call one#highlight('User2', 'e06c75', '2c323c', 'none')
 autocmd VimEnter * ++once call one#highlight('Sneak', 'c678dd', '', 'reverse')
+autocmd VimEnter * ++once hi clear StatuslineNC " Quick fix for inactive statusline
 highlight link gitcommitOverflow ErrorMsg
 
 " TabLine Theming
