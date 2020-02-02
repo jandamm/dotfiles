@@ -43,6 +43,7 @@ let g:one_allow_italics=1
 autocmd VimEnter * ++once call one#highlight('gitcommitSummary', 'e5c07b', '', 'none')
 autocmd VimEnter * ++once call one#highlight('mystatuslineFile', 'e5c07b', '2c323c', 'none')
 autocmd VimEnter * ++once call one#highlight('mystatuslineNeomake', 'e06c75', '2c323c', 'none')
+autocmd VimEnter * ++once call one#highlight('Sneak', 'c678dd', '', 'reverse')
 highlight link gitcommitOverflow ErrorMsg
 
 " TabLine Theming
