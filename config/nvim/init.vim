@@ -328,11 +328,15 @@ nmap <Leader>gd      :Gdiff<CR>
 nmap <Leader>gf      :Gfetch<CR>
 nmap <Leader>gF      :Gpull<CR>
 nmap <Leader>gg      :Git 
+" h -> History/Log of current file
+nmap <Leader>gh      :0Glog<CR>
 nmap <Leader>gl      :Glog<CR>
 nmap <Leader>gm      :Gmerge<CR>
 nmap <Leader>gp      :Gpush<CR>
 nmap <Leader>gr      :Grebase<CR>
 nmap <Leader>gs      :Gstatus<CR>
+" w -> Who did this?
+nmap <Leader>gw      :Gblame<CR>
 " TODO Replace l with lopen, select window, lclose
 nmap <Leader>l       :lopen<CR>
 " o -> Outline
