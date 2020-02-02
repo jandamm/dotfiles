@@ -1,28 +1,47 @@
 #!/usr/bin/env bash
 # vim:set foldmethod=marker:
 
+if [ -z "$DOTFILES" ]
+then
+	echo "Not yet set up. Sourcing zshenv"
+	# shellcheck source=../zshenv
+	source "$(pwd)/${0%/*}/../zshenv"
+fi
+
+while [[ -n "$1" ]]
+do
+	echo $1
+	
+done
 echo "Not yet impletemented"
 exit 1
 
+
 # install Brewfile
+brew bundle
+
+# set env (DOTFILES)
 
 # TMUX {{{
 
 # install tmux terminal
-# run tpm install plugins (leader I)
+# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# ~/.tmux/plugins/tpm/bin/install_plugins
+# ~/.tmux/plugins/tpm/bin/update_plugins all
 
 # }}}
 
 # ALACRITTY {{{
 
-# install extras
-bash "$DOTFILES/scripts/install_alacritty"
+# Set font rendering for non retina
+# defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
 
 # }}}
 
 # ZSH {{{
 
 # rezsh
+# zinit update
 
 # }}}
 
@@ -30,12 +49,7 @@ bash "$DOTFILES/scripts/install_alacritty"
 
 # install plugins
 # nvim -u plugins.vim +PlugInstall +qa
-
-# }}}
-
-# DOOM {{{
-
-# download doom?
+# nvim -u plugins.vim +PlugUpgrade +PlugUpdate +qa
 
 # }}}
 
@@ -43,6 +57,9 @@ bash "$DOTFILES/scripts/install_alacritty"
 
 # recompile with theme
 # after rcup
+
+# update: download theme again
+# recompile with theme
 
 # }}}
 
