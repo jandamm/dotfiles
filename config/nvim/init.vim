@@ -34,6 +34,9 @@ let g:neomake_swift_swiftpmjd_maker = {
 let g:neomake_swift_enabled_makers = ['swiftpmjd', 'swiftlint']
 let g:lsp_diagnostics_enabled = 0
 
+" Default hide hidden files in netrw (toggle with gh)
+let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+
 set laststatus=2
 " Colorscheme isn't working good
 " Use hi User1-9

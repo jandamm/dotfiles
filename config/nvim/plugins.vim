@@ -13,6 +13,7 @@ Plug 'majutsushi/tagbar' " Show file overview with tags
 " Better :s/abba/bobby/g with :S/{a,A}bba/{b,B}obby/g
 " Change case styles with cr{char}
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-vinegar'
 
 Plug 'airblade/vim-rooter' " Always cd into root of project
 
