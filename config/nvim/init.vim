@@ -64,6 +64,10 @@ function NeomakeStatusline()
 	return join(stats, ' ')
 endfunction
 
+" function MyBufTabLine()
+" 	return 'hiho' . buftabline#render() . '%=hoho'
+" endfunction
+
 " function MyStatus(...)
 " 	let actual_curbuf = bufnr("%")
 " 	return "%c  " .  neomake#statusline#get(actual_curbuf)
