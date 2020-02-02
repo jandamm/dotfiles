@@ -1,45 +1,45 @@
-" vim:set foldmethod=marker:
+scriptencoding utf-8
 
 " Load plugins (Extracted to file to ease first installation)
 runtime plugins.vim
 
 " Swiftlint maker
 let g:neomake_swift_swiftlint_maker = {
-        \ 'args': ['lint'],
-        \ 'errorformat':
-            \ '%E%f:%l:%c: error: %m,' .
-            \ '%W%f:%l:%c: warning: %m,' .
-            \ '%Z%\s%#^~%#,' .
-            \ '%-G%.%#',
-        \ }
+			\ 'args': ['lint'],
+			\ 'errorformat':
+			\ '%E%f:%l:%c: error: %m,' .
+			\ '%W%f:%l:%c: warning: %m,' .
+			\ '%Z%\s%#^~%#,' .
+			\ '%-G%.%#',
+			\ }
 
 " single file maker
 let g:neomake_swift_swiftpmjd_maker = {
 			\ 'exe': 'swift',
-        \ 'errorformat':
-            \ '%E%f:%l:%c: error: %m,' .
-            \ '%E%f:%l: error: %m,' .
-            \ '%W%f:%l:%c: warning: %m,' .
-            \ '%Z%\s%#^~%#,' .
-            \ '%-G%.%#',
-        \ }
+			\ 'errorformat':
+			\ '%E%f:%l:%c: error: %m,' .
+			\ '%E%f:%l: error: %m,' .
+			\ '%W%f:%l:%c: warning: %m,' .
+			\ '%Z%\s%#^~%#,' .
+			\ '%-G%.%#',
+			\ }
 let g:neomake_swift_enabled_makers = ['swiftpmjd', 'swiftlint']
 let g:lsp_diagnostics_enabled = 0
 
 function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
-		set foldmethod=expr
-  \ foldexpr=lsp#ui#vim#folding#foldexpr()
-  \ foldtext=lsp#ui#vim#folding#foldtext()
-		set nofoldenable
+	setlocal omnifunc=lsp#complete
+	set foldmethod=expr
+				\ foldexpr=lsp#ui#vim#folding#foldexpr()
+				\ foldtext=lsp#ui#vim#folding#foldtext()
+	set nofoldenable
 
-    " refer to doc to add more commands
+	" refer to doc to add more commands
 endfunction
 
 augroup lsp_install
-    au!
-    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
-    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+	au!
+	" call s:on_lsp_buffer_enabled only for languages that has the server registered.
+	autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
 set laststatus=2
@@ -81,7 +81,7 @@ set signcolumn=yes
 " Buffer Tabs
 let g:buftabline_show=1
 
-if (has("termguicolors"))
+if (has('termguicolors'))
 	set termguicolors
 endif
 
@@ -181,8 +181,8 @@ set list
 set wrap
 set linebreak
 if exists('+breakindent')
-  set breakindent
-  set breakindentopt=shift:2
+	set breakindent
+	set breakindentopt=shift:2
 endif
 
 call neomake#configure#automake('rnw', 500)
@@ -192,8 +192,8 @@ call neomake#configure#automake('rnw', 500)
 " Keybindings {{{
 
 " Buffer/Tab navigation
-noremap <c-n> :bn<cr>
-noremap <c-p> :bp<cr>
+nnoremap <c-n> :bn<cr>
+nnoremap <c-p> :bp<cr>
 
 " Insert empty line below/above
 " modifiable: :lopen and other not modifiable buffers should have the default
@@ -286,3 +286,5 @@ set ignorecase
 set smartcase
 
 " }}}
+
+" vim:set foldmethod=marker:
