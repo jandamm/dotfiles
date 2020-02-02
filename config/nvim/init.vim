@@ -249,15 +249,18 @@ xnoremap <silent> Z :call sneak#wrap(visualmode(), 2, 1, 1, 1)<cr>
 nmap <Space> <Leader>
 
 " Leader Keybindings
-nmap <Leader>bb :Buffers<cr>
-nmap <Leader>bd :bd<cr>
-nmap <Leader>qq :q<cr>
-nmap <Leader>bn :bn<cr><esc>
-nmap <Leader>bp :bp<cr><esc>
-nmap <Leader><Space> :Files<cr>
-
-nmap <Leader>e :lnext<cr>
-nmap <Leader>E :lprev<cr>
+" Some mappings should be overwritten in ftplugins
+" Mainly c, f, r, u
+" TODO: Replace l with lopen, select window, lclose
+nmap <Leader>b       :Buffers<CR>
+nmap <Leader>c       :echo 'No compiler defined'<CR>
+nmap <Leader>f       gg=G``zz
+nmap <Leader>d       :Sexplore<CR>
+nmap <Leader>l       :lopen<CR>
+nmap <Leader>r       :echo 'No run target defined'<CR>
+nmap <Leader>t       :TagbarToggle<CR>
+nmap <Leader>u       :echo 'No test target defined'<CR>
+nmap <Leader><Space> :Files<CR>
 
 " }}}
 
@@ -275,11 +278,11 @@ syntax on
 
 " Clipboard
 if has('clipboard')     " If the feature is available
-  set clipboard=unnamed " copy to the system clipboard
+	set clipboard=unnamed " copy to the system clipboard
 
-  if has('unnamedplus')
-    set clipboard+=unnamedplus
-  endif
+	if has('unnamedplus')
+		set clipboard+=unnamedplus
+	endif
 endif
 
 " }}}
