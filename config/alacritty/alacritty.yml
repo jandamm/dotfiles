@@ -573,5 +573,5 @@ key_bindings:
   #- { key: End,       mods: Shift,   action: ScrollToBottom, mode: ~Alt       }
 
   # https://stackoverflow.com/a/42461580
-  - { key: Return,   mods: Shift,   chars: "\x1b[13;2u" } # Allow mapping <S-cr> in vim
-  - { key: Return,   mods: Control, chars: "\x1b[13;5u" } # Allow mapping <C-cr> in vim
+  - { key: Return,   mods: Shift,   chars: "\x1b[13;2u" } # Allow mapping <S-CR> in vim
+  - { key: Return,   mods: Control, chars: "\x1b[13;5u" } # Allow mapping <C-CR> in vim

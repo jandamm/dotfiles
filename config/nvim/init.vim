@@ -125,7 +125,7 @@ if executable('sourcekit-lsp')
 endif
 
 " Map omnicomplete shortcut to asyncomplete
-imap <c-x><c-o> <Plug>(asyncomplete_force_refresh)
+imap <C-x><C-o> <Plug>(asyncomplete_force_refresh)
 function! s:on_lsp_buffer_enabled() abort
 	set foldmethod=expr
 				\ foldexpr=lsp#ui#vim#folding#foldexpr()
@@ -156,13 +156,13 @@ let g:asyncomplete_popup_delay = 0
 let g:asyncomplete_auto_completeopt = 0
 set completeopt=menu,preview
 
-" Use c-cr as omnicomplete
-imap <c-cr> <c-x><c-o>
+" Use C-CR as omnicomplete
+imap <C-CR> <C-x><C-o>
 
-" Use tabs for UltiSnips
+" Use own mappings for UltiSnips
 let g:UltiSnipsExpandTrigger="<NUL>"
 let g:UltiSnipsJumpForwardTrigger="<NUL>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
 
 " TeaCode Shortcut
 inoremap <C-M-e> <C-O>:call TeaCodeExpand()<CR>
@@ -223,17 +223,17 @@ map <F16> ]
 map <C-F16> <C-]>
 
 " Buffer/Tab navigation
-nnoremap <c-n> :bn<cr>
-nnoremap <c-p> :bp<cr>
+nnoremap <C-n> :bn<CR>
+nnoremap <C-p> :bp<CR>
 
 " Insert empty line below/above
 " modifiable: :lopen and other not modifiable buffers should have the default
 " <CR> mapping
-nnoremap <expr> <CR>   &modifiable ? ":call keybinds#EnterNewline()\<CR>" : "\<CR>"
-nnoremap        <S-CR> :call keybinds#EnterNewlineAbove()<CR>
+nnoremap <expr>   <CR>   &modifiable ? ":call keybinds#EnterNewline()\<CR>" : "\<CR>"
+nnoremap          <S-CR> :call keybinds#EnterNewlineAbove()<CR>
 
 " Tab for indent otherwise shiftwidth spaces
-inoremap <TAB> <C-R>=(keybinds#UltiExpandOrJump() > 0) ? '' : keybinds#SmartTab()<CR>
+inoremap <silent> <TAB>  <C-R>=(keybinds#UltiExpandOrJump() > 0) ? '' : keybinds#SmartTab()<CR>
 
 " Use Enter to comfirm completion
 " Enter twice adds newline without comment
@@ -263,17 +263,17 @@ nnoremap gA ga
 
 " Sneak:
 " Always include first typed character
-onoremap <silent> z :call sneak#wrap(v:operator, 2, 0, 1, 1)<cr>
+onoremap <silent> z :call sneak#wrap(v:operator, 2, 0, 1, 1)<CR>
 " Use z and Z in visual mode
-xnoremap <silent> z :call sneak#wrap(visualmode(), 2, 0, 1, 1)<cr>
-xnoremap <silent> Z :call sneak#wrap(visualmode(), 2, 1, 1, 1)<cr>
+xnoremap <silent> z :call sneak#wrap(visualmode(), 2, 0, 1, 1)<CR>
+xnoremap <silent> Z :call sneak#wrap(visualmode(), 2, 1, 1, 1)<CR>
 
 " }}}
 
 " Keybindings Leader {{{
 
 " Use Space & \ as Leader
-nmap <Space> <Leader>
+nmap <SPACE> <Leader>
 
 " Leader Keybindings
 " Some mappings should be overwritten in ftplugins
@@ -287,7 +287,7 @@ nmap <Leader>l       :lopen<CR>
 nmap <Leader>r       :echo 'No run target defined'<CR>
 nmap <Leader>t       :TagbarToggle<CR>
 nmap <Leader>u       :echo 'No test target defined'<CR>
-nmap <Leader><Space> :Files<CR>
+nmap <Leader><SPACE> :Files<CR>
 nmap <Leader>/       :Rg 
 
 " }}}
