@@ -106,6 +106,7 @@ autocmd VimEnter * ++once call one#highlight('User2', 'e06c75', '2c323c', 'none'
 autocmd VimEnter * ++once call one#highlight('Sneak', 'c678dd', '', 'reverse')
 autocmd VimEnter * ++once hi clear StatuslineNC " Quick fix for inactive statusline
 highlight link gitcommitOverflow ErrorMsg
+autocmd VimEnter * ++once highlight link NeomakeVirtualtextError ErrorMsg
 
 " TabLine Theming
 "hi TabLine guifg=#abb2bf
