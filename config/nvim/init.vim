@@ -140,7 +140,7 @@ if exists('+breakindent')
   set breakindentopt=shift:2
 endif
 
-autocmd VimEnter * call neomake#configure#automake('nw', 500)
+call neomake#configure#automake('rnw', 500)
 
 " }}}
 
