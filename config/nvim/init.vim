@@ -5,6 +5,8 @@ runtime plugins.vim
 
 " Update signify after x ms
 set updatetime=200
+" Prefer .root file over .git folder
+let g:rooter_patterns = ['.root', 'Rakefile', '.git/']
 
 " Swiftlint maker
 let g:neomake_swift_swiftlint_maker = {

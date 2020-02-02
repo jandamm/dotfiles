@@ -8,6 +8,8 @@ Plug 'tpope/vim-speeddating' " Fix i_Ctrl+a for dates
 Plug 'tpope/vim-commentary' " gc to comment in/out
 Plug 'junegunn/vim-easy-align' " ga to align
 
+Plug 'airblade/vim-rooter' " Always cd into root of project
+
 " Fuzzy finding
 Plug 'junegunn/fzf.vim'
 	Plug '/usr/local/opt/fzf'
