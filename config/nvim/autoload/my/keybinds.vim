@@ -13,12 +13,13 @@ function! s:matchesComments(input, ...) abort
 	return a:input =~? l:match
 endfunction
 
-function! s:shiftwidthSpaces() abort
+function! s:shiftwidthSpaces(charcount) abort
 	if &expandtab
 		return "\<TAB>"
 	else
 		let l:spaces = ''
-		for i in range(1, &shiftwidth)
+		let l:toNextTabstop = float2nr(&shiftwidth - fmod(a:charcount, &shiftwidth))
+		for i in range(1, l:toNextTabstop)
 			let l:spaces .= ' '
 		endfor
 		return l:spaces
@@ -68,7 +69,7 @@ function! my#keybinds#SmartTab() abort
 			return "\<TAB>"
 		elseif s:matchesComments(l:before, 0)
 					\ || l:before =~? '\s$'
-			return s:shiftwidthSpaces()
+			return s:shiftwidthSpaces(len(l:before))
 		else
 			return asyncomplete#force_refresh()
 		endif
