@@ -48,6 +48,7 @@ set statusline+=%*                         " Default color
 set statusline+=\ (%n)                     " Buffer number
 set statusline+=%{GitBranch()}             " Git branch
 set statusline+=\ %y                       " filetype with [ft]
+set statusline+=%{Spell()}                 " Spelling
 set statusline+=%4m                        " modified ' [+]' (always 4 chars)
 set statusline+=%5r                        " readonly with ' [RO]' (always 5 chars)
 " set statusline+=%#IncSearch#%{&paste?'\ \ PASTE\ ':''}%* " show paste mode
@@ -59,6 +60,9 @@ set statusline+=\ \ %P                     " viewport of buffer (Top / % / Bot)
 set statusline+=-%l                        " current line
 set statusline+=-%c                        " current column
 
+function! Spell() abort
+	return &spell ? ' [' . toupper(strcharpart(&spelllang, 0, 2)) . ']' : ''
+endfunction
 function! GitBranch() abort
 	let l:branch = fugitive#head()
 	return len(l:branch) > 0 ? ' ' . l:branch : ''
@@ -347,6 +351,7 @@ nmap <Leader>l       :lopen<CR>
 " o -> Outline
 nmap <Leader>o       :TagbarToggle<CR>
 nmap <Leader>r       :echo 'No run target defined'<CR>
+nmap <Leader>s       :call my#keybinds#Spell()<CR>
 nmap <Leader>t       :Tags<CR>
 " u -> Unit test
 nmap <Leader>u       :echo 'No test target defined'<CR>

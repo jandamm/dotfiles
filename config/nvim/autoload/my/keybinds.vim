@@ -75,3 +75,14 @@ function! my#keybinds#SmartTab() abort
 		endif
 	endif
 endfunction
+
+function! my#keybinds#Spell() abort
+	if !&spell                 " Off -> US
+		setlocal spell
+		setlocal spelllang=en_us
+	elseif &spelllang =~? 'en' " US -> DE
+		setlocal spelllang=de
+	else                       " DE -> Off
+		setlocal nospell
+	endif
+endfunction
