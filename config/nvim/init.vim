@@ -171,9 +171,9 @@ set completeopt=menu,preview
 imap <C-CR> <C-x><C-o>
 
 " Use own mappings for UltiSnips Expand
-let g:UltiSnipsExpandTrigger="<NUL>"
-let g:UltiSnipsJumpForwardTrigger="<TAB>"
-let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
+let g:UltiSnipsExpandTrigger='<NUL>'
+let g:UltiSnipsJumpForwardTrigger='<TAB>'
+let g:UltiSnipsJumpBackwardTrigger='<S-TAB>'
 
 " Simple Menu Completion
 set wildmode=longest:full,full
@@ -329,7 +329,7 @@ nmap <Leader>f       gg=G``zz
 nmap <Leader>gb      :GSwitch<CR>
 nmap <Leader>gB      :GSwitchAll<CR>
 nmap <Leader>gc      :Gcommit<CR>
-nmap <Leader>gd      :Gdiff<CR>
+nmap <Leader>gd      :Gvdiffsplit!<CR>
 nmap <Leader>gf      :Gfetch<CR>
 nmap <Leader>gF      :Gpull<CR>
 nmap <Leader>gg      :Git 
