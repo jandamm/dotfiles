@@ -7,7 +7,7 @@ runtime plugins.vim
 let g:gutentags_project_root=['.root']
 
 " Update signify after x ms
-set updatetime=150
+set updatetime=100
 " Prefer .root file over submodule over .git folder
 let g:rooter_patterns = ['.root', '.git', '.git/']
 
