@@ -371,6 +371,9 @@ set modelines=3
 " Enable Mouse
 set mouse=a
 
+" Do not redraw screen while executing macros
+set lazyredraw
+
 " Syntax
 syntax on
 
