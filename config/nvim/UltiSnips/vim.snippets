@@ -1,14 +1,18 @@
-snippet func
+snippet func "" b
 function! ${1:Name}() abort
 	$0
 endfunction
 endsnippet
 
-snippet augroup
+snippet "aug(roup)?" "" br
 augroup ${1:name}
 	au!
-	${2:autocommand ${3:VimEnter} }$0
+	${2:autocmd ${3:VimEnter} }$0
 augroup END
+endsnippet
+
+snippet "auc(md)?" "" br
+	${1:autocmd ${2:VimEnter} }$0
 endsnippet
 
 snippet "islo(aded)?" "" br
