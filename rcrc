@@ -1,2 +1,2 @@
 EXCLUDES="README.md Brewfile.lock.json resources scripts pip3-requirements"
-SYMLINK_DIRS="config/nvim config/doom config/alacritty"
+SYMLINK_DIRS="config/nvim vim/UltiSnips config/doom config/alacritty"
