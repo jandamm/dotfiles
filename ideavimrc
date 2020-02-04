@@ -3,6 +3,9 @@ set surround
 set incsearch
 set ignorecase
 set smartcase
+set relativenumber
+
+set clipboard=unnamed " copy to the system clipboard
 
 nmap <cr> o<esc>k
 nmap <S-cr> O<esc>j
