@@ -205,6 +205,7 @@ set hidden
 
 " Set spelling language
 set spelllang=en_us
+call my#spelling#setSpellfile()
 
 " Set split commands work more as expected
 set splitbelow

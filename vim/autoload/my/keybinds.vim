@@ -78,11 +78,10 @@ endfunction
 
 function! my#keybinds#Spell() abort
 	if !&spell                 " Off -> US
-		setlocal spell
-		setlocal spelllang=en_us
+		call my#spelling#en()
 	elseif &spelllang =~? 'en' " US -> DE
-		setlocal spelllang=de
+		call my#spelling#de()
 	else                       " DE -> Off
-		setlocal nospell
+		call my#spelling#off()
 	endif
 endfunction
