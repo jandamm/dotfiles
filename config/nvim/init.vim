@@ -374,6 +374,11 @@ set mouse=a
 " Do not redraw screen while executing macros
 set lazyredraw
 
+" Highlight/preview replaces
+if has('nvim')
+	set inccommand=nosplit
+endif
+
 " Syntax
 syntax on
 
