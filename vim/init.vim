@@ -125,7 +125,9 @@ autocmd VimEnter * ++once highlight link NeomakeVirtualtextError ErrorMsg
 " enable syntax highligthing
 syntax on
 
-set guioptions=M
+if !has('gui_running')
+	set guioptions=M
+endif
 set number
 set relativenumber
 
