@@ -138,21 +138,22 @@ set colorcolumn=120,160
 " Completion {{{
 
 " TODO: Move to ftplugin/swift.vim
-if executable('sourcekit-lsp')
+" if executable('sourcekit-lsp')
 	au User lsp_setup call lsp#register_server({
 				\ 'name': 'sourcekit-lsp',
 				\ 'cmd': {server_info->['sourcekit-lsp']},
 				\ 'whitelist': ['swift'],
 				\ })
-endif
+" endif
 
 " Map omnicomplete shortcut to asyncomplete
 imap <C-x><C-o> <Plug>(asyncomplete_force_refresh)
 function! s:on_lsp_buffer_enabled() abort
-	set foldmethod=expr
-				\ foldexpr=lsp#ui#vim#folding#foldexpr()
-				\ foldtext=lsp#ui#vim#folding#foldtext()
 	set nofoldenable
+	" Too much lagging for now
+	" set foldmethod=expr
+	" 			\ foldexpr=lsp#ui#vim#folding#foldexpr()
+	" 			\ foldtext=lsp#ui#vim#folding#foldtext()
 	set completeopt+=menuone
 
 	" refer to doc to add more commands
