@@ -176,8 +176,13 @@ augroup END
 let g:asyncomplete_auto_popup = 0
 let g:asyncomplete_popup_delay = 0
 " Set my own completeopt instead of asyncomplete
-let g:asyncomplete_auto_completeopt = 0
-set completeopt=menu,preview
+" let g:asyncomplete_auto_completeopt = 0
+set completeopt=menu,longest
+
+augroup name
+	au!
+	autocmd CompleteDone * if pumvisible() == 0 | setlocal completeopt=menu,longest | endif
+augroup END
 
 " Use C-CR as omnicomplete
 imap <C-CR> <C-x><C-o>
