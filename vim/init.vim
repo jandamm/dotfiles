@@ -156,6 +156,8 @@ function! s:on_lsp_buffer_enabled() abort
 	" 			\ foldtext=lsp#ui#vim#folding#foldtext()
 	set completeopt+=menuone
 
+	nnoremap gd :LspDefinition<CR>
+
 	" refer to doc to add more commands
 endfunction
 
