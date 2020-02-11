@@ -63,5 +63,6 @@ Plug 'zinit-zsh/zplugin-vim-syntax'
 " Asynchronous file linting/formatting
 "Plug 'dense-analysis/ale'
 Plug 'neomake/neomake'
+Plug 'tweekmonster/startuptime.vim'
 
 call plug#end()
