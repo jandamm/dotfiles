@@ -23,6 +23,8 @@ brew bundle install --global
 # -U -> Update if available
 # pip3 install -U -r pip-requirements.txt
 
+# rcup
+
 # TMUX {{{
 
 # install tmux terminal
@@ -51,6 +53,10 @@ brew bundle install --global
 # install plugins
 # nvim -u plugins.vim +PlugInstall +qa
 # nvim -u plugins.vim +PlugUpgrade +PlugUpdate +qa
+for file in "$DOTFILES/vim/spell/"*.add
+do
+	nvim "+mkspell! $file" +qa
+done
 
 # }}}
 
