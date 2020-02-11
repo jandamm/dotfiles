@@ -1,5 +1,9 @@
 call plug#begin('~/.cache/plugged')
 
+Plug 'jandamm/asyncomplete-fuzzy-match', {
+			\ 'do': 'cargo build --release',
+			\ }
+
 " Usage
 Plug 'tpope/vim-surround' " Add(y)/change(c)/remove(d) surroundings
 Plug 'tpope/vim-repeat' " Add . macro to supported plugins
