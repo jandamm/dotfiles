@@ -197,8 +197,8 @@ imap <C-CR> <C-x><C-o>
 
 " Use own mappings for UltiSnips Expand
 let g:UltiSnipsExpandTrigger='<NUL>'
-let g:UltiSnipsJumpForwardTrigger='<TAB>'
-let g:UltiSnipsJumpBackwardTrigger='<S-TAB>'
+let g:UltiSnipsJumpForwardTrigger='<C-n>'
+let g:UltiSnipsJumpBackwardTrigger='<C-p>'
 
 " Simple Menu Completion
 set wildmode=longest:full,full
@@ -265,9 +265,9 @@ nnoremap <expr>   <CR>   &modifiable ? ":call my#keybinds#EnterNewline()\<CR>" :
 nnoremap          <S-CR> :call my#keybinds#EnterNewlineAbove()<CR>
 
 " Tab for indent otherwise shiftwidth spaces
-inoremap <silent> <TAB>   <C-R>=(my#keybinds#UltiExpandOrJump() > 0) ? '' : my#keybinds#SmartTab()<CR>
-" Default mappings for UltiSnips
-snoremap <silent> <TAB>   <ESC>:call UltiSnips#ExpandSnippetOrJump()<CR>
+inoremap <silent> <TAB>   <C-R>=(my#keybinds#UltiExpand() > 0) ? '' : my#keybinds#SmartTab()<CR>
+" Default mappings for UltiSnips (wrap in can expand then gv?)
+snoremap <silent> <TAB>   <ESC>:call UltiSnips#ExpandSnippet()<CR>
 xnoremap <silent> <TAB>   :call UltiSnips#SaveLastVisualSelection()<CR>gvs
 " Shift Tab for next/previous in pum else UltiSnips
 inoremap <expr>   <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"

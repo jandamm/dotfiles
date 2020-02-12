@@ -60,6 +60,13 @@ function! my#keybinds#UltiExpandOrJump() abort
 	return g:ulti_expand_or_jump_res
 endfunction
 
+let g:ulti_expand_res = 0 "default value, just set once
+" see :h UltiSnips-trigger-functions
+function! my#keybinds#UltiExpand() abort
+	call UltiSnips#ExpandSnippet()
+	return g:ulti_expand_res
+endfunction
+
 function! my#keybinds#SmartTab() abort
 	if pumvisible()
 		return "\<C-n>"
