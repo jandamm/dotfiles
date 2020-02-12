@@ -266,8 +266,14 @@ nnoremap          <S-CR> :call my#keybinds#EnterNewlineAbove()<CR>
 
 " Tab for indent otherwise shiftwidth spaces
 inoremap <silent> <TAB>   <C-R>=(my#keybinds#UltiExpand() > 0) ? '' : my#keybinds#SmartTab()<CR>
-" Default mappings for UltiSnips (wrap in can expand then gv?)
-snoremap <silent> <TAB>   <ESC>:call UltiSnips#ExpandSnippet()<CR>
+" Default mappings for UltiSnips
+" TODO: Fix s_TAB to expand a snippet if current selection is a snippet else do
+" nothing.
+" Basically: ESC a 'expand > 0' ? '' : gv C-g
+" (gv -> Reselect, C-g -> Select mode)
+" let g:UltiSnipsRemoveSelectModeMappings = 1
+" let g:UltiSnipsMappingsToIgnore = [ "somePlugin", "otherPlugin" ]
+" snoremap <silent> <TAB>   <ESC>:call UltiSnips#ExpandSnippet()<CR>
 xnoremap <silent> <TAB>   :call UltiSnips#SaveLastVisualSelection()<CR>gvs
 " Shift Tab for next/previous in pum else UltiSnips
 inoremap <expr>   <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
