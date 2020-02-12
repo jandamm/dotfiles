@@ -7,12 +7,12 @@ endsnippet
 snippet "aug(rp)?" "" br
 augroup ${1:name}
 	au!
-	${2:autocmd ${3:VimEnter} }$0
+	${2:${VISUAL:auc}}
 augroup END
 endsnippet
 
 snippet "auc(md)?" "" br
-	${1:autocmd ${2:VimEnter} }$0
+${1:autocmd ${2:VimEnter} }$0
 endsnippet
 
 snippet "islo(aded)?" "" br
