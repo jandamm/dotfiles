@@ -154,7 +154,6 @@ function! s:on_lsp_buffer_enabled() abort
 	" set foldmethod=expr
 	" 			\ foldexpr=lsp#ui#vim#folding#foldexpr()
 	" 			\ foldtext=lsp#ui#vim#folding#foldtext()
-	set completeopt+=menuone
 
 	nnoremap gd :LspDefinition<CR>
 
@@ -178,14 +177,21 @@ augroup END
 let g:asyncomplete_auto_popup = 0
 let g:asyncomplete_popup_delay = 0
 " Set my own completeopt instead of asyncomplete
-" let g:asyncomplete_auto_completeopt = 0
-set completeopt=menu,longest
+let g:asyncomplete_auto_completeopt = 0
 
 augroup name
 	au!
-	autocmd CompleteDone * if pumvisible() == 0 | setlocal completeopt=menu,longest | endif
+	" The timer is needed as CompleteDone is called but the pum would reappear
+	" directly afterwards.
+	autocmd CompleteDone * call timer_start(30, function('ResetAsyncompleteSettings'))
 augroup END
 
+function! ResetAsyncompleteSettings(...) abort
+	if pumvisible() == 0
+		setlocal completeopt=menu,preview
+		let g:asyncomplete_auto_popup = 0
+	endif
+endfunction
 " Use C-CR as omnicomplete
 imap <C-CR> <C-x><C-o>
 

@@ -42,6 +42,7 @@ endfunction
 
 function! my#keybinds#EnterEnter() abort
 	if pumvisible()
+		let g:asyncomplete_auto_popup = 0
 		return "\<C-y>"
 	elseif s:matchesCommentsOrWhitespace(getline('.'))
 		return "\<C-u>"
@@ -71,6 +72,8 @@ function! my#keybinds#SmartTab() abort
 					\ || l:before =~? '\s$'
 			return s:shiftwidthSpaces(len(l:before))
 		elseif b:asyncomplete_enable
+			let g:asyncomplete_auto_popup = 1
+			setlocal completeopt=menuone,noinsert
 			return asyncomplete#force_refresh()
 		else
 			return "\<C-x>\<C-o>"
