@@ -70,8 +70,10 @@ function! my#keybinds#SmartTab() abort
 		elseif s:matchesComments(l:before, 0)
 					\ || l:before =~? '\s$'
 			return s:shiftwidthSpaces(len(l:before))
-		else
+		elseif b:asyncomplete_enable
 			return asyncomplete#force_refresh()
+		else
+			return "\<C-x>\<C-o>"
 		endif
 	endif
 endfunction
