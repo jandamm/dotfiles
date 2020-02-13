@@ -67,6 +67,9 @@ function! my#keybinds#UltiExpand() abort
 	return g:ulti_expand_res
 endfunction
 
+function! my#keybinds#reselectAfterUltiSnips() abort
+	return "\<ESC>gv\<C-g>"
+endfunction
 function! my#keybinds#SmartTab() abort
 	if pumvisible()
 		return "\<C-n>"
