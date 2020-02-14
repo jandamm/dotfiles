@@ -70,16 +70,15 @@ endfunction
 function! my#keybinds#reselectAfterUltiSnips() abort
 	return "\<ESC>gv\<C-g>"
 endfunction
+
 function! my#keybinds#SmartTab() abort
 	if pumvisible()
 		return "\<C-n>"
 	else
-		" Check if line has only tabs before the cursor
-		let l:before = strpart(getline('.'), 0, getcurpos()[2] - 1)
-		if l:before =~? '^\t*$'
+		let l:before = strpart(getline('.'), 0, col('.') - 1)
+		if l:before ==? '' || l:before =~? '\t$'
 			return "\<TAB>"
-		elseif s:matchesComments(l:before, 0)
-					\ || l:before =~? '\s$'
+		elseif s:matchesComments(l:before, 0) || l:before =~? '\s$'
 			return s:shiftwidthSpaces(len(l:before))
 		elseif b:asyncomplete_enable
 			let g:asyncomplete_auto_popup = 1
