@@ -146,8 +146,11 @@ set colorcolumn=120,160
 				\ })
 " endif
 
-" Map omnicomplete shortcut to asyncomplete
-imap <C-x><C-o> <Plug>(asyncomplete_force_refresh)
+augroup omnifunc_completion
+	au!
+	autocmd Filetype * if &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
+augroup END
+
 function! s:on_lsp_buffer_enabled() abort
 	set nofoldenable
 	" Too much lagging for now
