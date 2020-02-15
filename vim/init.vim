@@ -258,6 +258,8 @@ map <C-F16> <C-]>
 nnoremap <C-n> :bn<CR>
 nnoremap <C-p> :bp<CR>
 
+cnoremap <C-a> <C-b>
+
 " Insert empty line below/above
 " modifiable: :lopen and other not modifiable buffers should have the default
 " <CR> mapping
