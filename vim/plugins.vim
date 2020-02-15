@@ -39,7 +39,7 @@ Plug 'mhinz/vim-signify'
 
 " Tmux
 "Plug 'christoomey/vim-tmux-navigator'
-"Plug 'christoomey/vim-tmux-runner'
+Plug 'christoomey/vim-tmux-runner'
 
 " Auto Completion
 Plug 'SirVer/ultisnips'
@@ -58,6 +58,9 @@ Plug 'thomasfaingnaert/vim-lsp-ultisnips'
 Plug 'sheerun/vim-polyglot'
 Plug 'keith/xcconfig.vim'
 Plug 'zinit-zsh/zinit-vim-syntax'
+
+" iOS
+Plug 'gfontenot/vim-xcode'
 
 " Misc
 " Asynchronous file linting/formatting
