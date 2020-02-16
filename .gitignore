@@ -2,3 +2,4 @@ Brewfile.lock.json
 .netrwhist
 *.spl
 *.zwc
+Gemfile.lock
