@@ -236,12 +236,7 @@ let g:UltiSnipsSnippetDirectories=['PrivateSnips', 'UltiSnips']
 
 " Spacing
 " https://vim.fandom.com/wiki/Indent_with_tabs,_align_with_spaces
-set noexpandtab " Use Tabs
 set tabstop=2 " Size of Tab
-set shiftwidth=2 " Size of Tab input with <TAB>
-set softtabstop=0
-set cindent
-set cinoptions=(0,u0,U0
 
 " Show tabs and trailing whitespace
 set listchars=tab:⟩‐,trail:·

@@ -16,6 +16,7 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sleuth'
 
 Plug 'airblade/vim-rooter' " Always cd into root of project
 
