@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+ln -sf $HOME/.vim $HOME/.config/nvim
