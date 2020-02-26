@@ -218,13 +218,18 @@ augroup name
 	au!
 	" The timer is needed as CompleteDone is called but the pum would reappear
 	" directly afterwards.
-	autocmd CompleteDone * call timer_start(30, function('ResetAsyncompleteSettings'))
+	autocmd CompleteDone * call timer_start(200, function('ResetAsyncompleteSettings'))
 augroup END
 
 function! ResetAsyncompleteSettings(...) abort
 	if pumvisible() == 0
-		setlocal completeopt=menu,preview
 		let g:asyncomplete_auto_popup = 0
+		call timer_start(1000, function('ResetAsyncompleteSettingsAgain'))
+	endif
+endfunction
+function! ResetAsyncompleteSettingsAgain(...) abort
+	if pumvisible() == 0
+		setlocal completeopt=menu,preview
 	endif
 endfunction
 " Use C-CR as omnicomplete
