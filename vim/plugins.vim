@@ -17,6 +17,7 @@ Plug 'tpope/vim-unimpaired' " Better [] mappings
 Plug 'tpope/vim-vinegar' " Improvements to netrw
 Plug 'tpope/vim-fugitive' " Git interface
 Plug 'tpope/vim-sleuth' " Automatically set spaces/tabs
+Plug 'tpope/vim-eunuch' " Unix commands in vim
 
 Plug 'airblade/vim-rooter' " Always cd into root of project
 
