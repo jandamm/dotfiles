@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+iosbuild "$@" | sort | uniq

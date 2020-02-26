@@ -12,19 +12,21 @@ set updatetime=100
 let g:rooter_patterns = ['.root', '.git', '.git/']
 
 " Swiftlint maker
-let g:neomake_swift_swiftlint_maker = {
-			\ 'exe': 'neomake-swiftlint',
-			\ 'append_file': 1,
-			\ 'errorformat':
-			\ '%f:%l:%c: %trror: %m,' .
-			\ '%f:%l:%c: %tarning: %m,' .
-			\ '%f:%l: %trror: %m,' .
-			\ '%f:%l: %tarning: %m,'
-			\ }
+function! s:MySwiftLint() abort
+	" Until my PR is accepted
+	" let maker = neomake#makers#ft#swift#swiftlint()
+	let maker = { 'exe': 'neomake-swiftlint', 'append_file': 1, 'errorformat': '%f:%l:%c: %trror: %m,%f:%l:%c: %tarning: %m,%f:%l: %trror: %m,%f:%l: %tarning: %m' }
+	let maker.exe = '_vim-swiftlint'
+	let maker.args = []
+	return maker
+endfunction
+let g:neomake_swift_swiftlint_maker = s:MySwiftLint()
+" Until my PR is accepted
+let g:neomake_swift_enabled_makers = add(neomake#makers#ft#swift#EnabledMakers(), 'swiftlint')
 
-" single file maker
-let g:neomake_swift_swiftpmjd_maker = {
-			\ 'exe': 'swift',
+let g:neomake_swift_swiftpm_maker = {
+			\ 'exe': 'neomake-swiftbuild',
+			\ 'append_file': 0,
 			\ 'errorformat':
 			\ '%E%f:%l:%c: error: %m,' .
 			\ '%E%f:%l: error: %m,' .
@@ -32,7 +34,28 @@ let g:neomake_swift_swiftpmjd_maker = {
 			\ '%Z%\s%#^~%#,' .
 			\ '%-G%.%#',
 			\ }
-let g:neomake_swift_enabled_makers = ['swiftpmjd', 'swiftlint']
+
+let g:neomake_ios_swiftpm_maker = {
+			\ 'exe': 'neomake-swiftbuildios',
+			\ 'append_file': 0,
+			\ 'errorformat':
+			\ '%E%f:%l:%c: error: %m,' .
+			\ '%E%f:%l: error: %m,' .
+			\ '%W%f:%l:%c: warning: %m,' .
+			\ '%Z%\s%#^~%#,' .
+			\ '%-G%.%#',
+			\ }
+
+" single file maker
+function! s:MySwiftC() abort
+	let maker = neomake#makers#ft#swift#swiftpm()
+	let maker.append_file = 1
+	let maker.args = []
+	return maker
+endfunction
+
+let g:neomake_swift_swiftc_maker = s:MySwiftC()
+" let g:neomake_verbose = 3
 let g:lsp_diagnostics_enabled = 0
 
 " Default hide hidden files in netrw (toggle with gh)
