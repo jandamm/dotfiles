@@ -31,7 +31,6 @@ Plug 'rakr/vim-one'
 Plug 'ludovicchabant/vim-gutentags'
 
 " User Interface
-Plug 'jandamm/vim-buftabline' " my fork until my PR is merged
 Plug 'mhinz/vim-signify'
 
 " Tmux

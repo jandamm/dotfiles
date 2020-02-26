@@ -103,12 +103,6 @@ function NeomakeStatusline()
 	return join(stats, ' ')
 endfunction
 
-function MyTabline()
-	return buftabline#render() . '%=%{getcwd()}'
-endfunction
-set tabline=%!MyTabline()
-let g:buftabline_enabled=0
-
 " function MyStatus(...)
 " 	let actual_curbuf = bufnr("%")
 " 	return "%c  " .  neomake#statusline#get(actual_curbuf)
@@ -126,10 +120,6 @@ omap ic <plug>(signify-motion-inner-pending)
 xmap ic <plug>(signify-motion-inner-visual)
 omap ac <plug>(signify-motion-outer-pending)
 xmap ac <plug>(signify-motion-outer-visual)
-
-
-" Buffer Tabs
-set showtabline=2
 
 if (has('termguicolors'))
 	set termguicolors
