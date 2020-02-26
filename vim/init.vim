@@ -221,6 +221,7 @@ set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest,*.pyc " compiled object files
 set wildignore+=*.spl,*.zwc                            " compiled files
 set wildignore+=tags,.tags
 set wildmenu
+set wildoptions-=pum
 
 " }}}
 
