@@ -225,6 +225,8 @@ set splitbelow
 set splitright
 let g:UltiSnipsEditSplit='vertical'
 
+let g:UltiSnipsSnippetDirectories=['PrivateSnips', 'UltiSnips']
+
 " Spacing
 " https://vim.fandom.com/wiki/Indent_with_tabs,_align_with_spaces
 set noexpandtab " Use Tabs
