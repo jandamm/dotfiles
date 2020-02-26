@@ -1,19 +1,15 @@
 #!/usr/bin/env bash
 
-DIR="$(pwd)/$1"
+# shellcheck source=../scripts/files.sh
+source "$DOTFILES/scripts/files.sh"
+
+# File is only to find the correct config.
+FILE="$1"
 filename='.swiftformat'
 
-while [ -z "$CONFIG" ] && [ -n "$DIR" ]
-do
-	if [ -f "$DIR/$filename" ]
-	then
-		CONFIG="$DIR/$filename"
-	else
-		DIR="${DIR%/*}"
-	fi
-done
+CONFIG=$(get_config_file "$filename" "$FILE")
 
-if [ -n "$CONFIG" ]
+if [ -f "$CONFIG" ]
 then
 	swiftformat --quiet --config "$CONFIG"
 else
