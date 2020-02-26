@@ -115,7 +115,9 @@ fi
 
 # install tmux terminal
 if [ "$should_install" ]; then
-	git clone https://github.com/tmux-plugins/tpm "$DOTFILES_CACHE/tmux/plugins/tpm"
+	if [[ ! -x  "$DOTFILES_CACHE/tmux/plugins/tpm/tpm" ]]
+	then git clone https://github.com/tmux-plugins/tpm "$DOTFILES_CACHE/tmux/plugins/tpm"
+	fi
 	"$DOTFILES_CACHE"/tmux/plugins/tpm/bin/install_plugins
 fi
 if [ "$should_update" ]; then
