@@ -57,7 +57,8 @@ set statusline+=%=                         " right align from here
 set statusline+=%2*                        " Color 2
 set statusline+=\ \ %{NeomakeStatusline()} " Quick hack for Neomake Errors/Warnings
 set statusline+=%*                         " Default color
-set statusline+=\ \ %P                     " viewport of buffer (Top / % / Bot)
+set statusline+=\ \ %{SleuthIndicator()}   " Show current Spaces/Tabs settings (Maybe only if not ts=2)
+set statusline+=\ %P                       " viewport of buffer (Top / % / Bot)
 set statusline+=-%l                        " current line
 set statusline+=-%c                        " current column
 
