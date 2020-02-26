@@ -79,16 +79,23 @@ set statusline+=\ %y                       " filetype with [ft]
 set statusline+=%{Spell()}                 " Spelling
 set statusline+=%4m                        " modified ' [+]' (always 4 chars)
 set statusline+=%5r                        " readonly with ' [RO]' (always 5 chars)
+set statusline+=%{MySleuth()}              " Show current Spaces/Tabs settings (Maybe only if not ts=2)
 " set statusline+=%#IncSearch#%{&paste?'\ \ PASTE\ ':''}%* " show paste mode
 set statusline+=%=                         " right align from here
 set statusline+=%2*                        " Color 2
 set statusline+=\ \ %{NeomakeStatusline()} " Quick hack for Neomake Errors/Warnings
 set statusline+=%*                         " Default color
-set statusline+=\ \ %{SleuthIndicator()}   " Show current Spaces/Tabs settings (Maybe only if not ts=2)
-set statusline+=\ %P                       " viewport of buffer (Top / % / Bot)
+set statusline+=\ \ %P                     " viewport of buffer (Top / % / Bot)
 set statusline+=-%l                        " current line
 set statusline+=-%c                        " current column
 
+function! MySleuth() abort
+	let ret = SleuthIndicator()
+	if ret ==? 'ts=2' " My default setting (tab with 2 width)
+		return ''
+	endif
+	return ' [' . ret . ']'
+endfunction
 function! Spell() abort
 	return &spell ? ' [' . toupper(strcharpart(&spelllang, 0, 2)) . ']' : ''
 endfunction
