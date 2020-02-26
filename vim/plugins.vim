@@ -1,5 +1,7 @@
 call plug#begin('~/.cache/plugged')
 
+Plug 'easymotion/vim-easymotion'
+
 " Usage
 Plug 'tpope/vim-surround' " Add(y)/change(c)/remove(d) surroundings
 Plug 'tpope/vim-repeat' " Add . macro to supported plugins

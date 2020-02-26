@@ -3,6 +3,10 @@ scriptencoding utf-8
 " Load plugins (Extracted to file to ease first installation)
 runtime plugins.vim
 
+map gs <Plug>(easymotion-prefix)
+map gs<Space> <Plug>(easymotion-overwin-w)
+let g:EasyMotion_keys='arsdheiqwfpgjlu;yzxcvbkmtno'
+
 " Allow folder specific tags with .root file
 let g:gutentags_project_root=['.root']
 
