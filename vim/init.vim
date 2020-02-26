@@ -270,7 +270,13 @@ map <C-F16> <C-]>
 nnoremap <C-n> :bn<CR>
 nnoremap <C-p> :bp<CR>
 
-cnoremap <C-a> <C-b>
+" Use C-a to jump to the beginning of ex cmdline
+cnoremap <C-a>  <C-b>
+" Switch C-p/n with UP/DOWN
+cnoremap <C-p>  <UP>
+cnoremap <UP>   <C-p>
+cnoremap <C-n>  <DOWN>
+cnoremap <DOWN> <C-n>
 
 " Insert empty line below/above
 " modifiable: :lopen and other not modifiable buffers should have the default
