@@ -140,7 +140,6 @@ let g:one_allow_italics=1
 autocmd VimEnter * ++once call one#highlight('gitcommitSummary', 'e5c07b', '', 'none')
 autocmd VimEnter * ++once call one#highlight('User1', '61afef', '2c323c', 'none')
 autocmd VimEnter * ++once call one#highlight('User2', 'e06c75', '2c323c', 'none')
-autocmd VimEnter * ++once call one#highlight('Sneak', 'c678dd', '', 'reverse')
 autocmd VimEnter * ++once hi clear StatuslineNC " Quick fix for inactive statusline
 highlight link gitcommitOverflow Error
 autocmd VimEnter * ++once highlight link NeomakeVirtualtextError ErrorMsg
@@ -351,13 +350,6 @@ nmap ga <Plug>(EasyAlign)
 
 " Set ga to gA (ga is vim-align, gA is print ascii)
 nnoremap gA ga
-
-" Sneak:
-" Always include first typed character
-onoremap <silent> z :call sneak#wrap(v:operator, 2, 0, 1, 1)<CR>
-" Use z and Z in visual mode
-xnoremap <silent> z :call sneak#wrap(visualmode(), 2, 0, 1, 1)<CR>
-xnoremap <silent> Z :call sneak#wrap(visualmode(), 2, 1, 1, 1)<CR>
 
 " }}}
 
