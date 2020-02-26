@@ -13,10 +13,10 @@ Plug 'majutsushi/tagbar' " Show file overview with tags
 " Better :s/abba/bobby/g with :S/{a,A}bba/{b,B}obby/g
 " Change case styles with cr{char}
 Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-unimpaired' " Better [] mappings
+Plug 'tpope/vim-vinegar' " Improvements to netrw
+Plug 'tpope/vim-fugitive' " Git interface
+Plug 'tpope/vim-sleuth' " Automatically set spaces/tabs
 
 Plug 'airblade/vim-rooter' " Always cd into root of project
 
@@ -34,7 +34,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'mhinz/vim-signify'
 
 " Tmux
-"Plug 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator' " C-hjkl movements with tmux
 Plug 'christoomey/vim-tmux-runner'
 
 " Auto Completion
