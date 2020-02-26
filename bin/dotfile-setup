@@ -49,6 +49,7 @@ bundle install
 
 # rezsh
 # zinit update
+# mkdir $HOME/.cache/zsh
 
 # }}}
 
