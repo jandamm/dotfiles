@@ -93,6 +93,13 @@ let g:buftabline_enabled=0
 
 " Git Bar always visible
 set signcolumn=yes
+let g:signify_sign_change = '△'
+
+omap ic <plug>(signify-motion-inner-pending)
+xmap ic <plug>(signify-motion-inner-visual)
+omap ac <plug>(signify-motion-outer-pending)
+xmap ac <plug>(signify-motion-outer-visual)
+
 
 " Buffer Tabs
 set showtabline=2
@@ -367,9 +374,11 @@ nmap <Leader>gd      :Gvdiffsplit!<CR>
 nmap <Leader>gf      :Gfetch<CR>
 nmap <Leader>gF      :Gpull<CR>
 nmap <Leader>gg      :Git 
-" h -> History/Log of current file
-nmap <Leader>gh      :0Glog<CR>
-nmap <Leader>gl      :Glog<CR>
+" h -> Hunk
+nmap <Leader>ghd     :SignifyHunkDiff<CR>
+nmap <Leader>ghu     :SignifyHunkUndo<CR>
+nmap <Leader>glf     :0Glog<CR>
+nmap <Leader>gll     :Glog<CR>
 nmap <Leader>gm      :Gmerge<CR>
 nmap <Leader>gp      :Gpush<CR>
 nmap <Leader>gr      :Grebase<CR>
