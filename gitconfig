@@ -15,6 +15,14 @@
 	frag = yellow bold
 [credential]
 	helper = osxkeychain
+[gitsh]
+	noGreeting = true
+	defaultCommand = status --short --branch && :echo
+[gitsh "color"]
+	pwd = blue
+	default = green
+	untracked = red
+	modified = yellow
 [difftool "Kaleidoscope"]
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [mergetool "Kaleidoscope"]
