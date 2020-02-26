@@ -63,8 +63,6 @@ Plug 'zinit-zsh/zinit-vim-syntax'
 Plug 'gfontenot/vim-xcode'
 
 " Misc
-" Asynchronous file linting/formatting
-"Plug 'dense-analysis/ale'
 Plug 'neomake/neomake'
 Plug 'tweekmonster/startuptime.vim'
 
