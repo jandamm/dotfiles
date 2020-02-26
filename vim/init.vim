@@ -139,11 +139,11 @@ set colorcolumn=120,160
 
 " TODO: Move to ftplugin/swift.vim
 " if executable('sourcekit-lsp')
-	au User lsp_setup call lsp#register_server({
-				\ 'name': 'sourcekit-lsp',
-				\ 'cmd': {server_info->['sourcekit-lsp']},
-				\ 'whitelist': ['swift'],
-				\ })
+au User lsp_setup call lsp#register_server({
+			\ 'name': 'sourcekit-lsp',
+			\ 'cmd': {server_info->['sourcekit-lsp']},
+			\ 'whitelist': ['swift'],
+			\ })
 " endif
 
 augroup omnifunc_completion
@@ -164,10 +164,10 @@ function! s:on_lsp_buffer_enabled() abort
 endfunction
 
 au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#necovim#get_source_options({
-    \ 'name': 'necovim',
-    \ 'whitelist': ['vim'],
-    \ 'completor': function('asyncomplete#sources#necovim#completor'),
-    \ }))
+			\ 'name': 'necovim',
+			\ 'whitelist': ['vim'],
+			\ 'completor': function('asyncomplete#sources#necovim#completor'),
+			\ }))
 
 augroup lsp_install
 	au!
@@ -321,30 +321,30 @@ xnoremap <silent> Z :call sneak#wrap(visualmode(), 2, 1, 1, 1)<CR>
 " Keybindings Leader {{{
 
 function! s:open_branch_fzf(line)
-  let l:parser = split(a:line)
-  let l:branch = l:parser[0]
-  if l:branch ==? '*'
-    let l:branch = l:parser[1]
-  endif
-  execute '!git checkout ' . l:branch
+	let l:parser = split(a:line)
+	let l:branch = l:parser[0]
+	if l:branch ==? '*'
+		let l:branch = l:parser[1]
+	endif
+	execute '!git checkout ' . l:branch
 endfunction
 
 command! -bang -nargs=0 GSwitch
-  \ call fzf#vim#grep(
-  \   'git branch --verbose', 0,
-  \   {
-  \     'sink': function('s:open_branch_fzf')
-  \   },
-  \   <bang>0
-  \ )
+			\ call fzf#vim#grep(
+			\   'git branch --verbose', 0,
+			\   {
+			\     'sink': function('s:open_branch_fzf')
+			\   },
+			\   <bang>0
+			\ )
 command! -bang -nargs=0 GSwitchAll
-  \ call fzf#vim#grep(
-  \   'git branch --all --verbose', 0,
-  \   {
-  \     'sink': function('s:open_branch_fzf')
-  \   },
-  \   <bang>0
-  \ )
+			\ call fzf#vim#grep(
+			\   'git branch --all --verbose', 0,
+			\   {
+			\     'sink': function('s:open_branch_fzf')
+			\   },
+			\   <bang>0
+			\ )
 
 " Use Space & \ as Leader
 nmap <SPACE> <Leader>

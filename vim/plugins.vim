@@ -1,9 +1,5 @@
 call plug#begin('~/.cache/plugged')
 
-Plug 'jandamm/asyncomplete-fuzzy-match', {
-			\ 'do': 'cargo build --release',
-			\ }
-
 " Usage
 Plug 'tpope/vim-surround' " Add(y)/change(c)/remove(d) surroundings
 Plug 'tpope/vim-repeat' " Add . macro to supported plugins
@@ -44,6 +40,7 @@ Plug 'christoomey/vim-tmux-runner'
 " Auto Completion
 Plug 'SirVer/ultisnips'
 Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'jandamm/asyncomplete-fuzzy-match', { 'do': 'cargo build --release' }
 Plug 'prabirshrestha/asyncomplete-necovim.vim'
 	Plug 'Shougo/neco-vim'
 
