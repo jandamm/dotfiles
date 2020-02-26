@@ -1,5 +1,27 @@
 #!/usr/bin/env bash
-# vim:set foldmethod=marker:
+
+function quit_setup() {
+	echo "Usage:"
+	echo "  dotfile-setup 'mode'"
+	echo "Modes: install & update"
+	exit 1
+}
+
+# Check mode {{{
+if [ ! $# -eq 1 ]
+then quit_setup
+fi
+
+case $1 in
+	install)
+		should_install=true;;
+	update)
+		should_update=true;;
+	*)
+		quit_setup
+esac
+shift
+# }}}
 
 if [ -z "$DOTFILES" ]
 then
@@ -8,71 +30,104 @@ then
 	source "$(pwd)/${0%/*}/../zshenv"
 fi
 
-while [[ -n "$1" ]]
-do
-	echo $1
-	
-done
-echo "Not yet impletemented"
-exit 1
+cd "$DOTFILES" || exit
 
-# install Brewfile
-brew bundle install --global
+# put every dotfile in place
+if [ "$should_install" ]; then
+	env RCRC="$DOTFILES/rcrc" rcup
+fi
 
-# install Gemfile
-bundle install
-# bundle update if update
+# Install Brewfile {{{
 
-# install pips
-# -U -> Update if available
-# pip3 install -U -r pip-requirements.txt
-
-# rcup
-
-# TMUX {{{
-
-# install tmux terminal
-# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-# ~/.tmux/plugins/tpm/bin/install_plugins
-# ~/.tmux/plugins/tpm/bin/update_plugins all
+echo 'Install Brewfile'
+if [ "$should_install" ] || [ "$should_update" ]; then
+	brew bundle install --global
+fi
 
 # }}}
 
+# Install Gemfile {{{
+
+echo 'Install Gemfile'
+if [ "$should_install" ]; then
+	bundle install
+fi
+if [ "$should_update" ]; then
+	bundle update
+fi
+
+# }}}
+
+# Install pips {{{
+
+echo 'Install pips'
+if [ "$should_install" ]; then
+	pip3 install -r "$DOTFILES/pip3-requirements"
+fi
+if [ "$should_update" ]; then
+	pip3 install -U -r "$DOTFILES/pip3-requirements"
+fi
+
+# }}}
+
+
 # ALACRITTY {{{
 
-# Set font rendering for non retina
-# defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
+if [ "$should_install" ]; then
+	# Set font rendering for non retina
+	defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
+fi
+
+# }}}
+
+# BAT {{{
+
+if [ "$should_install" ]; then
+	# recompile with theme
+	bat cache --build
+fi
+
+# }}}
+
+exit
+# NVIM {{{
+
+if [ "$should_install" ]; then
+	nvim -u vim/plugins.vim +PlugInstall +qa
+	for file in vim/spell/*.add
+	do
+		nvim "+mkspell! $file" +qa
+	done
+fi
+
+if [ "$should_update" ]; then
+	nvim -u plugins.vim +PlugUpgrade +PlugUpdate +qa
+fi
+
+# }}}
+
+exit
+# TMUX {{{
+
+# install tmux terminal
+if [ "$should_install" ]; then
+	git clone https://github.com/tmux-plugins/tpm "$HOME"/.tmux/plugins/tpm
+	"$HOME"/.tmux/plugins/tpm/bin/install_plugins
+fi
+if [ "$should_update" ]; then
+	"$HOME"/.tmux/plugins/tpm/bin/update_plugins all
+fi
 
 # }}}
 
 # ZSH {{{
 
 # rezsh
-# zinit update
 # mkdir $HOME/.cache/zsh
+# zinit update
 
 # }}}
 
-# NVIM {{{
+rcup
 
-# install plugins
-# nvim -u plugins.vim +PlugInstall +qa
-# nvim -u plugins.vim +PlugUpgrade +PlugUpdate +qa
-for file in "$DOTFILES/vim/spell/"*.add
-do
-	nvim "+mkspell! $file" +qa
-done
-
-# }}}
-
-# BAT {{{
-
-# recompile with theme
-# after rcup
-
-# update: download theme again
-# recompile with theme
-
-# }}}
-
-# rcup
+# vim:set foldmethod=marker:
