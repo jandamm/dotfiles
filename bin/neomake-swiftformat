@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+DIR="$(pwd)/$1"
+filename='.swiftformat'
+
+while [ -z "$CONFIG" ] && [ -n "$DIR" ]
+do
+	if [ -f "$DIR/$filename" ]
+	then
+		CONFIG="$DIR/$filename"
+	else
+		DIR="${DIR%/*}"
+	fi
+done
+
+if [ -n "$CONFIG" ]
+then
+	swiftformat --quiet --config "$CONFIG"
+else
+	swiftformat --quiet
+fi
