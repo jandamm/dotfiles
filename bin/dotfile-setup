@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Helper functions {{{
+
 function quit_setup() {
 	echo "Usage:"
 	echo "  dotfile-setup 'mode'"
@@ -7,7 +9,17 @@ function quit_setup() {
 	exit 1
 }
 
-# Check mode {{{
+function load_env_if_needed() {
+	if [ -z "$DOTFILES" ]
+	then
+		echo "Not yet set up. Sourcing zshenv"
+		# shellcheck source=../zshenv
+		source "$(pwd)/${0%/*}/../zshenv"
+	fi
+}
+
+# }}}
+
 if [ ! $# -eq 1 ]
 then quit_setup
 fi
@@ -21,14 +33,8 @@ case $1 in
 		quit_setup
 esac
 shift
-# }}}
 
-if [ -z "$DOTFILES" ]
-then
-	echo "Not yet set up. Sourcing zshenv"
-	# shellcheck source=../zshenv
-	source "$(pwd)/${0%/*}/../zshenv"
-fi
+load_env_if_needed
 
 cd "$DOTFILES" || exit
 
@@ -89,7 +95,6 @@ fi
 
 # }}}
 
-exit
 # NVIM {{{
 
 if [ "$should_install" ]; then
@@ -101,21 +106,20 @@ if [ "$should_install" ]; then
 fi
 
 if [ "$should_update" ]; then
-	nvim -u plugins.vim +PlugUpgrade +PlugUpdate +qa
+	nvim -u vim/plugins.vim +PlugUpgrade +PlugUpdate +qa
 fi
 
 # }}}
 
-exit
 # TMUX {{{
 
 # install tmux terminal
 if [ "$should_install" ]; then
-	git clone https://github.com/tmux-plugins/tpm "$HOME"/.tmux/plugins/tpm
-	"$HOME"/.tmux/plugins/tpm/bin/install_plugins
+	git clone https://github.com/tmux-plugins/tpm "$DOTFILES_CACHE/tmux/plugins/tpm"
+	"$DOTFILES_CACHE"/tmux/plugins/tpm/bin/install_plugins
 fi
 if [ "$should_update" ]; then
-	"$HOME"/.tmux/plugins/tpm/bin/update_plugins all
+	"$DOTFILES_CACHE"/tmux/plugins/tpm/bin/update_plugins all
 fi
 
 # }}}
