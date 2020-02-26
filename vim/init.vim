@@ -13,12 +13,13 @@ let g:rooter_patterns = ['.root', '.git', '.git/']
 
 " Swiftlint maker
 let g:neomake_swift_swiftlint_maker = {
-			\ 'args': ['lint'],
+			\ 'exe': 'neomake-swiftlint',
+			\ 'append_file': 1,
 			\ 'errorformat':
-			\ '%E%f:%l:%c: error: %m,' .
-			\ '%W%f:%l:%c: warning: %m,' .
-			\ '%Z%\s%#^~%#,' .
-			\ '%-G%.%#',
+			\ '%f:%l:%c: %trror: %m,' .
+			\ '%f:%l:%c: %tarning: %m,' .
+			\ '%f:%l: %trror: %m,' .
+			\ '%f:%l: %tarning: %m,'
 			\ }
 
 " single file maker
