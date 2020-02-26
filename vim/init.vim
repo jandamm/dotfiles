@@ -255,6 +255,11 @@ if exists('+breakindent')
 	set breakindentopt=shift:2
 endif
 
+let g:neomake_info_sign = {
+			\ 'text': 'i',
+			\ 'texthl': 'NeomakeInfoSign'
+			\ }
+
 call neomake#configure#automake('rnw', 500)
 
 " }}}
