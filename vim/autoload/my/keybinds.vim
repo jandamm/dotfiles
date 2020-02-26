@@ -17,12 +17,8 @@ function! s:shiftwidthSpaces(charcount) abort
 	if &expandtab
 		return "\<TAB>"
 	else
-		let l:spaces = ''
-		let l:toNextTabstop = float2nr(&shiftwidth - fmod(a:charcount, &shiftwidth))
-		for i in range(1, l:toNextTabstop)
-			let l:spaces .= ' '
-		endfor
-		return l:spaces
+		let toNextTabstop = float2nr(&shiftwidth - fmod(a:charcount, &shiftwidth))
+		return repeat(' ', toNextTabstop)
 	endif
 endfunction
 
