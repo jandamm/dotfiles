@@ -126,9 +126,14 @@ fi
 
 # ZSH {{{
 
+# if [ "$should_install" ]; then
 # rezsh
+# zinit module build
 # mkdir $HOME/.cache/zsh
+# fi
+# if [ "$should_update" ]; then
 # zinit update
+# fi
 
 # }}}
 
