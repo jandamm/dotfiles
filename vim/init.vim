@@ -10,6 +10,8 @@ let g:gutentags_project_root=['.root']
 set updatetime=100
 " Prefer .root file over submodule over .git folder
 let g:rooter_patterns = ['.root', '.git', '.git/']
+" Change cwd for current window only
+let g:rooter_use_lcd = 1
 
 " Swiftlint maker
 function! s:MySwiftLint() abort
