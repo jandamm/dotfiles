@@ -301,6 +301,9 @@ cnoremap <UP>   <C-p>
 cnoremap <C-n>  <DOWN>
 cnoremap <DOWN> <C-n>
 
+" %% to current dir in ex mode
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
 " Insert empty line below/above
 " modifiable: :lopen and other not modifiable buffers should have the default
 " <CR> mapping
