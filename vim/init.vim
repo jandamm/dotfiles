@@ -283,6 +283,9 @@ if exists('+breakindent')
 	set breakindentopt=shift:2
 endif
 
+" Always show two lines above/below the cursor
+set scrolloff=2
+
 let g:neomake_info_sign = {
 			\ 'text': 'i',
 			\ 'texthl': 'NeomakeInfoSign'
