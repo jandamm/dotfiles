@@ -236,8 +236,8 @@ imap <C-CR> <C-x><C-o>
 
 " Use own mappings for UltiSnips Expand
 let g:UltiSnipsExpandTrigger='<NUL>'
-let g:UltiSnipsJumpForwardTrigger='<C-n>'
-let g:UltiSnipsJumpBackwardTrigger='<C-p>'
+let g:UltiSnipsJumpForwardTrigger='<C-f>'
+let g:UltiSnipsJumpBackwardTrigger='<C-b>'
 
 " Simple Menu Completion
 set wildmode=longest:full,full
