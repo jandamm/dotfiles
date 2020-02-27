@@ -22,7 +22,7 @@ function! s:MySwiftLint() abort
 	" Until my PR is accepted
 	" let maker = neomake#makers#ft#swift#swiftlint()
 	let maker = { 'exe': 'neomake-swiftlint', 'append_file': 1, 'errorformat': '%f:%l:%c: %trror: %m,%f:%l:%c: %tarning: %m,%f:%l: %trror: %m,%f:%l: %tarning: %m' }
-	let maker.exe = '_vim-swiftlint'
+	let maker.exe = 'neomake-swiftlint'
 	let maker.args = []
 	return maker
 endfunction
