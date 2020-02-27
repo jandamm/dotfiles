@@ -1,6 +1,6 @@
 call plug#begin('~/.cache/plugged')
 
-Plug 'tpope/vim-sensible' " Good default config
+Plug 'easymotion/vim-easymotion'
 
 " Usage
 Plug 'tpope/vim-surround' " Add(y)/change(c)/remove(d) surroundings
@@ -19,7 +19,6 @@ Plug 'tpope/vim-vinegar' " Improvements to netrw
 Plug 'tpope/vim-fugitive' " Git interface
 Plug 'tpope/vim-sleuth' " Automatically set spaces/tabs
 Plug 'tpope/vim-eunuch' " Unix commands in vim
-Plug 'easymotion/vim-easymotion' " Faster moving in vim
 
 Plug 'airblade/vim-rooter' " Always cd into root of project
 

@@ -67,6 +67,8 @@ let g:lsp_diagnostics_enabled = 0
 " Default hide hidden files in netrw (toggle with gh)
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 
+set laststatus=2
+
 " Quick and dirty statusline (needs better colors and refinement)
 set statusline=                            " Reset
 set statusline+=%1*                        " Color 1
@@ -248,6 +250,7 @@ set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg         " binary images
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest,*.pyc " compiled object files
 set wildignore+=*.spl,*.zwc                            " compiled files
 set wildignore+=tags,.tags
+set wildmenu
 set wildoptions-=pum
 
 " }}}
@@ -466,6 +469,7 @@ endif
 
 " Search {{{
 
+set incsearch
 set ignorecase
 set smartcase
 
