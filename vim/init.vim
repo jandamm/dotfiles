@@ -17,52 +17,6 @@ let g:rooter_patterns = ['.root', '.git', '.git/']
 " Change cwd for current window only
 let g:rooter_use_lcd = 1
 
-" Swiftlint maker
-function! s:MySwiftLint() abort
-	" Until my PR is accepted
-	" let maker = neomake#makers#ft#swift#swiftlint()
-	let maker = { 'exe': 'neomake-swiftlint', 'append_file': 1, 'errorformat': '%f:%l:%c: %trror: %m,%f:%l:%c: %tarning: %m,%f:%l: %trror: %m,%f:%l: %tarning: %m' }
-	let maker.exe = 'neomake-swiftlint'
-	let maker.args = []
-	return maker
-endfunction
-let g:neomake_swift_swiftlint_maker = s:MySwiftLint()
-" Until my PR is accepted
-let g:neomake_swift_enabled_makers = add(neomake#makers#ft#swift#EnabledMakers(), 'swiftlint')
-
-let g:neomake_swift_swiftpm_maker = {
-			\ 'exe': 'neomake-swiftbuild',
-			\ 'append_file': 0,
-			\ 'errorformat':
-			\ '%E%f:%l:%c: error: %m,' .
-			\ '%E%f:%l: error: %m,' .
-			\ '%W%f:%l:%c: warning: %m,' .
-			\ '%Z%\s%#^~%#,' .
-			\ '%-G%.%#',
-			\ }
-
-let g:neomake_ios_swiftpm_maker = {
-			\ 'exe': 'neomake-swiftbuildios',
-			\ 'append_file': 0,
-			\ 'errorformat':
-			\ '%E%f:%l:%c: error: %m,' .
-			\ '%E%f:%l: error: %m,' .
-			\ '%W%f:%l:%c: warning: %m,' .
-			\ '%Z%\s%#^~%#,' .
-			\ '%-G%.%#',
-			\ }
-
-" single file maker
-function! s:MySwiftC() abort
-	let maker = neomake#makers#ft#swift#swiftpm()
-	let maker.append_file = 1
-	let maker.args = []
-	return maker
-endfunction
-
-let g:neomake_swift_swiftc_maker = s:MySwiftC()
-" let g:neomake_verbose = 3
-let g:lsp_diagnostics_enabled = 0
 
 " Default hide hidden files in netrw (toggle with gh)
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
@@ -288,6 +242,7 @@ let g:neomake_info_sign = {
 			\ 'texthl': 'NeomakeInfoSign'
 			\ }
 
+let g:lsp_diagnostics_enabled = 0
 call neomake#configure#automake('rnw', 500)
 
 " }}}

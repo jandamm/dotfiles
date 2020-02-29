@@ -12,3 +12,19 @@ nnoremap <Leader>r :Xrun<CR>
 nnoremap <Leader>u :Xtest<CR>
 
 " }}}
+
+" Neomake {{{
+
+let g:neomake_ios_swiftpm_maker = {
+			\ 'exe': 'neomake-swiftbuildios',
+			\ 'append_file': 0,
+			\ 'errorformat':
+			\ '%E%f:%l:%c: error: %m,' .
+			\ '%E%f:%l: error: %m,' .
+			\ '%E%f: error: %m,' .
+			\ '%W%f:%l:%c: warning: %m,' .
+			\ '%Z%\s%#^~%#,' .
+			\ '%-G%.%#',
+			\ }
+
+" }}}
