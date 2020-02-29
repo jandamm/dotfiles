@@ -27,7 +27,7 @@ Plug 'junegunn/fzf.vim'
 	Plug '/usr/local/opt/fzf'
 
 " Themes
-Plug 'rakr/vim-one'
+Plug 'jandamm/vim-one'
 
 " Ctags
 Plug 'ludovicchabant/vim-gutentags'
