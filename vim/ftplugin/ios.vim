@@ -13,6 +13,21 @@ nnoremap <Leader>u :Xtest<CR>
 
 " }}}
 
+" LSP {{{
+
+if executable('lsp-ios')
+	augroup ios_lsp_setup
+		au!
+		autocmd User lsp_setup call lsp#register_server({
+					\ 'name': 'sourcekit-lsp',
+					\ 'cmd': {server_info->['lsp-ios']},
+					\ 'whitelist': ['ios.swift', 'ios'],
+					\ })
+	augroup END
+endif
+
+" }}}
+
 " Neomake {{{
 
 let g:neomake_ios_swiftpm_maker = {

@@ -6,6 +6,21 @@ nnoremap <silent> <Leader>f :SwiftFormat %<CR>
 
 " }}}
 
+" LSP {{{
+
+if executable('lsp-swift')
+	augroup swift_lsp_setup
+		au!
+		autocmd User lsp_setup call lsp#register_server({
+					\ 'name': 'sourcekit-lsp',
+					\ 'cmd': {server_info->['lsp-swift']},
+					\ 'whitelist': ['swift'],
+					\ })
+	augroup END
+endif
+
+" }}}
+
 " Neomake {{{
 
 function! s:RunNeomake(...) abort
@@ -37,16 +52,16 @@ endfunction
 
 function! s:MySwiftPM() abort
 	return {
-			\ 'exe': 'neomake-swiftbuild',
-			\ 'append_file': 0,
-			\ 'errorformat':
-			\ '%E%f:%l:%c: error: %m,' .
-			\ '%E%f:%l: error: %m,' .
-			\ '%E%f: error: %m,' .
-			\ '%W%f:%l:%c: warning: %m,' .
-			\ '%Z%\s%#^~%#,' .
-			\ '%-G%.%#',
-			\ }
+				\ 'exe': 'neomake-swiftbuild',
+				\ 'append_file': 0,
+				\ 'errorformat':
+				\ '%E%f:%l:%c: error: %m,' .
+				\ '%E%f:%l: error: %m,' .
+				\ '%E%f: error: %m,' .
+				\ '%W%f:%l:%c: warning: %m,' .
+				\ '%Z%\s%#^~%#,' .
+				\ '%-G%.%#',
+				\ }
 endfunction
 
 " single file maker

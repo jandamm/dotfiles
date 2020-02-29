@@ -59,15 +59,6 @@ set colorcolumn=120,160
 
 " Completion {{{
 
-" TODO: Move to ftplugin/swift.vim
-" if executable('sourcekit-lsp')
-au User lsp_setup call lsp#register_server({
-			\ 'name': 'sourcekit-lsp',
-			\ 'cmd': {server_info->['sourcekit-lsp']},
-			\ 'whitelist': ['swift'],
-			\ })
-" endif
-
 augroup omnifunc_completion
 	au!
 	autocmd Filetype * if &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
