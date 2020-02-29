@@ -172,6 +172,7 @@ augroup name
 	" The timer is needed as CompleteDone is called but the pum would reappear
 	" directly afterwards.
 	autocmd CompleteDone * call timer_start(200, function('ResetAsyncompleteSettings'))
+	autocmd InsertLeave * let g:asyncomplete_auto_popup = 0
 augroup END
 
 function! ResetAsyncompleteSettings(...) abort
