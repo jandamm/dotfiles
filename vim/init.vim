@@ -3,7 +3,6 @@ scriptencoding utf-8
 " Load plugins (Extracted to file to ease first installation)
 runtime plugins.vim
 
-
 " Appearance {{{
 
 " Git Bar always visible
@@ -59,61 +58,12 @@ set colorcolumn=120,160
 
 " Completion {{{
 
-augroup omnifunc_completion
-	au!
-	autocmd Filetype * if &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
-augroup END
-
-function! s:on_lsp_buffer_enabled() abort
-	set nofoldenable
-	" Too much lagging for now
-	" set foldmethod=expr
-	" 			\ foldexpr=lsp#ui#vim#folding#foldexpr()
-	" 			\ foldtext=lsp#ui#vim#folding#foldtext()
-
-	nnoremap gd :LspDefinition<CR>
-
-	" refer to doc to add more commands
-endfunction
-
-au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#necovim#get_source_options({
-			\ 'name': 'necovim',
-			\ 'whitelist': ['vim'],
-			\ 'completor': function('asyncomplete#sources#necovim#completor'),
-			\ }))
-
-augroup lsp_install
-	au!
-	" call s:on_lsp_buffer_enabled only for languages that has the server registered.
-	autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
-
 " Use asyncomplete as omnifunc without auto hud.
 " Disable asyncomplete auto popup
 let g:asyncomplete_auto_popup = 0
 let g:asyncomplete_popup_delay = 0
 " Set my own completeopt instead of asyncomplete
 let g:asyncomplete_auto_completeopt = 0
-
-augroup name
-	au!
-	" The timer is needed as CompleteDone is called but the pum would reappear
-	" directly afterwards.
-	autocmd CompleteDone * call timer_start(200, function('ResetAsyncompleteSettings'))
-	autocmd InsertLeave * let g:asyncomplete_auto_popup = 0
-augroup END
-
-function! ResetAsyncompleteSettings(...) abort
-	if pumvisible() == 0
-		let g:asyncomplete_auto_popup = 0
-		call timer_start(1000, function('ResetAsyncompleteSettingsAgain'))
-	endif
-endfunction
-function! ResetAsyncompleteSettingsAgain(...) abort
-	if pumvisible() == 0
-		setlocal completeopt=menu,preview
-	endif
-endfunction
 
 " Use own mappings for UltiSnips Expand
 let g:UltiSnipsExpandTrigger='<NUL>'
