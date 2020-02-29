@@ -3,74 +3,6 @@ scriptencoding utf-8
 " Load plugins (Extracted to file to ease first installation)
 runtime plugins.vim
 
-map gs <Plug>(easymotion-prefix)
-map gs<Space> <Plug>(easymotion-overwin-w)
-let g:EasyMotion_keys='arsdheiqwfpgjlu;yzxcvbkmtno'
-
-" Allow folder specific tags with .root file
-let g:gutentags_project_root=['.root']
-
-" Update signify after x ms
-set updatetime=100
-" Prefer .root file over submodule over .git folder
-let g:rooter_patterns = ['.root', '.git', '.git/']
-" Change cwd for current window only
-let g:rooter_use_lcd = 1
-
-
-" Default hide hidden files in netrw (toggle with gh)
-let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
-
-set laststatus=2
-
-" Quick and dirty statusline (needs better colors and refinement)
-set statusline=                            " Reset
-set statusline+=%1*                        " Color 1
-set statusline+=λ                          " Symbol
-set statusline+=\ %<%f                     " filename (shorten if line is too long)
-set statusline+=%*                         " Default color
-set statusline+=\ (%n)                     " Buffer number
-set statusline+=%{GitBranch()}             " Git branch
-set statusline+=\ %y                       " filetype with [ft]
-set statusline+=%{Spell()}                 " Spelling
-set statusline+=%{MySleuth()}              " Show current Spaces/Tabs settings (Maybe only if not ts=2)
-set statusline+=%4m                        " modified ' [+]' (always 4 chars)
-set statusline+=%5r                        " readonly with ' [RO]' (always 5 chars)
-" set statusline+=%#IncSearch#%{&paste?'\ \ PASTE\ ':''}%* " show paste mode
-set statusline+=%=                         " right align from here
-set statusline+=%2*                        " Color 2
-set statusline+=\ \ %{NeomakeStatusline()} " Quick hack for Neomake Errors/Warnings
-set statusline+=%*                         " Default color
-set statusline+=\ \ %P                     " viewport of buffer (Top / % / Bot)
-set statusline+=-%l                        " current line
-set statusline+=-%c                        " current column
-
-function! MySleuth() abort
-	let l:ret = SleuthIndicator()
-	return l:ret ==? 'ts=2' ? '' : ' [' . l:ret . ']'
-endfunction
-function! Spell() abort
-	return &spell ? ' [' . toupper(strcharpart(&spelllang, 0, 2)) . ']' : ''
-endfunction
-function! GitBranch() abort
-	let l:branch = fugitive#head()
-	return len(l:branch) > 0 ? ' ' . l:branch : ''
-endfunction
-function NeomakeStatusline()
-	let stats = []
-	let lcounts = neomake#statusline#LoclistCounts()
-	for key in sort(keys(lcounts))
-		call add(stats, printf('%s:%d', key, lcounts[key]))
-	endfor
-	return join(stats, ' ')
-endfunction
-
-" function MyStatus(...)
-" 	let actual_curbuf = bufnr("%")
-" 	return "%c  " .  neomake#statusline#get(actual_curbuf)
-" endfunction
-
-" set statusline=%!MyStatus()
 
 " Appearance {{{
 
@@ -106,6 +38,11 @@ autocmd VimEnter * ++once highlight link NeomakeVirtualtextError ErrorMsg
 "hi TabLine guifg=#abb2bf
 "hi TabLineSel guibg=#61afef
 "hi TabLineSel guifg=#282c34
+
+let g:neomake_info_sign = {
+			\ 'text': 'i',
+			\ 'texthl': 'NeomakeInfoSign'
+			\ }
 
 " enable syntax highligthing
 syntax on
@@ -186,8 +123,6 @@ function! ResetAsyncompleteSettingsAgain(...) abort
 		setlocal completeopt=menu,preview
 	endif
 endfunction
-" Use C-CR as omnicomplete
-imap <C-CR> <C-x><C-o>
 
 " Use own mappings for UltiSnips Expand
 let g:UltiSnipsExpandTrigger='<NUL>'
@@ -220,8 +155,10 @@ let g:UltiSnipsEditSplit='vertical'
 let g:UltiSnipsSnippetDirectories=['PrivateSnips', 'UltiSnips']
 
 " Spacing
-" https://vim.fandom.com/wiki/Indent_with_tabs,_align_with_spaces
 set tabstop=2 " Size of Tab
+
+" Show statusline always
+set laststatus=2
 
 " Show tabs and trailing whitespace
 set listchars=tab:⟩‐,trail:·
@@ -235,13 +172,22 @@ if exists('+breakindent')
 	set breakindentopt=shift:2
 endif
 
+" Update signify after x ms
+set updatetime=100
+
+" Allow folder specific tags with .root file
+let g:gutentags_project_root=['.root']
+" Prefer .root file over submodule over .git folder
+let g:rooter_patterns = ['.root', '.git', '.git/']
+" Change cwd for current window only
+let g:rooter_use_lcd = 1
+
+" Default hide hidden files in netrw (toggle with gh)
+let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+
 " Always show two lines above/below the cursor
 set scrolloff=2
 
-let g:neomake_info_sign = {
-			\ 'text': 'i',
-			\ 'texthl': 'NeomakeInfoSign'
-			\ }
 
 let g:lsp_diagnostics_enabled = 0
 call neomake#configure#automake('rnw', 500)
@@ -314,6 +260,11 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" Easymotion on gs
+map gs <Plug>(easymotion-prefix)
+map gs<Space> <Plug>(easymotion-overwin-w)
+let g:EasyMotion_keys='arsdheiqwfpgjlu;yzxcvbkmtno'
 
 " Set ga to gA (ga is vim-align, gA is print ascii)
 nnoremap gA ga
