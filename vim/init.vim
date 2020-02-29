@@ -38,9 +38,6 @@ let g:neomake_info_sign = {
 			\ 'texthl': 'NeomakeInfoSign'
 			\ }
 
-" enable syntax highligthing
-syntax on
-
 if !has('gui_running')
 	set guioptions=M
 endif
@@ -278,9 +275,6 @@ set lazyredraw
 if has('nvim')
 	set inccommand=nosplit
 endif
-
-" Syntax
-syntax on
 
 " Clipboard
 if has('clipboard')     " If the feature is available
