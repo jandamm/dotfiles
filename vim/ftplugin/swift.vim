@@ -8,9 +8,22 @@ nnoremap <silent> <Leader>f :SwiftFormat %<CR>
 
 " Neomake {{{
 
+function! s:RunNeomake(...) abort
+	Neomake! swiftpm
+endfunction
+
 let s:makers = neomake#makers#ft#swift#EnabledMakers()
+if string(s:makers) =~# 'swiftpm'
+	let g:neomake_swift_enabled_makers = ['swiftlint']
+	augroup neomake_swift_group
+		au!
+		autocmd BufWritePost *.swift call s:RunNeomake()
+		autocmd BufWinEnter *.swift call timer_start(500, function('s:RunNeomake'))
+	augroup END
+else
 	" Until my PR is accepted
 	let g:neomake_swift_enabled_makers = add(s:makers, 'swiftlint')
+endif
 
 " Swiftlint maker
 function! s:MySwiftLint() abort
