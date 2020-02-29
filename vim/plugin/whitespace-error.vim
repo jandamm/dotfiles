@@ -1,5 +1,5 @@
 " Mark trailing whitespace as error (red)
-function MatchWhitespaceErrors()
+function s:MatchWhitespaceErrors()
 	" https://vim.fandom.com/wiki/Highlight_long_lines
 	if !exists('w:no_whitespace_error')
 		if !exists('w:no_whitespace_error_trail')
@@ -15,5 +15,5 @@ endfunction
 augroup whitespace_errors
 	au!
 	autocmd VimEnter * autocmd whitespace_errors WinEnter * let w:created=1
-	autocmd VimEnter,WinEnter * if !exists('w:created') | call MatchWhitespaceErrors() | endif
+	autocmd VimEnter,WinEnter * if !exists('w:created') | call s:MatchWhitespaceErrors() | endif
 augroup END
