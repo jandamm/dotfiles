@@ -9,11 +9,6 @@ runtime plugins.vim
 set signcolumn=yes
 let g:signify_sign_change = '△'
 
-omap ic <plug>(signify-motion-inner-pending)
-xmap ic <plug>(signify-motion-inner-visual)
-omap ac <plug>(signify-motion-outer-pending)
-xmap ac <plug>(signify-motion-outer-visual)
-
 if (has('termguicolors'))
 	set termguicolors
 endif
@@ -129,7 +124,6 @@ let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 " Always show two lines above/below the cursor
 set scrolloff=2
 
-
 let g:lsp_diagnostics_enabled = 0
 call neomake#configure#automake('rnw', 500)
 
@@ -156,6 +150,12 @@ cnoremap <DOWN> <C-n>
 
 " %% to current dir in ex mode
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
+" Signify hunk text object
+omap ic <Plug>(signify-motion-inner-pending)
+xmap ic <Plug>(signify-motion-inner-visual)
+omap ac <Plug>(signify-motion-outer-pending)
+xmap ac <Plug>(signify-motion-outer-visual)
 
 " Insert empty line below/above
 " modifiable: :lopen and other not modifiable buffers should have the default
