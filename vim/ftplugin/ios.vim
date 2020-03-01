@@ -1,3 +1,8 @@
+if exists('g:loaded_ios_ftplugin')
+	finish
+endif
+let g:loaded_ios_ftplugin = 1
+
 " Xcode {{{
 
 let g:xcode_default_simulator = 'iPhone 11 Pro'

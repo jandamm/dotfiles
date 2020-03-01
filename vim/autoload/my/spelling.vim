@@ -1,3 +1,8 @@
+if exists('g:autoloaded_spelling')
+	finish
+endif
+let g:autoloaded_spelling = 1
+
 function! my#spelling#en() abort
 		setlocal spell
 		setlocal spelllang=en_us

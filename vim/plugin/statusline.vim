@@ -1,5 +1,10 @@
 scriptencoding utf-8
 
+if exists('g:loaded_statusline_plugin')
+	finish
+endif
+let g:loaded_statusline_plugin = 1
+
 " Quick and dirty statusline (needs better colors and refinement)
 set statusline=                            " Reset
 set statusline+=%1*                        " Color 1

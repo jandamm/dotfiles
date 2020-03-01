@@ -1,4 +1,9 @@
-command! -nargs=* -buffer SwiftFormat call my#ft#swift#format('<args>')
+if exists('g:loaded_ios_ftplugin')
+	finish
+endif
+let g:loaded_ios_ftplugin = 1
+
+command! -nargs=* SwiftFormat call my#ft#swift#format('<args>')
 
 " Leader Mapping {{{
 

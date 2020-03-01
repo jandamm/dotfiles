@@ -1,3 +1,8 @@
+if exists('g:loaded_git_plugin')
+	finish
+endif
+let g:loaded_git_plugin = 1
+
 function! s:open_branch_fzf(line)
 	let l:parser = split(a:line)
 	let l:branch = l:parser[0]

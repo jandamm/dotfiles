@@ -1,3 +1,8 @@
+if exists('g:loaded_whitespace_plugin')
+	finish
+endif
+let g:loaded_whitespace_plugin = 1
+
 " Mark trailing whitespace as error (red)
 function s:MatchWhitespaceErrors()
 	" https://vim.fandom.com/wiki/Highlight_long_lines

@@ -1,3 +1,8 @@
+if exists('g:autoloaded_keybinds')
+	finish
+endif
+let g:autoloaded_keybinds = 1
+
 function! s:deleteNonEmptyLine() abort
 	call setline('.', '')
 endfunction

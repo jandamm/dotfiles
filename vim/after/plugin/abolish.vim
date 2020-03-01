@@ -1,3 +1,8 @@
+if exists('g:loaded_abolish_after')
+	finish
+endif
+let g:loaded_abolish_after = 1
+
 Abolish {h,r}aed{,er,ing}             {h,r}ead{}
 
 " Abolish contin{u,o,ou,uo}s{,ly}       contin{uou}s{}

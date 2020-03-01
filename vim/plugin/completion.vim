@@ -1,3 +1,8 @@
+if exists('g:loaded_completion_plugin')
+	finish
+endif
+let g:loaded_completion_plugin = 1
+
 function! s:MakeLspSettings() abort
 	nnoremap gd :LspDefinition<CR>
 endfunction
