@@ -81,7 +81,7 @@ function! my#keybinds#SmartTab() abort
 			return "\<TAB>"
 		elseif s:matchesComments(l:before, 0) || l:before =~? '\s$'
 			return s:shiftwidthSpaces(len(l:before))
-		elseif b:asyncomplete_enable
+		elseif get(b:, 'asyncomplete_enable', 0)
 			let g:asyncomplete_auto_popup = 1
 			setlocal completeopt=menuone,noinsert
 			return asyncomplete#force_refresh()

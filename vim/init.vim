@@ -54,6 +54,8 @@ set colorcolumn=120,160
 " Disable asyncomplete auto popup
 let g:asyncomplete_auto_popup = 0
 let g:asyncomplete_popup_delay = 0
+" Enable only with sources
+let g:asyncomplete_enable_for_all = 0
 " Set my own completeopt instead of asyncomplete
 let g:asyncomplete_auto_completeopt = 0
 
