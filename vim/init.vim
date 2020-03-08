@@ -156,12 +156,6 @@ xmap ic <Plug>(signify-motion-inner-visual)
 omap ac <Plug>(signify-motion-outer-pending)
 xmap ac <Plug>(signify-motion-outer-visual)
 
-" Insert empty line below/above
-" modifiable: :lopen and other not modifiable buffers should have the default
-" <CR> mapping
-nnoremap <expr>   <CR>   &modifiable ? ":call my#keybinds#EnterNewline()\<CR>" : "\<CR>"
-nnoremap          <S-CR> :call my#keybinds#EnterNewlineAbove()<CR>
-
 " Tab for indent otherwise shiftwidth spaces
 inoremap <silent> <TAB>   <C-R>=(my#keybinds#UltiExpand() > 0) ? '' : my#keybinds#SmartTab()<CR>
 " Default xmap for UltiSnips
