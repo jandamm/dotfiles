@@ -207,6 +207,10 @@ nnoremap gA ga
 
 " Keybindings Leader {{{
 
+func s:NotDefined(type)
+   return '{' . a:type . '} is not defined for [' . &filetype . ']'
+endfunc
+
 " Use Space & \ as Leader
 nmap <SPACE> <Leader>
 
@@ -214,7 +218,7 @@ nmap <SPACE> <Leader>
 " Some mappings should be overwritten in ftplugins
 " Mainly c, f, r, u
 nmap <Leader>b       :Buffers<CR>
-nmap <Leader>c       :echo 'No compiler defined'<CR>
+nmap <Leader>c       :echo <SID>NotDefined('compiler')<CR>
 " d -> Directory
 " TODO Only Sexplore if one window
 nmap <Leader>d       :Sexplore<CR>
@@ -243,11 +247,11 @@ nmap <Leader>gw      :Gblame<CR>
 nmap <Leader>l       :lopen<CR>
 " o -> Outline
 nmap <Leader>o       :TagbarToggle<CR>
-nmap <Leader>r       :echo 'No run target defined'<CR>
+nmap <Leader>r       :echo <SID>NotDefined('run')<CR>
 nmap <Leader>s       :call my#keybinds#Spell()<CR>
 nmap <Leader>t       :Tags<CR>
 " u -> Unit test
-nmap <Leader>u       :echo 'No test target defined'<CR>
+nmap <Leader>u       :echo <SID>NotDefined('test')<CR>
 " TODO Replace with GFiles if in git
 nmap <Leader><SPACE> :Files<CR>
 nmap <Leader>/       :Lines<CR>
