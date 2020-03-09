@@ -7,7 +7,7 @@ command! -nargs=* SwiftFormat call my#ft#swift#format('<args>')
 
 " Leader Mapping {{{
 
-nnoremap          <Leader>b :call my#ft#swift#build()<CR>
+nnoremap          <Leader>c :call my#ft#swift#build()<CR>
 nnoremap <silent> <Leader>f :SwiftFormat %<CR>
 nnoremap          <Leader>r :call my#ft#swift#run()<CR>
 nnoremap          <Leader>u :call my#ft#swift#test()<CR>
