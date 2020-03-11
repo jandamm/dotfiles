@@ -1,7 +1,5 @@
 call plug#begin('~/.cache/plugged')
 
-Plug 'easymotion/vim-easymotion'
-
 " Usage
 Plug 'tpope/vim-surround' " Add(y)/change(c)/remove(d) surroundings
 Plug 'tpope/vim-repeat' " Add . macro to supported plugins
@@ -19,8 +17,9 @@ Plug 'tpope/vim-vinegar' " Improvements to netrw
 Plug 'tpope/vim-fugitive' " Git interface
 Plug 'tpope/vim-sleuth' " Automatically set spaces/tabs
 Plug 'tpope/vim-eunuch' " Unix commands in vim
-
+Plug 'tpope/vim-obsession' " Save sessions easily
 Plug 'airblade/vim-rooter' " Always cd into root of project
+Plug 'easymotion/vim-easymotion'
 
 " Fuzzy finding
 Plug 'junegunn/fzf.vim'
@@ -53,7 +52,7 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'thomasfaingnaert/vim-lsp-ultisnips'
 	Plug 'thomasfaingnaert/vim-lsp-snippets'
 
-" 'All' Languages
+" Languages
 Plug 'sheerun/vim-polyglot'
 Plug 'keith/xcconfig.vim'
 Plug 'zinit-zsh/zinit-vim-syntax'
