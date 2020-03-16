@@ -217,45 +217,45 @@ nmap <SPACE> <Leader>
 " Leader Keybindings
 " Some mappings should be overwritten in ftplugins
 " Mainly c, f, r, u
-nmap <Leader>b       :Buffers<CR>
-nmap <Leader>c       :echo <SID>NotDefined('compiler')<CR>
+nmap <Leader>b          :Buffers<CR>
+nmap <Leader>c          :echo <SID>NotDefined('compiler')<CR>
 " d -> Directory
 " TODO Only Sexplore if one window
-nmap <Leader>d       :Sexplore<CR>
+nmap <Leader>d          :Sexplore<CR>
 " f -> Format
-nmap <Leader>f       gg=G``zz
+nmap <Leader>f          :%s/\s\+$//<CR>:let @/=''<CR>:noh<CR>gg=G``zz
 " Fugitive/Git
-nmap <Leader>gb      :GSwitch<CR>
-nmap <Leader>gB      :GSwitchAll<CR>
-nmap <Leader>gc      :Gcommit<CR>
-nmap <Leader>gd      :Gvdiffsplit!<CR>
-nmap <Leader>gf      :Gfetch<CR>
-nmap <Leader>gF      :Gpull<CR>
-nmap <Leader>gg      :Git 
+nmap <Leader>gb         :GSwitch<CR>
+nmap <Leader>gB         :GSwitchAll<CR>
+nmap <Leader>gc         :Gcommit<CR>
+nmap <Leader>gd         :Gvdiffsplit!<CR>
+nmap <Leader>gf         :Gfetch<CR>
+nmap <Leader>gF         :Gpull<CR>
+nmap <expr> <Leader>gg ':Git '
 " h -> Hunk
-nmap <Leader>ghd     :SignifyHunkDiff<CR>
-nmap <Leader>ghu     :SignifyHunkUndo<CR>
-nmap <Leader>glf     :0Glog<CR>
-nmap <Leader>gll     :Glog<CR>
-nmap <Leader>gm      :Gmerge<CR>
-nmap <Leader>gp      :Gpush<CR>
-nmap <Leader>gr      :Grebase<CR>
-nmap <Leader>gs      :Gstatus<CR>
+nmap <Leader>ghd        :SignifyHunkDiff<CR>
+nmap <Leader>ghu        :SignifyHunkUndo<CR>
+nmap <Leader>glf        :0Glog<CR>
+nmap <Leader>gll        :Glog<CR>
+nmap <Leader>gm         :Gmerge<CR>
+nmap <Leader>gp         :Gpush<CR>
+nmap <Leader>gr         :Grebase<CR>
+nmap <Leader>gs         :Gstatus<CR>
 " w -> Who did this?
-nmap <Leader>gw      :Gblame<CR>
+nmap <Leader>gw         :Gblame<CR>
 " TODO Replace l with lopen, select window, lclose
-nmap <Leader>l       :lopen<CR>
+nmap <Leader>l          :lopen<CR>
 " o -> Outline
-nmap <Leader>o       :TagbarToggle<CR>
-nmap <Leader>r       :echo <SID>NotDefined('run')<CR>
-nmap <Leader>s       :call my#keybinds#Spell()<CR>
-nmap <Leader>t       :Tags<CR>
+nmap <Leader>o          :TagbarToggle<CR>
+nmap <Leader>r          :echo <SID>NotDefined('run')<CR>
+nmap <Leader>s          :call my#keybinds#Spell()<CR>
+nmap <Leader>t          :Tags<CR>
 " u -> Unit test
-nmap <Leader>u       :echo <SID>NotDefined('test')<CR>
+nmap <Leader>u          :echo <SID>NotDefined('test')<CR>
 " TODO Replace with GFiles if in git
-nmap <Leader><SPACE> :Files<CR>
-nmap <Leader>/       :Lines<CR>
-nmap <Leader>?       :Rg 
+nmap <Leader><SPACE>    :Files<CR>
+nmap <Leader>/          :Lines<CR>
+nmap <expr> <Leader>?  ':Rg '
 
 " }}}
 
