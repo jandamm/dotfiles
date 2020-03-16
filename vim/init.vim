@@ -79,6 +79,9 @@ set wildoptions-=pum
 
 " Editor {{{
 
+" Increase time for keyboard shortcuts a bit (default: 1000)
+set timeoutlen=1200
+
 " Allow changed files to be hidden
 set hidden
 
