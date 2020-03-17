@@ -226,7 +226,7 @@ nmap <Leader>c          :echo <SID>NotDefined('compiler')<CR>
 " TODO Only Sexplore if one window
 nmap <Leader>d          :Sexplore<CR>
 " f -> Format
-nmap <Leader>f          :%s/\s\+$//<CR>:let @/=''<CR>:noh<CR>gg=G``zz
+nmap <Leader>f          :%s/\s\+$//e<CR>:let @/=''<CR>:noh<CR>gg=G``zz
 " Fugitive/Git
 nmap <Leader>gb         :GSwitch<CR>
 nmap <Leader>gB         :GSwitchAll<CR>
