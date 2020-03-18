@@ -84,6 +84,12 @@ set timeoutlen=1200
 
 " Allow changed files to be hidden
 set hidden
+augroup auto_save_files
+	au!
+	" Save all changed files when Vim is put to background.
+	" Silently because buffers without name cannot be saved.
+	autocmd FocusLost * silent! wall
+augroup END
 
 " Set split commands work more as expected
 set splitbelow
