@@ -211,7 +211,7 @@ nnoremap gA ga
 " Keybindings Leader {{{
 
 func s:NotDefined(type)
-   return '{' . a:type . '} is not defined for [' . &filetype . ']'
+	return '{' . a:type . '} is not defined for [' . &filetype . ']'
 endfunc
 
 " Use Space & \ as Leader
