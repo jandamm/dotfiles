@@ -11,16 +11,16 @@ function! my#ft#swift#format(path) abort
 endfunction
 
 function! my#ft#swift#build() abort
-	update
+	wall
 	VtrSendCommandToRunner! swift build
 endfunction
 
 function! my#ft#swift#run() abort
-	update
+	wall
 	VtrSendCommandToRunner! swift run
 endfunction
 
 function! my#ft#swift#test() abort
-	update
+	wall
 	VtrSendCommandToRunner! swift test
 endfunction

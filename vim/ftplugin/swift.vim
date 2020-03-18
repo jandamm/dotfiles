@@ -1,7 +1,7 @@
-if exists('g:loaded_ios_ftplugin')
+if exists('g:loaded_swift_ftplugin')
 	finish
 endif
-let g:loaded_ios_ftplugin = 1
+let g:loaded_swift_ftplugin = 1
 
 command! -nargs=* SwiftFormat call my#ft#swift#format('<args>')
 
