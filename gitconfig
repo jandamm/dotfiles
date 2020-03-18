@@ -5,6 +5,10 @@
 	editor = nvim
 	pager = diff-so-fancy | less --tabs=4 -RFX
 	excludesfile = ~/.gitignore
+[alias]
+	amend = commit --amend
+	nvim = "!nvim" # Use nvim in gitsh
+	uncommit = reset HEAD~
 [github]
 	user = jandamm
 [diff-so-fancy]
@@ -19,7 +23,6 @@
 	noGreeting = true
 	defaultCommand = status --short --branch && :echo
 [gitsh "color"]
-	pwd = blue
 	default = green
 	untracked = red
 	modified = yellow
