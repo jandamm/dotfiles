@@ -55,7 +55,6 @@ Plug 'thomasfaingnaert/vim-lsp-ultisnips'
 " Languages
 Plug 'sheerun/vim-polyglot'
 Plug 'keith/xcconfig.vim'
-Plug 'zinit-zsh/zinit-vim-syntax'
 
 " iOS
 Plug 'gfontenot/vim-xcode'
