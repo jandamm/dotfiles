@@ -1,0 +1,12 @@
+# Vim bindings
+set editing-mode vi set keymap vi-command
+
+# History search
+"\C-p": history-search-backward
+"\C-n": history-search-forward
+
+# Quick movement
+"\C-a": beginning-of-line
+"\C-e": end-of-line
+"\C-f": forward-char
+"\C-b": backward-char
