@@ -4,14 +4,14 @@ if [ -n "$TMUX" ]; then
 	exit
 fi
 
-function tmux-create-session() {
+function tmux-attach-or-create() {
 	# Check if tmux has a session
 	tmux has-session 2> /dev/null
 	if [ $? -eq 1 ]; then
-		tmux
+		tmux new-session -s dotfiles
 	else
-		tmux attach
+		tmux attach-session
 	fi
 }
 
-tmux-create-session "$@"
+tmux-attach-or-create "$@"
