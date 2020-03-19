@@ -1,0 +1,11 @@
+#!/bin/bash
+
+function tmux-attach-session() {
+	if [ -z "$TMUX" ]
+	then
+		tmux-create-session >> /dev/null
+		tmux a >> /dev/null
+	fi
+}
+
+tmux-attach-session "$@"
