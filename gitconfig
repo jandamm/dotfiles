@@ -9,6 +9,7 @@
 	amend = commit --amend
 	nvim = "!nvim" # Use nvim in gitsh
 	uncommit = reset HEAD~
+	wip = "![ \"$1\" = 'all' ] && (git add -A; git rm $(git ls-files --deleted) 2> /dev/null) ; git commit --no-verify -m '--wip-- [skip ci]' #" # Use # to ignore parameters
 [github]
 	user = jandamm
 [diff-so-fancy]
