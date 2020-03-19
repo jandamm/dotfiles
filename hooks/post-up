@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-ln -sf $HOME/.vim $HOME/.config/nvim
+ln -sf "$HOME/.vim" "$HOME/.config/nvim"
