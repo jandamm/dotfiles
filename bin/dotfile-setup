@@ -52,18 +52,6 @@ fi
 
 # }}}
 
-# Install Gemfile {{{
-
-echo 'Install Gemfile'
-if [ "$should_install" ]; then
-	bundle install
-fi
-if [ "$should_update" ]; then
-	bundle update
-fi
-
-# }}}
-
 # Install pips {{{
 
 echo 'Install pips'
