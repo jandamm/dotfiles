@@ -1,9 +1,7 @@
 # Measure startup and disable instant prompt
 #ZSHRC_CONFIG_DIAG=1
 
-declare -A ZINIT
-ZINIT[BIN_DIR]="$DOTFILES/zinit"
-ZINIT[HOME_DIR]="$DOTFILES_CACHE/zsh/zinit"
+# Instant Prompt and Diagnose {{{
 
 if [[ $ZSHRC_CONFIG_DIAG -eq 1 ]]
 then
@@ -16,12 +14,14 @@ then
 	source "${XDG_CACHE_HOME:-$DOTFILES_CACHE}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# This fixes an issue with $TMUX and Nerd Font
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+# }}}
+
+# History {{{
+
 export HISTFILE="$DOTFILES_CACHE/zsh/.zsh_history"
 export HISTSIZE=10000
 export HISTFILESIZE=${HISTSIZE}
+
 # http://zsh.sourceforge.net/Doc/Release/Options.html#History
 setopt histignorealldups  # no duplicates
 setopt histignorespace    # no commands starting with space
@@ -31,37 +31,29 @@ setopt sharehistory       # share history between sessions*
 # * a new prompt has to be generated to sync.
 # works only in same dir or global history.
 
-# Paths
-export GEM_HOME=$HOME/.gem
-path=(
-	"$HOME/.bin"
-	"$HOME/.emacs.d/bin"
-	"$GEM_HOME/bin"
-	"/usr/local/bin"
-	"/usr/local/sbin"
-	"/bin"
-	"/sbin"
-	$path
-)
+PER_DIRECTORY_HISTORY_TOGGLE='^g'
+PER_DIRECTORY_HISTORY_NEW_PROMPT=false
+PER_DIRECTORY_HISTORY_BASE="$DOTFILES_CACHE/zsh/history_dirs"
+
+# }}}
 
 # Settings
 export EDITOR=nvim
 
-if [ "$(uname -s)" = "Darwin" ]
-then export ZSHRC_CONFIG_USER='MAC'
-elif [ "$(whoami)" = 'openhabian' ]
-then export ZSHRC_CONFIG_USER='HAPI'
-fi
+# This fixes an issue with $TMUX and Nerd Font
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 typeset -g ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
 
-# Powerline
 for file in $HOME/.zsh/before/*.zsh
 do
 	source "$file"
 done
 
 source "$DOTFILES/zinit/zinit.zsh"
+
+# Load plugins {{{
 
 # Apps
 if ! hash xcpretty &> /dev/null; then
@@ -76,7 +68,7 @@ function fg-fzf() {
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
 function fancy-ctrl-z () {
 	if [[ $#BUFFER -eq 0 ]]; then
-		BUFFER="fg-fzf"
+		BUFFER=" fg-fzf"
 		zle accept-line -w
 	else
 		zle push-input -w
@@ -96,9 +88,10 @@ zinit light kutsan/zsh-system-clipboard
 _Z_CMD=zz
 zinit ice pick"z.sh"
 zinit light rupa/z
+
 zinit ice pick"fasd" as"program"
 zinit light clvv/fasd
-eval "$(fasd --init zsh-hook)"
+eval "$(fasd --init zsh-hook)" # TODO capture in script and source.
 
 # FZF
 zinit snippet https://github.com/junegunn/fzf/blob/master/shell/completion.zsh
@@ -144,9 +137,6 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma/history-search-multi-word
 
 # History per directory
-PER_DIRECTORY_HISTORY_TOGGLE='^g'
-PER_DIRECTORY_HISTORY_NEW_PROMPT=false
-PER_DIRECTORY_HISTORY_BASE="$DOTFILES_CACHE/zsh/history_dirs"
 zinit light jandamm/per-directory-history
 
 # Completion
@@ -158,14 +148,20 @@ zinit light petervanderdoes/git-flow-completion
 zinit snippet https://github.com/chriskempson/base16-shell/tree/master/scripts/base16-onedark.sh
 zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 
+# }}}
+
 for file in $HOME/.zsh/*.zsh
 do
 	source "$file"
 done
 
-# Syntax Highlighting
+# Syntax Highlighting {{{
 zinit light zdharma/fast-syntax-highlighting
 
 # Compinit
 autoload -Uz compinit; compinit
 zinit cdreplay -q
+
+# }}}
+
+# vim: set foldmethod=marker:
