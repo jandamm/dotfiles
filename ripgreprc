@@ -1,0 +1,5 @@
+--glob=!git/*
+--glob=!Pod/*
+--glob=!*.spl
+--glob=!*.zwc
+--glob=!tags
