@@ -23,7 +23,7 @@ function fuzzy_open_file() {
 		fi
 		file=$(rg --files --glob "$dir_glob" --glob "$file_glob" | fzfbat --multi -1 -0) \
 			&& file=$(echo $file | tr '\n' ' ') \
-			&& fasd -A $file \
+			&& eval "fasd -A $file" \
 			&& eval "$editor $file"
 	fi
 }
@@ -41,7 +41,7 @@ function fuzzy_search_open_file() {
 
 	file=$(eval "$search" 2>/dev/null | fzf -0 -1 --preview "fuzzy_search_open_file_preview '$1' '{}'" --multi) \
 		&& file=$(echo $file | tr '\n' ' ') \
-		&& fasd -A "$file" \
+		&& eval "fasd -A $file" \
 		&& eval "$editor $file"
 	}
 
