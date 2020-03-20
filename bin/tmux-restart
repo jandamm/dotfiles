@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+function tmux-restart() {
+	if [ -n "$TMUX" ]; then
+		echo 'Detach from tmux first'
+		exit 1
+	fi
+	killall tmux
+	tmux-attach-or-create
+}
+
+tmux-restart
