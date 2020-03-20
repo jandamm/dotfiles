@@ -11,7 +11,7 @@ function fuzzy_search_open_file_preview() {
 	local range=''
 	local highl=''
 	# get all ranges in the current file
-	for match in $(rg -i --line-number --context 2 "$search" "$file" | sed 's/^\([0-9]*:*\).*/\1/')
+	for match in $(rg -i --line-number --context 2 -F "$search" "$file" | sed 's/^\([0-9]*:*\).*/\1/')
 	do
 		line=${match//:/}
 		if [ "$match" != "$line" ]; then

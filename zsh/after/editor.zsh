@@ -34,12 +34,12 @@ function fuzzy_search_open_file() {
 	depth="$2"
 	shift ; shift
 
-	local search="rg --hidden -l -i $1"
+	local search="rg --hidden -l -i -F '$1'"
 	if [ "$depth" -ne -1 ]; then
 		search="$search --max-depth $depth"
 	fi
 
-	file=$(eval $search 2>/dev/null | fzf -0 -1 --preview "fuzzy_search_open_file_preview $1 {}" --multi) \
+	file=$(eval "$search" 2>/dev/null | fzf -0 -1 --preview "fuzzy_search_open_file_preview '$1' '{}'" --multi) \
 		&& file=$(echo $file | tr '\n' ' ') \
 		&& fasd -A "$file" \
 		&& eval "$editor $file"
