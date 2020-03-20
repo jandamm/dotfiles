@@ -257,7 +257,7 @@ nmap <Leader>gs         :Gstatus<CR>
 " w -> Who did this?
 nmap <Leader>gw         :Gblame<CR>
 " TODO Replace l with lopen, select window, lclose
-nmap <Leader>l          :lopen<CR>
+nmap <Leader>l          <Plug>window:quickfix:loop
 " o -> Outline
 nmap <Leader>o          :TagbarToggle<CR>
 nmap <Leader>r          :echo <SID>NotDefined('run')<CR>

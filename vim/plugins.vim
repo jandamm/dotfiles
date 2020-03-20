@@ -19,7 +19,8 @@ Plug 'tpope/vim-sleuth' " Automatically set spaces/tabs
 Plug 'tpope/vim-eunuch' " Unix commands in vim
 Plug 'tpope/vim-obsession' " Save sessions easily
 Plug 'airblade/vim-rooter' " Always cd into root of project
-Plug 'easymotion/vim-easymotion'
+Plug 'easymotion/vim-easymotion' " Quick moving of the cursor
+Plug 'drmingdrmer/vim-toggle-quickfix' " Toggle QF and Loc List
 
 " Fuzzy finding
 Plug 'junegunn/fzf.vim'
