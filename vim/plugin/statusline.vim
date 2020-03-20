@@ -28,22 +28,38 @@ set statusline+=-%l                        " current line
 set statusline+=-%c                        " current column
 
 function! MySleuth() abort
-	let l:ret = SleuthIndicator()
-	return l:ret ==? 'ts=2' ? '' : ' [' . l:ret . ']'
+	let ret = SleuthIndicator()
+	return ret ==? 'ts=2' ? '' : ' [' . ret . ']'
 endfunction
 function! Spell() abort
-	return &spell ? ' [' . toupper(strcharpart(&spelllang, 0, 2)) . ']' : ''
+	return &spell ? ' [' . toupper(strcharpart(&spelllang, 0, 2)) . '] ' : ''
 endfunction
 function! GitBranch() abort
-	let l:branch = fugitive#head()
-	return len(l:branch) > 0 ? ' ' . l:branch : ''
+	let branch = fugitive#head()
+	return len(branch) > 0 ? ' ' . branch : ''
 endfunction
 function NeomakeStatusline()
 	let stats = []
 	let lcounts = neomake#statusline#LoclistCounts()
+	if len(lcounts) > 0
+		call add(stats, 'F[')
+	endif
 	for key in sort(keys(lcounts))
 		call add(stats, printf('%s:%d', key, lcounts[key]))
 	endfor
+	if len(lcounts) > 0
+		call add(stats, ']')
+	endif
+	let qcounts = neomake#statusline#QflistCounts()
+	if len(qcounts) > 0
+		call add(stats, 'P[')
+	endif
+	for key in sort(keys(qcounts))
+		call add(stats, printf('%s:%d', key, qcounts[key]))
+	endfor
+	if len(qcounts) > 0
+		call add(stats, ']')
+	endif
 	return join(stats, ' ')
 endfunction
 
