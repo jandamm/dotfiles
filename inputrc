@@ -1,6 +1,8 @@
 # Vim bindings
 set editing-mode vi set keymap vi-command
 
+set blink-matching-paren on
+
 # History search
 "\C-p": history-search-backward
 "\C-n": history-search-forward
@@ -10,3 +12,11 @@ set editing-mode vi set keymap vi-command
 "\C-e": end-of-line
 "\C-f": forward-char
 "\C-b": backward-char
+
+# Tab completion
+# This lets the completion behave more like zsh completion.
+Tab:    menu-complete
+"\e[Z": menu-complete-backward
+set completion-ignore-case on
+# Show all completions if there is more than one option
+set show-all-if-ambiguous on
