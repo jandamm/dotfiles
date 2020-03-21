@@ -1,13 +1,7 @@
-VIM_EDITOR_CMD='vim'
-
-if hash nvim 2>/dev/null
-then
 	alias ovim=$(which vim)
 	alias vim="nvim"
-	VIM_EDITOR_CMD='nvim'
 	alias vimplug="vim +PlugInstall +qa"
 	alias vimplup="vim +PlugUpdate +only"
-fi
 
 function fuzzy_open_file() {
 	local editor
@@ -56,11 +50,7 @@ function vrc() {
 		&& nvim "${file/\~/$HOME}"
 }
 
-alias v="fuzzy_open_file $VIM_EDITOR_CMD"
-alias e="fuzzy_open_file $VIM_EDITOR_CMD"
-
-alias vv="fuzzy_search_open_file $VIM_EDITOR_CMD 3"
-
-alias vvv="fuzzy_search_open_file $VIM_EDITOR_CMD -1"
-
-unset VIM_EDITOR_CMD
+alias v="fuzzy_open_file nvim"
+alias e="fuzzy_open_file nvim"
+alias vv="fuzzy_search_open_file nvim 3"
+alias vvv="fuzzy_search_open_file nvim -1"
