@@ -8,7 +8,7 @@ function tmux-attach-or-create() {
 	# Check if tmux has a session
 	tmux has-session 2> /dev/null
 	if [ $? -eq 1 ]; then
-		tmux new-session -s dotfiles
+		tmux new-session -s dotfiles -n dot
 	else
 		tmux attach-session
 	fi
