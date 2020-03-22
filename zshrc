@@ -1,1 +1,1 @@
-zsh/zshrc
+zsh/init.zsh
