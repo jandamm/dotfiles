@@ -18,7 +18,7 @@ fi
 
 # History {{{
 
-export HISTFILE="$DOTFILES_CACHE/zsh/.zsh_history"
+export HISTFILE="$DOTFILES_CACHE/zsh/zsh_history"
 export HISTSIZE=10000
 export HISTFILESIZE=${HISTSIZE}
 
