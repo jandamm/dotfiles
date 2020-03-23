@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+[ ! -e "$HOME/.rcrc" ] && ln -s "$DOTFILES/rcrc" "$HOME/.rcrc"
