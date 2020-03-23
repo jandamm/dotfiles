@@ -10,6 +10,7 @@
 	amend = commit --amend
 	nvim = "!nvim" # Use nvim in gitsh
 	resetp = reset --patch
+	staged = diff --staged
 	stashp = stash --patch
 	uncommit = reset HEAD~
 	wip = "![ \"$1\" = 'all' ] && (git add -A; git rm $(git ls-files --deleted) 2> /dev/null) ; git commit --no-verify -m '--wip-- [skip ci]' #" # Use # to ignore parameters
