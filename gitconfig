@@ -27,6 +27,8 @@
 [gitsh]
 	noGreeting = true
 	defaultCommand = status --short --branch && :echo
+	historyFile = "~/.cache/gitsh_history"
+	prompt = "δ %d %c%b%#%w"
 [gitsh "color"]
 	default = green
 	untracked = red
