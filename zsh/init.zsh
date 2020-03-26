@@ -147,6 +147,10 @@ zinit light petervanderdoes/git-flow-completion
 # FZF and cd working together
 zinit light changyuheng/zsh-interactive-cd
 
+# vim
+zinit ice pick'bin/abolisher' as'program'
+zinit snippet https://github.com/jandamm/abolisher/blob/master/bin/abolisher
+
 # Coloring
 zinit snippet https://github.com/chriskempson/base16-shell/tree/master/scripts/base16-onedark.sh
 zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
