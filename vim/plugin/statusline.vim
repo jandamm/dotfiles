@@ -8,7 +8,7 @@ let g:loaded_statusline_plugin = 1
 " Quick and dirty statusline (needs better colors and refinement)
 set statusline=                            " Reset
 set statusline+=%1*                        " Color 1
-set statusline+=λ                          " Symbol
+set statusline+=ν                          " Symbol
 set statusline+=\ %<%f                     " filename (shorten if line is too long)
 set statusline+=%*                         " Default color
 set statusline+=\ (%n)                     " Buffer number
