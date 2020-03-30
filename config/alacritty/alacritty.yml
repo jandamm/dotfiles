@@ -87,15 +87,6 @@ window:
   # scrollback is enabled (history > 0).
   #multiplier: 3
 
-# Spaces per Tab (changes require restart)
-#
-# This setting defines the width of a tab in cells.
-#
-# Some applications, like Emacs, rely on knowing about the width of a tab.
-# To prevent unexpected behavior in these applications, it's also required to
-# change the `it` value in terminfo when altering this setting.
-tabspaces: 2
-
 # Font configuration
 font:
   # Normal (roman) font face
@@ -104,7 +95,7 @@ font:
     #
     # Default:
     #   - (macOS) Menlo
-    #   - (Linux) monospace
+    #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
     #family: Hack
     family: Jetbrains Mono
@@ -181,27 +172,27 @@ font:
 #draw_bold_text_with_bright_colors: false
 
 # Colors (Tomorrow Night Bright)
-colors:
+#colors:
   # Default colors
   #primary:
-  #  background: '0x000000'
-  #  foreground: '0xeaeaea'
+  #  background: '#000000'
+  #  foreground: '#eaeaea'
 
     # Bright and dim foreground colors
     #
     # The dimmed foreground color is calculated automatically if it is not present.
     # If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
     # is `false`, the normal foreground color will be used.
-    #dim_foreground: '0x9a9a9a'
-    #bright_foreground: '0xffffff'
+    #dim_foreground: '#9a9a9a'
+    #bright_foreground: '#ffffff'
 
   # Cursor colors
   #
   # Colors which should be used to draw the terminal cursor. If these are unset,
   # the cursor color will be the inverse of the cell color.
   #cursor:
-  #  text: '0x000000'
-  #  cursor: '0xffffff'
+  #  text: '#000000'
+  #  cursor: '#ffffff'
 
   # Selection colors
   #
@@ -209,44 +200,44 @@ colors:
   # background is unset, selection color will be the inverse of the cell colors.
   # If only text is unset the cell text color will remain the same.
   #selection:
-  #  text: '0xeaeaea'
-  #  background: '0x404040'
+  #  text: '#eaeaea'
+  #  background: '#404040'
 
   # Normal colors
-  normal:
-    black:   '0x000000'
-    red:     '0xd54e53'
-    green:   '0xb9ca4a'
-    yellow:  '0xe6c547'
-    blue:    '0x7aa6da'
-    magenta: '0xc397d8'
-    cyan:    '0x70c0ba'
-    white:   '0xeaeaea'
+  #normal:
+  #  black:   '#000000'
+  #  red:     '#d54e53'
+  #  green:   '#b9ca4a'
+  #  yellow:  '#e6c547'
+  #  blue:    '#7aa6da'
+  #  magenta: '#c397d8'
+  #  cyan:    '#70c0ba'
+  #  white:   '#eaeaea'
 
   # Bright colors
-  bright:
-    black:   '0x666666'
-    red:     '0xff3334'
-    green:   '0x9ec400'
-    yellow:  '0xe7c547'
-    blue:    '0x7aa6da'
-    magenta: '0xb77ee0'
-    cyan:    '0x54ced6'
-    white:   '0xffffff'
+  #bright:
+  #  black:   '#666666'
+  #  red:     '#ff3334'
+  #  green:   '#9ec400'
+  #  yellow:  '#e7c547'
+  #  blue:    '#7aa6da'
+  #  magenta: '#b77ee0'
+  #  cyan:    '#54ced6'
+  #  white:   '#ffffff'
 
   # Dim colors
   #
   # If the dim colors are not set, they will be calculated automatically based
   # on the `normal` colors.
   #dim:
-  #  black:   '0x000000'
-  #  red:     '0x8c3336'
-  #  green:   '0x7a8530'
-  #  yellow:  '0x97822e'
-  #  blue:    '0x506d8f'
-  #  magenta: '0x80638e'
-  #  cyan:    '0x497e7a'
-  #  white:   '0x9a9a9a'
+  #  black:   '#000000'
+  #  red:     '#8c3336'
+  #  green:   '#7a8530'
+  #  yellow:  '#97822e'
+  #  blue:    '#506d8f'
+  #  magenta: '#80638e'
+  #  cyan:    '#497e7a'
+  #  white:   '#9a9a9a'
 
   # Indexed Colors
   #
@@ -254,7 +245,7 @@ colors:
   # When these are not set, they're filled with sensible defaults.
   #
   # Example:
-  #   `- { index: 16, color: '0xff00ff' }`
+  #   `- { index: 16, color: '#ff00ff' }`
   #
   #indexed_colors: []
 
@@ -282,7 +273,7 @@ colors:
 #visual_bell:
 #  animation: EaseOutExpo
 #  duration: 0
-#  color: '0xffffff'
+#  color: '#ffffff'
 
 # Background opacity
 #
@@ -324,11 +315,10 @@ colors:
 #   - (macOS) /bin/bash --login
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
-shell:
-  program: /usr/local/bin/zsh
-  args:
-    - --login
-    - --interactive
+#shell:
+#  program: /bin/bash
+#  args:
+#    - --login
 
 # Startup directory
 #
@@ -348,30 +338,6 @@ shell:
 
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true
-
-#debug:
-  # Display the time it takes to redraw each frame.
-  #render_timer: false
-
-  # Keep the log file after quitting Alacritty.
-  #persistent_logging: false
-
-  # Log level
-  #
-  # Values for `log_level`:
-  #   - None
-  #   - Error
-  #   - Warn
-  #   - Info
-  #   - Debug
-  #   - Trace
-  #log_level: Warn
-
-  # Print all received window events.
-  #print_events: false
-
-  # Record all characters and escape sequences as test data.
-  #ref_test: false
 
 #mouse:
   # Click settings
@@ -532,6 +498,9 @@ shell:
 # binding with the same triggers is defined. To unset a default binding, it can
 # be mapped to the `ReceiveChar` action. Alternatively, you can use `None` for
 # a no-op if you do not wish to receive input characters for that binding.
+#
+# If the same trigger is assigned to multiple actions, all of them are executed
+# at once.
 key_bindings:
   # (Windows, Linux, and BSD only)
   #- { key: V,        mods: Control|Shift, action: Paste            }
@@ -573,3 +542,23 @@ key_bindings:
   # https://stackoverflow.com/a/42461580
   - { key: Return,   mods: Shift,   chars: "\x1b[13;2u" } # Allow mapping <S-CR> in vim
   - { key: Return,   mods: Control, chars: "\x1b[13;5u" } # Allow mapping <C-CR> in vim
+#debug:
+  # Display the time it takes to redraw each frame.
+  #render_timer: false
+
+  # Keep the log file after quitting Alacritty.
+  #persistent_logging: false
+
+  # Log level
+  #
+  # Values for `log_level`:
+  #   - None
+  #   - Error
+  #   - Warn
+  #   - Info
+  #   - Debug
+  #   - Trace
+  #log_level: Warn
+
+  # Print all received window events.
+  #print_events: false
