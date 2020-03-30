@@ -144,9 +144,6 @@ zinit snippet OMZ::lib/completion.zsh
 zinit light zsh-users/zsh-completions
 zinit light petervanderdoes/git-flow-completion
 
-# FZF and cd working together
-zinit light changyuheng/zsh-interactive-cd
-
 # vim
 zinit ice pick'bin/abolisher' as'program'
 zinit snippet https://github.com/jandamm/abolisher/blob/master/bin/abolisher
