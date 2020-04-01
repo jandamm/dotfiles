@@ -94,6 +94,7 @@ zinit light clvv/fasd
 eval "$(fasd --init zsh-hook)" # TODO capture in script and source.
 
 # FZF
+# **TAB to completion options in fzf
 zinit snippet https://github.com/junegunn/fzf/blob/master/shell/completion.zsh
 zinit snippet https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh
 zinit snippet https://github.com/nicodebo/base16-fzf/blob/master/bash/base16-onedark.config

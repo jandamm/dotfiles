@@ -1,7 +1,7 @@
-	alias ovim=$(which vim)
-	alias vim="nvim"
-	alias vimplug="vim +PlugInstall +qa"
-	alias vimplup="vim +PlugUpdate +only"
+alias ovim=$(which vim)
+alias vim="nvim"
+alias vimplug="vim +PlugInstall +qa"
+alias vimplup="vim +PlugUpdate +only"
 
 function fuzzy_open_file() {
 	local editor
@@ -15,7 +15,7 @@ function fuzzy_open_file() {
 			dir_glob="**/*$1*/**"
 			file_glob="**$1**"
 		fi
-		file=$(rg --files --glob "$dir_glob" --glob "$file_glob" | fzfbat --multi -1 -0) \
+		file=$(rg --files --iglob "$dir_glob" --iglob "$file_glob" | fzfbat --multi -1 -0) \
 			&& file=$(echo $file | tr '\n' ' ') \
 			&& eval "fasd -A $file" \
 			&& eval "$editor $file"
@@ -45,7 +45,7 @@ function vrc() {
 		dir_glob="**/*$1*/**"
 		file_glob="**$1**"
 	fi
-	file=$(rg --files "$DOTFILES" "$DOTFILES_PRIVATE" --glob "$dir_glob" --glob "$file_glob" | sed "s_^${HOME}_~_" | fzf -1 -0) \
+	file=$(rg --files "$DOTFILES" "$DOTFILES_PRIVATE" --iglob "$dir_glob" --iglob "$file_glob" | sed "s_^${HOME}_~_" | fzf -1 -0) \
 		&& fasd -A "${file/\~/$HOME}" \
 		&& nvim "${file/\~/$HOME}"
 }
