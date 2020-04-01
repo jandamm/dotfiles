@@ -14,6 +14,19 @@
 	stashp = stash --patch
 	uncommit = reset HEAD~
 	wip = "![ \"$1\" = 'all' ] && (git add -A; git rm $(git ls-files --deleted) 2> /dev/null) ; git commit --no-verify -m '--wip-- [skip ci]' #" # Use # to ignore parameters
+[commit]
+	verbose = true
+[credential]
+	helper = osxkeychain
+
+# Merging
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
+
+# Tools
 [github]
 	user = jandamm
 [diff-so-fancy]
@@ -22,8 +35,8 @@
 [color "diff"]
 	meta = blue
 	frag = yellow bold
-[credential]
-	helper = osxkeychain
+
+# gitsh
 [gitsh]
 	noGreeting = true
 	defaultCommand = status --short --branch && :echo
@@ -33,8 +46,3 @@
 	default = green
 	untracked = red
 	modified = yellow
-[difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-[mergetool "Kaleidoscope"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-	trustExitCode = true
