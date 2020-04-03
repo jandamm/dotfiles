@@ -13,13 +13,16 @@
 	staged = diff --staged
 	stashp = stash --patch
 	uncommit = reset HEAD~
+	update = fetch --all --prune
+	v = "!nvim" # Use nvim in gitsh
+	vim = "!nvim" # Use nvim in gitsh
 	wip = "![ \"$1\" = 'all' ] && (git add -A; git rm $(git ls-files --deleted) 2> /dev/null) ; git commit --no-verify -m '--wip-- [skip ci]' #" # Use # to ignore parameters
 [commit]
 	verbose = true
 [credential]
 	helper = osxkeychain
 
-# Merging
+# Merging / Diffing
 [difftool "Kaleidoscope"]
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [mergetool "Kaleidoscope"]
