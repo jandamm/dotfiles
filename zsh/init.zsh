@@ -104,12 +104,6 @@ zinit light zdharma/zsh-diff-so-fancy
 
 zinit snippet OMZ::lib/git.zsh
 zinit snippet OMZ::plugins/git/git.plugin.zsh
-export FORGIT_FZF_DEFAULT_OPTS="
---bind='˚:preview-up,π:preview-up'
---bind='∆:preview-down,˜:preview-down'
---bind='∑:toggle-preview-wrap'
---reverse
-"
 zinit light wfxr/forgit
 unalias ga
 function ga {
