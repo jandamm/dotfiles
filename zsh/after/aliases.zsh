@@ -6,18 +6,6 @@ alias bell="tput bel"
 
 alias :q="exit"
 
-alias ..='cd ..'
-
-function z() {
-	cd "$(fasd -d $1 \
-		| sed '/^common/d' \
-		| sort --version-sort -r \
-		| sed 's_^[0-9\. ]*__' \
-		| sed "s_^${HOME}_~_" \
-		| fzf -1 -0 --preview "exa -lhg --git --color=always \$(echo {} | sed "s_^~_${HOME}_")" \
-		| sed "s_^~_${HOME}_")"
-}
-
 function p() {
 	[ -f $1 ] && bat $1 || exa -G $1
 }
