@@ -39,6 +39,8 @@ PER_DIRECTORY_HISTORY_BASE="$DOTFILES_CACHE/zsh/history_dirs"
 
 # Settings
 export EDITOR=nvim
+export LESS='-M +Gg'
+export MANPAGER='less -s -M +Gg'
 
 # This fixes an issue with $TMUX and Nerd Font
 export LC_ALL=en_US.UTF-8
@@ -151,7 +153,7 @@ zinit snippet https://github.com/jandamm/abolisher/blob/master/bin/abolisher
 
 # Coloring
 zinit snippet https://github.com/chriskempson/base16-shell/tree/master/scripts/base16-onedark.sh
-zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+zinit load ael-code/zsh-colored-man-pages
 
 # }}}
 
