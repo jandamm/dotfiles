@@ -1,0 +1,40 @@
+# general settings
+--allman false
+--empty void
+--indent tabs
+
+# no headers
+--header strip
+
+# whitespacing
+--linebreaks lf
+--trimwhitespace always
+
+# symbols
+--commas always
+--semicolons never
+
+# code style
+--patternlet hoist
+--stripunusedargs always
+
+# indentation
+--ifdef indent
+--indentcase false
+
+# spacing
+--operatorfunc spaced
+--ranges spaced
+--tabwidth 2
+
+# wrapping
+--elseposition same-line
+--wraparguments beforefirst
+--wrapcollections beforefirst
+
+# casing
+--exponentcase lowercase
+--hexliteralcase lowercase
+
+# no Pods
+--exclude Pods
