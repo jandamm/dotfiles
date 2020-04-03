@@ -135,15 +135,15 @@ zinit ice depth=1
 zinit light romkatv/powerlevel10k
 zinit light woefe/vi-mode.zsh
 
-# Quick Input
-zinit light zsh-users/zsh-autosuggestions
-zinit light zdharma/history-search-multi-word
-
 # History per directory
 zinit light jandamm/per-directory-history
+zinit light zdharma/history-search-multi-word
 
 # Completion
-zinit snippet OMZ::lib/completion.zsh
+# zinit snippet OMZ::lib/completion.zsh
+# fzf-tab must be sourced before autosuggestions and syntax-highlighting
+zinit light Aloxaf/fzf-tab
+zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 zinit light petervanderdoes/git-flow-completion
 
@@ -162,13 +162,10 @@ do
 	source "$file"
 done
 
-# Syntax Highlighting {{{
 zinit light zdharma/fast-syntax-highlighting
 
 # Compinit
 autoload -Uz compinit; compinit
 zinit cdreplay -q
-
-# }}}
 
 # vim: set foldmethod=marker:
