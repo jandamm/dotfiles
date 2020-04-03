@@ -86,11 +86,6 @@ zinit snippet https://github.com/raylee/tldr/blob/master/tldr
 
 zinit light kutsan/zsh-system-clipboard
 
-# fasd database isn't "full" enough yet
-_Z_CMD=zz
-zinit ice pick"z.sh"
-zinit light rupa/z
-
 zinit ice pick"fasd" as"program"
 zinit light clvv/fasd
 eval "$(fasd --init zsh-hook)" # TODO capture in script and source.
