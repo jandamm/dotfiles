@@ -146,6 +146,8 @@ zinit light Aloxaf/fzf-tab
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 zinit light petervanderdoes/git-flow-completion
+zinit ice as'completion'
+zinit snippet https://github.com/zdharma/zinit/raw/master/_zinit
 
 # vim
 zinit ice pick'bin/abolisher' as'program'
