@@ -13,9 +13,9 @@ function fuzzy_open_file() {
 		local dir_glob file_glob
 		if [ -n "$1" ]; then
 			dir_glob="**/*$1*/**"
-			file_glob="**$1**"
+			file_glob="*$1*"
 		fi
-		file=$(rg --files --iglob "$dir_glob" --iglob "$file_glob" | fzfbat --multi -1 -0) \
+		file=$(rg --files --iglob "$dir_glob" --iglob "$file_glob" 2>/dev/null | fzfbat --multi -1 -0) \
 			&& file=$(echo $file | tr '\n' ' ') \
 			&& eval "fasd -A $file" \
 			&& eval "$editor $file"
@@ -43,9 +43,9 @@ function vrc() {
 	local dir_glob file_glob
 	if [ -n "$1" ]; then
 		dir_glob="**/*$1*/**"
-		file_glob="**$1**"
+		file_glob="*$1*"
 	fi
-	file=$(rg --files "$DOTFILES" "$DOTFILES_PRIVATE" --iglob "$dir_glob" --iglob "$file_glob" | sed "s_^${HOME}_~_" | fzf -1 -0) \
+	file=$(rg --files "$DOTFILES" "$DOTFILES_PRIVATE" --iglob "$dir_glob" --iglob "$file_glob" 2>/dev/null | sed "s_^${HOME}_~_" | fzf -1 -0) \
 		&& fasd -A "${file/\~/$HOME}" \
 		&& nvim "${file/\~/$HOME}"
 }
