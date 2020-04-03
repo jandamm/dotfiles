@@ -39,7 +39,6 @@ PER_DIRECTORY_HISTORY_BASE="$DOTFILES_CACHE/zsh/history_dirs"
 
 # Settings
 export EDITOR=nvim
-export LESS='-M +Gg'
 export MANPAGER='less -s -M +Gg'
 
 # This fixes an issue with $TMUX and Nerd Font
