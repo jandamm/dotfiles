@@ -25,7 +25,7 @@ local -A ctxt=(\"\${(@ps:\2:)CTXT}\")
 
 # give a preview of directory by exa when completing cd/z
 zstyle ':fzf-tab:complete:cd:*' extra-opts --preview=$extract'exa -1 --color=always ${~ctxt[hpre]}$in'
-zstyle ':fzf-tab:complete:z:*' extra-opts --preview=$extract'exa -1 --color=always ${~ctxt[hpre]}$in'
 
 # group commands and show description
 zstyle ':completion:*' format '---- %d'
+zstyle ':completion:*' group-name ''

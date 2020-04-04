@@ -131,7 +131,7 @@ zinit light zdharma/history-search-multi-word
 zinit snippet OMZ::lib/completion.zsh
 # fzf-tab must be sourced before autosuggestions and syntax-highlighting
 zinit light Aloxaf/fzf-tab
-zinit light zsh-users/zsh-autosuggestions
+zinit ice blockf atpull'zinit creinstall -q .'
 zinit light zsh-users/zsh-completions
 zinit light petervanderdoes/git-flow-completion
 zinit ice as'completion'
@@ -152,10 +152,28 @@ do
 	source "$file"
 done
 
-zinit light zdharma/fast-syntax-highlighting
 
-# Compinit
+# Completion {{{
+
+# Initialize zsh completion
 autoload -Uz compinit; compinit
+
+# load bash completion
+autoload bashcompinit && bashcompinit
+
+# Define completions for fd and fzf
+# Commands with gnu style '--help' can be added here.
+compdef _gnu_generic fd fzf
+
+# Add compdef from plugins
 zinit cdreplay -q
+
+# }}}
+
+# Here syntax highlighting is loaded before autosuggestions
+# (By the author of fast-syntax-highlighting)
+# https://zdharma.org/zinit/wiki/Example-Minimal-Setup/
+zinit light zdharma/fast-syntax-highlighting
+zinit light zsh-users/zsh-autosuggestions
 
 # vim: set foldmethod=marker:
