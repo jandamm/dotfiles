@@ -161,9 +161,11 @@ autoload -Uz compinit; compinit
 # load bash completion
 autoload bashcompinit && bashcompinit
 
-# Define completions for fd and fzf
+# Define completions for command options
 # Commands with gnu style '--help' can be added here.
-compdef _gnu_generic fd fzf
+compdef _gnu_generic \
+	fd fzf \
+	swiftformat
 
 # Add compdef from plugins
 zinit cdreplay -q
