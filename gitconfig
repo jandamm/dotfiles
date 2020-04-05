@@ -22,10 +22,20 @@
 [credential]
 	helper = osxkeychain
 
-# Merging / Diffing
-[difftool "Kaleidoscope"]
+# Diffing
+[diff]
+	tool = fugitive
+[difftool "fugitive"]
+	cmd = nvim -f -c \"Gvdiff\" \"$MERGED\"
+[difftool "kaleidoscope"]
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-[mergetool "Kaleidoscope"]
+
+# Merging
+[merge]
+	tool = fugitive
+[mergetool "fugitive"]
+	cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
+[mergetool "kaleidoscope"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 	trustExitCode = true
 
