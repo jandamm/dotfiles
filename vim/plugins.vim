@@ -15,6 +15,8 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-unimpaired' " Better [] mappings
 Plug 'tpope/vim-vinegar' " Improvements to netrw
 Plug 'tpope/vim-fugitive' " Git interface
+Plug 'tpope/vim-rhubarb' " Gbrowse for Github
+Plug 'shumphrey/fugitive-gitlab.vim' " Gbrowse for GitLab
 Plug 'tpope/vim-sleuth' " Automatically set spaces/tabs
 Plug 'tpope/vim-eunuch' " Unix commands in vim
 Plug 'tpope/vim-obsession' " Save sessions easily
