@@ -9,10 +9,13 @@
 
 - `git clone git@github.com:jandamm/dotfiles.git ~/.dotfiles`
 - `git submodule update --init --recursive`
-- `cd ~/.dotfiles && ./bin/dotfile-setup --full`
+- `cd ~/.dotfiles && ./bin/dotfile-setup install`
 
-The parameter full will install all programs with Homebrew.
-If Homebrew is not available install all programs from `Brewfile` and run with `--full`
+The parameter install will install all programs with Homebrew.
+
+### Use zsh from Homebrew as login shell:
+- `echo '/usr/local/bin/zsh' >> /etc/shells`
+- `chsh -s /usr/local/bin/zsh`
 
 ## Adding files
 
