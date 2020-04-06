@@ -1,10 +1,15 @@
 [user]
 	name = Jan Dammshäuser
 	email = mail@jandamm.de
+
 [core]
 	editor = nvim
 	pager = diff-so-fancy | less --tabs=4 -RFX
 	excludesfile = ~/.gitignore
+
+[credential]
+	helper = osxkeychain
+
 [alias]
 	addp = add --patch
 	amend = commit --amend
@@ -17,10 +22,13 @@
 	v = "!nvim" # Use nvim in gitsh
 	vim = "!nvim" # Use nvim in gitsh
 	wip = "![ \"$1\" = 'all' ] && (git add -A; git rm $(git ls-files --deleted) 2> /dev/null) ; git commit --no-verify -m '--wip-- [skip ci]' #" # Use # to ignore parameters
+
+# Command configuration
 [commit]
 	verbose = true
-[credential]
-	helper = osxkeychain
+[pretty]
+	jdshort = %C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(yellow)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)
+	jdlong = %C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n          %C(yellow)%s%C(reset) %C(dim white)- %an%C(reset)
 
 # Diffing
 [diff]
