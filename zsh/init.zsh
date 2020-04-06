@@ -164,8 +164,9 @@ autoload bashcompinit && bashcompinit
 # Define completions for command options
 # Commands with gnu style '--help' can be added here.
 compdef _gnu_generic \
-	fd fzf \
-	swiftformat
+	fasd fd fzf \
+	swiftformat \
+	xed
 
 # Add compdef from plugins
 zinit cdreplay -q
