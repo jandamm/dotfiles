@@ -13,6 +13,10 @@
 [alias]
 	addp = add --patch
 	amend = commit --amend
+	logg = log --graph --decorate --format=jdlong
+	logga = !git logg --all
+	logs = log --graph --decorate --format=jdshort
+	logsa = !git logs --all
 	nvim = "!nvim" # Use nvim in gitsh
 	resetp = reset --patch
 	staged = diff --staged
@@ -26,9 +30,13 @@
 # Command configuration
 [commit]
 	verbose = true
+[format]
+	pretty = jdlong
+
+# My formatting
 [pretty]
-	jdshort = %C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(yellow)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)
-	jdlong = %C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n          %C(yellow)%s%C(reset) %C(dim white)- %an%C(reset)
+	jdshort = %C(bold blue)%h%C(reset) - %C(bold green)%ar%C(reset) - %C(yellow)%<(50,trunc)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)
+	jdlong = %C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n  %C(dim white)%an <%aE>%C(reset)%n%n  %C(yellow)%s%C(reset)%n %n%-b%n
 
 # Diffing
 [diff]
