@@ -3,9 +3,14 @@ FZF_TAB_COMMAND=(
 	--ansi
 	--expect='$continuous_trigger'
 	'--color=hl:$(( $#headers == 0 ? 108 : 255 ))'
-	--nth=2,3 --delimiter='\x00'
-	--layout=reverse --height='${FZF_TMUX_HEIGHT:=75%}'
-	--tiebreak=begin -m --bind=tab:down,btab:up,change:top,ctrl-s:toggle --cycle
+	--nth=2,3
+	--delimiter='\x00'
+	--layout=reverse
+	--height='${FZF_TMUX_HEIGHT:=75%}'
+	--tiebreak=begin
+	--multi
+	--bind=tab:down,btab:up,change:top,ctrl-s:toggle+down
+	--cycle
 	'--query=$query'
 	'--header-lines=$#headers'
 )
