@@ -13,9 +13,9 @@
 [alias]
 	addp = add --patch
 	amend = commit --amend
-	logg = log --graph --decorate --format=jdlong
+	logg = log --graph --decorate
 	logga = !git logg --all
-	logs = log --graph --decorate --format=jdshort
+	logs = log --graph --decorate --format=single
 	logsa = !git logs --all
 	nvim = "!nvim" # Use nvim in gitsh
 	resetp = reset --patch
@@ -31,12 +31,12 @@
 [commit]
 	verbose = true
 [format]
-	pretty = jdlong
+	pretty = default
 
 # My formatting
 [pretty]
-	jdshort = %C(bold blue)%h%C(reset) - %C(bold green)%ar%C(reset) - %C(yellow)%<(50,trunc)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)
-	jdlong = %C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n  %C(dim white)%an <%aE>%C(reset)%n%n  %C(yellow)%s%C(reset)%n %n%-b%n
+	default = %C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n  %C(dim white)%an <%aE>%C(reset)%n%n  %C(yellow)%s%C(reset)%n %n%-b%n
+	single = %C(bold blue)%h%C(reset) - %C(bold green)%<(12,trunc)%ar%C(reset) - %C(yellow)%<(50,trunc)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)
 
 # Diffing
 [diff]
