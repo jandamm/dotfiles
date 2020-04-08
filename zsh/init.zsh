@@ -152,7 +152,6 @@ do
 	source "$file"
 done
 
-
 # Completion {{{
 
 # Initialize zsh completion
@@ -168,9 +167,6 @@ compdef _gnu_generic \
 	swiftformat \
 	xed
 
-# Add compdef from plugins
-zinit cdreplay -q
-
 # }}}
 
 # Here syntax highlighting is loaded before autosuggestions
@@ -178,5 +174,8 @@ zinit cdreplay -q
 # https://zdharma.org/zinit/wiki/Example-Minimal-Setup/
 zinit light zdharma/fast-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
+
+# Add compdef from plugins
+zinit cdreplay -q
 
 # vim: set foldmethod=marker:
