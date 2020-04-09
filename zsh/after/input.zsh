@@ -19,11 +19,6 @@ bindkey '^w' backward-delete-word
 bindkey 'ƒ' vi-forward-word # Alt-F
 bindkey '∫' backward-word # Alt-B
 
-# History
-
-# FZF History Search
-bindkey '^s' fzf-history-widget
-
 # [Shift-Tab] - move through the completion menu backwards
 if [[ "${terminfo[kcbt]}" != "" ]]; then
   bindkey "${terminfo[kcbt]}" reverse-menu-complete
