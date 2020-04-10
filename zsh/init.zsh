@@ -121,7 +121,7 @@ function grh {
 # Prompt
 zinit ice depth=1
 zinit light romkatv/powerlevel10k
-zinit light woefe/vi-mode.zsh
+zinit light jandamm/vi-mode.zsh
 
 # History per directory
 zinit light jandamm/per-directory-history
