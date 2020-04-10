@@ -12,8 +12,11 @@ bindkey '^a' beginning-of-line
 bindkey '^b' backward-char
 bindkey '^e' end-of-line
 bindkey '^f' forward-char
-bindkey '^u' backward-kill-line
+bindkey '^u' repl-backward-kill-line
 bindkey '^w' backward-delete-word
+
+# Use instant repl
+bindkey '^o' repl-set
 
 # Forward word bindings (for auttosuggestion completion
 bindkey 'ƒ' vi-forward-word # Alt-F

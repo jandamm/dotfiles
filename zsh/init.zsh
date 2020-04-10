@@ -137,6 +137,8 @@ zinit light petervanderdoes/git-flow-completion
 zinit ice as'completion'
 zinit snippet https://github.com/zdharma/zinit/raw/master/_zinit
 
+zinit light jandamm/zsh-instant-repl
+
 # vim
 zinit ice pick'bin/abolisher' as'program'
 zinit snippet https://github.com/jandamm/abolisher/blob/master/bin/abolisher
