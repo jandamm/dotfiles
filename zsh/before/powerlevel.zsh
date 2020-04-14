@@ -131,16 +131,19 @@
   typeset -g POWERLEVEL9K_STATUS_VERBOSE_SIGNAME=false
 
   #######################[ lambda: Show lambdasymbol ]#######################
+  typeset -g POWERLEVEL9K_LAMBDA_ICON=λ
+  typeset -g _POWERLEVEL9K_LAMBDA_ICON=$POWERLEVEL9K_LAMBDA_ICON # Instant prompt
+
   function prompt_lambda() {
     local color=yellow
     if [ $(jobs | grep . -c) -eq 0 ]; then
       color=blue
     fi
-    p10k segment -f $color -t λ
+    p10k segment -f $color -t $POWERLEVEL9K_LAMBDA_ICON
   }
   function instant_prompt_lambda() {
     # No background jobs with instant prompt
-    p10k segment -f blue -t λ
+    p10k segment -f blue -t $_POWERLEVEL9K_LAMBDA_ICON
   }
 
   # Transient prompt works similarly to the builtin transient_rprompt option. It trims down prompt
