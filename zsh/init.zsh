@@ -61,7 +61,6 @@ if ! hash xcpretty &> /dev/null; then
 	zinit ice pick"bin/xcpretty" as"program"
 	zinit light xcpretty/xcpretty
 fi
-zinit snippet OMZ::plugins/dash/dash.plugin.zsh
 
 function fg-fzf() {
 	job="$(jobs | fzf -0 -1 | sed -E 's/\[(.+)\].*/\1/')" && echo '' && fg %$job
@@ -79,7 +78,6 @@ function fancy-ctrl-z () {
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
-zinit light Tarrasch/zsh-bd
 zinit ice as"program"
 zinit snippet https://github.com/raylee/tldr/blob/master/tldr
 
@@ -90,7 +88,7 @@ zinit light clvv/fasd
 eval "$(fasd --init zsh-hook)" # TODO capture in script and source.
 
 # FZF
-# **TAB to completion options in fzf
+# **TAB to completion options in fzf and ^t to list all files from ./ in fzf
 zinit snippet https://github.com/junegunn/fzf/blob/master/shell/completion.zsh
 zinit snippet https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh
 zinit snippet https://github.com/nicodebo/base16-fzf/blob/master/bash/base16-onedark.config
@@ -157,7 +155,7 @@ done
 # Completion {{{
 
 # Initialize zsh completion
-autoload -Uz compinit; compinit
+autoload -Uz compinit && compinit
 
 # load bash completion
 autoload bashcompinit && bashcompinit
