@@ -210,7 +210,9 @@ nmap ga <Plug>(EasyAlign)
 
 " Easymotion on gs
 map gs <Plug>(easymotion-prefix)
-map gs<Space> <Plug>(easymotion-overwin-w)
+nmap gs<Space> <Plug>(easymotion-overwin-w)
+xmap gs<Space> gsw
+omap gs<Space> gsw
 let g:EasyMotion_keys='arsdheiqwfpgjlu;yzxcvbkmtno'
 
 " Set ga to gA (ga is vim-align, gA is print ascii)
@@ -256,7 +258,7 @@ nmap <Leader>gr         :Grebase<CR>
 nmap <Leader>gs         :Gstatus<CR>
 " w -> Who did this?
 nmap <Leader>gw         :Gblame<CR>
-" TODO Replace l with lopen, select window, lclose
+nmap <Leader>j          gs<Space>
 nmap <Leader>l          <Plug>window:quickfix:loop
 " o -> Outline
 nmap <Leader>o          :TagbarToggle<CR>
