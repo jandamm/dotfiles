@@ -210,7 +210,7 @@ iabbrev continuusly continuously
 iabbrev Continuusly Continuously
 iabbrev CONTINUUSLY CONTINUOUSLY
 
-" Abolish {un,}ne{c,cc}es{,s}ar{y,ily,ity} {}ne{c}es{s}ar{}
+" Abolish {un,,u}ne{c,cc}es{,s}ar{y,ily,ity} {un,}ne{c}es{s}ar{}
 iabbrev unnecesary unnecessary
 iabbrev Unnecesary Unnecessary
 iabbrev UNNECESARY UNNECESSARY
@@ -306,5 +306,53 @@ iabbrev NECCESSARILY NECESSARILY
 iabbrev neccessarity necessarity
 iabbrev Neccessarity Necessarity
 iabbrev NECCESSARITY NECESSARITY
+
+iabbrev unecesary unnecessary
+iabbrev Unecesary Unnecessary
+iabbrev UNECESARY UNNECESSARY
+
+iabbrev unecesarily unnecessarily
+iabbrev Unecesarily Unnecessarily
+iabbrev UNECESARILY UNNECESSARILY
+
+iabbrev unecesarity unnecessarity
+iabbrev Unecesarity Unnecessarity
+iabbrev UNECESARITY UNNECESSARITY
+
+iabbrev unecessary unnecessary
+iabbrev Unecessary Unnecessary
+iabbrev UNECESSARY UNNECESSARY
+
+iabbrev unecessarily unnecessarily
+iabbrev Unecessarily Unnecessarily
+iabbrev UNECESSARILY UNNECESSARILY
+
+iabbrev unecessarity unnecessarity
+iabbrev Unecessarity Unnecessarity
+iabbrev UNECESSARITY UNNECESSARITY
+
+iabbrev uneccesary unnecessary
+iabbrev Uneccesary Unnecessary
+iabbrev UNECCESARY UNNECESSARY
+
+iabbrev uneccesarily unnecessarily
+iabbrev Uneccesarily Unnecessarily
+iabbrev UNECCESARILY UNNECESSARILY
+
+iabbrev uneccesarity unnecessarity
+iabbrev Uneccesarity Unnecessarity
+iabbrev UNECCESARITY UNNECESSARITY
+
+iabbrev uneccessary unnecessary
+iabbrev Uneccessary Unnecessary
+iabbrev UNECCESSARY UNNECESSARY
+
+iabbrev uneccessarily unnecessarily
+iabbrev Uneccessarily Unnecessarily
+iabbrev UNECCESSARILY UNNECESSARILY
+
+iabbrev uneccessarity unnecessarity
+iabbrev Uneccessarity Unnecessarity
+iabbrev UNECCESSARITY UNNECESSARITY
 
 
