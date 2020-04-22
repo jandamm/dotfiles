@@ -13,10 +13,11 @@
 [alias]
 	addp = add --patch
 	amend = commit --amend
-	fixup = "!sha=$(git log --color --oneline --decorate -n 100 | fzf +s --ansi --no-multi --color --prompt 'Fixup> ' --preview=\"git show --color \\$(echo {} | sed -e 's/ .*//')\") && git commit --fixup \"${sha%% *}\""
-	fixup-apply = "!sha=$(git log --oneline --color --decorate -n 100 | fzf +s --ansi --no-multi --color --prompt='Fixup> ' --header='Select the oldest commit before a fixed commit.' --preview=\"git show --color \\$(echo {} | sed -e 's/ .*//')\") && git rebase --interactive --autosquash \"${sha%% *}\""
+	fixup = "!sha=$(git logf --prompt='Fixup> ') && git commit --fixup \"${sha%% *}\""
+	fixup-apply = "!sha=$(git logf --prompt='Fixup> ' --header='Select the oldest commit before a fixed commit.') && git rebase --interactive --autosquash \"${sha%% *}\""
 	ksdiff = difftool -t ksdiff
 	ksmerge = mergetool -t ksdiff
+	logf = "!git log --color --oneline --decorate -n 1000 | fzf +s --ansi --no-multi --color --preview=\"git show --color \\$(echo {} | sed -e 's/ .*//')\""
 	logg = log --graph --decorate
 	logga = !git logg --all
 	logs = log --graph --decorate --format=single
