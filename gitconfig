@@ -13,6 +13,7 @@
 [alias]
 	addp = add --patch
 	amend = commit --amend
+	fixup = "!sha=$(git log --color --oneline --decorate -n 100 | fzf +s --ansi --no-multi --color --prompt 'Fixup> ' --preview=\"git show --color \\$(echo {} | sed -e 's/ .*//')\") && git commit --fixup \"${sha%% *}\""
 	ksdiff = difftool -t ksdiff
 	ksmerge = mergetool -t ksdiff
 	logg = log --graph --decorate
@@ -22,7 +23,6 @@
 	nvim = "!nvim" # Use nvim in gitsh
 	resetp = reset --patch
 	staged = diff --staged
-	fixup = "!sha=$( git log --color --oneline --decorate -n 25 | fzf +s --ansi --no-multi --color --prompt 'Fixup> ' --preview=\"git show --color \\$(echo {} | sed -e 's/ .*//')\" ) && git commit --fixup \"${sha%% *}\""
 	stashp = stash --patch
 	uncommit = reset HEAD~
 	update = fetch --all --prune
