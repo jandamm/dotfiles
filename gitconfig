@@ -13,6 +13,8 @@
 [alias]
 	addp = add --patch
 	amend = commit --amend
+	ksdiff = difftool -t ksdiff
+	ksmerge = mergetool -t ksdiff
 	logg = log --graph --decorate
 	logga = !git logg --all
 	logs = log --graph --decorate --format=single
@@ -44,7 +46,7 @@
 	tool = fugitive
 [difftool "fugitive"]
 	cmd = nvim -f -c \"Gvdiff\" \"$MERGED\"
-[difftool "kaleidoscope"]
+[difftool "ksdiff"]
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 
 # Merging
@@ -52,7 +54,7 @@
 	tool = fugitive
 [mergetool "fugitive"]
 	cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
-[mergetool "kaleidoscope"]
+[mergetool "ksdiff"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 	trustExitCode = true
 
