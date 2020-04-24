@@ -53,12 +53,17 @@
 
 # Merging
 [merge]
+	ff = false
 	tool = fugitive
 [mergetool "fugitive"]
 	cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
 [mergetool "ksdiff"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 	trustExitCode = true
+
+# Pulling
+[pull]
+	ff = true
 
 # Tools
 [github]
