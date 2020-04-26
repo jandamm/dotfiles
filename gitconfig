@@ -13,9 +13,11 @@
 [alias]
 	addp = add --patch
 	amend = commit --amend
+	amendZZ = !git amend --no-edit
 	fixup = "!sha=$(git fzf-log-one --prompt='Fixup> ') && git commit --fixup \"${sha%% *}\""
 	fixup-apply = "!sha=$(git fzf-log-one --prompt='Fixup> ' --header='Select the oldest commit before a fixed commit.') && git rebase --interactive --autosquash \"${sha%% *}\""
 	ksdiff = difftool -t ksdiff
+	ksdiffall = !git ksdiff --no-prompt
 	ksmerge = mergetool -t ksdiff
 	logf = "!sha=$(git fzf-log-one) && echo \"${sha%% *}\""
 	logfa = "!sha=$(git fzf-log-one-all) && echo \"${sha%% *}\""
@@ -32,6 +34,7 @@
 	v = "!nvim" # Use nvim in gitsh
 	vim = "!nvim" # Use nvim in gitsh
 	wip = "![ \"$1\" = 'all' ] && (git add -A; git rm $(git ls-files --deleted) 2> /dev/null) ; git commit --no-verify -m '--wip-- [skip ci]' #" # Use # to ignore parameters
+	wipa = !git wip all
 
 	# Fzf Helpers
 	fzf-log-one = "!git log --color --oneline --decorate -n 1000 | fzf +s --ansi --no-multi --color --preview=\"git show --color \\$(echo {} | sed -e 's/ .*//')\""
