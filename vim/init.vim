@@ -203,10 +203,10 @@ inoremap <C-w> <C-g>u<C-w>
 xnoremap s :s/
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(LiveEasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(LiveEasyAlign)
 
 " Easymotion on gs
 map gs <Plug>(easymotion-prefix)
