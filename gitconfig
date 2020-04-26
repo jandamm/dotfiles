@@ -13,11 +13,12 @@
 [alias]
 	addp = add --patch
 	amend = commit --amend
-	fixup = "!sha=$(git logf --prompt='Fixup> ') && git commit --fixup \"${sha%% *}\""
-	fixup-apply = "!sha=$(git logf --prompt='Fixup> ' --header='Select the oldest commit before a fixed commit.') && git rebase --interactive --autosquash \"${sha%% *}\""
+	fixup = "!sha=$(git fzf-log-one --prompt='Fixup> ') && git commit --fixup \"${sha%% *}\""
+	fixup-apply = "!sha=$(git fzf-log-one --prompt='Fixup> ' --header='Select the oldest commit before a fixed commit.') && git rebase --interactive --autosquash \"${sha%% *}\""
 	ksdiff = difftool -t ksdiff
 	ksmerge = mergetool -t ksdiff
-	logf = "!git log --color --oneline --decorate -n 1000 | fzf +s --ansi --no-multi --color --preview=\"git show --color \\$(echo {} | sed -e 's/ .*//')\""
+	logf = "!sha=$(git fzf-log-one) && echo \"${sha%% *}\""
+	logfa = "!sha=$(git fzf-log-one-all) && echo \"${sha%% *}\""
 	logg = log --graph --decorate
 	logga = !git logg --all
 	logs = log --graph --decorate --format=single
@@ -31,6 +32,10 @@
 	v = "!nvim" # Use nvim in gitsh
 	vim = "!nvim" # Use nvim in gitsh
 	wip = "![ \"$1\" = 'all' ] && (git add -A; git rm $(git ls-files --deleted) 2> /dev/null) ; git commit --no-verify -m '--wip-- [skip ci]' #" # Use # to ignore parameters
+
+	# Fzf Helpers
+	fzf-log-one = "!git log --color --oneline --decorate -n 1000 | fzf +s --ansi --no-multi --color --preview=\"git show --color \\$(echo {} | sed -e 's/ .*//')\""
+	fzf-log-one-all = "!git log --color --oneline --decorate -n 1000 --all | fzf +s --ansi --no-multi --color --preview=\"git show --color \\$(echo {} | sed -e 's/ .*//')\""
 
 # Command configuration
 [commit]
