@@ -133,9 +133,9 @@ zinit ice blockf atpull'zinit creinstall -q .'
 zinit light zsh-users/zsh-completions
 zinit light petervanderdoes/git-flow-completion
 zinit ice as'completion'
-zinit snippet $DOTFILES/zinit/_zinit
+zinit light $ZINIT[BIN_DIR]
 
-zinit light jandamm/zsh-instant-repl
+zinit light jandamm/instant-repl.zsh
 
 # vim
 zinit ice pick'bin/abolisher' as'program'
