@@ -98,10 +98,6 @@ let g:UltiSnipsEditSplit='vertical'
 
 let g:UltiSnipsSnippetDirectories=['PrivateSnips', 'UltiSnips']
 
-" Markdown syntax doesn't work good with polyglot yet.
-" Enable when Theme is tweaked to work nicely.
-let g:polyglot_disabled = ['markdown']
-
 " Spacing
 set tabstop=2 " Size of Tab
 
