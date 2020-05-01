@@ -1,10 +1,10 @@
 function set-gsh() {
-	POWERLEVEL9K_LAMBDA_ICON=δ
+	GSH=true
 	zle repl-redraw-prompt
 }
 
 function unset-gsh() {
-	POWERLEVEL9K_LAMBDA_ICON=λ
+	unset GSH
 	zle repl-redraw-prompt
 }
 
@@ -17,12 +17,14 @@ function instant_repl_prefix_hook() {
 	esac
 }
 
-bindkey '^s' repl-set
-
 function git() {
 	if [ -z "$1" ]; then
 		env git status --short --branch
 	else
 		env git "$@"
 	fi
+}
+
+function is_gsh() {
+	[ -n "$GSH" ]
 }
