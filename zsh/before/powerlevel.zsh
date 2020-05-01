@@ -17,7 +17,7 @@
   # Left prompt segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
       lambda                    # lambda symbol
-      dir                       # current directory
+      mydir                     # current directory
       vcs                       # git status
       newline                   # \n
       prompt_char               # prompt symbol
@@ -29,7 +29,7 @@
       command_execution_time    # previous command duration
       newline                   # \n
       context                   # user@host
-	)
+  )
 
   # Basic style options that define the overall prompt look.
   typeset -g POWERLEVEL9K_BACKGROUND=                            # transparent background
@@ -119,7 +119,7 @@
 
   # Status when it's just an error code (e.g., '1'). No need to show it if prompt_char is enabled as
   # it will signify error by turning red.
-	# PIPE
+  # PIPE
   # Status when some part of a pipe command fails and the overall exit status is also non-zero.
   # It may look like this: 1|0.
   typeset -g POWERLEVEL9K_STATUS_ERROR{,_PIPE}=true
@@ -132,19 +132,47 @@
 
   #######################[ lambda: Show lambdasymbol ]#######################
   typeset -g POWERLEVEL9K_LAMBDA_ICON=λ
-  typeset -g _POWERLEVEL9K_LAMBDA_ICON=$POWERLEVEL9K_LAMBDA_ICON # Instant prompt
+  typeset -g POWERLEVEL9K_LAMBDA_GSH_ICON=δ
 
   function prompt_lambda() {
     local color=yellow
     if [ $(jobs | grep . -c) -eq 0 ]; then
       color=blue
     fi
-    p10k segment -f $color -t $POWERLEVEL9K_LAMBDA_ICON
+    if is_gsh; then
+      p10k segment -f $color -t $POWERLEVEL9K_LAMBDA_GSH_ICON
+    else
+      p10k segment -f $color -t $POWERLEVEL9K_LAMBDA_ICON
+    fi
   }
+
+  # No background jobs with instant prompt
   function instant_prompt_lambda() {
-    # No background jobs with instant prompt
     p10k segment -f blue -t $_POWERLEVEL9K_LAMBDA_ICON
   }
+
+  #######################[ lambda: Current directory with gsh ]#######################
+  typeset -g POWERLEVEL9K_MYDIR_FOREGROUND=242
+
+  function prompt_mydir() {
+    if is_gsh; then
+      local git_root
+      git_root=$(git rev-parse --show-toplevel 2>/dev/null)
+
+      if [ $? -eq 0 ]; then
+        # If pwd is in git show path from root in blue, rest gray
+        p10k segment -f $POWERLEVEL9K_MYDIR_FOREGROUND -t "${git_root/$HOME/~}%F{blue}${$(pwd)/$git_root/}%f"
+      else
+        # If not in git show pwd in gray
+        p10k segment -f $POWERLEVEL9K_MYDIR_FOREGROUND -t "${$(pwd)/$HOME/~}"
+      fi
+    else
+      prompt_dir
+    fi
+  }
+
+  # Instant prompt should show default
+  function instant_prompt_mydir() { instant_prompt_dir }
 
   # Transient prompt works similarly to the builtin transient_rprompt option. It trims down prompt
   # when accepting a command line. Supported values:
