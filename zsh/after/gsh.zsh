@@ -1,3 +1,5 @@
+INSTANT_REPL_HOOK_FILTER=equal_command
+
 function set-gsh() {
 	GSH=true
 	zle repl-redraw-prompt
