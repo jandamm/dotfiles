@@ -28,3 +28,7 @@ function git() {
 function is_gsh() {
 	[ -n "$GSH" ]
 }
+
+function is_not_gsh() {
+	[ -z "$GSH" ]
+}
