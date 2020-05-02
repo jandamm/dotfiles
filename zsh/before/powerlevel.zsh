@@ -255,6 +255,23 @@
   function my_git_formatter() {
     emulate -L zsh
 
+    if is_not_gsh; then
+      local branch
+      if [[ -n $VCS_STATUS_LOCAL_BRANCH ]]; then
+        branch=${(V)VCS_STATUS_LOCAL_BRANCH}
+      elif [[ -n $VCS_STATUS_TAG ]]; then
+        branch="#${(V)VCS_STATUS_TAG}"
+      else
+        branch="@${VCS_STATUS_COMMIT[1,8]}"
+      fi
+      local dirty
+      if [ $VCS_STATUS_NUM_CONFLICTED -gt 0 ] || [ $VCS_STATUS_NUM_STAGED -gt 0 ] || [ $VCS_STATUS_NUM_UNSTAGED -gt 0 ] || [ $VCS_STATUS_NUM_UNTRACKED -gt 0 ]; then
+        dirty='*'
+      fi
+      typeset -g my_git_format="%F{242}${branch//\%/%%}$dirty"
+      return
+    fi
+
     if [[ -n $P9K_CONTENT ]]; then
       # If P9K_CONTENT is not empty, use it. It's either "loading" or from vcs_info (not from
       # gitstatus plugin). VCS_STATUS_* parameters are not available in this case.
