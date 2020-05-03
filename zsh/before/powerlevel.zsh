@@ -486,20 +486,19 @@
   }
 
   #######################[ lambda: Current directory with gsh ]#######################
-  typeset -g POWERLEVEL9K_MYDIR_FOREGROUND=242
-
   function prompt_mydir() {
     if is_gsh; then
-      local git_root
-      git_root=$(git rev-parse --show-toplevel 2>/dev/null)
+      local git_root color
+      color=242
 
+      git_root=$(git rev-parse --show-toplevel 2>/dev/null)
       if [ $? -eq 0 ]; then
         git_root_base=${git_root%/*}
         # If pwd is in git show path from root in blue, rest gray
-        p10k segment -f $POWERLEVEL9K_MYDIR_FOREGROUND -t "${git_root_base/$HOME/~}/%F{blue}${git_root/$git_root_base\//}%F{$POWERLEVEL9K_MYDIR_FOREGROUND}${$(pwd)/$git_root/}%f"
+        p10k segment -f $color -t "${git_root_base/$HOME/~}/%B%F{$((color + 3))}${git_root/$git_root_base\//}%b%F{$color}${$(pwd)/$git_root/}%f"
       else
         # If not in git show pwd in gray
-        p10k segment -f $POWERLEVEL9K_MYDIR_FOREGROUND -t "${$(pwd)/$HOME/~}"
+        p10k segment -f $color -t "${$(pwd)/$HOME/~}"
       fi
     else
       prompt_dir
