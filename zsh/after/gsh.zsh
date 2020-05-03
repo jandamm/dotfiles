@@ -1,21 +1,21 @@
 INSTANT_REPL_HOOK_FILTER=equal_command
 
-function set-gsh() {
+function __set_gsh() {
 	GSH=true
-	zle repl-redraw-prompt
+	alias g='git logf'
 }
 
-function unset-gsh() {
+function __unset_gsh() {
 	unset GSH
-	zle repl-redraw-prompt
+	unalias g
 }
 
 function instant_repl_prefix_hook() {
 	case $1 in
-		git*) unset-gsh;;
+		git*) __unset_gsh; zle repl-redraw-prompt;;
 	esac
 	case $2 in
-		git*) set-gsh;;
+		git*) __set_gsh; zle repl-redraw-prompt;;
 	esac
 }
 
