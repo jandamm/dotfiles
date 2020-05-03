@@ -19,6 +19,7 @@ function instant_repl_prefix_hook() {
 	esac
 }
 
+# git -> git status.
 function git() {
 	if [ -z "$1" ]; then
 		env git status --short --branch

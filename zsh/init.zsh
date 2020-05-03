@@ -47,11 +47,13 @@ export LANG=en_US.UTF-8
 
 typeset -g ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
 
+# Load before plugins
 for file in $HOME/.zsh/before/*.zsh
 do
 	source "$file"
 done
 
+# Initialize zinit
 source "$DOTFILES/zinit/zinit.zsh"
 
 # Load plugins {{{
@@ -148,6 +150,7 @@ zinit load ael-code/zsh-colored-man-pages
 
 # }}}
 
+# Load after plugins
 for file in $HOME/.zsh/after/*.zsh
 do
 	source "$file"
@@ -170,6 +173,8 @@ compdef _gnu_generic \
 
 # }}}
 
+# Post Completion Plugins {{{
+
 # Here syntax highlighting is loaded before autosuggestions
 # (By the author of fast-syntax-highlighting)
 # https://zdharma.org/zinit/wiki/Example-Minimal-Setup/
@@ -178,5 +183,7 @@ zinit light zsh-users/zsh-autosuggestions
 
 # Add compdef from plugins
 zinit cdreplay -q
+
+# }}}
 
 # vim: set foldmethod=marker:

@@ -482,7 +482,7 @@
 
   # No background jobs with instant prompt
   function instant_prompt_lambda() {
-    p10k segment -f blue -t $_POWERLEVEL9K_LAMBDA_ICON
+    p10k segment -f blue -t $POWERLEVEL9K_LAMBDA_ICON
   }
 
   #######################[ lambda: Current directory with gsh ]#######################
