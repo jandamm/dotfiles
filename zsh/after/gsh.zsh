@@ -34,3 +34,14 @@ function is_gsh() {
 function is_not_gsh() {
 	[ -z "$GSH" ]
 }
+
+# Set gsh as command instead of shortcut
+function gsh() {
+	INSTANT_REPL_PREFIX='git '
+	__set_gsh
+}
+
+# Start gsh if zsh is started in GSH mode
+if is_gsh; then
+	gsh
+fi

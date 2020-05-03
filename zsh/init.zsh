@@ -101,6 +101,7 @@ zinit light zdharma/zsh-diff-so-fancy
 
 zinit snippet OMZ::lib/git.zsh
 zinit snippet OMZ::plugins/git/git.plugin.zsh
+unalias gsh
 zinit light wfxr/forgit
 unalias ga
 function ga {
