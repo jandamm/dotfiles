@@ -3,6 +3,11 @@ INSTANT_REPL_HOOK_FILTER=equal_command
 function __set_gsh() {
 	GSH=true
 	alias g='git logf'
+
+	# Empty line when triggered from zle/key binding
+	if zle; then echo; fi
+	# Show git status when entering gsh
+	git
 }
 
 function __unset_gsh() {

@@ -9,7 +9,8 @@ then
 	module_path+=( "$DOTFILES/zinit/zmodules/Src" ) && zmodload zdharma/zplugin
 	alias diag="zpmod source-study"
 
-elif [[ -r "${XDG_CACHE_HOME:-$DOTFILES_CACHE}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
+	# No instant prompt with gsh, as gsh is expected to print before first prompt.
+elif [[ -r "${XDG_CACHE_HOME:-$DOTFILES_CACHE}/p10k-instant-prompt-${(%):-%n}.zsh" ]] && [ -z "$GSH" ]
 then
 	source "${XDG_CACHE_HOME:-$DOTFILES_CACHE}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
