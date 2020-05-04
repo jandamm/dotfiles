@@ -12,8 +12,8 @@ export FZF_DEFAULT_OPTS='
 --preview "([ -f {} ] && bat --color=always {}) || ([ -d {} ] && exa -G1 {}) || echo {}"
 --exit-0
 --select-1
---bind="˚:preview-up,π:preview-up"
---bind="∆:preview-down,˜:preview-down"
+--bind="˚:preview-up+preview-up+preview-up+preview-up+preview-up,π:preview-up"
+--bind="∆:preview-down+preview-down+preview-down+preview-down+preview-down,˜:preview-down"
 --bind="∑:toggle-preview-wrap"
 --bind="Ω:toggle-preview"
 '
