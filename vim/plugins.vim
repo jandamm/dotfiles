@@ -12,6 +12,7 @@ Plug 'majutsushi/tagbar' " Show file overview with tags
 " Better :s/abba/bobby/g with :S/{a,A}bba/{b,B}obby/g
 " Change case styles with cr{char}
 Plug 'tpope/vim-abolish'
+Plug 'jandamm/vim-abolisher' " Faster vim-abolish!
 Plug 'tpope/vim-unimpaired' " Better [] mappings
 Plug 'tpope/vim-vinegar' " Improvements to netrw
 Plug 'tpope/vim-fugitive' " Git interface
