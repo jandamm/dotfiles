@@ -22,6 +22,16 @@ function git() {
 	fi
 }
 
+function gsh-list-choices() {
+	if is_gsh && ([ "$INSTANT_REPL_PREFIX" = "$BUFFER" ] || [ "$INSTANT_REPL_PREFIX" = "$BUFFER " ]); then
+		zle repl-clear
+		BUFFER=
+	else
+		zle list-choices
+	fi
+}
+zle -N gsh-list-choices
+
 function is_gsh() {
 	[ -n "$GSH" ]
 }

@@ -15,6 +15,8 @@ bindkey '^f' forward-char
 bindkey '^u' repl-kill-whole-line-toggle
 bindkey '^w' backward-delete-word
 
+bindkey '^d' gsh-list-choices
+
 # Use instant repl
 bindkey '^o' repl-set
 
