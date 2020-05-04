@@ -17,3 +17,8 @@ inoremap <C-u> <ESC>cc
 nnoremap U <C-r>
 xmap s :s/
 
+nmap gcc :action CommentByLineComment<CR>
+xmap gc :action CommentByLineComment<CR>
+
+nmap <Space>f :action ReformatCode<CR>
+xmap <Space>f :action ReformatCode<CR>
