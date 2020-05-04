@@ -355,4 +355,9 @@ iabbrev uneccessarity unnecessarity
 iabbrev Uneccessarity Unnecessarity
 iabbrev UNECCESSARITY UNNECESSARITY
 
+" Abolish feauture feature
+iabbrev feauture feature
+iabbrev Feauture Feature
+iabbrev FEAUTURE FEATURE
+
 
