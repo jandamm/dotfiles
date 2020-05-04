@@ -12,7 +12,7 @@ bindkey '^a' beginning-of-line
 bindkey '^b' backward-char
 bindkey '^e' end-of-line
 bindkey '^f' forward-char
-bindkey '^u' repl-backward-kill-line
+bindkey '^u' repl-kill-whole-line-toggle
 bindkey '^w' backward-delete-word
 
 # Use instant repl

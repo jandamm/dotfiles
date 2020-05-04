@@ -192,7 +192,7 @@ nnoremap <ESC><ESC> :nohlsearch<CR>:<BS>
 nnoremap U <C-r>
 
 " Make i_CTRL-u and w undoable
-inoremap <C-u> <C-g>u<C-u>
+inoremap <C-u> <ESC>cc
 inoremap <C-w> <C-g>u<C-w>
 
 " Use surround.vim with s

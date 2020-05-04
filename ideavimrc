@@ -12,6 +12,8 @@ nmap [<Space> O<esc>j
 
 nmap Y y$
 
+inoremap <C-u> <ESC>cc
+
 nnoremap U <C-r>
 xmap s :s/
 
