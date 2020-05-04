@@ -1,5 +1,3 @@
-INSTANT_REPL_HOOK_FILTER=equal_command
-
 function __set_gsh() {
 	GSH=true
 	alias g='git logf'
@@ -13,15 +11,6 @@ function __set_gsh() {
 function __unset_gsh() {
 	unset GSH
 	unalias g
-}
-
-function instant_repl_prefix_hook() {
-	case $1 in
-		git*) __unset_gsh; zle repl-redraw-prompt;;
-	esac
-	case $2 in
-		git*) __set_gsh; zle repl-redraw-prompt;;
-	esac
 }
 
 # git -> git status.
