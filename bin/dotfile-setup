@@ -120,11 +120,11 @@ fi
 # ZSH {{{
 
 if [ "$should_install" ]; then
-	zinit module build
 	mkdir "$HOME/.cache/zsh"
+	zsh -c "source $DOTFILES/zinit/zinit.zsh && zinit module build"
 fi
 if [ "$should_update" ]; then
-	zinit update
+	zsh -c "source $DOTFILES/zinit/zinit.zsh && zinit update"
 fi
 
 # }}}
