@@ -168,6 +168,7 @@ autoload bashcompinit && bashcompinit
 # Define completions for command options
 # Commands with gnu style '--help' can be added here.
 compdef _gnu_generic \
+	bat \
 	fasd fd fzf \
 	swiftformat \
 	xed
