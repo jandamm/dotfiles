@@ -17,6 +17,7 @@
 	develop = switch develop
 	fixup = "!sha=$(git fzf-log-one --prompt='Fixup> ') && git commit --fixup \"${sha%% *}\""
 	fixup-apply = "!sha=$(git fzf-log-one --prompt='Fixup> ' --header='Select the oldest commit before a fixed commit.') && git rebase --interactive --autosquash \"${sha%% *}\""
+	git = !git # Easier execution of copied commands with gsh
 	ksdiff = difftool -t ksdiff
 	ksdiffall = !git ksdiff --no-prompt
 	ksmerge = mergetool -t ksdiff

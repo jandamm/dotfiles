@@ -1,6 +1,7 @@
 function __set_gsh() {
 	GSH=true
 	alias g='git logf'
+	alias ga='git logfa'
 
 	# Empty line when triggered from zle/key binding
 	if zle; then echo; fi
@@ -11,6 +12,7 @@ function __set_gsh() {
 function __unset_gsh() {
 	unset GSH
 	unalias g
+	unalias ga
 }
 
 # git -> git status.
