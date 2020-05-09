@@ -5,12 +5,13 @@
 [core]
 	editor = nvim
 	pager = diff-so-fancy | less --tabs=4 -RFX
-	excludesfile = ~/.gitignore
+	excludesfile = ~/.gitrc/gitignore
 
 [credential]
 	helper = osxkeychain
 
 [alias]
+	adde = add --edit
 	addp = add --patch
 	amend = commit --amend
 	amendZZ = !git amend --no-edit
