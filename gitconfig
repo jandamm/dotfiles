@@ -46,6 +46,7 @@
 # Command configuration
 [commit]
 	verbose = true
+	template = ~/.gitrc/commit_message_template
 [format]
 	pretty = default
 
