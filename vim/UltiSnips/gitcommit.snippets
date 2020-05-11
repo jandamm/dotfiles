@@ -1,16 +1,18 @@
-snippet 'Type A <TAB> for Template, else type C'
+snippet 'Type <TAB> to use the Template, else type C'
 ${1:Summarize the change in less than 50 characters}
-# Control-F to jump to the next part
-# Control-B to jump to the previous part
+#   TAB or Control-F to jump forward  to the next part
+# S-TAB or Control-B to jump backward to the previous part
 
+# Why has this change been made?
+# Make a new bullet for each reason
 ${2:Why:
-- ${3:Explain the reasons you made this change
-- Make a new bullet for each reason
-- Each line should be under 72 characters}}
+- ${3:Explain the reasons you made this change}}
 
-${4:Explain exactly what was done in this commit with more depth than the
-50 character subject line. Remember to wrap at 72 characters!}
+# Explanation: What as been done?
+$4
 
-${5:Include any additional notes, relevant links, or co-authors.}
+# Additional notes/links/authors?
+$5
+
 $0
 endsnippet
