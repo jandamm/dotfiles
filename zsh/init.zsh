@@ -49,10 +49,12 @@ export LANG=en_US.UTF-8
 typeset -g ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
 
 # Load before plugins
+setopt nullglob
 for file in $HOME/.zsh/before/*.zsh
 do
 	source "$file"
 done
+unsetopt nullglob
 
 # Initialize zinit
 source "$DOTFILES/zinit/zinit.zsh"
@@ -152,10 +154,12 @@ zinit load ael-code/zsh-colored-man-pages
 # }}}
 
 # Load after plugins
+setopt nullglob
 for file in $HOME/.zsh/after/*.zsh
 do
 	source "$file"
 done
+unsetopt nullglob
 
 # Completion {{{
 
