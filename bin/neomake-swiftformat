@@ -3,6 +3,13 @@
 # shellcheck source=../scripts/files.sh
 source "$DOTFILES/scripts/files.sh"
 
+git_root="$(git rev-parse --show-toplevel)"
+cmd="$git_root/Pods/SwiftFormat/CommandLineTool/swiftformat"
+
+if [ ! -x "$cmd" ]; then
+	cmd=swiftformat
+fi
+
 # File is only to find the correct config.
 FILE="$1"
 filename='.swiftformat'
@@ -11,7 +18,7 @@ CONFIG=$(get_config_file "$filename" "$FILE")
 
 if [ -f "$CONFIG" ]
 then
-	swiftformat --quiet --config "$CONFIG"
+	"$cmd" --quiet --config "$CONFIG"
 else
-	swiftformat --quiet
+	"$cmd" --quiet
 fi
