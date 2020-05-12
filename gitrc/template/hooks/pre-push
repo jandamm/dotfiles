@@ -25,13 +25,15 @@ do
 		then
 			# New branch, examine all commits
 			range="$local_sha"
+			since=--since=14.days
 		else
 			# Update to existing branch, examine new commits
 			range="$remote_sha..$local_sha"
+			since=
 		fi
 
 		# Check for fixup commit
-		commit=$(git rev-list -n 1 --grep '^fixup! ' "$range")
+		commit=$(git rev-list -n 1 $since --grep '^fixup! ' "$range")
 		if [ -n "$commit" ]
 		then
 			echo >&2 "Found fixup commit in $local_ref, not pushing"
@@ -39,7 +41,7 @@ do
 		fi
 
 		# Check for WIP commit
-		commit=$(git rev-list -n 1 --grep '^--wip--' "$range")
+		commit=$(git rev-list -n 1 $since --grep '^--wip--' "$range")
 		if [ -n "$commit" ]
 		then
 			echo >&2 "Found WIP commit in $local_ref, not pushing"
