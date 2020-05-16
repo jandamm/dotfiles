@@ -7,6 +7,10 @@ bindkey ' ' magic-space
 bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 
+# Better vi-mode
+bindkey -M vicmd '/' history-search-multi-word
+bindkey -M vicmd 'U' redo
+
 # Emacs bindings
 bindkey '^a' beginning-of-line
 bindkey '^b' backward-char
@@ -20,7 +24,7 @@ bindkey '^d' gsh-list-choices
 # Use instant repl
 bindkey '^o' repl-set
 
-# Forward word bindings (for auttosuggestion completion
+# Forward word bindings (for autosuggestion completion)
 bindkey 'ƒ' vi-forward-word # Alt-F
 bindkey '∫' backward-word # Alt-B
 
