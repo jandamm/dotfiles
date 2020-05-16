@@ -186,8 +186,8 @@ inoremap <expr> <CR> my#keybinds#EnterEnter()
 " Correct Y yank behavior
 nmap Y y$
 
-" Esc twice to clear last search
-nnoremap <ESC><ESC> :nohlsearch<CR>:<BS>
+" Esc clears last search
+nnoremap <silent> <ESC> :nohlsearch<CR>
 
 " Remap U Redo
 nnoremap U <C-r>
