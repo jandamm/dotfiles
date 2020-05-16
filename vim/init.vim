@@ -88,7 +88,7 @@ augroup auto_save_files
 	au!
 	" Save all changed files when Vim is put to background.
 	" Silently because buffers without name cannot be saved.
-	autocmd FocusLost * silent! wall | echo 'Saved all modified files'
+	autocmd FocusLost * :update
 augroup END
 
 " Set split commands work more as expected
