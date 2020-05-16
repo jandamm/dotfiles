@@ -196,7 +196,7 @@ nnoremap U <C-r>
 inoremap <C-u> <C-g>u<C-u><C-o>"_D
 inoremap <C-w> <C-g>u<C-w>
 
-" Use surround.vim with s
+" Quick replace with s
 xnoremap s :s/
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
