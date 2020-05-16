@@ -50,7 +50,13 @@ function vrc() {
 		&& nvim "${file/\~/$HOME}"
 }
 
-alias v="fuzzy_open_file nvim"
+function v() {
+	local file
+	files=$(fasd -lfR | fzfbat -m -0 -1) \
+		&& files=$(echo $files | tr '\n' ' ') \
+		&& eval "nvim $files"
+}
+
 alias e="fuzzy_open_file nvim"
-alias vv="fuzzy_search_open_file nvim 3"
+alias vv="fuzzy_open_file nvim"
 alias vvv="fuzzy_search_open_file nvim -1"
