@@ -108,6 +108,9 @@ set laststatus=2
 set listchars=tab:⟩‐,trail:·
 set list
 
+" Command to set my default tabwidth etc.
+command! SleuthOverwrite call my#format#default()
+
 " Wrapping lines
 set wrap
 set linebreak
