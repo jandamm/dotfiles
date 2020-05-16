@@ -121,6 +121,8 @@ set updatetime=100
 
 " Allow folder specific tags with .root file
 let g:gutentags_project_root=['.root']
+" Hide tags file
+let g:gutentags_ctags_tagfile='.tags'
 " Prefer .root file over submodule over .git folder
 let g:rooter_patterns = ['.root', '.git', '.git/']
 " Change cwd for current window only

@@ -8,6 +8,7 @@
 --exclude=.config
 --exclude=.cache
 --exclude=.build
+--exclude=.tags
 --exclude=YouCompleteMe
 --exclude=nginx
 --exclude=.svn
@@ -17,6 +18,7 @@
 --exclude=\*.min.\*
 --exclude=\*.map
 --exclude=\*.swp
+--exclude=\*.orig
 --exclude=\*.bak
 --exclude=\*.pyc
 --exclude=\*.class
