@@ -141,10 +141,10 @@ call neomake#configure#automake('rnw', 500)
 
 " Keybindings {{{
 
-map <F13> [
-map <C-F13> <C-[>
-map <F16> ]
-map <C-F16> <C-]>
+nnoremap <silent> [w :tabprevious<CR>
+nnoremap <silent> ]w :tabnext<CR>
+nnoremap <silent> [W :tabfirst<CR>
+nnoremap <silent> ]W :tablast<CR>
 
 " Use C-a to jump to the beginning of ex cmdline
 cnoremap <C-a>  <C-b>
