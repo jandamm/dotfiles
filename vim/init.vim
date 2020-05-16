@@ -146,10 +146,6 @@ map <C-F13> <C-[>
 map <F16> ]
 map <C-F16> <C-]>
 
-" Buffer/Tab navigation
-nnoremap <C-n> :bn<CR>
-nnoremap <C-p> :bp<CR>
-
 " Use C-a to jump to the beginning of ex cmdline
 cnoremap <C-a>  <C-b>
 " Switch C-p/n with UP/DOWN
