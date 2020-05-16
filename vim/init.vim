@@ -219,8 +219,16 @@ nnoremap gA ga
 
 " Keybindings Leader {{{
 
-func s:NotDefined(type)
+func s:NotDefined(type) abort
 	return '{' . a:type . '} is not defined for [' . &filetype . ']'
+endfunc
+
+func s:LeaderD() abort
+	if winnr('$') == 1
+		Sexplore
+	else
+		Explore
+	endif
 endfunc
 
 " Use Space & \ as Leader
@@ -232,8 +240,7 @@ nmap <SPACE> <Leader>
 nmap <Leader>b          :Buffers<CR>
 nmap <Leader>c          :echo <SID>NotDefined('compiler')<CR>
 " d -> Directory
-" TODO Only Sexplore if one window
-nmap <Leader>d          :Sexplore<CR>
+nmap <Leader>d          :call <SID>LeaderD()<CR>
 " f -> Format
 nmap <Leader>f          :%s/\s\+$//e<CR>:let @/=''<CR>:noh<CR>gg=G``zz
 " Fugitive/Git
