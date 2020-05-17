@@ -1,3 +1,7 @@
+# Disable flow control to be able to bind ^s and ^q
+# http://zsh.sourceforge.net/FAQ/zshfaq03.html
+unsetopt flowcontrol
+
 # Expand !gs to last command starting with gs
 # ^gs to remove first 'gs' from last command
 bindkey ' ' magic-space

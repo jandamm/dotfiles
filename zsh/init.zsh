@@ -132,7 +132,6 @@ zinit light jandamm/per-directory-history
 zinit light zdharma/history-search-multi-word
 
 # Completion
-zinit snippet OMZ::lib/completion.zsh
 # fzf-tab must be sourced before autosuggestions and syntax-highlighting
 zinit light Aloxaf/fzf-tab
 zinit ice blockf atpull'zinit creinstall -q .'
