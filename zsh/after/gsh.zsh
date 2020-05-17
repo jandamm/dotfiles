@@ -7,12 +7,24 @@ function __set_gsh() {
 	if zle; then echo; fi
 	# Show git status when entering gsh
 	git
+
+	# TODO: Save all changes in a dictionary and restore them.
+	# When there is another value, it should be worth it.
+	if [ ! $PER_DIRECTORY_HISTORY_BASE_DEFAULT ]; then
+		PER_DIRECTORY_HISTORY_BASE_DEFAULT=$PER_DIRECTORY_HISTORY_BASE
+	fi
+	PER_DIRECTORY_HISTORY_BASE="$DOTFILES_CACHE/gsh/history_dirs"
+	_per-directory-history-change-directory
 }
 
 function __unset_gsh() {
 	unset GSH
 	unalias g
 	unalias ga
+
+	PER_DIRECTORY_HISTORY_BASE=$PER_DIRECTORY_HISTORY_BASE_DEFAULT
+	unset PER_DIRECTORY_HISTORY_BASE_DEFAULT
+	_per-directory-history-change-directory
 }
 
 # git -> git status.
