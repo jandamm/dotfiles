@@ -55,7 +55,7 @@ function v() {
 	then nvim "$@"
 	else
 		local file
-		files=$(fasd -lfR | fzfbat -m -0 -1) \
+		files=$(fasd -lfR | fzfbat -m -0 -1 --query="$@") \
 			&& files=$(echo $files | tr '\n' ' ') \
 			&& eval "nvim $files"
 	fi
