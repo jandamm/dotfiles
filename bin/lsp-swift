@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-xcrun sourcekit-lsp $@
+xcrun sourcekit-lsp "$@"
