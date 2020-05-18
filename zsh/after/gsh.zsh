@@ -31,7 +31,7 @@ function __unset_gsh() {
 function git() {
 	if [ -z "$1" ]; then
 		env git status --short --branch
-	elif [ "$@" = "r" ]; then
+	elif [ "$#" -eq 1 ] && [ "$@" = "r" ]; then
 		r
 	else
 		env git "$@"
