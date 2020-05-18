@@ -1,4 +1,4 @@
-call plug#begin('~/.cache/plugged')
+call plug#begin('~/.cache/vim/plugged')
 
 " Usage
 Plug 'tpope/vim-surround' " Add(y)/change(c)/remove(d) surroundings

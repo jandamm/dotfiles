@@ -37,7 +37,7 @@ function fuzzy_search_open_file() {
 		&& file=$(echo $file | tr '\n' ' ') \
 		&& eval "fasd -A $file" \
 		&& eval "$editor $file"
-	}
+}
 
 function vrc() {
 	local dir_glob file_glob
@@ -51,10 +51,14 @@ function vrc() {
 }
 
 function v() {
-	local file
-	files=$(fasd -lfR | fzfbat -m -0 -1) \
-		&& files=$(echo $files | tr '\n' ' ') \
-		&& eval "nvim $files"
+	if [ -e "$1" ]
+	then nvim "$@"
+	else
+		local file
+		files=$(fasd -lfR | fzfbat -m -0 -1) \
+			&& files=$(echo $files | tr '\n' ' ') \
+			&& eval "nvim $files"
+	fi
 }
 
 alias e="fuzzy_open_file nvim"
