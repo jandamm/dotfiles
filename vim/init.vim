@@ -140,6 +140,19 @@ set scrolloff=2
 let g:lsp_diagnostics_enabled = 0
 call neomake#configure#automake('rnw', 500)
 
+" Undo Tree
+let g:undotree_SetFocusWhenToggle = 1
+function g:Undotree_CustomMap() abort
+	map <buffer> U <C-r>
+endfunction
+
+" Persist undo
+if has('persistent_undo')
+	set undodir=$DOTFILES_CACHE/vim/undodir
+	set undofile
+endif
+
+
 " }}}
 
 " Keybindings {{{
@@ -288,6 +301,7 @@ nmap <silent> <Leader>l          <Plug>window:quickfix:loop
 nmap <silent> <Leader>o          :TagbarToggle<CR>
 nmap <silent> <Leader>s          :call my#keybinds#Spell()<CR>
 nmap <silent> <Leader>t          :Tags<CR>
+nmap <silent> <Leader>u          :UndotreeToggle<CR>
 " TODO Replace with GFiles if in git
 nmap <silent> <Leader><SPACE>    :Files<CR>
 nmap <silent> <Leader>/          :Lines<CR>

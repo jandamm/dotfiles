@@ -24,6 +24,7 @@ Plug 'tpope/vim-obsession' " Save sessions easily
 Plug 'airblade/vim-rooter' " Always cd into root of project
 Plug 'easymotion/vim-easymotion' " Quick moving of the cursor
 Plug 'drmingdrmer/vim-toggle-quickfix' " Toggle QF and Loc List
+Plug 'mbbill/undotree' " Show undo history as a tree
 
 " Fuzzy finding
 Plug 'junegunn/fzf.vim'

@@ -89,6 +89,7 @@ fi
 # NVIM {{{
 
 if [ "$should_install" ]; then
+	mkdir -p "$DOTFILES_CACHE/vim/undodir"
 	nvim -u vim/plugins.vim +PlugInstall +qa
 	for file in vim/spell/*.add
 	do
