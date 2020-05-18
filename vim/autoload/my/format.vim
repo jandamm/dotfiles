@@ -9,3 +9,17 @@ function! my#format#git() abort
 	set shiftwidth=4
 	set noexpandtab
 endfunction
+
+function! my#format#trim() abort
+	let l:pos = getcurpos()
+	call setline(1, map(getline(1,'$'), {k,v -> substitute(v, '\s\+$', '', 'e')}))
+	let @/=''
+	nohlsearch
+	call setpos('.', l:pos)
+endfunction
+
+function! my#format#reindent() abort
+	let l:pos = getcurpos()
+	normal! gg=G
+	call setpos('.', l:pos)
+endfunction

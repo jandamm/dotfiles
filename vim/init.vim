@@ -223,6 +223,24 @@ func s:NotDefined(type) abort
 	return '{' . a:type . '} is not defined for [' . &filetype . ']'
 endfunc
 
+" The following functions should be overwritten in ftplugin if necessary.
+func CodeFormat() abort
+	call my#format#trim()
+	call my#format#reindent()
+endfunc
+
+func CodeCompile() abort
+	echo s:NotDefined('compiler')
+endfunc
+
+func CodeRun() abort
+	echo s:NotDefined('run')
+endfunc
+
+func CodeTest() abort
+	echo s:NotDefined('test')
+endfunc
+
 func s:LeaderD() abort
 	if winnr('$') == 1
 		Sexplore
@@ -235,46 +253,45 @@ endfunc
 nmap <SPACE> <Leader>
 
 " Leader Keybindings
-" Some mappings should be overwritten in ftplugins
-" Mainly c, f, r, u
-nmap <Leader>b          :Buffers<CR>
-nmap <Leader>c          :echo <SID>NotDefined('compiler')<CR>
-" d -> Directory
-nmap <Leader>d          :call <SID>LeaderD()<CR>
-" f -> Format
-nmap <Leader>f          :%s/\s\+$//e<CR>:let @/=''<CR>:noh<CR>gg=G``zz
-" Fugitive/Git
-nmap <Leader>gb         :GSwitch<CR>
-nmap <Leader>gB         :GSwitchAll<CR>
-nmap <Leader>gc         :Gcommit<CR>
-nmap <Leader>gd         :Gvdiffsplit!<CR>
-nmap <Leader>gf         :Gfetch<CR>
-nmap <Leader>gF         :Gpull<CR>
-nmap <expr> <Leader>gg ':Git '
-" h -> Hunk
-nmap <Leader>ghd        :SignifyHunkDiff<CR>
-nmap <Leader>ghu        :SignifyHunkUndo<CR>
-nmap <Leader>glf        :0Glog<CR>
-nmap <Leader>gll        :Glog<CR>
-nmap <Leader>gm         :Gmerge<CR>
-nmap <Leader>gp         :Gpush<CR>
-nmap <Leader>gr         :Grebase<CR>
-nmap <Leader>gs         :Gstatus<CR>
-" w -> Who did this?
-nmap <Leader>gw         :Gblame<CR>
-nmap <Leader>j          gs<Space>
-nmap <Leader>l          <Plug>window:quickfix:loop
-" o -> Outline
-nmap <Leader>o          :TagbarToggle<CR>
-nmap <Leader>r          :echo <SID>NotDefined('run')<CR>
-nmap <Leader>s          :call my#keybinds#Spell()<CR>
-nmap <Leader>t          :Tags<CR>
+nmap <silent> <Leader>b          :Buffers<CR>
+nmap <silent> <Leader>c          :call CodeCompile()<CR>
+nmap <silent> <Leader>cc         :call CodeCompile()<CR>
+nmap <silent> <Leader>cr         :call CodeRun()<CR>
 " u -> Unit test
-nmap <Leader>u          :echo <SID>NotDefined('test')<CR>
+nmap <silent> <Leader>cu         :call CodeTest()<CR>
+" d -> Directory
+nmap <silent> <Leader>d          :call <SID>LeaderD()<CR>
+" f -> Format
+nmap <silent> <Leader>f          :call CodeFormat()<CR>
+" Fugitive/Git
+nmap <silent> <Leader>gb         :GSwitch<CR>
+nmap <silent> <Leader>gB         :GSwitchAll<CR>
+nmap <silent> <Leader>gc         :Gcommit<CR>
+nmap <silent> <Leader>gd         :Gvdiffsplit!<CR>
+nmap <silent> <Leader>gf         :Gfetch<CR>
+nmap <silent> <Leader>gF         :Gpull<CR>
+nmap <silent> <expr> <Leader>gg ':Git '
+" h -> Hunk
+nmap <silent> <Leader>ghd        :SignifyHunkDiff<CR>
+nmap <silent> <Leader>ghu        :SignifyHunkUndo<CR>
+nmap <silent> <Leader>glf        :0Glog<CR>
+nmap <silent> <Leader>gll        :Glog<CR>
+nmap <silent> <Leader>gm         :Gmerge<CR>
+nmap <silent> <Leader>gp         :Gpush<CR>
+nmap <silent> <Leader>gr         :Grebase<CR>
+nmap <silent> <Leader>gs         :Gstatus<CR>
+" w -> Who did this?
+nmap <silent> <Leader>gw         :Gblame<CR>
+nmap <silent> <Leader>j          gs<Space>
+nmap <silent> <Leader>l          <Plug>window:quickfix:loop
+" o -> Outline
+nmap <silent> <Leader>o          :TagbarToggle<CR>
+nmap <silent> <Leader>s          :call my#keybinds#Spell()<CR>
+nmap <silent> <Leader>t          :Tags<CR>
 " TODO Replace with GFiles if in git
-nmap <Leader><SPACE>    :Files<CR>
-nmap <Leader>/          :Lines<CR>
-nmap <expr> <Leader>?  ':Rg '
+nmap <silent> <Leader><SPACE>    :Files<CR>
+nmap <silent> <Leader>/          :Lines<CR>
+nmap <silent> <expr> <Leader>?  ':Rg '
 
 " }}}
 

@@ -7,10 +7,19 @@ command! -nargs=* SwiftFormat call my#ft#swift#format('<args>')
 
 " Leader Mapping {{{
 
-nnoremap          <Leader>c :call my#ft#swift#build()<CR>
-nnoremap <silent> <Leader>f :SwiftFormat %<CR>
-nnoremap          <Leader>r :call my#ft#swift#run()<CR>
-nnoremap          <Leader>u :call my#ft#swift#test()<CR>
+function! CodeFormat() abort
+	call my#ft#swift#format('%')
+endfunction
+
+function! CodeCompile() abort
+	call my#ft#swift#build()
+endfunction
+function! CodeRun() abort
+	call my#ft#swift#run()
+endfunction
+function! CodeTest() abort
+	call my#ft#swift#test()
+endfunction
 
 " }}}
 

@@ -12,9 +12,15 @@ let g:xcode_runner_command = 'VtrSendCommandToRunner! {cmd}'
 
 " Leader Mapping {{{
 
-nnoremap <Leader>c :call my#ft#ios#build()<CR>
-nnoremap <Leader>r :call my#ft#ios#run()<CR>
-nnoremap <Leader>u :call my#ft#ios#test()<CR>
+function! CodeCompile() abort
+	call my#ft#ios#build()
+endfunction
+function! CodeRun() abort
+	call my#ft#ios#run()
+endfunction
+function! CodeTest() abort
+	call my#ft#ios#test()
+endfunction
 
 " }}}
 
