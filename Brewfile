@@ -1,6 +1,6 @@
 cask 'alacritty'
 cask 'font-jetbrains-mono'
-cask 'macvim'
+cask 'vimr'
 
 brew 'ctags'
 brew 'fzf'
