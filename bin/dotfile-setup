@@ -70,6 +70,19 @@ rm /usr/local/share/zsh/site-functions/_git 2>/dev/null || true
 
 # }}}
 
+# Install npms {{{
+
+echo 'Install npm global'
+if should_install; then
+	#shellcheck disable=SC2046
+	npm install --global $(env cat "$DOTFILES/node_modules")
+fi
+if should_update; then
+	#shellcheck disable=SC2046
+	npm update --global $(env cat "$DOTFILES/node_modules")
+fi
+# }}}
+
 # Install pips {{{
 
 echo 'Install pips'
