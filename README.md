@@ -2,8 +2,9 @@
 
 ## Prerequisites
 
-- [Homebrew](https://brew.sh)
 - git
+- [Homebrew](https://brew.sh)
+- [rcm](https://github.com/thoughtbot/rcm) (`brew install thoughtbot/formulae/rcm`)
 
 ## Full installation
 
@@ -13,7 +14,8 @@
 
 The parameter install will install all programs with Homebrew.
 
-### Use zsh from Homebrew as login shell:
+### Use zsh from Homebrew as login shell
+
 - `echo '/usr/local/bin/zsh' >> /etc/shells`
 - `chsh -s /usr/local/bin/zsh`
 

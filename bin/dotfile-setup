@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 # Helper functions {{{
 
 function quit_setup() {
@@ -9,13 +11,12 @@ function quit_setup() {
 	exit 1
 }
 
-function load_env_if_needed() {
-	if [ -z "$DOTFILES" ]
-	then
-		echo "Not yet set up. Sourcing zshenv"
-		# shellcheck source=../zshenv
-		source "$(pwd)/${0%/*}/../zshenv"
-	fi
+function should_install() {
+	[ "$_should_install" ]
+}
+
+function should_update() {
+	[ "$_should_update" ]
 }
 
 # }}}
@@ -26,51 +27,67 @@ fi
 
 case $1 in
 	install)
-		should_install=true;;
+		_should_install=true;;
 	update)
-		should_update=true;;
+		_should_update=true;;
 	*)
 		quit_setup
 esac
 shift
 
-load_env_if_needed
+# Setup environment {{{
+
+if [ -z "$DOTFILES" ]
+then
+	echo "Not yet set up. Sourcing zshenv"
+	# shellcheck source=../zshenv
+	source "$(pwd)/${0%/*}/../zshenv"
+fi
 
 cd "$DOTFILES" || exit
 
 # put every dotfile in place
-if [ "$should_install" ]; then
+if should_install; then
+	# TODO: do not require rcup being installed
 	env RCRC="$DOTFILES/rcrc" rcup
 fi
 
-# Install Brewfile {{{
+# }}}
+
+
+# INSTALLATION
+
+# Install brews {{{
 
 echo 'Install Brewfile'
-if [ "$should_install" ] || [ "$should_update" ]; then
+if should_install" ] || [ "$should_update; then
+	# TODO: do not require brew being installed
 	brew bundle install --global
 fi
 
-	# uninstall git completions as zsh completions are way better!
-	rm /usr/local/share/zsh/site-functions/_git 2>/dev/null || true
+# uninstall git completions as zsh completions are way better!
+rm /usr/local/share/zsh/site-functions/_git 2>/dev/null || true
 
 # }}}
 
 # Install pips {{{
 
 echo 'Install pips'
-if [ "$should_install" ]; then
+if should_install; then
 	pip3 install -r "$DOTFILES/pip3-requirements"
 fi
-if [ "$should_update" ]; then
+if should_update; then
 	pip3 install -U -r "$DOTFILES/pip3-requirements"
 fi
 
 # }}}
 
 
+# CONFIGURATION
+
 # ALACRITTY {{{
 
-if [ "$should_install" ]; then
+if should_install; then
 	# Set font rendering for non retina
 	defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
 fi
@@ -79,7 +96,7 @@ fi
 
 # BAT {{{
 
-if [ "$should_install" ]; then
+if should_install; then
 	# recompile with theme
 	bat cache --build
 fi
@@ -88,7 +105,7 @@ fi
 
 # NVIM {{{
 
-if [ "$should_install" ]; then
+if should_install; then
 	mkdir -p "$DOTFILES_CACHE/vim/undodir"
 	nvim -u vim/plugins.vim +PlugInstall +qa
 	for file in vim/spell/*.add
@@ -97,7 +114,7 @@ if [ "$should_install" ]; then
 	done
 fi
 
-if [ "$should_update" ]; then
+if should_update; then
 	nvim -u vim/plugins.vim +PlugUpgrade +PlugUpdate +qa
 fi
 
@@ -106,13 +123,13 @@ fi
 # TMUX {{{
 
 # install tmux terminal
-if [ "$should_install" ]; then
+if should_install; then
 	if [[ ! -x  "$DOTFILES_CACHE/tmux/plugins/tpm/tpm" ]]
 	then git clone https://github.com/tmux-plugins/tpm "$DOTFILES_CACHE/tmux/plugins/tpm"
 	fi
 	"$DOTFILES_CACHE"/tmux/plugins/tpm/bin/install_plugins
 fi
-if [ "$should_update" ]; then
+if should_update; then
 	"$DOTFILES_CACHE"/tmux/plugins/tpm/bin/update_plugins all
 fi
 
@@ -120,11 +137,11 @@ fi
 
 # ZSH {{{
 
-if [ "$should_install" ]; then
+if should_install; then
 	mkdir "$HOME/.cache/zsh"
 	zsh -c "source $DOTFILES/zinit/zinit.zsh && zinit module build"
 fi
-if [ "$should_update" ]; then
+if should_update; then
 	zsh -c "source $DOTFILES/zinit/zinit.zsh && zinit update"
 fi
 
