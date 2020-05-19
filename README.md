@@ -4,15 +4,11 @@
 
 - git
 - [Homebrew](https://brew.sh)
-- [rcm](https://github.com/thoughtbot/rcm) (`brew install thoughtbot/formulae/rcm`)
 
 ## Full installation
 
-- `git clone git@github.com:jandamm/dotfiles.git ~/.dotfiles`
-- `git submodule update --init --recursive`
+- `git clone --recurse-submodules git@github.com:jandamm/dotfiles.git ~/.dotfiles`
 - `cd ~/.dotfiles && ./bin/dotfile-setup install`
-
-The parameter install will install all programs with Homebrew.
 
 ### Use zsh from Homebrew as login shell
 

@@ -46,9 +46,21 @@ fi
 
 cd "$DOTFILES" || exit
 
+# Install homebrew if not available
+if ! hash brew &>/dev/null; then
+	echo 'Install homebrew before continuing with this setup.'
+	#shellcheck disable=SC2016
+	echo '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"'
+	exit 1
+fi
+
 # put every dotfile in place
 if should_install; then
-	# TODO: do not require rcup being installed
+	# Install rcm via brew, if not installed.
+	if ! hash rcup &>/dev/null; then
+		echo 'Installing rcm to continue with installation'
+		brew install thoughtbot/formulae/rcm
+	fi
 	env RCRC="$DOTFILES/rcrc" rcup
 fi
 
