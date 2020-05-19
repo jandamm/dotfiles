@@ -40,6 +40,7 @@
 	stashp = stash --patch
 	uncommit = reset HEAD~
 	update = fetch --all --prune
+	unwip = "![ -n \"$(git rev-list -n 1 --grep '^--wip-- \\[skip ci\\]' HEAD~..HEAD)\" ] && git uncommit"
 	wip = "![ \"$1\" = 'all' ] && (git add -A; git rm $(git ls-files --deleted) 2> /dev/null) ; git commit --no-verify -m '--wip-- [skip ci]' #" # Use # to ignore parameters
 	wipa = !git wip all
 
