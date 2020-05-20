@@ -2,4 +2,4 @@
 --glob=!Pod/*
 --glob=!*.spl
 --glob=!*.zwc
---glob=!tags*
+--glob=!.tags*
