@@ -173,6 +173,7 @@ autoload bashcompinit && bashcompinit
 compdef _gnu_generic \
 	bat \
 	fasd fd fzf \
+	pod \
 	swiftformat \
 	xed
 
