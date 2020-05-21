@@ -497,7 +497,7 @@
       git_root=$(git rev-parse --show-toplevel 2>/dev/null)
       if [ $? -eq 0 ]; then
         git_root_base=${git_root%/*}
-        # If pwd is in git show path from root in blue, rest gray
+        # If pwd is in git show path from root in light gray and big, rest gray
         p10k segment -f $color -t "${git_root_base/$HOME/~}/%B%F{$((color + 3))}${git_root/$git_root_base\//}%b%F{$color}${$(pwd)/$git_root/}%f"
       else
         # If not in git show pwd in gray

@@ -72,7 +72,7 @@ fi
 # Install brews {{{
 
 echo 'Install Brewfile'
-if should_install" ] || [ "$should_update; then
+if should_install || should_update; then
 	# TODO: do not require brew being installed
 	brew bundle install --global
 fi
@@ -93,6 +93,7 @@ if should_update; then
 	#shellcheck disable=SC2046
 	npm update --global $(env cat "$DOTFILES/node_modules")
 fi
+
 # }}}
 
 # Install pips {{{

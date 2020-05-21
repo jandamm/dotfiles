@@ -12,7 +12,6 @@ export GEM_HOME=$HOME/.gem
 
 path=(
 	"$HOME/.bin"
-	"$HOME/.emacs.d/bin"
 	"$GEM_HOME/bin"
 	"/usr/local/bin"
 	"/usr/local/sbin"
