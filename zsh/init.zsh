@@ -62,11 +62,6 @@ source "$DOTFILES/zinit/zinit.zsh"
 # Load plugins {{{
 
 # Apps
-if ! hash xcpretty &> /dev/null; then
-	zinit ice pick"bin/xcpretty" as"program"
-	zinit light xcpretty/xcpretty
-fi
-
 function fg-fzf() {
 	job="$(jobs | fzf -0 -1 | sed -E 's/\[(.+)\].*/\1/')" && echo '' && fg %$job
 }
