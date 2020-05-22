@@ -91,7 +91,6 @@ zinit light kutsan/zsh-system-clipboard
 
 zinit ice pick"fasd" as"program"
 zinit light clvv/fasd
-eval "$(fasd --init zsh-hook)" # TODO capture in script and source.
 
 # FZF
 # **TAB to completion options in fzf and ^t to list all files from ./ in fzf
