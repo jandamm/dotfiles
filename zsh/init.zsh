@@ -159,7 +159,7 @@ unsetopt nullglob
 # Completion {{{
 
 # Initialize zsh completion
-autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit -u -d "$HOME/.zsh/zcompdump_$ZSH_VERSION"
 
 # load bash completion
 autoload bashcompinit && bashcompinit
