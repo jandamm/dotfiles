@@ -152,7 +152,7 @@ zinit snippet https://github.com/jandamm/abolisher/blob/master/bin/abolisher
 
 # Coloring
 zinit snippet https://github.com/chriskempson/base16-shell/tree/master/scripts/base16-onedark.sh
-zinit load ael-code/zsh-colored-man-pages
+zinit light ael-code/zsh-colored-man-pages
 
 # }}}
 
