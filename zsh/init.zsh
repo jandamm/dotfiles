@@ -39,6 +39,10 @@ PER_DIRECTORY_HISTORY_BASE="$DOTFILES_CACHE/zsh/history_dirs"
 
 # }}}
 
+function zrecompile() {
+	[ ! "$1.zwc" -nt "$1" ] && zcompile "$1"
+}
+
 # Settings
 export EDITOR=nvim
 export MANPAGER='less -s -M +Gg'
@@ -49,10 +53,11 @@ export LANG=en_US.UTF-8
 
 typeset -g ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
 
-# Load before plugins
+# Load and recompile before plugins
 setopt nullglob
 for file in $HOME/.zsh/before/*.zsh
 do
+	zrecompile "$file"
 	source "$file"
 done
 unsetopt nullglob
@@ -148,10 +153,11 @@ zinit load ael-code/zsh-colored-man-pages
 
 # }}}
 
-# Load after plugins
+# Load and recompile after plugins
 setopt nullglob
 for file in $HOME/.zsh/after/*.zsh
 do
+	zrecompile "$file"
 	source "$file"
 done
 unsetopt nullglob
@@ -159,7 +165,8 @@ unsetopt nullglob
 # Completion {{{
 
 # Initialize zsh completion
-autoload -Uz compinit && compinit -u -d "$HOME/.zsh/zcompdump_$ZSH_VERSION"
+# zcompdump is named .zsh to be compiled as well.
+autoload -Uz compinit && compinit -u -d "$HOME/.zsh/zcompdump_$ZSH_VERSION.zsh"
 
 # load bash completion
 autoload bashcompinit && bashcompinit
@@ -190,5 +197,13 @@ zinit light zsh-users/zsh-autosuggestions
 zinit cdreplay -q
 
 # }}}
+
+# Recompile root files
+for file in $HOME/.zsh/*.zsh
+do
+	zrecompile "$file"
+done
+
+unfunction zrecompile
 
 # vim: set foldmethod=marker:
