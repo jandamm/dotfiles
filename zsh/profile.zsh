@@ -13,10 +13,6 @@ export GEM_HOME=$HOME/.gem
 path=(
 	"$HOME/.bin"
 	"$GEM_HOME/bin"
-	"/usr/local/bin"
-	"/usr/local/sbin"
-	"/bin"
-	"/sbin"
 	$path
 )
 

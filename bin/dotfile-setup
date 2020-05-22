@@ -39,9 +39,9 @@ shift
 
 if [ -z "$DOTFILES" ]
 then
-	echo "Not yet set up. Sourcing zshenv"
-	# shellcheck source=../zshenv
-	source "$(pwd)/${0%/*}/../zshenv"
+	echo "Not yet set up. Sourcing zprofile"
+	# shellcheck source=../zprofile
+	source "$(pwd)/${0%/*}/../zprofile"
 fi
 
 cd "$DOTFILES" || exit
