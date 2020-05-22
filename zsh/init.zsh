@@ -1,5 +1,5 @@
 # Measure startup and disable instant prompt
-#ZSHRC_CONFIG_DIAG=1
+# ZSHRC_CONFIG_DIAG=1
 
 # Instant Prompt and Diagnose {{{
 
@@ -7,8 +7,12 @@ if [[ $ZSHRC_CONFIG_DIAG -eq 1 ]]
 then
 	typeset -g ZPLG_MOD_DEBUG=1
 	# If an error occurs probably this needs to be executed: `zinit module build`
-	module_path+=( "$DOTFILES/zinit/zmodules/Src" ) && zmodload zdharma/zplugin
-	alias diag="zpmod source-study"
+	module_path+=( "$DOTFILES/zinit/zmodules/Src" )
+	zmodload zdharma/zplugin
+	zmodload zsh/zprof
+	alias diagzinit="zpmod source-study | sort -r"
+	alias diagzprof=zprof
+	alias diag="diagzinit && diagzprof"
 
 	# No instant prompt with gsh, as gsh is expected to print before first prompt.
 elif [[ -r "${XDG_CACHE_HOME:-$DOTFILES_CACHE}/p10k-instant-prompt-${(%):-%n}.zsh" ]] && [ -z "$GSH" ]
