@@ -200,8 +200,14 @@ if should_install; then
 	zsh -c "source $DOTFILES/zinit/zinit.zsh && zinit module build"
 fi
 if should_update; then
-	echo 'Updating vim plugins'
-	zsh -c "source $DOTFILES/zinit/zinit.zsh && zinit update && zinit module build"
+	echo 'Updating zinit'
+	cd "$DOTFILES/zinit"
+	git checkout master
+	git pull
+	cd "$DOTFILES"
+
+	echo 'Updating zsh plugins'
+	zsh -c "source $DOTFILES/zinit/zinit.zsh && zinit update"
 fi
 
 # }}}

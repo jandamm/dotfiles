@@ -6,6 +6,7 @@
 if [[ $ZSHRC_CONFIG_DIAG -eq 1 ]]
 then
 	typeset -g ZPLG_MOD_DEBUG=1
+	# If an error occurs probably this needs to be executed: `zinit module build`
 	module_path+=( "$DOTFILES/zinit/zmodules/Src" ) && zmodload zdharma/zplugin
 	alias diag="zpmod source-study"
 
