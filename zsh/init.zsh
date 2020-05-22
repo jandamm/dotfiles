@@ -43,10 +43,6 @@ PER_DIRECTORY_HISTORY_BASE="$DOTFILES_CACHE/zsh/history_dirs"
 
 # }}}
 
-function zrecompile() {
-	[ ! "$1.zwc" -nt "$1" ] && zcompile "$1"
-}
-
 # Settings
 export EDITOR=nvim
 export MANPAGER='less -s -M +Gg'
@@ -61,7 +57,6 @@ typeset -g ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
 setopt nullglob
 for file in $HOME/.zsh/before/*.zsh
 do
-	zrecompile "$file"
 	source "$file"
 done
 unsetopt nullglob
@@ -160,7 +155,6 @@ zinit light ael-code/zsh-colored-man-pages
 setopt nullglob
 for file in $HOME/.zsh/after/*.zsh
 do
-	zrecompile "$file"
 	source "$file"
 done
 unsetopt nullglob
@@ -201,12 +195,16 @@ zinit cdreplay -q
 
 # }}}
 
-# Recompile root files
-for file in $HOME/.zsh/*.zsh
-do
-	zrecompile "$file"
-done
+# Recompile outdated files {{{
 
-unfunction zrecompile
+# Background compiling
+{
+	for file in $HOME/.zsh/**/*.zsh
+	do
+		[ ! "$file.zwc" -nt "$file" ] && zcompile "$file"
+	done
+} &!
+
+# }}}
 
 # vim: set foldmethod=marker:
