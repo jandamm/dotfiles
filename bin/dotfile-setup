@@ -58,7 +58,7 @@ fi
 if should_install; then
 	# Install rcm via brew, if not installed.
 	if ! hash rcup &>/dev/null; then
-		echo 'Installing rcm to continue with installation'
+		echo 'Installing brew thoughtbot/formulae/rcm'
 		brew install thoughtbot/formulae/rcm
 	fi
 	env RCRC="$DOTFILES/rcrc" rcup
@@ -71,9 +71,8 @@ fi
 
 # Install brews {{{
 
-echo 'Install Brewfile'
 if should_install || should_update; then
-	# TODO: do not require brew being installed
+	echo 'Installing brews'
 	brew bundle install --global
 fi
 
@@ -84,13 +83,18 @@ rm /usr/local/share/zsh/site-functions/_git 2>/dev/null || true
 
 # Install gems {{{
 
-echo 'Install gems'
-if should_install; then
+if should_install
+then
+	echo "Installing missing ruby with rbenv"
 	# installs ruby version in ~/.ruby-version
 	rbenv install --skip-existing
+
+	echo 'Installing gems'
 	bundle install
 fi
+
 if should_update; then
+	echo 'Updating gems'
 	bundle update
 fi
 
@@ -100,12 +104,13 @@ rbenv rehash
 
 # Install npms {{{
 
-echo 'Install npm global'
-if should_install; then
+if should_install || should_update; then
+	echo 'Installing npms'
 	#shellcheck disable=SC2046
 	npm install --global $(env cat "$DOTFILES/node_modules")
 fi
 if should_update; then
+	echo 'Updating npms'
 	#shellcheck disable=SC2046
 	npm update --global $(env cat "$DOTFILES/node_modules")
 fi
@@ -114,11 +119,12 @@ fi
 
 # Install pips {{{
 
-echo 'Install pips'
 if should_install; then
+	echo 'Installing pips'
 	pip3 install -r "$DOTFILES/pip3-requirements"
 fi
 if should_update; then
+	echo 'Updating pips'
 	pip3 install -U -r "$DOTFILES/pip3-requirements"
 fi
 
@@ -138,7 +144,7 @@ fi
 
 # BAT {{{
 
-if should_install; then
+if should_install || should_update; then
 	# recompile with theme
 	bat cache --build
 fi
@@ -149,14 +155,18 @@ fi
 
 if should_install; then
 	mkdir -p "$DOTFILES_CACHE/vim/undodir"
+
+	echo 'Installing vim plugs'
 	nvim -u vim/plugins.vim +PlugInstall +qa
-	for file in vim/spell/*.add
-	do
+
+	for file in vim/spell/*.add; do
+		echo 'Compiling vim Spellfiles'
 		nvim "+mkspell! $file" +qa
 	done
 fi
 
 if should_update; then
+	echo 'Updating vim plugs'
 	nvim -u vim/plugins.vim +PlugUpgrade +PlugUpdate +qa
 fi
 
@@ -166,12 +176,16 @@ fi
 
 # install tmux terminal
 if should_install; then
-	if [[ ! -x  "$DOTFILES_CACHE/tmux/plugins/tpm/tpm" ]]
-	then git clone https://github.com/tmux-plugins/tpm "$DOTFILES_CACHE/tmux/plugins/tpm"
+	if [[ ! -x  "$DOTFILES_CACHE/tmux/plugins/tpm/tpm" ]]; then
+		echo 'Installing tpm'
+		git clone https://github.com/tmux-plugins/tpm "$DOTFILES_CACHE/tmux/plugins/tpm"
 	fi
+
+	echo 'Installing tmux plugins'
 	"$DOTFILES_CACHE"/tmux/plugins/tpm/bin/install_plugins
 fi
 if should_update; then
+	echo 'Updating tmux plugins'
 	"$DOTFILES_CACHE"/tmux/plugins/tpm/bin/update_plugins all
 fi
 
@@ -181,10 +195,13 @@ fi
 
 if should_install; then
 	mkdir "$HOME/.cache/zsh"
+
+	echo 'Installing zsh plugins'
 	zsh -c "source $DOTFILES/zinit/zinit.zsh && zinit module build"
 fi
 if should_update; then
-	zsh -c "source $DOTFILES/zinit/zinit.zsh && zinit update"
+	echo 'Updating vim plugins'
+	zsh -c "source $DOTFILES/zinit/zinit.zsh && zinit update && zinit module build"
 fi
 
 # }}}
