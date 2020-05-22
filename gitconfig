@@ -39,6 +39,7 @@
 	stashes =  "!git stash list | fzf +1 --preview=\"git stash show \\$(echo {} | sed 's/stash@{\\(.*\\)}: .*/\\1/') --color -p | diff-so-fancy\" | sed 's/stash@{\\(.*\\)}: .*/stash@{\\1}/'"
 	stashp = stash --patch
 	uncommit = reset HEAD~
+	unamend = reset --soft HEAD@{1}
 	update = fetch --all --prune
 	unwip = "![ -n \"$(git rev-list -n 1 --grep '^--wip-- \\[skip ci\\]' HEAD~..HEAD)\" ] && git uncommit"
 	wip = "![ \"$1\" = 'all' ] && (git add -A; git rm $(git ls-files --deleted) 2> /dev/null) ; git commit --no-verify -m '--wip-- [skip ci]' #" # Use # to ignore parameters
