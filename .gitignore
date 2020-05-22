@@ -3,3 +3,4 @@ Brewfile.lock.json
 *.spl
 *.zwc
 .DS_Store
+Gemfile.lock

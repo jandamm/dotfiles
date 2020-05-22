@@ -82,6 +82,22 @@ rm /usr/local/share/zsh/site-functions/_git 2>/dev/null || true
 
 # }}}
 
+# Install gems {{{
+
+echo 'Install gems'
+if should_install; then
+	# installs ruby version in ~/.ruby-version
+	rbenv install --skip-existing
+	bundle install
+fi
+if should_update; then
+	bundle update
+fi
+
+rbenv rehash
+
+# }}}
+
 # Install npms {{{
 
 echo 'Install npm global'

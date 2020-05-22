@@ -8,11 +8,9 @@ declare -A ZINIT
 ZINIT[BIN_DIR]="$DOTFILES/zinit"
 ZINIT[HOME_DIR]="$DOTFILES_CACHE/zsh/zinit"
 
-export GEM_HOME=$HOME/.gem
-
 path=(
 	"$HOME/.bin"
-	"$GEM_HOME/bin"
+	"$HOME/.rbenv/shims"
 	$path
 )
 

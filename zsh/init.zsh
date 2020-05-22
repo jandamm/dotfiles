@@ -168,6 +168,9 @@ autoload -Uz compinit && compinit
 # load bash completion
 autoload bashcompinit && bashcompinit
 
+# Load completions for gems
+source /usr/local/Cellar/rbenv/*/completions/rbenv.zsh
+
 # Define completions for command options
 # Commands with gnu style '--help' can be added here.
 compdef _gnu_generic \
