@@ -173,7 +173,8 @@ unsetopt nullglob
 autoload -Uz compinit && compinit -u -d "$HOME/.zsh/zcompdump_$ZSH_VERSION.zsh"
 
 # load bash completion
-autoload bashcompinit && bashcompinit
+# autoload bashcompinit && bashcompinit
+# source file/to/bash/completion.sh
 
 # Load completions for gems
 source /usr/local/Cellar/rbenv/*/completions/rbenv.zsh
