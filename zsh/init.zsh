@@ -110,24 +110,6 @@ zinit snippet https://github.com/junegunn/fzf/blob/master/bin/fzf-tmux
 zinit ice as"program" pick"bin/git-dsf"
 zinit light zdharma/zsh-diff-so-fancy
 
-zinit snippet OMZ::lib/git.zsh
-zinit snippet OMZ::plugins/git/git.plugin.zsh
-unalias gsh
-zinit light wfxr/forgit
-unalias ga
-function ga {
-	if [ -e "$1" ]
-	then git add "$@"
-	else forgit::add "$@"
-	fi
-}
-unalias grh
-function grh {
-	if [ -e "$1" ]
-	then git reset "$@"
-	else forgit::reset::head "$@"
-	fi
-}
 # Prompt
 zinit ice depth=1
 zinit light romkatv/powerlevel10k
