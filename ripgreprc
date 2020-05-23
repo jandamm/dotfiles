@@ -1,4 +1,5 @@
 --glob=!.git/*
+--glob=!.root
 --glob=!Pod/*
 --glob=!*.spl
 --glob=!*.zwc
