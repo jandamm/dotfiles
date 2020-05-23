@@ -64,12 +64,7 @@ do
 done
 unsetopt nullglob
 
-# Initialize zinit
-declare -A ZINIT
-ZINIT[BIN_DIR]="$DOTFILES/zinit"
-ZINIT[HOME_DIR]="$DOTFILES_CACHE/zsh/zinit"
-
-source "$DOTFILES/zinit/zinit.zsh"
+source $HOME/.zsh/zinit.zsh
 
 # Load plugins {{{
 

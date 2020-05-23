@@ -207,7 +207,7 @@ if should_update; then
 	cd "$DOTFILES"
 
 	echo 'Updating zsh plugins'
-	zsh -c "source $DOTFILES/zinit/zinit.zsh && zinit update"
+	zsh -c "source $DOTFILES/zsh/zinit.zsh && zinit update"
 fi
 
 # }}}
