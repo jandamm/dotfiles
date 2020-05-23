@@ -47,6 +47,9 @@ PER_DIRECTORY_HISTORY_BASE="$DOTFILES_CACHE/zsh/history_dirs"
 export EDITOR=nvim
 export MANPAGER='less -s -M +Gg'
 
+# adds @(|) *(|) ?(|) +(|) which translate to regex: (|) (|)* (|)? (|)+
+setopt extendedglob
+
 # This is required by some tools like tmux and fastlane.
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
