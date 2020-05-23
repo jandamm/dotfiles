@@ -5,4 +5,7 @@
 	do
 		[ ! "$file.zwc" -nt "$file" ] && zcompile "$file"
 	done
+
+	# Rehash rbenv
+	rbenv rehash
 } &!
