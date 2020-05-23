@@ -180,16 +180,4 @@ zinit cdreplay -q
 
 # }}}
 
-# Recompile outdated files {{{
-
-# Background compiling
-{
-	for file in $HOME/.zsh/**/*.zsh
-	do
-		[ ! "$file.zwc" -nt "$file" ] && zcompile "$file"
-	done
-} &!
-
-# }}}
-
 # vim: set foldmethod=marker:
