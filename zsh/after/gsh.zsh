@@ -33,6 +33,8 @@ function git() {
 		command git status --short --branch
 	elif [ $# -eq 1 ] && [ $1 = 'r' ]; then
 		r
+	elif [ $1 = 'git' ]; then
+		shift; g $@
 	else
 		command git $@
 	fi
