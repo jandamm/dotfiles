@@ -1,7 +1,7 @@
 function __set_gsh() {
 	GSH=true
-	alias g='git logf'
-	alias ga='git logfa'
+	alias r='git logf'
+	alias ra='git logfa'
 
 	# Empty line when triggered from zle/key binding
 	if zle; then echo; fi
@@ -19,8 +19,8 @@ function __set_gsh() {
 
 function __unset_gsh() {
 	unset GSH
-	unalias g
-	unalias ga
+	unalias r
+	unalias ra
 
 	PER_DIRECTORY_HISTORY_BASE=$PER_DIRECTORY_HISTORY_BASE_DEFAULT
 	unset PER_DIRECTORY_HISTORY_BASE_DEFAULT
@@ -29,14 +29,15 @@ function __unset_gsh() {
 
 # git -> git status.
 function git() {
-	if [ -z "$1" ]; then
-		env git status --short --branch
-	elif [ "$#" -eq 1 ] && [ "$@" = "r" ]; then
+	if [ $# -eq 0 ]; then
+		command git status --short --branch
+	elif [ $# -eq 1 ] && [ $1 = 'r' ]; then
 		r
 	else
-		env git "$@"
+		command git $@
 	fi
 }
+alias g=git
 
 function gsh-list-choices() {
 	if is_gsh && ([ "$INSTANT_REPL_PREFIX" = "$BUFFER" ] || [ "$INSTANT_REPL_PREFIX" = "$BUFFER " ]); then
