@@ -4,7 +4,7 @@ function fg-fzf() {
 
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
 function fancy-ctrl-z () {
-	if [[ $#BUFFER -eq 0 ]]; then
+	if [[ $#BUFFER -eq 0 ]] || [ $BUFFER = $INSTANT_REPL_PREFIX ]; then
 		BUFFER=" fg-fzf"
 		zle accept-line -w
 	else
