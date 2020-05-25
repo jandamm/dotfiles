@@ -176,6 +176,9 @@ compdef _gnu_generic \
 zinit light zdharma/fast-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
 
+# Change style of global aliases
+FAST_HIGHLIGHT_STYLES[global-alias]=fg=green,bold,underline
+
 # Add compdef from plugins
 zinit cdreplay -q
 
