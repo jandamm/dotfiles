@@ -23,10 +23,14 @@ bindkey '^f' forward-char
 bindkey '^u' repl-kill-whole-line-toggle
 bindkey '^w' backward-delete-word
 
+# Adapt list-choices for gsh
 bindkey '^d' gsh-list-choices
 
 # Use instant repl
 bindkey '^o' repl-set
+
+# Use control z to quickly foreground background job
+bindkey '^z' fancy-ctrl-z
 
 # Forward word bindings (for autosuggestion completion)
 bindkey 'ƒ' vi-forward-word # Alt-F
