@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+set -e
+
+if [ "$1" = 'apply' ]; then
+	shift
+	git fixup-apply "$@"
+	exit
+fi
+
+sha=$(git fzf-log-one --prompt='Fixup> ')
+
+git commit --fixup "${sha%% *}"
