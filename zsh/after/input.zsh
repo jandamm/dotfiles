@@ -27,7 +27,7 @@ bindkey '^w' backward-delete-word
 bindkey '^d' gsh-list-choices
 
 # Use instant repl
-bindkey '^o' repl-set
+bindkey '^s' repl-set
 
 # Use control z to quickly foreground background job
 bindkey '^z' fancy-ctrl-z
