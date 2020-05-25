@@ -346,6 +346,9 @@ set incsearch
 set ignorecase
 set smartcase
 
+set grepprg=rg\ --vimgrep
+set grepformat=%f:%l:%c:%m
+
 " }}}
 
 " vim:set foldmethod=marker:
