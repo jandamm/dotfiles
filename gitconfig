@@ -17,17 +17,17 @@
 	adde = add --edit
 	addp = add --patch
 	amend = commit --amend
-	amendZZ = !git amend --no-edit
+	amendZZ = amend --no-edit
 	develop = switch develop
 	ksdiff = difftool -t ksdiff
-	ksdiffall = !git ksdiff --no-prompt
+	ksdiffall = ksdiff --no-prompt
 	ksmerge = mergetool -t ksdiff
 	logf = "!sha=$(git fzf-log-one) && echo \"${sha%% *}\""
 	logfa = "!sha=$(git fzf-log-one-all) && echo \"${sha%% *}\""
 	logg = log --graph --decorate
-	logga = !git logg --all
+	logga = logg --all
 	logs = log --graph --decorate --format=single
-	logsa = !git logs --all
+	logsa = logs --all
 	master = switch master
 	nvim = !nvim # Use tmux opener with gsh
 	publish = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
@@ -40,7 +40,7 @@
 	update = fetch --all --prune
 	unwip = "![ -n \"$(git rev-list -n 1 --grep '^--wip-- \\[skip ci\\]' HEAD~..HEAD)\" ] && git uncommit"
 	wip = "![ \"$1\" = 'all' ] && (git add -A; git rm $(git ls-files --deleted) 2> /dev/null) ; git commit --no-verify -m '--wip-- [skip ci]' #" # Use # to ignore parameters
-	wipa = !git wip all
+	wipa = wip all
 
 	# Fzf Helpers
 	fzf-log-one = "!git log --color --oneline --decorate -n 1000 | fzf +s --ansi --no-multi --color --preview=\"git show --color \\$(echo {} | sed -e 's/ .*//')\""
