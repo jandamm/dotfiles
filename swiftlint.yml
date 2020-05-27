@@ -2,8 +2,8 @@
 excluded:
   - .idea
   - Pods
-  - *Tests
-  - *Test
+  - .*Tests
+  - .*Test
   - .build
   - Package.swift
 
@@ -53,8 +53,6 @@ opt_in_rules:
 
 force_cast: warning
 force_try: warning
-
-empty_count: error
 
 control_statement: warning
 
