@@ -1,8 +1,0 @@
-#!/usr/bin/env sh
-set -e
-
-# TODO: preselect oldest not pushed commit
-
-sha=$(git fzf-log-one --prompt='Fixup> ' --header='Select the oldest commit before a fixed commit.')
-
-git rebase --interactive --autosquash "${sha%% *}"
