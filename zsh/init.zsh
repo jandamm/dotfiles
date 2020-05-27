@@ -47,6 +47,8 @@ PER_DIRECTORY_HISTORY_BASE="$DOTFILES_CACHE/zsh/history_dirs"
 export EDITOR=nvim
 export MANPAGER='less -s -M +Gg'
 
+fpath=("$HOME/.zsh/completions" $fpath)
+
 # adds @(|) *(|) ?(|) +(|) which translate to regex: (|) (|)* (|)? (|)+
 setopt extendedglob
 
