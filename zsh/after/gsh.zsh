@@ -1,10 +1,11 @@
 function __set_gsh() {
 	GSH=true
+	alias git=g
 
 	# Empty line when triggered from zle/key binding
 	if zle; then echo; fi
 	# Show git status when entering gsh
-	git
+	g
 
 	# TODO: Save all changes in a dictionary and restore them.
 	# When there is another value, it should be worth it.
@@ -17,6 +18,7 @@ function __set_gsh() {
 
 function __unset_gsh() {
 	unset GSH
+	unalias git
 
 	PER_DIRECTORY_HISTORY_BASE=$PER_DIRECTORY_HISTORY_BASE_DEFAULT
 	unset PER_DIRECTORY_HISTORY_BASE_DEFAULT

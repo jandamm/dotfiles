@@ -1,7 +1,11 @@
 # git -> git status.
-function git() {
+function g() {
 	if [ $# -eq 0 ]; then
-		command git status --short --branch
+		if is_gsh; then
+			command git status --short --branch
+		else
+			gsh
+		fi
 	elif [ $# -eq 1 ] && [ $1 = 'r' ]; then
 		r
 	elif [ $1 = 'git' ]; then
@@ -10,8 +14,6 @@ function git() {
 		command git $@
 	fi
 }
-
-alias g=git
 
 alias -g R='`git logf`'
 alias -g RR='`git logfa`'

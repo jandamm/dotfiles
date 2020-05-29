@@ -172,6 +172,8 @@ compdef _gnu_generic \
 	swiftformat \
 	xed
 
+compdef g=git
+
 # }}}
 
 # Post Completion Plugins {{{
