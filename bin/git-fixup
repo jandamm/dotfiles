@@ -1,18 +1,22 @@
 #!/usr/bin/env sh
 set -e
 
+get_sha() {
+	[ "$1" ] && echo "$1"
+}
+
 if [ "$1" = 'apply' ]; then
 	shift
 
 	# TODO: cleanup
-	# TODO: preselect oldest not pushed commit
+	# TODO: preselect oldest not pushed commit (if no sha is provided)
 
-	sha=$(git fzf-log-one --prompt='Fixup> ' --header='Select the oldest commit before a fixed commit.')
+	sha=$(get_sha "$@" || git fzf-log-one --prompt='Fixup> ' --header='Select the oldest commit before a fixed commit.')
 
 	git rebase --interactive --autosquash "${sha%% *}"
 	exit
 fi
 
-sha=$(git fzf-log-one --prompt='Fixup> ')
+sha=$(get_sha "$@" || git fzf-log-one --prompt='Fixup> ')
 
 git commit --fixup "${sha%% *}"
