@@ -18,26 +18,23 @@ function! GitBranch() abort
 	let branch = fugitive#head()
 	return len(branch) > 0 ? ' ' . branch : ''
 endfunction
-function NeomakeStatusline()
+function! NeomakeStatusline() abort
+	" TODO: Reformat: l[E=1,W=2] c[W=3]
 	let stats = []
 	let lcounts = neomake#statusline#LoclistCounts()
 	if len(lcounts) > 0
-		call add(stats, 'F[')
-	endif
-	for key in sort(keys(lcounts))
-		call add(stats, printf('%s:%d', key, lcounts[key]))
-	endfor
-	if len(lcounts) > 0
+		call add(stats, 'l[')
+		for key in sort(keys(lcounts))
+			call add(stats, printf('%%#NeomakeStatColorType%s#%s=%d%%*', key, key, lcounts[key]))
+		endfor
 		call add(stats, ']')
 	endif
 	let qcounts = neomake#statusline#QflistCounts()
 	if len(qcounts) > 0
-		call add(stats, 'P[')
-	endif
-	for key in sort(keys(qcounts))
-		call add(stats, printf('%s:%d', key, qcounts[key]))
-	endfor
-	if len(qcounts) > 0
+		call add(stats, 'c[')
+		for key in sort(keys(qcounts))
+			call add(stats, printf('%%#NeomakeStatColorType%s#%s:%d%%*', key, key, qcounts[key]))
+		endfor
 		call add(stats, ']')
 	endif
 	return join(stats, ' ')
