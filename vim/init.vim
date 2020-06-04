@@ -21,17 +21,7 @@ endif
 set background=dark
 colorscheme one
 let g:one_allow_italics=1
-autocmd VimEnter * ++once call one#highlight('gitcommitSummary', 'e5c07b', '', 'none')
-autocmd VimEnter * ++once call one#highlight('User1', '61afef', '2c323c', 'none')
-autocmd VimEnter * ++once call one#highlight('User2', 'e06c75', '2c323c', 'none')
 autocmd VimEnter * ++once hi clear StatuslineNC " Quick fix for inactive statusline
-highlight link gitcommitOverflow Error
-autocmd VimEnter * ++once highlight link NeomakeVirtualtextError ErrorMsg
-
-" TabLine Theming
-"hi TabLine guifg=#abb2bf
-"hi TabLineSel guibg=#61afef
-"hi TabLineSel guifg=#282c34
 
 let g:neomake_info_sign = {
 			\ 'text': 'i',
