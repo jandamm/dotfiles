@@ -4,43 +4,49 @@ mem_low_color="#[fg=green]"
 mem_medium_color="#[fg=yellow]"
 mem_high_color="#[fg=red]"
 
+echo_err() {
+	echo "$@" 1>&2
+}
+
 memory_load() {
-    case $(uname) in
-         "Darwin") memory_osx;;
-    esac
+	case $(uname) in
+		'Darwin') memory_osx;;
+		*) echo_err 'unsupported platform';;
+	esac
 }
 
 memory_osx() {
-    local free_mem
-    free_mem=$(memory_pressure | grep '^System-wide memory' | sed 's/System-wide memory free percentage: \([0-9]*\)%/\1/')
-    press_mem=$((100 - free_mem))
-    echo "$press_mem%"
+	local free_mem
+	free_mem=$(memory_pressure | grep '^System-wide memory' | sed 's/System-wide memory free percentage: \([0-9]*\)%/\1/')
+	echo $((100 - free_mem))
 }
 
-fcomp() {
-  awk -v n1="$1" -v n2="$2" 'BEGIN {if (n1<n2) exit 0; exit 1}'
-}
-
-tmux-color() {
-    local color
-    if fcomp 75 "$1"
-    then color="$mem_high_color"
-    elif fcomp 50 "$1"
-    then color="$mem_medium_color"
-    else color="$mem_low_color"
-    fi
-    echo -n "$color"
+tmux_color() {
+	local color
+	if [[ $1 -ge 75 ]]
+	then color="$mem_high_color"
+	elif [[ $1 -ge 50 ]]
+	then color="$mem_medium_color"
+	else color="$mem_low_color"
+	fi
+	echo -n "$color"
 }
 
 main() {
-    local load
-    load=$(memory_load)
+	local load output
+	load=$(memory_load)
+	output="$load%"
+	while [[ -n "$1" ]]
+	do
+		case "$1" in
+			"--tmux") output="$(tmux_color "$load")$output";;
+			"--no-percent") output="${output%%%}";;
+			*) echo_err "$1 is not supported";;
+		esac
+		shift
+	done
 
-    case "$1" in
-        "--tmux") tmux-color "$load"
-    esac
-
-    echo "$load"
+	echo "$output"
 }
 
-main "$1"
+main "$@"
