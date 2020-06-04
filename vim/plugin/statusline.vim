@@ -6,36 +6,13 @@ endif
 let g:loaded_statusline_plugin = 1
 
 hi! link User1 OneStatusLineHue2
-hi! link User2 OneStatusLineHue5
-
-" Quick and dirty statusline (needs better colors and refinement)
-set statusline=                            " Reset
-set statusline+=%1*                        " Color 1
-set statusline+=ν                          " Symbol
-set statusline+=\ %<%f                     " filename (shorten if line is too long)
-set statusline+=%*                         " Default color
-set statusline+=\ (%n)                     " Buffer number
-set statusline+=%{GitBranch()}             " Git branch
-set statusline+=\ %y                       " filetype with [ft]
-set statusline+=%{Spell()}                 " Spelling
-set statusline+=%{MySleuth()}              " Show current Spaces/Tabs settings (Maybe only if not ts=2)
-set statusline+=%4m                        " modified ' [+]' (always 4 chars)
-set statusline+=%5r                        " readonly with ' [RO]' (always 5 chars)
-" set statusline+=%#IncSearch#%{&paste?'\ \ PASTE\ ':''}%* " show paste mode
-set statusline+=%=                         " right align from here
-set statusline+=%2*                        " Color 2
-set statusline+=\ \ %{NeomakeStatusline()} " Quick hack for Neomake Errors/Warnings
-set statusline+=%*                         " Default color
-set statusline+=\ \ %P                     " viewport of buffer (Top / % / Bot)
-set statusline+=-%l                        " current line
-set statusline+=-%c                        " current column
 
 function! MySleuth() abort
 	let ret = SleuthIndicator()
 	return ret ==? 'ts=2' ? '' : ' [' . ret . ']'
 endfunction
 function! Spell() abort
-	return &spell ? ' [' . toupper(strcharpart(&spelllang, 0, 2)) . '] ' : ''
+	return &spell ? ' [' . toupper(strcharpart(&spelllang, 0, 2)) . ']' : ''
 endfunction
 function! GitBranch() abort
 	let branch = fugitive#head()
@@ -66,9 +43,49 @@ function NeomakeStatusline()
 	return join(stats, ' ')
 endfunction
 
-" function MyStatus(...)
-" 	let actual_curbuf = bufnr("%")
-" 	return "%c  " .  neomake#statusline#get(actual_curbuf)
-" endfunction
+function! Get(active, winnr) abort
+	let filetype = getbufvar(winbufnr(a:winnr), '&filetype')
+	if filetype ==? 'qf'
+		return '%1*<%f%*%=%P-%l-%c'
+	endif
+	let line=''                            " Define
+	if a:active
+		let line.='%1*'                      " Color 1
+	endif
+	let line.='ν'                          " Symbol
+	let line.=' %<%f'                      " filename (shorten if line is too long)
+	let line.='%*'                         " Default color
+	let line.=' (%n)'                      " Buffer number
+	let line.=GitBranch()                  " Git branch
+	if filetype !=# ''
+		let line.=' %y'                      " filetype with [ft]
+	endif
+	if a:active
+		let line.=Spell()                    " Spelling
+		let line.=MySleuth()                 " Show current Spaces/Tabs settings (Maybe only if not ts=2)
+	endif
+	let line.='%4m'                        " modified ' [+]' (always 4 chars)
+	let line.='%5r'                        " readonly with ' [RO]' (always 5 chars)
+	let line.='%='                         " right align from here
+	if a:active
+		let line.=NeomakeStatusline()        " Quick hack for Neomake Errors/Warnings
+	endif
+	let line.='  %P'                       " viewport of buffer (Top / % / Bot)
+	let line.='-%l'                        " current line
+	let line.='-%c'                        " current column
+	return line
+endfunction
 
-" set statusline=%!MyStatus()
+function! Setup() abort
+	let window = winnr()
+	for i in range(1, winnr('$'))
+		let active = window == i
+		call setwinvar(i, '&statusline', '%!Get('. active .','.i.')')
+	endfor
+endfunction
+
+augroup my_statusline
+	autocmd!
+	autocmd WinEnter,BufEnter,BufDelete,SessionLoadPost,FileChangedShellPost * call Setup()
+	autocmd FileType qf call Setup()
+augroup END

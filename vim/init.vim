@@ -21,7 +21,6 @@ endif
 set background=dark
 colorscheme one
 let g:one_allow_italics=1
-autocmd VimEnter * ++once hi clear StatuslineNC " Quick fix for inactive statusline
 
 let g:neomake_info_sign = {
 			\ 'text': 'i',
