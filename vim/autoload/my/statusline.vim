@@ -49,7 +49,7 @@ endfunction
 
 function! s:Sleuth() abort
 	let ret = SleuthIndicator()
-	return ret ==? 'ts=2' ? '' : ' [' . ret . ']'
+	return ret !=? 'ts=2' ? ' [' . ret . ']' : ''
 endfunction
 
 function! s:Spell() abort
@@ -58,29 +58,27 @@ endfunction
 
 function! s:GitBranch() abort
 	let branch = fugitive#head()
-	return len(branch) > 0 ? ' ' . branch : ''
+	return branch !=? '' ? ' ' . branch : ''
 endfunction
 
 function! s:NeomakeStatusline(bufnr, active) abort
-	if !a:active
-		return ''
-	endif
 	let loc = s:NeomakeListErrors('l', neomake#statusline#LoclistCounts(a:bufnr), a:active)
-	let qf = s:NeomakeListErrors('c', neomake#statusline#QflistCounts(), a:active)
-	let space = ''
-	if loc !=? '' && qf !=? ''
-		let space = ' '
+	if !a:active
+		return loc
 	endif
+	let qf = s:NeomakeListErrors('c', neomake#statusline#QflistCounts(), a:active)
+	let space = loc !=? '' && qf !=? '' ? ' ' : ''
 	return loc . space . qf
 endfunction
 
-function! s:NeomakeListErrors(id, list, active) abort
+function! s:NeomakeListErrors(id, list, hi) abort
 	if len(a:list) == 0
 		return ''
 	endif
 	let stats = []
 	for key in sort(keys(a:list))
-		call add(stats, printf('%%#NeomakeStatColorType%s#%s=%d%%*', key, key, a:list[key]))
+		let hi = a:hi ? '%#NeomakeStatColorType'.key.'#' : ''
+		call add(stats, hi . printf('%s=%d%%*', key, a:list[key]))
 	endfor
 	return a:id . '[' . join(stats, ',') . ']'
 endfunction
