@@ -1,0 +1,3 @@
+#compdef dotfiles
+
+_arguments '1:command:(install update)'

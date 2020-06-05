@@ -8,7 +8,7 @@
 ## Full installation
 
 - `git clone --recurse-submodules git@github.com:jandamm/dotfiles.git ~/.dotfiles`
-- `cd ~/.dotfiles && ./bin/dotfile-setup install`
+- `cd ~/.dotfiles && ./bin/dotfiles install`
 
 ### Use zsh from Homebrew as login shell
 

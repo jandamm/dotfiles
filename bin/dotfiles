@@ -107,12 +107,12 @@ rbenv rehash
 if should_install || should_update; then
 	echo 'Installing npms'
 	#shellcheck disable=SC2046
-	npm install --global $(env cat "$DOTFILES/node_modules")
+	npm install --global $(command cat "$DOTFILES/node_modules")
 fi
 if should_update; then
 	echo 'Updating npms'
 	#shellcheck disable=SC2046
-	npm update --global $(env cat "$DOTFILES/node_modules")
+	npm update --global $(command cat "$DOTFILES/node_modules")
 fi
 
 # }}}
