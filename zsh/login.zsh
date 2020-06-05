@@ -11,9 +11,9 @@
 	unset _comp_files
 
 	# Recompile outdated files in the background
-	for file in $HOME/.zsh/**/*.zsh
+	for file in $HOME/.zsh/**/*
 	do
-		[ ! "$file.zwc" -nt "$file" ] && zcompile "$file"
+		[ -f $file ] && [ ! "$file.zwc" -nt "$file" ] && [ $file = ${file%zwc} ] && zcompile "$file"
 	done
 
 	# Rehash rbenv
