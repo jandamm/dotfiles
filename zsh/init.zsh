@@ -149,9 +149,8 @@ unsetopt nullglob
 # Completion {{{
 
 # Initialize zsh completion
-# zcompdump is named .zsh to be compiled as well.
 # Always use cached version. Recreating is done in zlogin. (Should only dump if there is no file)
-autoload -Uz compinit && compinit -i -C -d "$HOME/.zsh/zcompdump_$ZSH_VERSION.zsh"
+autoload -Uz compinit && compinit -C -d "$HOME/.zsh/zcompdump_$ZSH_VERSION"
 
 # load bash completion
 # autoload bashcompinit && bashcompinit

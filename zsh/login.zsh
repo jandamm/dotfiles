@@ -4,9 +4,13 @@
 	# This would break this code - probably without noticing.
 	setopt extendedglob local_options
 	# Recreate zcompdump if it is older than 20 hours.
-	_comp_files=($HOME/.zsh/zcompdump_$ZSH_VERSION.zsh(Nm-20))
+	_comp_files=($HOME/.zsh/zcompdump_$ZSH_VERSION(Nm-24))
 	if ! (( $#_comp_files )); then
-		compdump -i -d $HOME/.zsh/zcompdump_$ZSH_VERSION.zsh
+		compdump -i -d $HOME/.zsh/zcompdump_$ZSH_VERSION
+	else
+		# dump if completion files where added.
+		# This will get new completions for the next new shell.
+		compinit -i -d $HOME/.zsh/zcompdump_$ZSH_VERSION
 	fi
 	unset _comp_files
 
