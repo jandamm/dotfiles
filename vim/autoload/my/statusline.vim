@@ -7,12 +7,14 @@ let g:autoloaded_statusline = 1
 
 hi! link User1 OneStatusLineHue2
 
+let s:light_statusline_ft = ['qf', 'help', 'man']
+
 function! my#statusline#get(active, winnr) abort
 	let line = ''
 	let bufnr = winbufnr(a:winnr)
 	let filetype = getbufvar(bufnr, '&filetype')
 
-	if filetype ==? 'qf'
+	if index(s:light_statusline_ft, filetype) > -1
 		return (a:active ? '%1*' : '') . '%<%f%*%=%P-%l-%c'
 	endif
 
