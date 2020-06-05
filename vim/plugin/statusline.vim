@@ -3,8 +3,6 @@ if exists('g:loaded_statusline_plugin')
 endif
 let g:loaded_statusline_plugin = 1
 
-hi! link User1 OneStatusLineHue2
-
 function! s:Setup() abort
 	let window = winnr()
 	for i in range(1, winnr('$'))

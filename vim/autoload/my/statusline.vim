@@ -5,13 +5,15 @@ if exists('g:autoloaded_statusline')
 endif
 let g:autoloaded_statusline = 1
 
+hi! link User1 OneStatusLineHue2
+
 function! my#statusline#get(active, winnr) abort
 	let line = ''
 	let bufnr = winbufnr(a:winnr)
 	let filetype = getbufvar(bufnr, '&filetype')
 
 	if filetype ==? 'qf'
-		return '%1*%<%f%*%=%P-%l-%c'
+		return (a:active ? '%1*' : '') . '%<%f%*%=%P-%l-%c'
 	endif
 
 	" Left part
