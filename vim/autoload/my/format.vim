@@ -1,3 +1,8 @@
+if exists('g:autoloaded_format')
+	finish
+endif
+let g:autoloaded_format = 1
+
 function! my#format#default() abort
 	set tabstop=2
 	set shiftwidth=2

@@ -75,8 +75,6 @@ set timeoutlen=1200
 set hidden
 augroup auto_save_files
 	au!
-	" Save all changed files when Vim is put to background.
-	" Silently because buffers without name cannot be saved.
 	autocmd FocusLost * :update
 augroup END
 
