@@ -39,7 +39,7 @@ function! my#statusline#get(active, winnr) abort
 	let line .= '%='
 
 	" Right part
-	let line .= s:NeomakeStatusline(bufnr, a:active)   " Show Neomake Errors and Warnings
+	let line .= s:NeomakeStatusLine(bufnr, a:active)   " Show Neomake Errors and Warnings
 	let line .= '  %P'                                 " viewport of buffer (Top / % / Bot)
 	let line .= '-%l'                                  " current line
 	let line .= '-%c'                                  " current column
@@ -61,24 +61,38 @@ function! s:GitBranch() abort
 	return branch !=? '' ? ' ' . branch : ''
 endfunction
 
-function! s:NeomakeStatusline(bufnr, active) abort
-	let loc = s:NeomakeListErrors('l', neomake#statusline#LoclistCounts(a:bufnr), a:active)
+function! s:NeomakeStatusLine(bufnr, active) abort
+	let jobs = s:NeomakeJobs(a:bufnr)
+	let loc = s:NeomakeListErrors('l', s:NeomakeRunning(jobs, 1), neomake#statusline#LoclistCounts(a:bufnr), a:active)
 	if !a:active
 		return loc
 	endif
-	let qf = s:NeomakeListErrors('c', neomake#statusline#QflistCounts(), a:active)
+	let qf = s:NeomakeListErrors('c', s:NeomakeRunning(jobs, 0), neomake#statusline#QflistCounts(), a:active)
 	let space = loc !=? '' && qf !=? '' ? ' ' : ''
 	return loc . space . qf
 endfunction
 
-function! s:NeomakeListErrors(id, list, hi) abort
-	if len(a:list) == 0
+function! s:NeomakeJobs(bufnr) abort
+	return filter(neomake#GetJobs(), 'a:bufnr == v:val.bufnr')
+endfunction
+
+function! s:NeomakeRunning(jobs, loc) abort
+	return !empty(filter(copy(a:jobs), 'v:val.file_mode == ' . a:loc))
+endfunction
+
+function! s:NeomakeListErrors(id, runs, errors, hi) abort
+	let output = ''
+	if a:runs
+		let output = '...'
+	elseif empty(a:errors)
 		return ''
+	else
+		let stats = []
+		for key in sort(keys(a:errors))
+			let hi = a:hi ? '%#NeomakeStatColorType'.key.'#' : ''
+			call add(stats, hi . printf('%s=%d%%*', key, a:errors[key]))
+		endfor
+		let output = join(stats, ',')
 	endif
-	let stats = []
-	for key in sort(keys(a:list))
-		let hi = a:hi ? '%#NeomakeStatColorType'.key.'#' : ''
-		call add(stats, hi . printf('%s=%d%%*', key, a:list[key]))
-	endfor
-	return a:id . '[' . join(stats, ',') . ']'
+	return printf('%s[%s]', a:id, output)
 endfunction
