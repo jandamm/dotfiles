@@ -3,11 +3,22 @@ if exists('g:loaded_statusline_plugin')
 endif
 let g:loaded_statusline_plugin = 1
 
+" Returns the statusline string
+" Here it is also decided if a non default statusline is overwritten.
+" (E.g. setting a specific statusline for ft=qf which has a local set.
+function! s:GetStatusLineVar(win, active) abort
+	let current = getwinvar(a:win, '&statusline')
+	if current ==? '' || match(current, '\V%!my#statusline#get(\v\d+,\d+\)') >= 0
+		return '%!my#statusline#get(' . a:active . ',' . a:win . ')'
+	else
+		return current
+	endif
+endfunction
+
 function! s:Setup() abort
-	let window = winnr()
-	for i in range(1, winnr('$'))
-		let active = window == i
-		call setwinvar(i, '&statusline', '%!my#statusline#get('. active .','.i.')')
+	let curwin = winnr()
+	for win in range(1, winnr('$'))
+		call setwinvar(win, '&statusline', s:GetStatusLineVar(win,curwin == win))
 	endfor
 endfunction
 
