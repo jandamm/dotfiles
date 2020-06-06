@@ -19,15 +19,15 @@ function! my#statusline#get(active, winnr) abort
 	endif
 
 	" Left part
-	let line .= a:active ? '%1*' : ''                  " Color 1
+	let line .= a:active ? '%1*' : ''                  " Color 1 (blue)
 	let line .= 'ν'                                    " Symbol
 	let line .= ' %<%f'                                " filename (shorten if line is too long)
-	let line .= '%*'                                   " Default color
-	let line .= ' (%n)'                                " Buffer number
+	let line .= '%*'                                   " Reset color
+	let line .= ' (%1*%n%*)'                           " Buffer number
 
 	if a:active
 		let line .= s:GitBranch()                        " Git branch
-		let line .= filetype !=# '' ? ' %y' : ''         " filetype if set
+		let line .= filetype !=? '' ? ' %y' : ''         " filetype if set
 		let line .= s:Spell()                            " Spelling
 		let line .= s:Sleuth()                           " Show current Spaces/Tabs settings
 	endif
@@ -35,7 +35,7 @@ function! my#statusline#get(active, winnr) abort
 	let line .= '%4m'                                  " modified ' [+]' (always 4 chars)
 	let line .= '%5r'                                  " readonly with ' [RO]' (always 5 chars)
 
-	" Switch sides
+	" Break sides
 	let line .= '%='
 
 	" Right part

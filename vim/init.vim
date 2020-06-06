@@ -139,7 +139,6 @@ if has('persistent_undo')
 	set undofile
 endif
 
-
 " }}}
 
 " Keybindings {{{
