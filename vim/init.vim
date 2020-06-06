@@ -312,7 +312,7 @@ set lazyredraw
 
 " Highlight/preview replaces
 if has('nvim')
-	set inccommand=nosplit
+	set inccommand=split
 endif
 
 " Clipboard
