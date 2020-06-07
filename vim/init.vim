@@ -310,11 +310,6 @@ set mouse=a
 " Do not redraw screen while executing macros
 set lazyredraw
 
-" Highlight/preview replaces
-if has('nvim')
-	set inccommand=split
-endif
-
 " Clipboard
 if has('clipboard')     " If the feature is available
 	set clipboard=unnamed " copy to the system clipboard
@@ -332,8 +327,10 @@ set incsearch
 set ignorecase
 set smartcase
 
-set grepprg=rg\ --vimgrep
-set grepformat=%f:%l:%c:%m
+" Highlight/preview replaces
+if has('nvim')
+	set inccommand=split
+endif
 
 " }}}
 

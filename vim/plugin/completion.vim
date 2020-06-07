@@ -33,5 +33,3 @@ augroup my_completion
 	autocmd CompleteDone * call timer_start(200, function('s:DisableAutoAsyncomplete'))
 	autocmd InsertLeave * let g:asyncomplete_auto_popup = 0
 augroup END
-
-
