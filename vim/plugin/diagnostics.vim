@@ -5,7 +5,10 @@ let g:loaded_diagnostics = 1
 
 let g:lsp_diagnostics_enabled = 0
 
-call neomake#configure#automake('rnw', 500)
+augroup neomake_startup
+	au!
+	autocmd VimEnter * call neomake#configure#automake('rnw', 500)
+augroup END
 
 let g:neomake_info_sign = {
 			\ 'text': 'i',
