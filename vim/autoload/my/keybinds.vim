@@ -3,6 +3,14 @@ if exists('g:autoloaded_keybinds')
 endif
 let g:autoloaded_keybinds = 1
 
+function! my#keybinds#gO() abort
+	if &ft ==? 'man' || &ft ==? 'help'
+		normal! gO
+	else
+		TagbarToggle
+	endif
+endfunction
+
 function! s:deleteNonEmptyLine() abort
 	call setline('.', '')
 endfunction

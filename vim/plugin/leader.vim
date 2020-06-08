@@ -43,8 +43,6 @@ nmap <silent> <Leader>gw         :Gblame<CR>
 
 nmap <silent> <Leader>j          gs<Space>
 nmap <silent> <Leader>l          <Plug>window:quickfix:loop
-" o -> Outline
-nmap <silent> <Leader>o          :TagbarToggle<CR>
 nmap <silent> <Leader>s          :call my#keybinds#Spell()<CR>
 nmap <silent> <Leader>t          :Tags<CR>
 nmap <silent> <Leader>u          :UndotreeToggle<CR>

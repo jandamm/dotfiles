@@ -14,6 +14,8 @@ inoremap <C-w> <C-g>u<C-w>
 " Quick replace with s
 xnoremap s :s/
 
+nmap <silent> gO :call my#keybinds#gO()<CR>
+
 nnoremap <silent> [w :tabprevious<CR>
 nnoremap <silent> ]w :tabnext<CR>
 nnoremap <silent> [W :tabfirst<CR>
