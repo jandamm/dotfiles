@@ -1,7 +1,16 @@
-if exists('g:loaded_completion_plugin')
+if exists('g:loaded_completion')
 	finish
 endif
-let g:loaded_completion_plugin = 1
+let g:loaded_completion = 1
+
+" Use asyncomplete as omnifunc without auto hud.
+" Disable asyncomplete auto popup
+let g:asyncomplete_auto_popup = 0
+let g:asyncomplete_popup_delay = 0
+" Enable only with sources
+let g:asyncomplete_enable_for_all = 0
+" Set my own completeopt instead of asyncomplete
+let g:asyncomplete_auto_completeopt = 0
 
 function! s:MakeLspSettings() abort
 	nnoremap gd :LspDefinition<CR>
