@@ -94,9 +94,6 @@ zinit snippet https://github.com/raylee/tldr/blob/master/tldr
 zinit ice as'program' pick'fasd'
 zinit light clvv/fasd
 
-zinit ice as'program' pick'bin/git-dsf'
-zinit light zdharma/zsh-diff-so-fancy
-
 # }}}
 
 # Completion {{{
