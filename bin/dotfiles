@@ -11,29 +11,36 @@ function quit_setup() {
 	exit 1
 }
 
+mode=-1
+
 function should_install() {
-	[ "$_should_install" ]
+	[ $mode -eq 0 ]
 }
 
 function should_update() {
-	[ "$_should_update" ]
+	[ $mode -eq 1 ]
+}
+
+function should_execute() {
+	[ $mode -ge 0 ]
+}
+
+function set_mode() {
+	[ $mode -eq -1 ] || quit_setup
+	mode=$1
 }
 
 # }}}
 
-if [ ! $# -eq 1 ]
-then quit_setup
-fi
-
 case $1 in
 	install)
-		_should_install=true;;
+		set_mode 0;;
 	update)
-		_should_update=true;;
-	*)
-		quit_setup
+		set_mode 1;;
 esac
 shift
+
+should_execute || quit_setup
 
 # Setup environment {{{
 
