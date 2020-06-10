@@ -78,9 +78,17 @@ fi
 
 # Install brews {{{
 
-if should_install || should_update; then
-	echo 'Installing brews'
-	brew bundle install --global
+function brew_install() {
+	if [ -f "$1" ]
+	then
+		echo "$2"
+		brew bundle install --file "$1"
+	fi
+}
+
+if should_execute; then
+	brew_install "$DOTFILES/Brewfile" 'Installing brews'
+	brew_install "$DOTFILES_PRIVATE/Brewfile" 'Installing private brews'
 fi
 
 # uninstall git completions as zsh completions are way better!
