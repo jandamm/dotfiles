@@ -1,5 +1,5 @@
 snippet func "" b
-function! ${1:Name}() abort
+function! ${1:s:${2:Name}}(${3:...}) abort
 	$0
 endfunction
 endsnippet
@@ -12,18 +12,19 @@ augroup END
 endsnippet
 
 snippet "auc(md)?" "" br
-${1:autocmd ${2:VimEnter} }$0
+${1:autocmd ${2:VimEnter} ${3:*}}$0
 endsnippet
 
 snippet "islo(aded)?" "" br
-if exists('${1:g:${2:loaded$3}}')
+if exists('${1:g:loaded_${2:filename}}')
 	finish
 endif
 let $1 = 1
+$0
 endsnippet
 
 snippet "isa(uto)?lo(aded)?" "" br
-if exists('${1:g:${2:autoloaded$3}}')
+if exists('${1:g:autoloaded_${2:filename}}')
 	finish
 endif
 let $1 = 1
