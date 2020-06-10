@@ -7,22 +7,30 @@ nnoremap <silent> <ESC> :nohlsearch<CR>
 " Remap U Redo
 nnoremap U <C-r>
 
-" Make i_CTRL-u and w undoable, C-u also kills whole line
-inoremap <C-u> <C-g>u<C-u><C-o>"_D
-inoremap <C-w> <C-g>u<C-w>
-
-" Quick replace with s
-xnoremap s :s/
-
-nmap <silent> gO :call my#keybinds#gO()<CR>
-
-xnoremap * :<C-u>call my#keybinds#visualSearch('/')<CR>/<C-r>=@/<CR><CR>
-xnoremap # :<C-u>call my#keybinds#visualSearch('?')<CR>/<C-r>=@/<CR><CR>
+nnoremap <silent> gO :call my#keybinds#gO()<CR>
 
 nnoremap <silent> [w :tabprevious<CR>
 nnoremap <silent> ]w :tabnext<CR>
 nnoremap <silent> [W :tabfirst<CR>
 nnoremap <silent> ]W :tablast<CR>
+
+" Insert mode
+
+" Make i_CTRL-u and w undoable, C-u also kills whole line
+inoremap <C-u> <C-g>u<C-u><C-o>"_D
+inoremap <C-w> <C-g>u<C-w>
+
+" Visual mode
+
+" Quick replace with s
+xnoremap s :s/
+
+xnoremap * :<C-u>call my#keybinds#visualSearch('/')<CR>/<C-r>=@/<CR><CR>
+xnoremap # :<C-u>call my#keybinds#visualSearch('?')<CR>/<C-r>=@/<CR><CR>
+
+" Move visual selection (This overwrites joining lines)
+xnoremap J :m '>+1<CR>gv=gv
+xnoremap K :m '<-2<CR>gv=gv
 
 " Command line {{{
 

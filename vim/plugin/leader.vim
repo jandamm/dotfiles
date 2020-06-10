@@ -28,7 +28,7 @@ nmap <silent> <Leader>gc         :Gcommit<CR>
 nmap <silent> <Leader>gd         :Gvdiffsplit!<CR>
 nmap <silent> <Leader>gf         :Gfetch<CR>
 nmap <silent> <Leader>gF         :Gpull<CR>
-nmap <silent> <expr> <Leader>gg ':Git '
+nmap <silent> <Leader>gg         :Git<SPACE>
 " h -> Hunk
 nmap <silent> <Leader>ghd        :SignifyHunkDiff<CR>
 nmap <silent> <Leader>ghu        :SignifyHunkUndo<CR>
@@ -48,7 +48,7 @@ nmap <silent> <Leader>t          :Tags<CR>
 nmap <silent> <Leader>u          :UndotreeToggle<CR>
 nmap <silent> <Leader><SPACE>    :Files<CR>
 nmap <silent> <Leader>/          :Lines<CR>
-nmap <silent> <expr> <Leader>?  ':Rg '
+nmap          <Leader>?          :Rg<SPACE>
 
 " Leader C functions {{{
 
