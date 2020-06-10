@@ -16,6 +16,9 @@ xnoremap s :s/
 
 nmap <silent> gO :call my#keybinds#gO()<CR>
 
+xnoremap * :<C-u>call my#keybinds#visualSearch('/')<CR>/<C-r>=@/<CR><CR>
+xnoremap # :<C-u>call my#keybinds#visualSearch('?')<CR>/<C-r>=@/<CR><CR>
+
 nnoremap <silent> [w :tabprevious<CR>
 nnoremap <silent> ]w :tabnext<CR>
 nnoremap <silent> [W :tabfirst<CR>

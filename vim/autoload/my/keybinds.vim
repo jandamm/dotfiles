@@ -3,8 +3,16 @@ if exists('g:autoloaded_keybinds')
 endif
 let g:autoloaded_keybinds = 1
 
+function! my#keybinds#visualSearch(cmdtype) abort
+	let temp = @s
+	normal! gv"sy
+	let selection = @s
+	let @/ = '\V' . substitute(escape(selection, a:cmdtype.'\'), '\n', '\\n', 'g')
+	let @s = temp
+endfunction
+
 function! my#keybinds#gO() abort
-	if &ft ==? 'man' || &ft ==? 'help'
+	if &filetype ==? 'man' || &filetype ==? 'help'
 		normal! gO
 	else
 		TagbarToggle
