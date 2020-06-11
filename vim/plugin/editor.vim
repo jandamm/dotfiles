@@ -11,6 +11,8 @@ augroup END
 " Command to set my default tabwidth etc.
 command! SleuthOverwrite call my#format#default()
 
+command! X !chmod +x %
+
 " Undo Tree
 let g:undotree_SetFocusWhenToggle = 1
 function g:Undotree_CustomMap() abort
