@@ -6,24 +6,28 @@ endif
 let g:autoloaded_statusline = 1
 
 hi! link User1 OneStatusLineHue2
+hi! link User2 OneStatusLineMono2
+hi! link User3 OneStatusLineHue62
 
 let s:light_statusline_ft = ['qf', 'help', 'man']
 
 function! my#statusline#get(active, winnr) abort
-	let line = ''
+	let line = a:active ? '%1*' : ''
+
 	let bufnr = winbufnr(a:winnr)
 	let filetype = getbufvar(bufnr, '&filetype')
 
 	if index(s:light_statusline_ft, filetype) > -1
-		return (a:active ? '%1*' : '') . '%<%f%*%=%P-%l-%c'
+		return line . '%<%f%*%=%P-%l-%c'
 	endif
 
 	" Left part
-	let line .= a:active ? '%1*' : ''                  " Color 1 (blue)
 	let line .= 'ν'                                    " Symbol
 	let line .= ' %<%f'                                " filename (shorten if line is too long)
 	let line .= '%*'                                   " Reset color
-	let line .= ' (%1*%n%*)'                           " Buffer number
+
+	let c2 = a:active ? '%2*' : '%*'
+	let line .= ' '.c2.'(%3*%n'.c2.')%*'               " Buffer number
 
 	if a:active
 		let line .= s:GitBranch()                        " Git branch
