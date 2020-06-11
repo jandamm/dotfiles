@@ -41,7 +41,6 @@
 	uncommit = reset HEAD~
 	unamend = reset --soft HEAD@{1}
 	update = fetch --all --prune
-	unwip = "![ -n \"$(git rev-list -n 1 --grep '^--wip-- \\[skip ci\\]' HEAD~..HEAD)\" ] && git uncommit"
 	wipa = wip --all
 
 	# Fzf Helpers
