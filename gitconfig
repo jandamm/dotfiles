@@ -42,8 +42,7 @@
 	unamend = reset --soft HEAD@{1}
 	update = fetch --all --prune
 	unwip = "![ -n \"$(git rev-list -n 1 --grep '^--wip-- \\[skip ci\\]' HEAD~..HEAD)\" ] && git uncommit"
-	wip = "![ \"$1\" = 'all' ] && (git add -A; git rm $(git ls-files --deleted) 2> /dev/null) ; git commit --no-verify -m '--wip-- [skip ci]' #" # Use # to ignore parameters
-	wipa = wip all
+	wipa = wip --all
 
 	# Fzf Helpers
 	fzf-log-one = "!git log --color --oneline --decorate -n 1000 | fzf +s --ansi --no-multi --color --preview=\"git show --color \\$(echo {} | sed -e 's/ .*//')\""
