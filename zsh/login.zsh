@@ -21,5 +21,5 @@
 	done
 
 	# Rehash rbenv
-	rbenv rehash
+	rbenv rehash 2>/dev/null
 } &!
