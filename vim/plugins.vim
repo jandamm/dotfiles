@@ -1,71 +1,73 @@
-call plug#begin('~/.cache/vim/plugged')
+packadd vim-packager
+
+call packager#init({ 'dir': '~/.vim/pack/packager', 'jobs': 0})
+
+call packager#add('kristijanhusak/vim-packager', { 'type': 'opt' })
 
 " Usage
-Plug 'tpope/vim-surround' " Add(y)/change(c)/remove(d) surroundings
-Plug 'tpope/vim-repeat' " Add . macro to supported plugins
-Plug 'tpope/vim-speeddating' " Fix i_Ctrl+a for dates
-Plug 'tpope/vim-commentary' " gc to comment in/out
-Plug 'junegunn/vim-easy-align' " ga to align
-Plug 'tpope/vim-endwise' " Insert endif etc automatically
-Plug 'majutsushi/tagbar' " Show file overview with tags
+call packager#add('tpope/vim-surround') " Add(y)/change(c)/remove(d) surroundings
+call packager#add('tpope/vim-repeat') " Add . macro to supported plugins
+call packager#add('tpope/vim-speeddating') " Fix i_Ctrl+a for dates
+call packager#add('tpope/vim-commentary') " gc to comment in/out
+call packager#add('junegunn/vim-easy-align') " ga to align
+call packager#add('tpope/vim-endwise') " Insert endif etc automatically
+call packager#add('majutsushi/tagbar') " Show file overview with tags
 " Better iabbrev
 " Better :s/abba/bobby/g with :S/{a,A}bba/{b,B}obby/g
 " Change case styles with cr{char}
-Plug 'tpope/vim-abolish'
-Plug 'jandamm/vim-abolisher', { 'do': 'make build' } " Faster vim-abolish!
-Plug 'tpope/vim-unimpaired' " Better [] mappings
-Plug 'tpope/vim-vinegar' " Improvements to netrw
-Plug 'tpope/vim-fugitive' " Git interface
-Plug 'tpope/vim-rhubarb' " Gbrowse for Github
-Plug 'shumphrey/fugitive-gitlab.vim' " Gbrowse for GitLab
-Plug 'tpope/vim-sleuth' " Automatically set spaces/tabs
-Plug 'tpope/vim-eunuch' " Unix commands in vim
-Plug 'tpope/vim-obsession' " Save sessions easily
-Plug 'airblade/vim-rooter' " Always cd into root of project
-Plug 'easymotion/vim-easymotion' " Quick moving of the cursor
-Plug 'drmingdrmer/vim-toggle-quickfix' " Toggle QF and Loc List
-Plug 'mbbill/undotree' " Show undo history as a tree
+call packager#add('tpope/vim-abolish')
+call packager#add('jandamm/vim-abolisher', { 'do': 'make build' }) " Faster vim-abolish!
+call packager#add('tpope/vim-unimpaired') " Better [] mappings
+call packager#add('tpope/vim-vinegar') " Improvements to netrw
+call packager#add('tpope/vim-fugitive') " Git interface
+call packager#add('tpope/vim-rhubarb') " Gbrowse for Github
+call packager#add('shumphrey/fugitive-gitlab.vim') " Gbrowse for GitLab
+call packager#add('tpope/vim-sleuth') " Automatically set spaces/tabs
+call packager#add('tpope/vim-eunuch') " Unix commands in vim
+call packager#add('tpope/vim-obsession') " Save sessions easily
+call packager#add('airblade/vim-rooter') " Always cd into root of project
+call packager#add('easymotion/vim-easymotion') " Quick moving of the cursor
+call packager#add('drmingdrmer/vim-toggle-quickfix') " Toggle QF and Loc List
+call packager#add('mbbill/undotree') " Show undo history as a tree
 
 " Fuzzy finding
-Plug 'junegunn/fzf.vim'
-	Plug '/usr/local/opt/fzf'
+call packager#add('junegunn/fzf.vim')
+	call packager#local('/usr/local/opt/fzf')
 
 " Themes
-Plug 'jandamm/vim-one'
+call packager#add('jandamm/vim-one')
 
 " Ctags
-Plug 'ludovicchabant/vim-gutentags'
+call packager#add('ludovicchabant/vim-gutentags')
 
 " User Interface
-Plug 'mhinz/vim-signify'
+call packager#add('mhinz/vim-signify')
 
 " Tmux
-Plug 'christoomey/vim-tmux-navigator' " C-hjkl movements with tmux
-Plug 'christoomey/vim-tmux-runner'
+call packager#add('christoomey/vim-tmux-navigator') " C-hjkl movements with tmux
+call packager#add('christoomey/vim-tmux-runner')
 
 " Auto Completion
-Plug 'SirVer/ultisnips'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'jandamm/asyncomplete-fuzzy-match', { 'do': 'cargo build --release' }
-Plug 'prabirshrestha/asyncomplete-necovim.vim'
-	Plug 'Shougo/neco-vim'
+call packager#add('SirVer/ultisnips')
+call packager#add('prabirshrestha/asyncomplete.vim')
+call packager#add('jandamm/asyncomplete-fuzzy-match', { 'do': 'cargo build --release' })
+call packager#add('prabirshrestha/asyncomplete-necovim.vim')
+	call packager#add('Shougo/neco-vim')
 
 " LSP
-Plug 'prabirshrestha/vim-lsp'
-	Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'thomasfaingnaert/vim-lsp-ultisnips'
-	Plug 'thomasfaingnaert/vim-lsp-snippets'
+call packager#add('prabirshrestha/vim-lsp')
+	call packager#add('prabirshrestha/async.vim')
+call packager#add('prabirshrestha/asyncomplete-lsp.vim')
+call packager#add('thomasfaingnaert/vim-lsp-ultisnips')
+	call packager#add('thomasfaingnaert/vim-lsp-snippets')
 
 " Languages
-Plug 'sheerun/vim-polyglot'
-Plug 'keith/xcconfig.vim'
+call packager#add('sheerun/vim-polyglot')
+call packager#add('keith/xcconfig.vim')
 
 " iOS
-Plug 'gfontenot/vim-xcode'
+call packager#add('gfontenot/vim-xcode')
 
 " Misc
-Plug 'neomake/neomake'
-Plug 'tweekmonster/startuptime.vim'
-
-call plug#end()
+call packager#add('neomake/neomake')
+call packager#add('tweekmonster/startuptime.vim', { 'type': 'opt' })

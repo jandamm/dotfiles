@@ -171,8 +171,13 @@ fi
 if should_install; then
 	mkdir -p "$DOTFILES_CACHE/vim/undodir"
 
-	echo 'Installing vim plugs'
-	nvim -u vim/plugins.vim +PlugInstall +qa
+	if [ ! -d "$HOME/.vim/pack/packager/opt/vim-packager" ]
+	then
+		git clone https://github.com/kristijanhusak/vim-packager "$HOME/.vim/pack/packager/opt/vim-packager"
+	fi
+
+	echo 'Installing vim plugins'
+	nvim -u vim/plugins.vim '+call packager#install()' +qa
 
 	for file in vim/spell/*.add; do
 		echo 'Compiling vim Spellfiles'
@@ -181,8 +186,8 @@ if should_install; then
 fi
 
 if should_update; then
-	echo 'Updating vim plugs'
-	nvim -u vim/plugins.vim +PlugUpgrade +PlugUpdate +qa
+	echo 'Updating vim plugins'
+	nvim -u vim/plugins.vim '+call packager#update()' +qa
 fi
 
 # }}}

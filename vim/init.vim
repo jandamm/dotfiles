@@ -2,9 +2,6 @@ scriptencoding utf-8
 
 " In this file should be no executed code. Only `let` and `set`
 
-" Load plugins (Extracted to file to ease first installation)
-runtime plugins.vim
-
 " Appearance {{{
 
 if has('termguicolors')
