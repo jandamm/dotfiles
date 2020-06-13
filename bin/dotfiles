@@ -168,6 +168,8 @@ fi
 
 # NVIM {{{
 
+nvim_update_file="$(mktemp)"
+
 if should_install; then
 	mkdir -p "$DOTFILES_CACHE/vim/undodir"
 
@@ -177,7 +179,7 @@ if should_install; then
 	fi
 
 	echo 'Installing vim plugins'
-	nvim -u vim/plugins.vim '+call packager#install()' +qa
+	nvim --noplugin -u vim/plugins.vim "$nvim_update_file" "+call packager#install({ 'on_finish': \"source $DOTFILES/scripts/print_update.vim\" })"
 
 	for file in vim/spell/*.add; do
 		echo 'Compiling vim Spellfiles'
@@ -187,8 +189,11 @@ fi
 
 if should_update; then
 	echo 'Updating vim plugins'
-	nvim -u vim/plugins.vim '+call packager#update()' +qa
+	nvim --noplugin -u vim/plugins.vim "$nvim_update_file" "+call packager#update({ 'on_finish': \"source $DOTFILES/scripts/print_update.vim\" })"
 fi
+
+cat "$nvim_update_file"
+rm "$nvim_update_file"
 
 # }}}
 
