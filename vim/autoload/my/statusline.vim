@@ -92,11 +92,23 @@ function! s:NeomakeListErrors(id, runs, errors, hi) abort
 		return ''
 	else
 		let stats = []
+		let info = 0
 		for key in sort(keys(a:errors))
-			let hi = a:hi ? '%#NeomakeStatColorType'.key.'#' : ''
-			call add(stats, hi . printf('%s=%d%%*', key, a:errors[key]))
+			if key ==? 'e' || key ==? 'w'
+				call add(stats, s:NeomakeFormat(a:errors[key], key, a:hi))
+			else
+				let info += a:errors[key] " Sum up everything that is not an Error|Warning
+			endif
 		endfor
+		if info > 0
+			call add(stats, s:NeomakeFormat(info, 'I', a:hi))
+		endif
 		let output = join(stats, ',')
 	endif
 	return printf('%s[%s]', a:id, output)
+endfunction
+
+function! s:NeomakeFormat(value, key, hi) abort
+	let hi = a:hi ? '%#NeomakeStatColorType'.a:key.'#' : ''
+	return hi . printf('%s=%d%%*', a:key, a:value)
 endfunction
