@@ -25,8 +25,7 @@
 	ksdiff = difftool -t ksdiff
 	ksdiffall = ksdiff --no-prompt
 	ksmerge = mergetool -t ksdiff
-	logf = "!sha=$(git fzf-log-one) && echo \"${sha%% *}\""
-	logfa = "!sha=$(git fzf-log-one-all) && echo \"${sha%% *}\""
+	logfa = logf --all
 	logg = log --graph --decorate
 	logga = logg --all
 	logs = log --graph --decorate --format=single
@@ -41,10 +40,6 @@
 	unamend = reset --soft HEAD@{1}
 	update = fetch --all --prune
 	wipa = wip --all
-
-	# Fzf Helpers
-	fzf-log-one = "!git log --color --oneline --decorate -n 1000 | fzf +s --ansi --no-multi --color --preview=\"git show --color \\$(echo {} | sed -e 's/ .*//')\""
-	fzf-log-one-all = "!git log --color --oneline --decorate -n 1000 --all | fzf +s --ansi --no-multi --color --preview=\"git show --color \\$(echo {} | sed -e 's/ .*//')\""
 
 # Command configuration
 [commit]

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -e
+
+function log-in-fzf() {
+	if [ "$1" = '--all' ]
+	then
+		all='--all'
+		shift
+	fi
+
+	git log --color --oneline --decorate -n 1000 $all | fzf +s --ansi --no-multi --color --preview="git show --color \$(echo {} | sed -e 's/ .*//')" "$@"
+}
+
+sha=$(log-in-fzf "$@")
+
+echo "${sha%% *}"
