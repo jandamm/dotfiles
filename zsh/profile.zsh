@@ -18,3 +18,5 @@ then export ZSHRC_CONFIG_USER='MAC'
 elif [ "$(whoami)" = 'openhabian' ]
 then export ZSHRC_CONFIG_USER='HAPI'
 fi
+
+export COMPDUMPNAME="$HOME/.zsh/zcompdump_$ZSH_VERSION"

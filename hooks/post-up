@@ -5,5 +5,7 @@ ln -sf "$HOME/.vim" "$HOME/.config/nvim"
 
 # compile ~/.zshrc and ~/.zprofile
 zsh -c "zcompile $HOME/.zshrc; zcompile $HOME/.zprofile; zcompile $HOME/.zlogin"
+
+# regenerate compdump
 # compile ~/.zsh
-zsh -c 'for file in $HOME/.zsh/**/*.zsh; do zcompile $file ; done'
+"$HOME/.dotfiles/scripts/compile_zsh.zsh"
