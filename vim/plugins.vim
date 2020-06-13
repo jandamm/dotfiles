@@ -29,6 +29,7 @@ call packager#add('airblade/vim-rooter') " Always cd into root of project
 call packager#add('easymotion/vim-easymotion') " Quick moving of the cursor
 call packager#add('drmingdrmer/vim-toggle-quickfix') " Toggle QF and Loc List
 call packager#add('mbbill/undotree') " Show undo history as a tree
+call packager#add('machakann/vim-highlightedyank') " Highlight yanked text
 
 " Fuzzy finding
 call packager#add('junegunn/fzf.vim')
