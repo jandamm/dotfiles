@@ -16,7 +16,8 @@ nmap <silent> <Leader>cr         :call CodeRun()<CR>
 nmap <silent> <Leader>cu         :call CodeTest()<CR>
 
 " d -> Directory
-nmap <expr> <silent> <Leader>d   winnr('$') == 1 ? ':Sexplore<CR>' : ':Explore<CR>'
+nmap <expr> <silent> <Leader>d   winnr('$') == 1 ? ':vsplit <BAR> Dirvish<CR>' : ':Dirvish<CR>'
+nmap <expr> <silent> <Leader>D   winnr('$') == 1 ? ':vsplit <BAR> Dirvish %<CR>' : ':Dirvish %<CR>'
 " f -> Format
 nmap <silent> <Leader>f          :call CodeFormat()<CR>
 

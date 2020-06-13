@@ -18,7 +18,6 @@ call packager#add('majutsushi/tagbar') " Show file overview with tags
 call packager#add('tpope/vim-abolish')
 call packager#add('jandamm/vim-abolisher', { 'do': 'make build' }) " Faster vim-abolish!
 call packager#add('tpope/vim-unimpaired') " Better [] mappings
-call packager#add('tpope/vim-vinegar') " Improvements to netrw
 call packager#add('tpope/vim-fugitive') " Git interface
 call packager#add('tpope/vim-rhubarb') " Gbrowse for Github
 call packager#add('shumphrey/fugitive-gitlab.vim') " Gbrowse for GitLab
@@ -30,6 +29,9 @@ call packager#add('easymotion/vim-easymotion') " Quick moving of the cursor
 call packager#add('drmingdrmer/vim-toggle-quickfix') " Toggle QF and Loc List
 call packager#add('mbbill/undotree') " Show undo history as a tree
 call packager#add('machakann/vim-highlightedyank') " Highlight yanked text
+
+call packager#add('justinmk/vim-dirvish')
+" call packager#add('kristijanhusak/vim-dirvish-git')
 
 " Fuzzy finding
 call packager#add('junegunn/fzf.vim')
