@@ -9,11 +9,12 @@ set grepformat=%f:%l:%c:%m,%f:%l%m,%f\ \ %l%m
 function! s:Grep(hidden, operator, search) abort
 	let buf = bufnr()
 	let hidden = a:hidden ? '--hidden' : ''
+	let case = &smartcase ? '--smart-case' : (&ignorecase ? '--ignore-case' : '--case-sensitive')
 
 	let title = ':Grep '. (a:hidden ? '!' : '') . a:search
 	if a:operator | echo title | endif
 
-	execute printf('silent grep %s "%s"', hidden, a:search)
+	execute printf('silent grep %s %s "%s"', hidden, case, a:search)
 	call setqflist([], 'a', {'title': title})
 	if !a:operator
 		" Reset buffer and open quickfix list
