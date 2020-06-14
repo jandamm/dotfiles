@@ -66,6 +66,7 @@ function! s:GitBranch() abort
 endfunction
 
 function! s:NeomakeStatusLine(bufnr, active) abort
+	if !exists('*neomake#GetJobs') | return '' | endif
 	let jobs = s:NeomakeJobs(a:bufnr)
 	let loc = s:NeomakeListErrors('l', s:NeomakeRunning(jobs, 1), neomake#statusline#LoclistCounts(a:bufnr), a:active)
 	if !a:active
