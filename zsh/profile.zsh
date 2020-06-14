@@ -7,6 +7,8 @@ export DOTFILES_ZSH="$DOTFILES/zsh"
 path=(
 	"$HOME/.bin"
 	"$HOME/.rbenv/shims"
+	"/usr/local/opt/coreutils/libexec/gnubin"
+	"/usr/local/opt/gnu-sed/libexec/gnubin"
 	$path
 )
 
