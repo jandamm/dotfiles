@@ -1,0 +1,3 @@
+#compdef git-wip
+
+_sequence _git-add
