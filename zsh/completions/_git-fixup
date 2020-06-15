@@ -1,12 +1,11 @@
 #compdef git-fixup
 
 function _git-fixup() {
-	local refs
-	_arguments '1:command:(apply)'
-	refs=$(git log --format='%h:%s' -n 25) 2&>/dev/null
-	if [ $? -eq 0 ]; then
-		refs=( ${(f)refs} ) # Split lines by \n and store in array
-		_describe 'refs' refs
+	# Prevent completing flags
+	if [[ ! $LBUFFER =~ '^.* \-[^ ]*$' ]]
+	then
+		_arguments '1:command:(apply)'
+		_sequence _git-rebase
 	fi
 }
 
