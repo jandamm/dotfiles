@@ -3,9 +3,10 @@ if exists('g:loaded_editor')
 endif
 let g:loaded_editor = 1
 
-augroup auto_save_files
+augroup my_editor_group
 	au!
 	autocmd FocusLost * if bufname() !=? '' | update | endif " Test
+	autocmd WinEnter * if winnr('$') == 1 && &buftype == "quickfix" | q | endif
 augroup END
 
 " Command to set my default tabwidth etc.
