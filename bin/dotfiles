@@ -2,26 +2,45 @@
 
 set -e
 
+# Possible configurations {{{
+
+declare -A all_config
+all_config=( [brew]=1 [gem]=1 [npm]=1 [pip]=1 [alacritty]=1 [bat]=1 [nvim]=1 [tmux]=1 [zsh]=1 )
+
+function list_config() {
+	mapfile -d '' sorted < <(printf '%s\0' "${!all_config[@]}" | sort -z)
+	echo "${sorted[@]}"
+}
+
+# }}}
+
 # Helper functions {{{
 
 function quit_setup() {
+	[ -n "$1" ] && echo "Unknown Config: $1"
 	echo "Usage:"
 	echo "  dotfile-setup 'mode'"
 	echo "Modes: install & update"
+	echo "Configurations:"
+	list_config
 	exit 1
 }
 
 mode=-1
 
 function should_install() {
-	[ $mode -eq 0 ]
+	[ $mode -eq 0 ] && ( [ -z "$1" ] || has_config "$1")
 }
 
 function should_update() {
-	[ $mode -eq 1 ]
+	[ $mode -eq 1 ] && has_config "$1"
 }
 
-function should_execute() {
+function should_configure() {
+	has_mode && has_config "$1"
+}
+
+function has_mode() {
 	[ $mode -ge 0 ]
 }
 
@@ -30,17 +49,34 @@ function set_mode() {
 	mode=$1
 }
 
+declare -A config
+
+function set_config() {
+	config[$1]=1
+}
+
+function has_config() {
+	[ ${#config[@]} -eq 0 ] || [ "${config["$1"]}" = '1' ]
+}
+
 # }}}
 
-case $1 in
-	install)
-		set_mode 0;;
-	update)
-		set_mode 1;;
-esac
-shift
+while [ -n "$1" ]
+do
+	case "$1" in
+		install)
+			set_mode 0;;
+		update)
+			set_mode 1;;
+		*)
+			has_mode || quit_setup
+			[ "${all_config["$1"]}" = '1' ] || quit_setup "$1"
+			set_config "$1";;
+	esac
+	shift
+done
 
-should_execute || quit_setup
+has_mode || quit_setup
 
 # Setup environment {{{
 
@@ -62,7 +98,8 @@ if ! hash brew &>/dev/null; then
 fi
 
 # put every dotfile in place
-if should_install; then
+if should_install
+then
 	# Install rcm via brew, if not installed.
 	if ! hash rcup &>/dev/null; then
 		echo 'Installing brew thoughtbot/formulae/rcm'
@@ -86,7 +123,8 @@ function brew_install() {
 	fi
 }
 
-if should_execute; then
+if should_configure brew
+then
 	brew_install "$DOTFILES/Brewfile" 'Installing brews'
 	brew_install "$DOTFILES_PRIVATE/Brewfile" 'Installing private brews'
 fi
@@ -98,7 +136,7 @@ rm /usr/local/share/zsh/site-functions/_git 2>/dev/null || true
 
 # Install gems {{{
 
-if should_install
+if should_install gem
 then
 	echo "Installing missing ruby with rbenv"
 	# installs ruby version in ~/.ruby-version
@@ -108,7 +146,8 @@ then
 	bundle install
 fi
 
-if should_update; then
+if should_update gem
+then
 	echo 'Updating gems'
 	bundle update
 fi
@@ -119,12 +158,15 @@ rbenv rehash
 
 # Install npms {{{
 
-if should_install || should_update; then
+if should_configure npm
+then
 	echo 'Installing npms'
 	#shellcheck disable=SC2046
 	npm install --global $(command cat "$DOTFILES/node_modules")
 fi
-if should_update; then
+
+if should_update npm
+then
 	echo 'Updating npms'
 	#shellcheck disable=SC2046
 	npm update --global $(command cat "$DOTFILES/node_modules")
@@ -134,11 +176,14 @@ fi
 
 # Install pips {{{
 
-if should_install; then
+if should_install pip
+then
 	echo 'Installing pips'
 	pip3 install -r "$DOTFILES/pip3-requirements"
 fi
-if should_update; then
+
+if should_update pip
+then
 	echo 'Updating pips'
 	pip3 install -U -r "$DOTFILES/pip3-requirements"
 fi
@@ -150,7 +195,8 @@ fi
 
 # ALACRITTY {{{
 
-if should_install; then
+if should_install alacritty
+then
 	# Set font rendering for non retina
 	defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
 fi
@@ -159,7 +205,8 @@ fi
 
 # BAT {{{
 
-if should_install || should_update; then
+if should_configure bat
+then
 	# recompile with theme
 	bat cache --build
 fi
@@ -170,7 +217,8 @@ fi
 
 nvim_update_file="$(mktemp)"
 
-if should_install; then
+if should_install nvim
+then
 	mkdir -p "$DOTFILES_CACHE/vim/undodir"
 
 	if [ ! -d "$HOME/.vim/pack/packager/opt/vim-packager" ]
@@ -187,7 +235,8 @@ if should_install; then
 	done
 fi
 
-if should_update; then
+if should_update nvim
+then
 	echo 'Updating vim plugins'
 	nvim --noplugin -u vim/plugins.vim "$nvim_update_file" "+call packager#update({ 'on_finish': \"source $DOTFILES/scripts/print_update.vim\" })"
 fi
@@ -200,7 +249,8 @@ rm "$nvim_update_file"
 # TMUX {{{
 
 # install tmux terminal
-if should_install; then
+if should_install tmux
+then
 	if [[ ! -x  "$DOTFILES_CACHE/tmux/plugins/tpm/tpm" ]]; then
 		echo 'Installing tpm'
 		git clone https://github.com/tmux-plugins/tpm "$DOTFILES_CACHE/tmux/plugins/tpm"
@@ -209,7 +259,9 @@ if should_install; then
 	echo 'Installing tmux plugins'
 	"$DOTFILES_CACHE"/tmux/plugins/tpm/bin/install_plugins
 fi
-if should_update; then
+
+if should_update tmux
+then
 	echo 'Updating tmux plugins'
 	"$DOTFILES_CACHE"/tmux/plugins/tpm/bin/update_plugins all
 fi
@@ -218,13 +270,16 @@ fi
 
 # ZSH {{{
 
-if should_install; then
+if should_install zsh
+then
 	mkdir "$HOME/.cache/zsh"
 
 	echo 'Installing zsh plugins'
 	zsh -c "source $DOTFILES/zinit/zinit.zsh && zinit module build"
 fi
-if should_update; then
+
+if should_update zsh
+then
 	echo 'Updating zinit'
 	cd "$DOTFILES/zinit"
 	git checkout master
@@ -237,6 +292,7 @@ fi
 
 # }}}
 
+echo 'Putting files into place'
 rcup
 
 # vim:set foldmethod=marker:
