@@ -82,8 +82,8 @@ zinit light romkatv/powerlevel10k
 # Show line cursor in vi mode
 zinit light jandamm/vi-mode.zsh
 
-# Colors in man pages
-zinit light ael-code/zsh-colored-man-pages
+# # Colors in man pages
+# zinit light ael-code/zsh-colored-man-pages
 
 # }}}
 
