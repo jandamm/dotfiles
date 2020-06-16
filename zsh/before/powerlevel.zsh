@@ -264,14 +264,22 @@
       else
         branch="@${VCS_STATUS_COMMIT[1,8]}"
       fi
-      local dirty
+      local dirty pull push
       if [[ $VCS_STATUS_NUM_CONFLICTED -gt 0 ]] \
         || [[ $VCS_STATUS_NUM_STAGED -gt 0 ]] \
         || [[ $VCS_STATUS_NUM_UNSTAGED -gt 0 ]] \
         || [[ $VCS_STATUS_NUM_UNTRACKED -gt 0 ]]; then
         dirty='*'
       fi
-      typeset -g my_git_format="%F{242}${branch//\%/%%}$dirty"
+      if [[ $VCS_STATUS_COMMITS_BEHIND -gt 0 ]] \
+        || [[ $VCS_STATUS_PUSH_COMMITS_BEHIND -gt 0 ]]; then
+        pull='⇣'
+      fi
+      if [[ $VCS_STATUS_COMMITS_AHEAD -gt 0 ]] \
+        || [[ $VCS_STATUS_PUSH_COMMITS_AHEAD -gt 0 ]]; then
+        push='⇡'
+      fi
+      typeset -g my_git_format="%F{242}${branch//\%/%%}%B%F{245}$dirty$pull$push"
       return
     fi
 
