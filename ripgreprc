@@ -1,5 +1,7 @@
 --glob=!.git/*
 --glob=!.root
+--glob=!.tagroot
+--glob=!.vimroot
 --glob=!Pod/*
 --glob=!*.spl
 --glob=!*.zwc

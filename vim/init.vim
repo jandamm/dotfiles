@@ -80,17 +80,14 @@ if exists('+breakindent')
 	set breakindentopt=shift:2
 endif
 
-" Allow folder specific tags with .root file
-let g:gutentags_project_root=['.root']
+" Allow folder specific tags with .root or .tagroot file
+let g:gutentags_project_root=['.root', '.tagroot']
 " Hide tags file
 let g:gutentags_ctags_tagfile='.tags'
-" Prefer .root file over submodule over .git folder
-let g:rooter_patterns = ['.root', '.git', '.git/']
+" Prefer .root file over .vimroot over submodule over .git folder
+let g:rooter_patterns = ['.root', '.vimroot', '.git', '.git/']
 " Change cwd for current window only
 let g:rooter_use_lcd = 1
-
-" Default hide hidden files in netrw (toggle with gh)
-let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 
 " Always show two lines above/below the cursor
 set scrolloff=2
