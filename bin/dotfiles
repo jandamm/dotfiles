@@ -12,6 +12,12 @@ function list_config() {
 	echo "${sorted[@]}"
 }
 
+if [ "$1" = "--list" ]
+then
+	list_config
+	exit
+fi
+
 # }}}
 
 # Helper functions {{{
