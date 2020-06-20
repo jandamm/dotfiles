@@ -3,7 +3,6 @@
 	email = mail@jandamm.de
 
 [core]
-	editor = nvim
 	pager = my_delta
 	excludesfile = ~/.gitrc/gitignore
 
