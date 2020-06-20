@@ -44,8 +44,8 @@ PER_DIRECTORY_HISTORY_BASE="$DOTFILES_CACHE/zsh/history_dirs"
 # }}}
 
 # Settings
-export EDITOR=nvim
-export VISUAL=nvim
+[ -u $EDITOR ] && export EDITOR=nvim
+[ -u $VISUAL ] && export VISUAL=nvim
 export MANPAGER='less -s -M +Gg'
 
 fpath=("$HOME/.zsh/completions" $fpath)
