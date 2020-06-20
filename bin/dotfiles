@@ -233,7 +233,7 @@ then
 	fi
 
 	echo 'Installing vim plugins'
-	nvim --noplugin -u vim/plugins.vim "$nvim_update_file" "+call packager#install({ 'on_finish': \"source $DOTFILES/scripts/print_update.vim\" })"
+	nvim --headless --noplugin -u vim/plugins.vim "$nvim_update_file" "+call packager#install({ 'on_finish': \"source $DOTFILES/scripts/print_update.vim\" })" &>/dev/null
 
 	for file in vim/spell/*.add; do
 		echo 'Compiling vim Spellfiles'
@@ -244,7 +244,7 @@ fi
 if should_update nvim
 then
 	echo 'Updating vim plugins'
-	nvim --noplugin -u vim/plugins.vim "$nvim_update_file" "+call packager#update({ 'on_finish': \"source $DOTFILES/scripts/print_update.vim\" })"
+	nvim --headless --noplugin -u vim/plugins.vim "$nvim_update_file" "+call packager#update({ 'on_finish': \"source $DOTFILES/scripts/print_update.vim\" })" &>/dev/null
 fi
 
 cat "$nvim_update_file"
