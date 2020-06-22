@@ -28,10 +28,6 @@ xnoremap s :s/
 xnoremap * :<C-u>call my#keybinds#visualSearch('/')<CR>/<C-r>=@/<CR><CR>
 xnoremap # :<C-u>call my#keybinds#visualSearch('?')<CR>/<C-r>=@/<CR><CR>
 
-" Move visual selection (This overwrites joining lines)
-xnoremap J :m '>+1<CR>gv=gv
-xnoremap K :m '<-2<CR>gv=gv
-
 " Command line {{{
 
 " Use C-a to jump to the beginning of ex cmdline
