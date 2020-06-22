@@ -4,8 +4,6 @@ call packager#init({ 'dir': '~/.vim/pack/packager', 'jobs': 0})
 
 call packager#add('kristijanhusak/vim-packager', { 'type': 'opt' })
 
-call packager#add('dhruvasagar/vim-zoom')
-call packager#add('dhruvasagar/vim-prosession')
 " Usage
 call packager#add('tpope/vim-surround') " Add(y)/change(c)/remove(d) surroundings
 call packager#add('tpope/vim-repeat') " Add . macro to supported plugins
@@ -26,11 +24,13 @@ call packager#add('shumphrey/fugitive-gitlab.vim') " Gbrowse for GitLab
 call packager#add('tpope/vim-sleuth') " Automatically set spaces/tabs
 call packager#add('tpope/vim-eunuch') " Unix commands in vim
 call packager#add('tpope/vim-obsession') " Save sessions easily
+call packager#add('dhruvasagar/vim-prosession') " Automatically save/load sessions
 call packager#add('airblade/vim-rooter') " Always cd into root of project
 call packager#add('easymotion/vim-easymotion') " Quick moving of the cursor
 call packager#add('drmingdrmer/vim-toggle-quickfix') " Toggle QF and Loc List
 call packager#add('mbbill/undotree') " Show undo history as a tree
 call packager#add('machakann/vim-highlightedyank') " Highlight yanked text
+call packager#add('dhruvasagar/vim-zoom') " Zoom current window with m
 
 call packager#add('justinmk/vim-dirvish')
 " call packager#add('kristijanhusak/vim-dirvish-git')
