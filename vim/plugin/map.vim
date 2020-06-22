@@ -31,12 +31,14 @@ xnoremap # :<C-u>call my#keybinds#visualSearch('?')<CR>/<C-r>=@/<CR><CR>
 " Command line {{{
 
 " Use C-a to jump to the beginning of ex cmdline
-cnoremap <C-a>  <C-b>
+cnoremap <C-a>      <C-b>
+" Use default C-a (expand all matching) with C-x C-a
+cnoremap <C-X><C-A> <C-A>
 " Switch C-p/n with UP/DOWN
-cnoremap <C-p>  <UP>
-cnoremap <UP>   <C-p>
-cnoremap <C-n>  <DOWN>
-cnoremap <DOWN> <C-n>
+cnoremap <C-p>      <UP>
+cnoremap <UP>       <C-p>
+cnoremap <C-n>      <DOWN>
+cnoremap <DOWN>     <C-n>
 
 " %% to current dir in ex mode
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
