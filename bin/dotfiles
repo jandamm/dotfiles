@@ -327,4 +327,15 @@ then
 	rcup
 fi
 
+if is_install
+then
+	echo 'Do you want to use zsh from homebrew as your default shell?'
+	read -rp "(y/n): " yn
+	if [ "${yn^^}" = 'Y' ]
+	then
+		sudo sh -c 'echo "/usr/local/bin/zsh" >> /etc/shells'
+		chsh -s /usr/local/bin/zsh
+	fi
+fi
+
 # vim:set foldmethod=marker:
