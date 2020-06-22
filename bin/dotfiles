@@ -101,10 +101,14 @@ cd "$DOTFILES" || exit
 
 # Install homebrew if not available
 if ! hash brew &>/dev/null; then
+	url='https://raw.githubusercontent.com/Homebrew/install/master/install.sh'
 	echo 'Install homebrew before continuing with this setup.'
-	#shellcheck disable=SC2016
-	echo '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"'
-	exit 1
+	echo "Do you wish to install brew now? ($url)"
+	read -rp "(y/n): " yn
+	case ${yn^^} in
+		Y) /bin/bash -c "$(curl -fsSL $url)";;
+		*) exit 1;;
+	esac
 fi
 
 # put every dotfile in place

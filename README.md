@@ -1,10 +1,5 @@
 # dotfiles
 
-## Prerequisites
-
-- git
-- [Homebrew](https://brew.sh)
-
 ## Full installation
 
 - `git clone --recurse-submodules git@github.com:jandamm/dotfiles.git ~/.dotfiles`
