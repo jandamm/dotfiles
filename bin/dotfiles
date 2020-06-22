@@ -27,23 +27,23 @@ function quit_setup() {
 	echo "Usage:"
 	echo "  dotfile-setup 'mode'"
 	echo "Modes: install & update"
-	echo "Configurations:"
+	echo "Configurations (optional):"
 	list_config
 	exit 1
 }
 
 mode=-1
 
-function should_install() {
-	[ $mode -eq 0 ] && ( [ -z "$1" ] || has_config "$1")
+function is_install() {
+	[ $mode -eq 0 ]
 }
 
-function should_update() {
-	[ $mode -eq 1 ] && has_config "$1"
+function is_update() {
+	[ $mode -eq 1 ]
 }
 
 function should_configure() {
-	has_mode && has_config "$1"
+	has_config "$1"
 }
 
 function has_mode() {
@@ -62,7 +62,11 @@ function set_config() {
 }
 
 function has_config() {
-	[ ${#config[@]} -eq 0 ] || [ "${config["$1"]}" = '1' ]
+	has_all_config || [ "${config["$1"]}" = '1' ]
+}
+
+function has_all_config() {
+	[ ${#config[@]} -eq 0 ]
 }
 
 # }}}
@@ -104,7 +108,7 @@ if ! hash brew &>/dev/null; then
 fi
 
 # put every dotfile in place
-if should_install
+if is_install
 then
 	# Install rcm via brew, if not installed.
 	if ! hash rcup &>/dev/null; then
@@ -142,20 +146,23 @@ rm /usr/local/share/zsh/site-functions/_git 2>/dev/null || true
 
 # Install gems {{{
 
-if should_install gem
+if should_configure gem
 then
-	echo "Installing missing ruby with rbenv"
-	# installs ruby version in ~/.ruby-version
-	rbenv install --skip-existing
+	if is_install
+	then
+		echo "Installing missing ruby with rbenv"
+		# installs ruby version in ~/.ruby-version
+		rbenv install --skip-existing
 
-	echo 'Installing gems'
-	bundle install
-fi
+		echo 'Installing gems'
+		bundle install
+	fi
 
-if should_update gem
-then
-	echo 'Updating gems'
-	bundle update
+	if is_update
+	then
+		echo 'Updating gems'
+		bundle update
+	fi
 fi
 
 rbenv rehash
@@ -169,29 +176,32 @@ then
 	echo 'Installing npms'
 	#shellcheck disable=SC2046
 	npm install --global $(command cat "$DOTFILES/node_modules")
-fi
 
-if should_update npm
-then
-	echo 'Updating npms'
-	#shellcheck disable=SC2046
-	npm update --global $(command cat "$DOTFILES/node_modules")
+	if is_update
+	then
+		echo 'Updating npms'
+		#shellcheck disable=SC2046
+		npm update --global $(command cat "$DOTFILES/node_modules")
+	fi
 fi
 
 # }}}
 
 # Install pips {{{
 
-if should_install pip
+if should_configure pip
 then
-	echo 'Installing pips'
-	pip3 install -r "$DOTFILES/pip3-requirements"
-fi
+	if is_install
+	then
+		echo 'Installing pips'
+		pip3 install -r "$DOTFILES/pip3-requirements"
+	fi
 
-if should_update pip
-then
-	echo 'Updating pips'
-	pip3 install -U -r "$DOTFILES/pip3-requirements"
+	if is_update
+	then
+		echo 'Updating pips'
+		pip3 install -U -r "$DOTFILES/pip3-requirements"
+	fi
 fi
 
 # }}}
@@ -201,7 +211,7 @@ fi
 
 # ALACRITTY {{{
 
-if should_install alacritty
+if is_install && should_configure alacritty
 then
 	# Set font rendering for non retina
 	defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
@@ -221,84 +231,96 @@ fi
 
 # NVIM {{{
 
-nvim_update_file="$(mktemp)"
-
-if should_install nvim
+if should_configure nvim
 then
-	mkdir -p "$DOTFILES_CACHE/vim/undodir"
+	nvim_update_file="$(mktemp)"
+	trap 'rm "$nvim_update_file"' EXIT
 
-	if [ ! -d "$HOME/.vim/pack/packager/opt/vim-packager" ]
+	if is_install
 	then
-		git clone https://github.com/kristijanhusak/vim-packager "$HOME/.vim/pack/packager/opt/vim-packager"
+		mkdir -p "$DOTFILES_CACHE/vim/undodir"
+
+		if [ ! -d "$HOME/.vim/pack/packager/opt/vim-packager" ]
+		then
+			git clone https://github.com/kristijanhusak/vim-packager "$HOME/.vim/pack/packager/opt/vim-packager"
+		fi
+
+		echo 'Installing vim plugins'
+		nvim --headless --noplugin -u vim/plugins.vim "$nvim_update_file" "+call packager#install({ 'on_finish': \"source $DOTFILES/scripts/print_update.vim\" })" &>/dev/null
+
+		for file in vim/spell/*.add; do
+			echo 'Compiling vim Spellfiles'
+			nvim "+mkspell! $file" +qa
+		done
 	fi
 
-	echo 'Installing vim plugins'
-	nvim --headless --noplugin -u vim/plugins.vim "$nvim_update_file" "+call packager#install({ 'on_finish': \"source $DOTFILES/scripts/print_update.vim\" })" &>/dev/null
+	if is_update
+	then
+		echo 'Updating vim plugins'
+		nvim --headless --noplugin -u vim/plugins.vim "$nvim_update_file" "+call packager#update({ 'on_finish': \"source $DOTFILES/scripts/print_update.vim\" })" &>/dev/null
+	fi
 
-	for file in vim/spell/*.add; do
-		echo 'Compiling vim Spellfiles'
-		nvim "+mkspell! $file" +qa
-	done
+	cat "$nvim_update_file"
 fi
-
-if should_update nvim
-then
-	echo 'Updating vim plugins'
-	nvim --headless --noplugin -u vim/plugins.vim "$nvim_update_file" "+call packager#update({ 'on_finish': \"source $DOTFILES/scripts/print_update.vim\" })" &>/dev/null
-fi
-
-cat "$nvim_update_file"
-rm "$nvim_update_file"
 
 # }}}
 
 # TMUX {{{
 
-# install tmux terminal
-if should_install tmux
+if should_configure tmux
 then
-	if [[ ! -x  "$DOTFILES_CACHE/tmux/plugins/tpm/tpm" ]]; then
-		echo 'Installing tpm'
-		git clone https://github.com/tmux-plugins/tpm "$DOTFILES_CACHE/tmux/plugins/tpm"
+	# install tmux terminal
+	if is_install
+	then
+		if [[ ! -x  "$DOTFILES_CACHE/tmux/plugins/tpm/tpm" ]]; then
+			echo 'Installing tpm'
+			git clone https://github.com/tmux-plugins/tpm "$DOTFILES_CACHE/tmux/plugins/tpm"
+		fi
+
+		echo 'Installing tmux plugins'
+		"$DOTFILES_CACHE"/tmux/plugins/tpm/bin/install_plugins
 	fi
 
-	echo 'Installing tmux plugins'
-	"$DOTFILES_CACHE"/tmux/plugins/tpm/bin/install_plugins
-fi
-
-if should_update tmux
-then
-	echo 'Updating tmux plugins'
-	"$DOTFILES_CACHE"/tmux/plugins/tpm/bin/update_plugins all
+	if is_update
+	then
+		echo 'Updating tmux plugins'
+		"$DOTFILES_CACHE"/tmux/plugins/tpm/bin/update_plugins all
+	fi
 fi
 
 # }}}
 
 # ZSH {{{
 
-if should_install zsh
+if should_configure zsh
 then
-	mkdir "$HOME/.cache/zsh"
+	if is_install
+	then
+		mkdir -p "$HOME/.cache/zsh"
 
-	echo 'Installing zsh plugins'
-	zsh -c "source $DOTFILES/zinit/zinit.zsh && zinit module build"
-fi
+		echo 'Installing zsh plugins'
+		zsh -c "source $DOTFILES/zinit/zinit.zsh && zinit module build"
+	fi
 
-if should_update zsh
-then
-	echo 'Updating zinit'
-	cd "$DOTFILES/zinit"
-	git checkout master
-	git pull
-	cd "$DOTFILES"
+	if is_update
+	then
+		echo 'Updating zinit'
+		cd "$DOTFILES/zinit"
+		git checkout master
+		git pull
+		cd "$DOTFILES"
 
-	echo 'Updating zsh plugins'
-	zsh -c "source $DOTFILES/zsh/zinit.zsh && zinit update"
+		echo 'Updating zsh plugins'
+		zsh -c "source $DOTFILES/zsh/zinit.zsh && zinit update"
+	fi
 fi
 
 # }}}
 
-echo 'Putting files into place'
-rcup
+if has_all_config
+then
+	echo 'Putting files into place'
+	rcup
+fi
 
 # vim:set foldmethod=marker:

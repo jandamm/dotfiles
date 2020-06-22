@@ -4,6 +4,8 @@ call packager#init({ 'dir': '~/.vim/pack/packager', 'jobs': 0})
 
 call packager#add('kristijanhusak/vim-packager', { 'type': 'opt' })
 
+call packager#add('dhruvasagar/vim-zoom')
+call packager#add('dhruvasagar/vim-prosession')
 " Usage
 call packager#add('tpope/vim-surround') " Add(y)/change(c)/remove(d) surroundings
 call packager#add('tpope/vim-repeat') " Add . macro to supported plugins
