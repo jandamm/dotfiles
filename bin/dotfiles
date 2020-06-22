@@ -1,20 +1,14 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 set -e
 
 # Possible configurations {{{
 
-declare -A all_config
-all_config=( [brew]=1 [gem]=1 [npm]=1 [pip]=1 [alacritty]=1 [bat]=1 [nvim]=1 [tmux]=1 [zsh]=1 )
-
-function list_config() {
-	mapfile -d '' sorted < <(printf '%s\0' "${!all_config[@]}" | sort -z)
-	echo "${sorted[@]}"
-}
+all_config=( brew gem npm pip alacritty bat nvim tmux zsh )
 
 if [ "$1" = "--list" ]
 then
-	list_config
+	echo "${all_config[*]}"
 	exit
 fi
 
@@ -28,7 +22,7 @@ function quit_setup() {
 	echo "  dotfile-setup 'mode'"
 	echo "Modes: install & update"
 	echo "Configurations (optional):"
-	list_config
+	echo "${all_config[*]}"
 	exit 1
 }
 
@@ -43,7 +37,7 @@ function is_update() {
 }
 
 function should_configure() {
-	has_config "$1" && printf '\n==================== %s ====================\n' "${1^^}"
+	has_config "$1" && printf '\n==================== %s ====================\n' "$1"
 }
 
 function has_mode() {
@@ -55,14 +49,14 @@ function set_mode() {
 	mode=$1
 }
 
-declare -A config
+config=()
 
 function set_config() {
-	config[$1]=1
+	config+=("$1")
 }
 
 function has_config() {
-	has_all_config || [ "${config["$1"]}" = '1' ]
+	has_all_config || [[ " ${config[*]} " = *" ${1} "* ]]
 }
 
 function has_all_config() {
@@ -80,7 +74,7 @@ do
 			set_mode 1;;
 		*)
 			has_mode || quit_setup
-			[ "${all_config["$1"]}" = '1' ] || quit_setup "$1"
+			[[ " ${all_config[*]} " = *" ${1} "* ]] || quit_setup "$1"
 			set_config "$1";;
 	esac
 	shift
