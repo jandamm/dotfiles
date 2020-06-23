@@ -12,3 +12,9 @@ endif
 
 let $VISUAL = 'nvr -cc split --remote-wait'
 let $EDITOR = 'nvr'
+
+augroup terminal_setup
+	au!
+	" Delete git buffers to work nicely with nvr
+	autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
+augroup END
