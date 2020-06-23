@@ -69,6 +69,7 @@ call packager#add('thomasfaingnaert/vim-lsp-ultisnips')
 " Languages
 call packager#add('sheerun/vim-polyglot')
 call packager#add('keith/xcconfig.vim')
+call packager#add('junegunn/vader.vim')
 
 " iOS
 call packager#add('gfontenot/vim-xcode')
