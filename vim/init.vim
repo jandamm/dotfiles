@@ -94,7 +94,7 @@ set scrolloff=2
 
 " Persist undo
 if has('persistent_undo')
-	set undodir=$DOTFILES_CACHE/vim/undodir
+	set undodir=$HOME/.vim/undodir
 	set undofile
 endif
 

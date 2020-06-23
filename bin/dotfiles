@@ -236,7 +236,7 @@ then
 
 	if is_install
 	then
-		mkdir -p "$DOTFILES_CACHE/vim/undodir"
+		mkdir -p "$HOME/.vim/undodir"
 
 		if [ ! -d "$HOME/.vim/pack/packager/opt/vim-packager" ]
 		then
