@@ -82,7 +82,6 @@ source $HOME/.zsh/zinit.zsh
 # Appearance {{{
 
 # base16-theme
-zinit snippet https://github.com/chriskempson/base16-shell/tree/master/scripts/base16-onedark.sh
 zinit snippet https://github.com/nicodebo/base16-fzf/blob/master/bash/base16-onedark.config
 
 # Prompt theme
