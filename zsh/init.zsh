@@ -1,6 +1,16 @@
 # Measure startup and disable instant prompt
 # ZSHRC_CONFIG_DIAG=1
 
+# Save initial TERM and COLORTERM
+# This code is needed for nvim to have the correct values set.
+if [ -z $TMUX ]
+then
+	[ -z $INIT_TERM ] && export INIT_TERM=$TERM
+	[ -z $INIT_COLORTERM ] && export INIT_COLORTERM=$COLORTERM
+	export TERM=$INIT_TERM
+	export COLORTERM=$INIT_COLORTERM
+fi
+
 # Instant Prompt and Diagnose {{{
 
 if [[ $ZSHRC_CONFIG_DIAG -eq 1 ]]
