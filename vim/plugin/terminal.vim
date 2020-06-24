@@ -8,6 +8,11 @@ let g:loaded_terminal = 1
 
 if !has($TMUX)
 	tnoremap <C-SPACE><ESC> <C-\><C-n>
+	tmap     <C-SPACE>c     <C-\><C-n><C-SPACE>c
+	tmap     <C-SPACE>g     <C-\><C-n><C-SPACE>g
+
+	nnoremap <C-SPACE>c     :vsplit <BAR> terminal <CR>
+	nnoremap <C-SPACE>g     :vsplit <BAR> terminal gsh <CR>
 endif
 
 let $VISUAL = 'nvr -cc split --remote-wait'
