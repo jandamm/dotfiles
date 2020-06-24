@@ -1,7 +1,5 @@
 alias ovim=$(which vim)
 alias vim="nvim"
-alias vimplug="vim +PlugInstall +qa"
-alias vimplup="vim +PlugUpdate +only"
 
 function fuzzy_open_file() {
 	local editor
