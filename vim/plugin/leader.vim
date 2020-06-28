@@ -7,7 +7,7 @@ let g:loaded_leader = 1
 nmap <SPACE> <Leader>
 
 " Leader Keybindings
-nmap <silent> <Leader>b          :Buffers<CR>
+nmap <silent> <Leader>b          :CtrlPBuffer<CR>
 
 " Leader C
 nmap <silent> <Leader>c          :call CodeCompile()<CR>
@@ -23,8 +23,7 @@ nmap <silent> <Leader>f          :call CodeFormat()<CR>
 
 " Leader G
 " Fugitive/Git
-nmap <silent> <Leader>gb         :GSwitch<CR>
-nmap <silent> <Leader>gB         :GSwitchAll<CR>
+nmap <silent> <Leader>gb         :CtrlPGitBranch<CR>
 nmap <silent> <Leader>gc         :Gcommit<CR>
 nmap <silent> <Leader>gd         :Gvdiffsplit!<CR>
 nmap <silent> <Leader>gf         :Gfetch<CR>
@@ -45,11 +44,11 @@ nmap <silent> <Leader>gw         :Gblame<CR>
 nmap <silent> <Leader>j          gs<Space>
 nmap <silent> <Leader>l          <Plug>window:quickfix:loop
 nmap <silent> <Leader>s          :call my#keybinds#Spell()<CR>
-nmap <silent> <Leader>t          :Tags<CR>
+nmap <silent> <Leader>t          :CtrlPTag<CR>
 nmap <silent> <Leader>u          :UndotreeToggle<CR>
-nmap <silent> <Leader><SPACE>    :Files<CR>
-nmap <silent> <Leader>/          :Lines<CR>
-nmap          <Leader>?          :Rg<SPACE>
+nmap <silent> <Leader><SPACE>    :CtrlP<CR>
+nmap <silent> <Leader>/          :CtrlPLine<CR>
+nmap          <Leader>?          :Grep<SPACE>
 
 " Leader C functions {{{
 

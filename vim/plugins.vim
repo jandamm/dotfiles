@@ -36,8 +36,8 @@ call packager#add('justinmk/vim-dirvish')
 " call packager#add('kristijanhusak/vim-dirvish-git')
 
 " Fuzzy finding
-call packager#add('junegunn/fzf.vim')
-	call packager#local('/usr/local/opt/fzf')
+call packager#add('ctrlpvim/ctrlp.vim')
+call packager#add('mattn/ctrlp-git')
 
 " Themes
 call packager#add('jandamm/vim-one')
