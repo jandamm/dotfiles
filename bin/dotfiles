@@ -135,6 +135,7 @@ if should_configure brew
 then
 	brew_install "$DOTFILES/Brewfile" 'Installing brews'
 	brew_install "$DOTFILES_PRIVATE/Brewfile" 'Installing private brews'
+	brew cleanup
 fi
 
 # uninstall git completions as zsh completions are way better!
