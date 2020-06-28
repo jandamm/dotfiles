@@ -37,6 +37,7 @@ call packager#add('justinmk/vim-dirvish')
 
 " Fuzzy finding
 call packager#add('ctrlpvim/ctrlp.vim')
+call packager#add('nixprime/cpsm', { 'do': 'env PY3=ON ./install.sh' }) " Improve matching speed/accuracy for ctrlp
 call packager#add('mattn/ctrlp-git')
 
 " Themes

@@ -2,6 +2,7 @@ cask 'alacritty'
 cask 'font-jetbrains-mono'
 cask 'vimr'
 
+brew 'boost' # Used for vim cpsm
 brew 'coreutils'
 brew 'ctags'
 brew 'fzf'
