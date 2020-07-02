@@ -1,2 +1,10 @@
+.bundle
+.cache
+.cargo
+.cocoapods
 .gem
+.npm
+.rbenv
+.Trash
+.Volumes
 Library
