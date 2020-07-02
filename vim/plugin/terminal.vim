@@ -6,13 +6,15 @@ let g:loaded_terminal = 1
 " Here goes any global configuration for vim-terminal
 " Any configuration that is local to terminal buffers should go in ftplugin
 
+command Gsh :vsplit | terminal gsh
+
 if !has($TMUX)
 	tnoremap <C-SPACE><ESC> <C-\><C-n>
 	tmap     <C-SPACE>c     <C-\><C-n><C-SPACE>c
 	tmap     <C-SPACE>g     <C-\><C-n><C-SPACE>g
 
-	nnoremap <C-SPACE>c     :vsplit <BAR> terminal <CR>
-	nnoremap <C-SPACE>g     :vsplit <BAR> terminal gsh <CR>
+	nnoremap <C-SPACE>c     :vsplit <BAR> terminal<CR>
+	nnoremap <C-SPACE>g     :Gsh<CR>
 endif
 
 let $VISUAL = 'nvr -cc split --remote-wait'
