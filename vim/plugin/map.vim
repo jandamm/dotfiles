@@ -28,6 +28,10 @@ xnoremap s :s/
 xnoremap * :<C-u>call my#keybinds#visualSearch('/')<CR>/<C-r>=@/<CR><CR>
 xnoremap # :<C-u>call my#keybinds#visualSearch('?')<CR>/<C-r>=@/<CR><CR>
 
+" Repeat replace
+nnoremap & :&&<CR>
+xnoremap & :&&<CR>
+
 " Command line {{{
 
 " Use C-a to jump to the beginning of ex cmdline
