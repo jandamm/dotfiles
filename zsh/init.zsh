@@ -63,6 +63,9 @@ fpath=("$HOME/.zsh/completions" $fpath)
 # adds @(|) *(|) ?(|) +(|) which translate to regex: (|) (|)* (|)? (|)+
 setopt extendedglob
 
+# Use same characters for words like vi
+export WORDCHARS='@_'
+
 # This is required by some tools like tmux and fastlane.
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
