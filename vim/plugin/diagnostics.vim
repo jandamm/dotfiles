@@ -7,7 +7,7 @@ let g:lsp_diagnostics_enabled = 0
 
 augroup neomake_startup
 	au!
-	autocmd Filetype * ++once packadd neomake | call neomake#configure#automake('rnw', 500)
+	autocmd Filetype * ++once call neomake#configure#automake('rnw', 500)
 augroup END
 
 let g:neomake_info_sign = {

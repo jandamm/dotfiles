@@ -75,5 +75,5 @@ call packager#add('junegunn/vader.vim')
 call packager#add('gfontenot/vim-xcode')
 
 " Misc
-call packager#add('neomake/neomake', { 'type': 'opt' })
+call packager#add('neomake/neomake')
 call packager#add('tweekmonster/startuptime.vim', { 'type': 'opt' })
