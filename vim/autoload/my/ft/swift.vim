@@ -12,15 +12,15 @@ endfunction
 
 function! my#ft#swift#build() abort
 	wall
-	VtrSendCommandToRunner! swift build
+	TermDo swift build
 endfunction
 
 function! my#ft#swift#run() abort
 	wall
-	VtrSendCommandToRunner! swift run
+	TermDo swift run
 endfunction
 
 function! my#ft#swift#test() abort
 	wall
-	VtrSendCommandToRunner! swift test
+	TermDo swift test
 endfunction

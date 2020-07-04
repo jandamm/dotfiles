@@ -50,8 +50,7 @@ call packager#add('ludovicchabant/vim-gutentags')
 call packager#add('mhinz/vim-signify')
 
 " Tmux
-call packager#add('christoomey/vim-tmux-navigator') " C-hjkl movements with tmux
-call packager#add('christoomey/vim-tmux-runner')
+call packager#add('christoomey/vim-tmux-navigator', { 'type': 'opt' }) " C-hjkl movements with tmux
 
 " Auto Completion
 call packager#add('SirVer/ultisnips')
