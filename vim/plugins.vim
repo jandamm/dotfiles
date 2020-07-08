@@ -53,15 +53,19 @@ call packager#add('mhinz/vim-signify')
 call packager#add('christoomey/vim-tmux-navigator', { 'type': 'opt' }) " C-hjkl movements with tmux
 
 " Auto Completion
-call packager#add('SirVer/ultisnips')
 call packager#add('prabirshrestha/asyncomplete.vim')
 call packager#add('jandamm/asyncomplete-fuzzy-match', { 'do': 'cargo build --release' })
+	call packager#add('prabirshrestha/async.vim')
 call packager#add('prabirshrestha/asyncomplete-necovim.vim')
 	call packager#add('Shougo/neco-vim')
 
+" Snippets
+call packager#add('SirVer/ultisnips')
+call packager#add('hrsh7th/vim-vsnip')
+call packager#add('hrsh7th/vim-vsnip-integ')
+
 " LSP
 call packager#add('prabirshrestha/vim-lsp')
-	call packager#add('prabirshrestha/async.vim')
 call packager#add('prabirshrestha/asyncomplete-lsp.vim')
 call packager#add('thomasfaingnaert/vim-lsp-ultisnips')
 	call packager#add('thomasfaingnaert/vim-lsp-snippets')

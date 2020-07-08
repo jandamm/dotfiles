@@ -62,6 +62,9 @@ let g:UltiSnipsEditSplit='vertical'
 
 let g:UltiSnipsSnippetDirectories=['PrivateSnips', 'UltiSnips']
 
+let g:vsnip_snippet_dir = expand('~/.vim/vsnip')
+let g:vsnip_snippet_dirs = [expand('~/.vim/vsnip_private')]
+
 " Spacing
 set tabstop=2 " Size of Tab
 
