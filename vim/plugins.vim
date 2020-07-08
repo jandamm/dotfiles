@@ -30,7 +30,6 @@ call packager#add('easymotion/vim-easymotion') " Quick moving of the cursor
 call packager#add('drmingdrmer/vim-toggle-quickfix') " Toggle QF and Loc List
 call packager#add('mbbill/undotree') " Show undo history as a tree
 call packager#add('machakann/vim-highlightedyank') " Highlight yanked text
-call packager#add('dhruvasagar/vim-zoom') " Zoom current window with m
 
 call packager#add('justinmk/vim-dirvish')
 " call packager#add('kristijanhusak/vim-dirvish-git')
