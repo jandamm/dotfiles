@@ -25,17 +25,16 @@ endfunction
 
 " LSP {{{
 
-if executable('lsp-swift')
-	augroup swift_lsp_setup
-		au!
-		autocmd BufEnter *.swift call asyncomplete#enable_for_buffer()
-		autocmd User lsp_setup call lsp#register_server({
-					\ 'name': 'sourcekit-lsp',
-					\ 'cmd': {server_info->['lsp-swift']},
-					\ 'whitelist': ['swift'],
-					\ })
-	augroup END
-endif
+augroup swift_lsp_setup
+	au!
+	autocmd BufEnter *.swift call asyncomplete#enable_for_buffer()
+	" autocmd User lsp_setup echom 'here'
+augroup END
+call lsp#register_server({
+			\ 'name': 'sourcekit-lsp',
+			\ 'cmd': {server_info->['lsp-swift']},
+			\ 'whitelist': ['swift'],
+			\ })
 
 " }}}
 
