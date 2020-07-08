@@ -12,6 +12,7 @@ call packager#add('tpope/vim-commentary') " gc to comment in/out
 call packager#add('junegunn/vim-easy-align') " ga to align
 call packager#add('tpope/vim-endwise') " Insert endif etc automatically
 call packager#add('majutsushi/tagbar') " Show file overview with tags
+call packager#add('psliwka/vim-smoothie')
 " Better iabbrev
 " Better :s/abba/bobby/g with :S/{a,A}bba/{b,B}obby/g
 " Change case styles with cr{char}
