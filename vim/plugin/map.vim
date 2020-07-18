@@ -63,7 +63,7 @@ xmap ac <Plug>(signify-motion-outer-visual)
 " Use Enter to comfirm completion
 " Enter twice adds newline without comment
 let g:endwise_no_mappings=1
-inoremap <expr> <CR> my#keybinds#EnterEnter()
+inoremap <expr>   <CR>    my#keybinds#EnterEnter()
 
 " Tab for indent otherwise shiftwidth spaces
 inoremap <silent> <TAB>   <C-R>=(my#keybinds#UltiExpand() > 0) ? '' : my#keybinds#SmartTab()<CR>
@@ -74,6 +74,8 @@ snoremap <silent> <TAB>   <ESC>a<C-R>=(my#keybinds#UltiExpand() > 0) ? '' : my#k
 
 " Shift Tab for next/previous in pum else UltiSnips
 inoremap <expr>   <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+
+imap     <expr>   <C-t>   pumvisible() ? "\<Plug>(ctrlp_complete)" : "\<C-t>"
 
 " }}}
 
