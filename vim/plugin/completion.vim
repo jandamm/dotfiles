@@ -17,4 +17,20 @@ augroup my_completion
 
 	" Enable lsp specific stuff
 	autocmd User lsp_buffer_enabled call s:MakeLspSettings()
+
+	" Insert lsp snippet when there is only one match
+	autocmd CompleteDone * call timer_start(0, { -> s:on_complete_done() })
+
+	" Insert lsp snippet with ctrlp complete
+	autocmd User ctrlp_complete call feedkeys("\<C-x>\<C-o>", 'n')
 augroup END
+
+function s:on_complete_done()
+	if &completeopt =~# 'menuone' | return | endif
+	let info = complete_info(['selected', 'items', 'mode'])
+	if info.mode ==? 'eval'
+				\ && info.selected != -1
+				\ && len(info.items) == 1
+		call feedkeys(" \<BS>", 'n')
+	endif
+endfunction
