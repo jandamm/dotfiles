@@ -75,6 +75,9 @@ snoremap <silent> <TAB>   <ESC>a<C-R>=(my#keybinds#UltiExpand() > 0) ? '' : my#k
 " Shift Tab for next/previous in pum else UltiSnips
 inoremap <expr>   <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
+imap              <C-s>   <C-x><C-p>
+imap              <C-f>   <C-x><C-f>
+
 imap     <expr>   <C-t>   pumvisible() ? "\<Plug>(ctrlp_complete)" : "\<C-t>"
 
 " }}}
