@@ -1,0 +1,50 @@
+{
+  "Function": {
+    "prefix": ["func"],
+    "body": [
+      "function! ${1:s:${2:Name}}(${3:...}) abort",
+      "\t$0",
+      "endfunction"
+    ],
+    "description": "Function definition template."
+  },
+  "Augroup": {
+    "prefix": ["aug", "augrp"],
+    "body": [
+      "augroup ${1:name}",
+      "\tau!",
+      "\t${2:${TM_SELECTED_TEXT:auc}}",
+      "augroup END"
+    ],
+    "description": "Augroup definition template."
+  },
+  "Autocmd": {
+    "prefix": ["auc", "aucmd"],
+    "body": [
+      "autocmd ${1:VimEnter} ${2:*} $0"
+    ],
+    "description": "Autocmd definition template."
+  },
+  "Is Loaded": {
+    "prefix": ["islo", "isloaded"],
+    "body": [
+      "if exists('${1:g:loaded_${2:filename}}')",
+      "\tfinish",
+      "endif",
+      "let $1 = 1",
+      "$0"
+    ],
+    "description": "Prevent double loading plugins."
+  },
+  "Is Autoloaded": {
+    "prefix": ["isalo", "isautoloaded"],
+    "body": [
+      "if exists('${1:g:autoloaded_${2:filename}}')",
+      "\tfinish",
+      "endif",
+      "let $1 = 1",
+      "$0"
+    ],
+    "description": "Prevent double loading autoloaded files."
+  }
+}

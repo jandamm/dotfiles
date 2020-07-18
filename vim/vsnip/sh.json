@@ -1,0 +1,11 @@
+{
+  "Function": {
+    "prefix": ["func"],
+    "body": [
+      "function ${1:name}() {",
+      "\t${2:$TM_SELECTED_TEXT}${0}",
+      "}"
+    ],
+    "description": "Function definition template."
+  }
+}

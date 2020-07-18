@@ -1,0 +1,24 @@
+{
+  "commit message": {
+    "prefix": ["Type <TAB> to use the Template, else type C"],
+    "body": [
+      "${1:Summarize the change in less than 50 characters}",
+      "#   TAB or Control-F to jump forward  to the next part",
+      "# S-TAB or Control-B to jump backward to the previous part",
+      "",
+      "# Why has this change been made?",
+      "# Make a new bullet for each reason",
+      "${2:Why:",
+        "- ${3:Explain the reasons you made this change}}",
+        "",
+        "# Explanation: What as been done?",
+        "$4",
+        "",
+        "# Additional notes/links/authors?",
+        "$5",
+        "",
+        "$0"
+    ],
+    "description": "Git Commit template."
+  }
+}
