@@ -55,7 +55,7 @@ call packager#add('christoomey/vim-tmux-navigator', { 'type': 'opt' }) " C-hjkl 
 
 " Snippets
 call packager#add('SirVer/ultisnips')
-call packager#add('hrsh7th/vim-vsnip')
+call packager#add('jandamm/vim-vsnip', { 'branch': 'my_merged_state' })
 call packager#add('hrsh7th/vim-vsnip-integ')
 
 " LSP

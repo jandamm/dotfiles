@@ -67,31 +67,21 @@ inoremap <expr>   <CR>    my#keybinds#EnterEnter()
 
 " Tab for indent otherwise shiftwidth spaces
 imap <expr> <TAB>   vsnip#available(1)  ? '<Plug>(vsnip-expand)'         : my#keybinds#SmartTab()
-" Not yet implemented in upstream
-" xmap        <TAB>   <Plug>(vsnip-set-selected-text)c
+xmap        <TAB>   <Plug>(vsnip-select-text)c
 " Also expand snippets in SELECT mode.
-" smap <expr> <TAB>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : ''
+smap <expr> <TAB>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : ''
 
-" Shift Tab for next/previous in pum else UltiSnips
 inoremap <expr>   <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 imap              <C-s>   <C-x><C-p>
-imap              <C-f>   <C-x><C-f>
+
+imap     <expr>   <C-f>   vsnip#available(1)  ? '<Plug>(vsnip-jump-next)' : '<C-x><C-f>'
+smap     <expr>   <C-f>   vsnip#available(1)  ? '<Plug>(vsnip-jump-next)' : '<C-f>'
+
+imap     <expr>   <C-b>   vsnip#available(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
+smap     <expr>   <C-b>   vsnip#available(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
 
 imap     <expr>   <C-t>   pumvisible() ? '<Plug>(ctrlp_complete)' : '<C-t>'
-
-" }}}
-
-" UltiSnips {{{
-
-" Use own mappings for UltiSnips Expand
-let g:UltiSnipsExpandTrigger='<NUL>'
-let g:UltiSnipsJumpForwardTrigger='<C-f>'
-let g:UltiSnipsJumpBackwardTrigger='<C-b>'
-
-" UltiSnips removes some keymappings of select mode.
-let g:UltiSnipsRemoveSelectModeMappings = 1
-let g:UltiSnipsMappingsToIgnore = ['my#keybinds#']
 
 " }}}
 

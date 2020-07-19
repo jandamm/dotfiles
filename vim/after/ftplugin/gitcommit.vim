@@ -2,19 +2,17 @@ let w:no_whitespace_error=1
 call my#spelling#en()
 call my#format#git()
 
-let g:UltiSnipsRemoveSelectModeMappings = 0
-
-" Jump with UltiSnips defaults
-nmap <buffer> <C-f> i<C-f>
-nmap <buffer> <C-b> i<C-b>
+" Jump with vsnips defaults
+nmap <buffer> <C-f> i<TAB>
+nmap <buffer> <C-b> i<S-TAB>
 
 " Jump forward with TAB
 " Expand or Jump
-nmap <buffer> <TAB> A<C-R>=(my#keybinds#UltiExpand() > 0) ? '' : UltiSnips#JumpForwards()<CR>
-imap <buffer> <TAB> <C-f>
-smap <buffer> <TAB> <C-f>
+nmap <buffer>          <TAB> A<Plug>(vsnip-expand-or-jump)
+imap <buffer> <expr>   <TAB> vsnip#available(1)  ? '<Plug>(vsnip-jump-next)' : '<TAB>'
+smap <buffer> <expr>   <TAB> vsnip#available(1)  ? '<Plug>(vsnip-jump-next)' : '<TAB>'
 
 " Jump backwards with Shift TAB
-nmap <buffer> <S-TAB> <C-b>
-imap <buffer> <S-TAB> <C-b>
-smap <buffer> <S-TAB> <C-b>
+nmap <buffer>        <S-TAB> i<Plug>(vsnip-jump-prev)
+imap <buffer> <expr> <S-TAB> vsnip#available(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-TAB>'
+smap <buffer> <expr> <S-TAB> vsnip#available(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-TAB>'
