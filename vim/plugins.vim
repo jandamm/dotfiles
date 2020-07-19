@@ -66,7 +66,10 @@ call packager#add('prabirshrestha/vim-lsp')
 " Languages
 call packager#add('sheerun/vim-polyglot')
 call packager#add('keith/xcconfig.vim')
+
+" Vim Plugins
 call packager#add('junegunn/vader.vim')
+call packager#add('tpope/vim-scriptease')
 
 " iOS
 call packager#add('gfontenot/vim-xcode')
