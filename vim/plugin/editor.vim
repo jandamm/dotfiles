@@ -5,7 +5,7 @@ let g:loaded_editor = 1
 
 augroup my_editor_group
 	au!
-	autocmd FocusLost * if bufname() !=? '' | update | endif " Test
+	autocmd FocusLost * if bufname() !=? '' | update | endif
 	autocmd WinEnter * if winnr('$') == 1 && &buftype == "quickfix" | q | endif
 augroup END
 

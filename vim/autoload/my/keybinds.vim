@@ -19,9 +19,6 @@ function! my#keybinds#gO() abort
 	endif
 endfunction
 
-function! s:deleteNonEmptyLine() abort
-	call setline('.', '')
-endfunction
 function! s:matchesCommentsOrWhitespace(input) abort
 	return a:input =~? '^\s\+$' || s:matchesComments(a:input, 1)
 endfunction
@@ -41,20 +38,6 @@ function! s:shiftwidthSpaces(charcount) abort
 		let toNextTabstop = float2nr(&shiftwidth - fmod(a:charcount, &shiftwidth))
 		return repeat(' ', toNextTabstop)
 	endif
-endfunction
-
-function! my#keybinds#EnterNewline() abort
-	let l:pos = getcurpos()
-	normal! o
-	call s:deleteNonEmptyLine()
-	call cursor(l:pos[1], l:pos[2])
-endfunction
-
-function! my#keybinds#EnterNewlineAbove() abort
-	let l:pos = getcurpos()
-	normal! O
-	call s:deleteNonEmptyLine()
-	call cursor(l:pos[1] + 1, l:pos[2])
 endfunction
 
 function! my#keybinds#EnterEnter() abort

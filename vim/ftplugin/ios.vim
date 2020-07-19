@@ -6,7 +6,7 @@ let g:loaded_ios_ftplugin = 1
 " Xcode {{{
 
 let g:xcode_default_simulator = 'iPhone 11 Pro'
-let g:xcode_runner_command = 'VtrSendCommandToRunner! {cmd}'
+let g:xcode_runner_command = 'TermDo {cmd}'
 
 " }}}
 
