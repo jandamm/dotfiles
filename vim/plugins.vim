@@ -40,6 +40,8 @@ call packager#add('ctrlpvim/ctrlp.vim')
 call packager#add('nixprime/cpsm', { 'do': 'env PY3=ON ./install.sh' }) " Improve matching speed/accuracy for ctrlp
 call packager#add('mattn/ctrlp-git')
 call packager#add('jandamm/ctrlp-complete.vim')
+call packager#add('gikmx/vim-ctrlposession')
+call packager#add('jandamm/ctrlp_bdelete.vim')
 
 " Themes
 call packager#add('jandamm/vim-one', { 'type': 'opt' })
