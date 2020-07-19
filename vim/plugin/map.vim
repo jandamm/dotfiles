@@ -7,7 +7,7 @@ nnoremap <silent> <ESC> :nohlsearch<CR>
 " Remap U Redo
 nnoremap U <C-r>
 
-nnoremap <silent> gO :call my#keybinds#gO()<CR>
+nnoremap <silent> gO :call my#map#outline()<CR>
 
 nnoremap <silent> [w :tabprevious<CR>
 nnoremap <silent> ]w :tabnext<CR>
@@ -25,8 +25,8 @@ inoremap <C-w> <C-g>u<C-w>
 " Quick replace with s
 xnoremap s :s/
 
-xnoremap * :<C-u>call my#keybinds#visualSearch('/')<CR>/<C-r>=@/<CR><CR>
-xnoremap # :<C-u>call my#keybinds#visualSearch('?')<CR>/<C-r>=@/<CR><CR>
+xnoremap * :<C-u>call my#map#visualSearch('/')<CR>/<C-r>=@/<CR><CR>
+xnoremap # :<C-u>call my#map#visualSearch('?')<CR>/<C-r>=@/<CR><CR>
 
 " Repeat replace
 nnoremap & :&&<CR>
@@ -63,10 +63,10 @@ xmap ac <Plug>(signify-motion-outer-visual)
 " Use Enter to comfirm completion
 " Enter twice adds newline without comment
 let g:endwise_no_mappings=1
-inoremap <expr>   <CR>    my#keybinds#EnterEnter()
+inoremap <expr>   <CR>    my#map#key#enter()
 
 " Tab for indent otherwise shiftwidth spaces
-imap <expr> <TAB>   vsnip#available(1)  ? '<Plug>(vsnip-expand)'         : my#keybinds#SmartTab()
+imap <expr> <TAB>   my#map#key#tab()
 xmap        <TAB>   <Plug>(vsnip-select-text)c
 " Also expand snippets in SELECT mode.
 smap <expr> <TAB>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : ''

@@ -3,6 +3,16 @@ if exists('g:autoloaded_spelling')
 endif
 let g:autoloaded_spelling = 1
 
+function! my#spelling#toggle() abort
+	if !&spell                 " Off -> US
+		call my#spelling#en()
+	elseif &spelllang =~? 'en' " US -> DE
+		call my#spelling#de()
+	else                       " DE -> Off
+		call my#spelling#off()
+	endif
+endfunction
+
 function! my#spelling#en() abort
 		setlocal spell
 		setlocal spelllang=en_us
