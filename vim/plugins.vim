@@ -42,7 +42,8 @@ call packager#add('mattn/ctrlp-git')
 call packager#add('jandamm/ctrlp-complete.vim')
 
 " Themes
-call packager#add('jandamm/vim-one')
+call packager#add('jandamm/vim-one', { 'type': 'opt' })
+call packager#add('hardcoreplayers/oceanic-material', { 'type': 'opt' })
 
 " Ctags
 call packager#add('ludovicchabant/vim-gutentags')

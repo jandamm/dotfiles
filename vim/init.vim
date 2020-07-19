@@ -4,17 +4,17 @@ scriptencoding utf-8
 
 " Appearance {{{
 
-if has('termguicolors')
-	set termguicolors
-endif
+set termguicolors
 
-if !has('nvim')
-	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
+let g:one_allow_italics = 1
 
-let g:one_allow_italics=1
-colorscheme one
+let g:oceanic_material_allow_bold = 1
+let g:oceanic_material_allow_italic = 1
+let g:oceanic_material_allow_underline = 1
+let g:oceanic_material_allow_undercurl = 1
+
+let g:colors_name = 'one'
+" let g:colors_name = 'oceanic_material'
 
 if !has('gui_running')
 	set guioptions=M
