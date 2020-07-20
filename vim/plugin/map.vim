@@ -83,6 +83,24 @@ smap     <expr>   <C-b>   vsnip#available(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-
 
 imap     <expr>   <C-t>   pumvisible() ? '<Plug>(ctrlp_complete)' : '<C-t>'
 
+" Add until my pr is merged
+snoremap <silent> <Plug>(vsnip-select-text) <C-g>:<C-u>call <SID>get_visual_text(visualmode())<CR>gv<C-g>
+function! s:get_visual_text(type) abort
+	let reg_v = @v
+	if a:type ==# 'v'
+		normal! `<v`>"vy
+	elseif a:type ==# 'V'
+		normal! '<V'>"vy
+	elseif a:type ==? ''
+		normal! `<`>"vy
+	else
+		return
+	endif
+	call vsnip#selected_text(substitute(@v, '\n$', '', ''))
+	let @v = reg_v
+endfunction
+
+
 " }}}
 
 " Easy Align {{{
