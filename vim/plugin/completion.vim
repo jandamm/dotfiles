@@ -5,18 +5,13 @@ let g:loaded_completion = 1
 
 set completeopt=menu
 
-function! s:MakeLspSettings() abort
-	setlocal omnifunc=lsp#complete
-	nnoremap gd :LspDefinition<CR>
-endfunction
-
 augroup my_completion
 	au!
 	" Enable syntaxcomplete if no omnifunc is present
 	autocmd Filetype * if &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
 
 	" Enable lsp specific stuff
-	autocmd User lsp_buffer_enabled call s:MakeLspSettings()
+	autocmd User lsp_buffer_enabled setlocal omnifunc=lsp#complete
 
 	" Insert lsp snippet when there is only one match
 	autocmd CompleteDone * call timer_start(0, { -> s:on_complete_done() })
