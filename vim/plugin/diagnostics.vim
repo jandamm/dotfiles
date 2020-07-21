@@ -23,6 +23,7 @@ endfunction
 augroup my_diagnostics
 	au!
 	autocmd Filetype * ++once call neomake#configure#automake('rnw', 500)
+	autocmd Filetype qf nmap <buffer> q :q<CR>
 	autocmd User lsp_buffer_enabled call s:MakeLspSettings()
 augroup END
 
