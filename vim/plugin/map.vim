@@ -97,14 +97,4 @@ nnoremap gA ga
 
 " }}}
 
-" Easymotion {{{
-
-let g:EasyMotion_keys='arsdheiqwfpgjlu;yzxcvbkmtno'
-map gs <Plug>(easymotion-prefix)
-nmap gs<Space> <Plug>(easymotion-overwin-w)
-xmap gs<Space> gsw
-omap gs<Space> gsw
-
-" }}}
-
 " vim:set foldmethod=marker:

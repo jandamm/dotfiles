@@ -41,7 +41,6 @@ nmap <silent> <Leader>gs         :Gstatus<CR>
 " w -> Who did this?
 nmap <silent> <Leader>gw         :Gblame<CR>
 
-nmap <silent> <Leader>j          gs<Space>
 nmap <silent> <Leader>l          <Plug>window:quickfix:loop
 nmap <silent> <Leader>s          :call my#spelling#toggle()<CR>
 nmap <silent> <Leader>t          :CtrlPTag<CR>
