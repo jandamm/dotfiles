@@ -14,6 +14,9 @@ command! SleuthOverwrite call my#format#default()
 
 command! X !chmod +x %
 
+" Git Messenger
+let g:git_messenger_always_into_popup = v:true
+
 " Undo Tree
 let g:undotree_SetFocusWhenToggle = 1
 function g:Undotree_CustomMap() abort
