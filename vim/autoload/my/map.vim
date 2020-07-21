@@ -15,6 +15,7 @@ function! my#map#outline() abort
 	if &filetype ==? 'man' || &filetype ==? 'help'
 		normal! gO
 	else
-		TagbarToggle
+		" Here should buffer tags be loaded into loc/qf list
+		CtrlPBufTag
 	endif
 endfunction
