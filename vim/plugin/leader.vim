@@ -10,16 +10,16 @@ nmap <SPACE> <Leader>
 nmap <silent> <Leader>b          :CtrlPBuffer<CR>
 
 " Leader C
-nmap <silent> <Leader>c          :call CodeCompile()<CR>
-nmap <silent> <Leader>cc         :call CodeCompile()<CR>
-nmap <silent> <Leader>cr         :call CodeRun()<CR>
-nmap <silent> <Leader>cu         :call CodeTest()<CR>
+nmap <silent> <Leader>c          :call my#map#leader#compile()<CR>
+nmap <silent> <Leader>cc         :call my#map#leader#compile()<CR>
+nmap <silent> <Leader>cr         :call my#map#leader#run()<CR>
+nmap <silent> <Leader>cu         :call my#map#leader#test()<CR>
 
 " d -> Directory
 nmap <expr> <silent> <Leader>d   winnr('$') == 1 ? ':Dirvish!<CR>' : ':Dirvish<CR>'
 nmap <expr> <silent> <Leader>D   winnr('$') == 1 ? ':Dirvish! %<CR>' : ':Dirvish %<CR>'
 " f -> Format
-nmap <silent> <Leader>f          :call CodeFormat()<CR>
+nmap <silent> <Leader>f          :call my#map#leader#format()<CR>
 
 " Leader G
 " Fugitive/Git
@@ -48,31 +48,5 @@ nmap <silent> <Leader>u          :UndotreeToggle<CR>
 nmap <silent> <Leader><SPACE>    :CtrlP<CR>
 nmap <silent> <Leader>/          :CtrlPLine<CR>
 nmap          <Leader>?          :Grep<SPACE>
-
-" Leader C functions {{{
-
-" The following functions should be overwritten in ftplugin if necessary.
-func CodeFormat() abort
-	call my#format#trim()
-	call my#format#reindent()
-endfunc
-
-func CodeCompile() abort
-	echo s:NotDefined('compiler')
-endfunc
-
-func CodeRun() abort
-	echo s:NotDefined('run')
-endfunc
-
-func CodeTest() abort
-	echo s:NotDefined('test')
-endfunc
-
-func s:NotDefined(type) abort
-	return '{' . a:type . '} is not defined for [' . &filetype . ']'
-endfunc
-
-" }}}
 
 " vim:set foldmethod=marker:

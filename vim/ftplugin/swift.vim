@@ -1,27 +1,9 @@
-command! -buffer -nargs=* SwiftFormat call my#ft#swift#format('<args>')
+command! -buffer -nargs=* SwiftFormat call my#ft#swift#swiftformat('<args>')
 
 if exists('g:loaded_swift_ftplugin')
 	finish
 endif
 let g:loaded_swift_ftplugin = 1
-
-" Leader Mapping {{{
-
-function! CodeFormat() abort
-	call my#ft#swift#format('%')
-endfunction
-
-function! CodeCompile() abort
-	call my#ft#swift#build()
-endfunction
-function! CodeRun() abort
-	call my#ft#swift#run()
-endfunction
-function! CodeTest() abort
-	call my#ft#swift#test()
-endfunction
-
-" }}}
 
 " LSP {{{
 

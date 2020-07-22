@@ -3,7 +3,7 @@ if exists('g:autoloaded_ft_ios')
 endif
 let g:autoloaded_ft_ios = 1
 
-function! my#ft#ios#build() abort
+function! my#ft#ios#compile() abort
 	wall
 	Xbuild
 endfunction

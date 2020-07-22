@@ -10,20 +10,6 @@ let g:xcode_runner_command = 'TermDo {cmd}'
 
 " }}}
 
-" Leader Mapping {{{
-
-function! CodeCompile() abort
-	call my#ft#ios#build()
-endfunction
-function! CodeRun() abort
-	call my#ft#ios#run()
-endfunction
-function! CodeTest() abort
-	call my#ft#ios#test()
-endfunction
-
-" }}}
-
 " LSP {{{
 
 if executable('lsp-ios')
