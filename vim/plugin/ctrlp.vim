@@ -8,9 +8,14 @@ let g:ctrlp_user_command = 'rg --files --hidden %s'
 let g:ctrlp_use_caching = 0
 let g:ctrlp_working_path_mode = 0 " Use vim-rooter else use 'g:ctrlp_root_markers'
 
+let g:ctrlp_extensions = ['tags', 'git_branch', 'menu', 'lines', 'obsession']
+
 " Configure CtrlP Bdelete
 let g:ctrlp_bdelete_keymap_trigger = '<c-x>'
 let g:ctrlp_prompt_mappings = { 'AcceptSelection("h")': ['<c-cr>', '<c-s>'] }
 
 " Use better CtrlP matcher (CPSM)
 let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+
+" Local extensions
+command! CtrlPMenu call ctrlp#init(ctrlp#menu#id())

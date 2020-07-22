@@ -9,6 +9,8 @@ nnoremap U <C-r>
 
 nnoremap <silent> gO :call my#map#outline()<CR>
 
+nnoremap <C-n> <CMD>CtrlPMenu<CR>
+
 nnoremap <silent> [w :tabprevious<CR>
 nnoremap <silent> ]w :tabnext<CR>
 nnoremap <silent> [W :tabfirst<CR>
