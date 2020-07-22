@@ -38,6 +38,7 @@ call packager#add('justinmk/vim-dirvish')
 call packager#add('ctrlpvim/ctrlp.vim')
 call packager#add('nixprime/cpsm', { 'do': 'env PY3=ON ./install.sh' }) " Improve matching speed/accuracy for ctrlp
 call packager#add('mattn/ctrlp-git')
+call packager#add('mattn/ctrlp-filer')
 call packager#add('jandamm/ctrlp-complete.vim')
 call packager#add('gikmx/vim-ctrlposession')
 call packager#add('jandamm/ctrlp_bdelete.vim')
