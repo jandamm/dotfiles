@@ -6,36 +6,39 @@ let g:autoloaded_map_leader = 1
 " If necessary these functions should be overwritten with:
 " my#ft#&ft#*()
 function! my#map#leader#format() abort
-	try
-		call my#ft#{&ft}#format()
-	catch
+	if !s:executed('format')
 		call my#format#trim()
 		call my#format#reindent()
-	endtry
+	endif
 endfunction
 
 function! my#map#leader#compile() abort
-	try
-		call my#ft#{&ft}#compile()
-	catch
+	if !s:executed('compile')
 		echo s:undefined('compiler')
-	endtry
+	endif
 endfunction
 
 function! my#map#leader#run() abort
-	try
-		call my#ft#{&ft}#run()
-	catch
+	if !s:executed('run')
 		echo s:undefined('run')
-	endtry
+	endif
 endfunction
 
 function! my#map#leader#test() abort
-	try
-		call my#ft#{&ft}#test()
-	catch
+	if !s:executed('test')
 		echo s:undefined('test')
-	endtry
+	endif
+endfunction
+
+function! s:executed(func) abort
+	for ft in split(&filetype, '\.')
+		try
+			call my#ft#{ft}#{a:func}()
+			return 1
+		catch
+			continue
+		endtry
+	endfor
 endfunction
 
 function! s:undefined(type) abort
