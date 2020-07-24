@@ -3,7 +3,7 @@ if exists('g:loaded_packager')
 endif
 let g:loaded_packager = 1
 
-command! PackagerInstall update <BAR> runtime plugins.vim <BAR> call packager#install()
-command! -bang PackagerUpdate update <BAR> runtime plugins.vim <BAR> call packager#update({ 'force_hooks': '<bang>' })
-command! PackagerClean update <BAR> runtime plugins.vim <BAR> call packager#clean()
-command! PackagerStatus update <BAR> runtime plugins.vim <BAR> call packager#status()
+command! PackInstall update <BAR> runtime plugins.vim <BAR> call packager#install()
+command! -bang PackUpdate update <BAR> runtime plugins.vim <BAR> call packager#update({ 'force_hooks': '<bang>' })
+command! PackClean update <BAR> runtime plugins.vim <BAR> call packager#clean()
+command! PackStatus update <BAR> runtime plugins.vim <BAR> call packager#status()
