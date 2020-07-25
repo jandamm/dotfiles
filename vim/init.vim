@@ -84,7 +84,7 @@ let g:gutentags_ctags_tagfile='.tags'
 " Prefer .root file over .vimroot over submodule over .git folder
 let g:rooter_patterns = ['.root', '.vimroot', '.git', '.git/']
 " Change cwd for current window only
-let g:rooter_use_lcd = 1
+let g:rooter_cd_cmd = 'lcd'
 
 " Always show two lines above/below the cursor
 set scrolloff=2
