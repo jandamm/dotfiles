@@ -16,7 +16,7 @@ function! my#map#key#enter() abort
 endfunction
 
 function! my#map#key#tab() abort
-	if vsnip#available(1)
+	if vsnip#expandable()
 		return "\<Plug>(vsnip-expand)"
 	elseif pumvisible()
 		return "\<C-n>"
