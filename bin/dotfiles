@@ -260,6 +260,9 @@ then
 	fi
 
 	cat "$nvim_update_file"
+
+	echo 'Updating vim-pack tags'
+	neovim-packtags
 fi
 
 # }}}
