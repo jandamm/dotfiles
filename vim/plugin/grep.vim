@@ -3,10 +3,21 @@ if exists('g:loaded_grep')
 endif
 let g:loaded_grep = 1
 
-set grepprg=rg\ --vimgrep
-set grepformat=%f:%l:%c:%m,%f:%l%m,%f\ \ %l%m
+let s:rgprg = 'rg --vimgrep'
+let s:rgformat = '%f:%l:%c:%m,%f:%l%m,%f\ \ %l%m'
 
-function! s:Grep(hidden, operator, quote, search) abort
+let &grepprg = s:rgprg
+let &grepformat = s:rgformat
+
+function! s:Grep(hidden, operator, quote, rg, search) abort
+	if a:rg
+		let prg = &grepprg
+		let format = &grepformat
+
+		let &grepprg = s:rgprg
+		let &grepformat = s:rgformat
+	endif
+
 	if !a:operator | cclose | endif
 
 	let buf = bufnr()
@@ -25,10 +36,15 @@ function! s:Grep(hidden, operator, quote, search) abort
 		execute 'buffer '.buf
 		copen
 	endif
+
+	if a:rg
+		let &grepprg = prg
+		let &grepformat = format
+	endif
 endfunction
 
-command! -bang -nargs=* Grep call s:Grep(<bang>0, 0, 1, <q-args>)
-command! -bang -nargs=* -complete=dir Rg call s:Grep(<bang>0, 0, 0, <q-args>)
+command! -bang -nargs=* Grep call s:Grep(<bang>0, 0, 1, 0, <q-args>)
+command! -bang -nargs=* -complete=dir Rg call s:Grep(<bang>0, 0, 0, 1, <q-args>)
 
 function! s:GrepOperator(type) abort
 	let reg_g = @g
@@ -41,7 +57,7 @@ function! s:GrepOperator(type) abort
 	endif
 	let search = @g
 	let @g = reg_g
-	call s:Grep(0, 1, 1, search)
+	call s:Grep(0, 1, 1, 0, search)
 endfunction
 
 nnoremap <silent> g/ :set operatorfunc=<SID>GrepOperator<CR>g@
