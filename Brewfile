@@ -4,7 +4,7 @@ cask 'vimr'
 
 brew 'boost' # Used for vim cpsm
 brew 'coreutils'
-brew 'ctags'
+brew 'universal-ctags/universal-ctags/universal-ctags', args: ["HEAD"]
 brew 'fzf'
 brew 'git'
 brew 'git-delta'
