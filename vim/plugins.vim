@@ -26,6 +26,7 @@ call packager#add('tpope/vim-eunuch') " Unix commands in vim
 call packager#add('tpope/vim-obsession') " Save sessions easily
 call packager#add('dhruvasagar/vim-prosession') " Automatically save/load sessions
 call packager#add('airblade/vim-rooter') " Always cd into root of project
+call packager#add('jandamm/vim-projplugin') " Load project specific config
 call packager#add('drmingdrmer/vim-toggle-quickfix') " Toggle QF and Loc List
 call packager#add('mbbill/undotree') " Show undo history as a tree
 call packager#add('machakann/vim-highlightedyank') " Highlight yanked text
