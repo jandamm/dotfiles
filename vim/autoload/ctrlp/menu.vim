@@ -54,7 +54,7 @@ function! ctrlp#menu#init() abort
 
 	call filter(entries, 'v:val.sname !=# "menu"')
 
-	return map(entries, 'printf("%15s\t: %s", v:val.sname, v:val.lname)')
+	return map(entries, 'printf("%s\t: %s", v:val.sname, v:val.lname)')
 endfunction
 
 
