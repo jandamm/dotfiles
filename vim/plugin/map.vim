@@ -110,17 +110,22 @@ function! s:get_visual_text(type) abort
 	let @v = reg_v
 endfunction
 
-
 " }}}
 
-" Easy Align {{{
+" Tabular {{{
 
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(LiveEasyAlign)
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(LiveEasyAlign)
+nmap ga :Tabularize<SPACE>/
+xmap ga :Tabularize<SPACE>/
 
-" Set ga to gA (ga is vim-align, gA is print ascii)
+nmap gav :Tabularize<SPACE>/\V
+xmap gav :Tabularize<SPACE>/\V
+
+for shortcut in [':', '=', ',', '.']
+	execute 'nmap ga'.shortcut.' <CMD>Tabularize /\V'.shortcut.'<CR>'
+	execute 'xmap ga'.shortcut.' <CMD>Tabularize /\V'.shortcut.'<CR>'
+endfor
+
+" Set ga to gA (ga is Tabularize, gA is print ascii)
 nnoremap gA ga
 
 " }}}

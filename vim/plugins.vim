@@ -9,7 +9,7 @@ call packager#add('tpope/vim-surround') " Add(y)/change(c)/remove(d) surrounding
 call packager#add('tpope/vim-repeat') " Add . macro to supported plugins
 call packager#add('tpope/vim-speeddating') " Fix i_Ctrl+a for dates
 call packager#add('tpope/vim-commentary') " gc to comment in/out
-call packager#add('junegunn/vim-easy-align') " ga to align
+call packager#add('godlygeek/tabular') " ga to align
 call packager#add('tpope/vim-endwise') " Insert endif etc automatically
 call packager#add('psliwka/vim-smoothie')
 " Better iabbrev
