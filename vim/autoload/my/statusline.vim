@@ -11,7 +11,12 @@ hi! link User3 OneStatusLineHue62
 
 let s:light_statusline_ft = ['qf', 'help', 'man']
 
-function! my#statusline#get(active, winnr) abort
+function! my#statusline#overwrite(winnr, active) abort
+	let filetype = getbufvar(winbufnr(a:winnr), '&filetype')
+	return index(s:light_statusline_ft, filetype) > -1
+endfunction
+
+function! my#statusline#get(winnr, active) abort
 	let line = a:active ? '%1*' : ''
 
 	let bufnr = winbufnr(a:winnr)
