@@ -45,6 +45,8 @@ nmap <silent> <Leader>l          <Plug>window:quickfix:loop
 nmap <silent> <Leader>s          :call my#spelling#toggle()<CR>
 nmap <silent> <Leader>t          :CtrlPTag<CR>
 nmap <silent> <Leader>u          :UndotreeToggle<CR>
+nmap          <Leader>y          <Plug>(YoinkRotateBack)
+nmap          <Leader>Y          <Plug>(YoinkRotateForward)
 nmap <silent> <Leader><SPACE>    :CtrlP<CR>
 nmap <silent> <Leader>/          :CtrlPLine<CR>
 nmap          <Leader>?          :Grep<SPACE>

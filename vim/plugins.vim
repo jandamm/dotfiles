@@ -34,6 +34,7 @@ call packager#add('rhysd/git-messenger.vim') " Quickly show last commit message
 call packager#add('wellle/targets.vim') " Quickly show last commit message
 call packager#add('t9md/vim-smalls') " Quick cursor movement
 call packager#add('qpkorr/vim-bufkill') " BD to kill buffer but keep window
+call packager#add('svermeulen/vim-yoink') " Yank history
 
 call packager#add('justinmk/vim-dirvish')
 " call packager#add('kristijanhusak/vim-dirvish-git')

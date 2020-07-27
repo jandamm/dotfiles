@@ -125,6 +125,10 @@ if has('clipboard')     " If the feature is available
 	endif
 endif
 
+let g:yoinkMaxItems = 50
+let g:yoinkSyncNumberedRegisters = 1
+let g:yoinkIncludeDeleteOperations = 1
+
 " }}}
 
 " Search {{{
