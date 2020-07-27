@@ -33,13 +33,14 @@ call packager#add('machakann/vim-highlightedyank') " Highlight yanked text
 call packager#add('rhysd/git-messenger.vim') " Quickly show last commit message
 call packager#add('wellle/targets.vim') " Quickly show last commit message
 call packager#add('t9md/vim-smalls') " Quick cursor movement
+call packager#add('qpkorr/vim-bufkill') " BD to kill buffer but keep window
 
 call packager#add('justinmk/vim-dirvish')
 " call packager#add('kristijanhusak/vim-dirvish-git')
 
 " Fuzzy finding
 call packager#add('ctrlpvim/ctrlp.vim')
-call packager#add('nixprime/cpsm', { 'do': 'env PY3=ON ./install.sh' }) " Improve matching speed/accuracy for ctrlp
+call packager#add('jandamm/cpsm', { 'do': 'env PY3=ON ./install.sh' }) " Improve matching speed/accuracy for ctrlp
 call packager#add('mattn/ctrlp-git')
 call packager#add('mattn/ctrlp-filer')
 call packager#add('jandamm/ctrlp-complete.vim')
