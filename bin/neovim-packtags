@@ -3,4 +3,4 @@
 set -eu
 
 cd "$HOME/.vim/pack" || exit
-ctags -R .
+ctags -R --languages=vim
