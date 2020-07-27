@@ -19,8 +19,14 @@ let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 
 " Add support for more buftag languages
 let g:ctrlp_buftag_types = {
-    \ 'swift'     : '--language-force=swift --swift-types=drmf'
-    \ }
+			\ 'swift' : '--language-force=swift --swift-types=drmf'
+			\ }
+
+" Use own ctrlp statusline
+let g:ctrlp_status_func = {
+			\ 'main': 'my#statusline#ctrlp',
+			\ 'prog': 'my#statusline#ctrlp_progress'
+			\ }
 
 " Local extensions
 command! CtrlPMenu call ctrlp#init(ctrlp#menu#id())
