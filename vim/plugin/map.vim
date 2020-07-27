@@ -60,6 +60,14 @@ xmap ac <Plug>(signify-motion-outer-visual)
 
 " }}}
 
+" Cursor movement {{{
+
+nmap gs <Plug>(smalls)
+xmap gs <Plug>(smalls)
+omap gs <Plug>(smalls)
+
+" }}}
+
 " Completion {{{
 
 " Use Enter to comfirm completion

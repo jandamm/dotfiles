@@ -19,6 +19,11 @@ let g:git_messenger_always_into_popup = v:true
 
 " Undo Tree
 let g:undotree_SetFocusWhenToggle = 1
-function g:Undotree_CustomMap() abort
+function! g:Undotree_CustomMap() abort
 	map <buffer> U <C-r>
 endfunction
+
+" Smalls
+let g:smalls_jump_keys = ';ARSTNEIODHPLFUWYQGJVMBKCXZ'
+let g:smalls_auto_jump = 1
+let g:smalls_auto_jump_timeout = 0.5
