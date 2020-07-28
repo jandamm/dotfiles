@@ -5,6 +5,10 @@ let g:loaded_filetype_after = 1
 
 augroup ios_detection
 	au!
-	autocmd BufRead */Projects/work/*.swift set filetype=ios.swift
-	autocmd BufRead */ios/*.swift set filetype=ios.swift
+	autocmd BufReadPost */Projects/work/*.swift call timer_start(0, { -> s:iOS() })
+	autocmd BufReadPost */ios/*.swift call timer_start(0, { -> s:iOS() })
 augroup END
+
+function! s:iOS() abort
+	set filetype=ios.swift
+endfunction
