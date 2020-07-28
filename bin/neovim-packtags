@@ -4,3 +4,10 @@ set -eu
 
 cd "$HOME/.vim/pack" || exit
 ctags -R --languages=vim
+
+# Unluckily I cannot get cpsm build with ICU support.
+# So it crashes with unicode characters.
+# In most projects this shouldn't be a problem.
+# For tags of vim packages I cannot control this.
+# So this replaces every(?) invalid character with a placeholder.
+LC_ALL=C gsed -i "s/[\x80-\xFF]/☒/g" tags
