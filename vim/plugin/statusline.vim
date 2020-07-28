@@ -19,28 +19,29 @@ endfunction
 function! s:Setup() abort
 	let curwin = winnr()
 	for win in range(1, winnr('$'))
-		call setwinvar(win, '&statusline', s:GetStatusLineVar(win,!s:ctrlp && curwin == win))
+		call setwinvar(win, '&statusline', s:GetStatusLineVar(win,curwin == win))
 	endfor
 endfunction
 
-let s:ctrlp = 0
-let g:ctrlp_buffer_func = {
-			\ 'enter': 'CtrlPStatuslineEnter',
-			\ 'exit': 'CtrlPStatuslineExit'
-			\ }
-
-function! CtrlPStatuslineEnter() abort
-	let s:ctrlp = 1
-	call s:Setup()
-endfunction
+" CtrlP seems to remove all autocommands when closing.
+let g:ctrlp_buffer_func = { 'exit': 'CtrlPStatuslineExit' }
 
 function! CtrlPStatuslineExit() abort
-	let s:ctrlp = 0
 	call timer_start(0, { -> s:Setup() })
+endfunction
+
+function! s:PluginSetup() abort
+	call s:Setup()
+	augroup my_statusline_ft
+		au!
+		autocmd WinLeave <buffer> call s:Setup()
+	augroup END
 endfunction
 
 augroup my_statusline
 	autocmd!
 	autocmd WinEnter,BufEnter,BufDelete,SessionLoadPost,FileChangedShellPost * call s:Setup()
 	autocmd FileType qf call s:Setup()
+
+	autocmd FileType ctrlp call s:PluginSetup()
 augroup END
