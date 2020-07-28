@@ -96,8 +96,7 @@ if has('persistent_undo')
 endif
 
 " Snippet directories
-let g:vsnip_snippet_dir = expand('~/.vim/vsnip')
-let g:vsnip_snippet_dirs = [expand('~/.vim/vsnip_private')]
+let g:vsnip_snippet_dir = expand('~/.vim/vsnip/default')
 
 " }}}
 
