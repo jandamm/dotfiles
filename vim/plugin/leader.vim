@@ -10,14 +10,18 @@ nmap <SPACE> <Leader>
 nmap <silent> <Leader>b          :CtrlPBuffer<CR>
 
 " Leader C
-nmap <silent> <Leader>c          :call my#map#leader#compile()<CR>
 nmap <silent> <Leader>cc         :call my#map#leader#compile()<CR>
 nmap <silent> <Leader>cr         :call my#map#leader#run()<CR>
 nmap <silent> <Leader>cu         :call my#map#leader#test()<CR>
 
+function! s:dirvish(dir) abort
+	let bang = winnr('$') == 1 ? '!' : ''
+	execute 'Dirvish'.bang.a:dir
+endfunction
+
 " d -> Directory
-nmap <expr> <silent> <Leader>d   winnr('$') == 1 ? ':Dirvish!<CR>' : ':Dirvish<CR>'
-nmap <expr> <silent> <Leader>D   winnr('$') == 1 ? ':Dirvish! %<CR>' : ':Dirvish %<CR>'
+nmap <silent> <Leader>d   :call <SID>dirvish('')<CR>
+nmap <silent> <Leader>D   :call <SID>dirvish('%')<CR>
 " f -> Format
 nmap <silent> <Leader>f          :call my#map#leader#format()<CR>
 
@@ -48,6 +52,7 @@ nmap <silent> <Leader>u          :UndotreeToggle<CR>
 nmap          <Leader>y          <Plug>(YoinkRotateBack)
 nmap          <Leader>Y          <Plug>(YoinkRotateForward)
 nmap <silent> <Leader><SPACE>    :CtrlP<CR>
+nmap <silent> <Leader><TAB>      :CtrlPObsession<CR>
 nmap <silent> <Leader>/          :CtrlPLine<CR>
 nmap          <Leader>?          :Grep<SPACE>
 
