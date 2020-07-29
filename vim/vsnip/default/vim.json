@@ -3,7 +3,7 @@
     "prefix": ["func"],
     "body": [
       "function! ${1:s:${2:Name}}(${3:...}) abort",
-      "\t$0",
+      "\t${0:$TM_SELECTED_TEXT}",
       "endfunction"
     ],
     "description": "Function definition template."
