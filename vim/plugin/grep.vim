@@ -9,7 +9,7 @@ let s:rgformat = '%f:%l:%c:%m,%f:%l%m,%f\ \ %l%m'
 let &grepprg = s:rgprg
 let &grepformat = s:rgformat
 
-function! s:Grep(hidden, operator, quote, rg, search) abort
+function! s:Grep(hidden, operator, verbatim, rg, search) abort
 	if a:rg
 		let prg = &grepprg
 		let format = &grepformat
@@ -23,8 +23,8 @@ function! s:Grep(hidden, operator, quote, rg, search) abort
 	let buf = bufnr()
 	let hidden = a:hidden ? '--hidden' : ''
 	let case = &smartcase ? '--smart-case' : (&ignorecase ? '--ignore-case' : '--case-sensitive')
-	let quote = a:quote ? '"' : ''
-	let search = printf('%s%s%s', quote, a:search, quote)
+	let verbatim = a:verbatim ? '"' : ''
+	let search = printf('%s%s%s', verbatim, fnameescape(a:search), verbatim)
 
 	let title = 'grep'. (a:hidden ? '! ' : ' ') . search
 	if a:operator | echo title | endif
