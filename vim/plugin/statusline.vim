@@ -48,5 +48,5 @@ augroup my_statusline
 	autocmd WinEnter,BufEnter,BufDelete,SessionLoadPost,FileChangedShellPost * call s:Setup()
 	autocmd FileType qf call s:Setup()
 
-	autocmd FileType ctrlp call s:PluginSetup()
+	autocmd FileType ctrlp,leaderGuide call s:PluginSetup()
 augroup END

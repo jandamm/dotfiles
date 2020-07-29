@@ -3,13 +3,22 @@ if exists('g:loaded_leader')
 endif
 let g:loaded_leader = 1
 
-" Use Space & \ as Leader
-nmap <SPACE> <Leader>
+" Use Space as Leader
+let mapleader = "\<space>"
+
+let g:lmap = {}
+call leaderGuide#register_prefix_descriptions('<Space>', 'g:lmap')
+nnoremap <silent> <leader> :<c-u>LeaderGuide  '<Space>'<CR>
+
+" temporary fix to close LeaderGuide with : to execute a command
+let g:lmap[':'] = [ ':call feedkeys(":")', 'Commandline']
 
 " Leader Keybindings
 nmap <silent> <Leader>b          :CtrlPBuffer<CR>
 
 " Leader C
+" nmap <silent> <Leader>c          :call my#map#leader#compile()<CR>
+let g:lmap.c = { 'name': '+compiling' }
 nmap <silent> <Leader>cc         :call my#map#leader#compile()<CR>
 nmap <silent> <Leader>cr         :call my#map#leader#run()<CR>
 nmap <silent> <Leader>cu         :call my#map#leader#test()<CR>
@@ -27,15 +36,17 @@ nmap <silent> <Leader>f          :call my#map#leader#format()<CR>
 
 " Leader G
 " Fugitive/Git
+let g:lmap.g = { 'name': '+git' }
 nmap <silent> <Leader>gb         :CtrlPGitBranch<CR>
 nmap <silent> <Leader>gc         :Gcommit<CR>
 nmap <silent> <Leader>gd         :Gvdiffsplit!<CR>
 nmap <silent> <Leader>gf         :Gfetch<CR>
 nmap <silent> <Leader>gF         :Gpull<CR>
 nmap          <Leader>gg         :Git<SPACE>
-" h -> Hunk
+let g:lmap.g.h = { 'name': '+hunk' }
 nmap <silent> <Leader>ghd        :SignifyHunkDiff<CR>
 nmap <silent> <Leader>ghu        :SignifyHunkUndo<CR>
+let g:lmap.g.l = { 'name': '+log' }
 nmap <silent> <Leader>glf        :0Glog<CR>
 nmap <silent> <Leader>gll        :Glog<CR>
 nmap <silent> <Leader>gm         :Gmerge<CR>
