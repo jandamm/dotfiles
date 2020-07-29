@@ -39,6 +39,10 @@ function! my#statusline#get(winnr, active) abort
 	let bufnr = winbufnr(a:winnr)
 	let filetype = getbufvar(bufnr, '&filetype')
 
+	if filetype ==# 'terminal'
+		return my#statusline#terminal(bufnr, a:active)
+	endif
+
 	if index(s:light_statusline_ft, filetype) > -1
 		return line . '%<%f%*%=%P-%l-%c'
 	endif
@@ -48,8 +52,7 @@ function! my#statusline#get(winnr, active) abort
 	let line .= ' %<%f'                                " filename (shorten if line is too long)
 	let line .= '%*'                                   " Reset color
 
-	let c2 = a:active ? '%2*' : '%*'
-	let line .= ' '.c2.'(%3*%n'.c2.')%*'               " Buffer number
+	let line .= ' '.s:bufnr(a:active)                  " Buffer number
 
 	if a:active
 		let line .= s:GitBranch()                        " Git branch
@@ -66,11 +69,23 @@ function! my#statusline#get(winnr, active) abort
 
 	" Right part
 	let line .= s:NeomakeStatusLine(bufnr, a:active)   " Show Neomake Errors and Warnings
-	let line .= '  %P'                                 " viewport of buffer (Top / % / Bot)
-	let line .= '-%l'                                  " current line
-	let line .= '-%c'                                  " current column
+	let line .= '  '.s:viewport                        " viewport of buffer
 
 	return line
+endfunction
+
+let s:viewport = '%P-%l-%c'
+
+function! s:bufnr(active) abort
+	let c2 = a:active ? '%2*' : '%*'
+	return c2.'(%3*%n'.c2.')%*'
+endfunction
+
+function! my#statusline#terminal(bufnr, active) abort
+	let term_title = getbufvar(a:bufnr, 'term_title')
+	" get dir, pid and bin. Replace with dir, bufnr, bin, pid
+	let term = substitute(term_title, '\vterm:\/\/(.*)\/\/(\d*):%(\/usr\/%(local\/)?bin\/)?(.*)', '\1%* '.s:bufnr(a:active).' [\3] [\2]', '')
+	return (a:active ? '%1*' : '').'λ '.term.'%*%='.s:viewport
 endfunction
 
 function! my#statusline#ctrlp(focus, byfname, regex, prev, item, next, marked) abort
