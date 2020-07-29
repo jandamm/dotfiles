@@ -40,6 +40,9 @@ endfunction
 
 augroup my_statusline
 	autocmd!
+
+	autocmd ColorScheme * call my#statusline#colorscheme()
+
 	autocmd VimEnter * ++once call timer_start(0, { -> s:Setup() })
 
 	autocmd WinEnter,BufEnter,BufDelete,SessionLoadPost,FileChangedShellPost * call s:Setup()

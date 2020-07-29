@@ -5,9 +5,26 @@ if exists('g:autoloaded_statusline')
 endif
 let g:autoloaded_statusline = 1
 
-hi! link User1 OneStatusLineHue2
-hi! link User2 OneStatusLineMono2
-hi! link User3 OneStatusLineHue62
+function! my#statusline#colorscheme() abort
+	if g:colors_name ==# 'one'
+		hi! link User1 OneStatusLineHue2
+		hi! link User2 OneStatusLineMono2
+		hi! link User3 OneStatusLineHue62
+	elseif g:colors_name ==# 'oceanic_material'
+		if !exists('s:colors')
+			let s:colors = g:OceanicMaterialPalette()
+		endif
+		call s:define_User(1, s:colors.blue)
+		call s:define_User(2, s:colors.grey1)
+		call s:define_User(3, s:colors.yellow)
+	endif
+endfunction
+
+function! s:define_User(num, fg) abort
+	exec 'hi! User'.a:num.' guifg='.a:fg[0]
+endfunction
+
+call my#statusline#colorscheme()
 
 let s:light_statusline_ft = ['qf', 'help', 'man']
 
