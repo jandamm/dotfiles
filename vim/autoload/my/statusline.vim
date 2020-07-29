@@ -41,6 +41,10 @@ function! my#statusline#get(winnr, active) abort
 		return my#statusline#terminal(bufnr, a:active)
 	endif
 
+	if filetype ==# 'fugitive'
+		return my#statusline#fugitive(bufnr, a:active)
+	endif
+
 	if index(s:light_statusline_ft, filetype) > -1
 		return my#statusline#light(bufnr, a:active)
 	endif
@@ -76,6 +80,14 @@ endfunction
 
 function! my#statusline#light(bufnr, active) abort
 	return my#statusline#part#filename(a:bufnr, a:active, '').'%='.my#statusline#part#viewport(a:bufnr, a:active)
+endfunction
+
+function! my#statusline#fugitive(bufnr, active) abort
+	let line = my#statusline#part#filename(a:bufnr, a:active, 'δ ')
+	let line .= my#statusline#part#bufnr(a:bufnr, a:active)
+	let line .= my#statusline#part#git(a:bufnr, a:active)
+	let line .= '%='.my#statusline#part#viewport(a:bufnr, a:active)
+	return line
 endfunction
 
 function! my#statusline#terminal(bufnr, active) abort
