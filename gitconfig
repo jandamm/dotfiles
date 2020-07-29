@@ -30,7 +30,6 @@
 	logs = log --graph --decorate --format=single
 	logsa = logs --all
 	master = switch master
-	nvim = !nvim # Use tmux opener with gsh
 	publish = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
 	resetp = reset --patch
 	staged = diff --staged
@@ -38,6 +37,7 @@
 	uncommit = reset HEAD~
 	unamend = reset --soft HEAD@{1}
 	update = fetch --all --prune
+	vim = !nvim # Easier to use with gsh
 	wipa = wip --all
 
 # Command configuration
