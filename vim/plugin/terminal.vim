@@ -6,7 +6,7 @@ let g:loaded_terminal = 1
 " Here goes any global configuration for vim-terminal
 " Any configuration that is local to terminal buffers should go in ftplugin
 
-command Gsh :vsplit <BAR> terminal gsh
+command! Gsh :vsplit <BAR> terminal gsh
 
 function! s:TermDo(cmd) abort
 	vsplit
@@ -14,7 +14,7 @@ function! s:TermDo(cmd) abort
 	wincmd w
 endfunction
 
-command -nargs=* TermDo call s:TermDo(<q-args>)
+command! -nargs=* TermDo call s:TermDo(<q-args>)
 
 if has($TMUX)
 	packadd vim-tmux-navigator

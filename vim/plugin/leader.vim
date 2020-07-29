@@ -32,7 +32,7 @@ nmap <silent> <Leader>gc         :Gcommit<CR>
 nmap <silent> <Leader>gd         :Gvdiffsplit!<CR>
 nmap <silent> <Leader>gf         :Gfetch<CR>
 nmap <silent> <Leader>gF         :Gpull<CR>
-nmap <silent> <Leader>gg         :Git<SPACE>
+nmap          <Leader>gg         :Git<SPACE>
 " h -> Hunk
 nmap <silent> <Leader>ghd        :SignifyHunkDiff<CR>
 nmap <silent> <Leader>ghu        :SignifyHunkUndo<CR>
