@@ -37,6 +37,22 @@ xnoremap # :<C-u>call my#map#visualSearch('?')<CR>/<C-r>=@/<CR><CR>
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 
+" QuickFix mappings {{{
+
+augroup qf_mappings
+	au!
+	autocmd Filetype qf call s:qf_mappings()
+augroup END
+
+function! s:qf_mappings() abort
+	nnoremap <silent> <buffer>   q   :q<CR>
+	" Deactivate CtrlP in qf
+	nnoremap          <buffer> <C-n> <C-n>
+	nnoremap          <buffer> <C-p> <C-p>
+endfunction
+
+" }}}
+
 " Command line {{{
 
 " Use C-a to jump to the beginning of ex cmdline
