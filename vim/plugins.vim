@@ -71,6 +71,7 @@ call packager#add('prabirshrestha/vim-lsp')
 " Languages
 call packager#add('sheerun/vim-polyglot')
 call packager#add('keith/xcconfig.vim')
+call packager#add('Valodim/vim-zsh-completion')
 
 " Vim Plugins
 call packager#add('junegunn/vader.vim')
