@@ -34,8 +34,6 @@ function! my#statusline#overwrite(winnr, active) abort
 endfunction
 
 function! my#statusline#get(winnr, active) abort
-	let line = a:active ? '%1*' : ''
-
 	let bufnr = winbufnr(a:winnr)
 	let filetype = getbufvar(bufnr, '&filetype')
 
@@ -44,10 +42,11 @@ function! my#statusline#get(winnr, active) abort
 	endif
 
 	if index(s:light_statusline_ft, filetype) > -1
-		return line . '%<%f%*%=%P-%l-%c'
+		return my#statusline#light(bufnr, a:active)
 	endif
 
 	" Left part
+	let line = a:active ? '%1*' : ''
 	let line .= 'ν'                                    " Symbol
 	let line .= ' %<%f'                                " filename (shorten if line is too long)
 	let line .= '%*'                                   " Reset color
@@ -79,6 +78,10 @@ let s:viewport = '%P-%l-%c'
 function! s:bufnr(active) abort
 	let c2 = a:active ? '%2*' : '%*'
 	return c2.'(%3*%n'.c2.')%*'
+endfunction
+
+function! my#statusline#light(bufnr, active) abort
+	return (a:active ? '%1*' : '') . '%<%f%*%=' . s:viewport
 endfunction
 
 function! my#statusline#terminal(bufnr, active) abort
