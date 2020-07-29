@@ -24,8 +24,8 @@ let g:ctrlp_buftag_types = {
 
 " Use own ctrlp statusline
 let g:ctrlp_status_func = {
-			\ 'main': 'my#statusline#ctrlp',
-			\ 'prog': 'my#statusline#ctrlp_progress'
+			\ 'main': 'my#statusline#ctrlp#main',
+			\ 'prog': 'my#statusline#ctrlp#prog'
 			\ }
 
 " Local extensions
