@@ -21,11 +21,9 @@ augroup my_completion
 augroup END
 
 function s:on_complete_done()
-	if &completeopt =~# 'menuone' | return | endif
-	let info = complete_info(['selected', 'items', 'mode'])
-	if info.mode ==? 'eval'
-				\ && info.selected != -1
-				\ && len(info.items) == 1
+	if &completeopt =~# '\v<menuone>' | return | endif
+	let info = complete_info(['selected', 'mode'])
+	if info.mode ==? 'eval' && info.selected == -2
 		call feedkeys(" \<BS>", 'n')
 	endif
 endfunction
