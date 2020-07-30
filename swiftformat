@@ -2,6 +2,7 @@
 --allman false
 --empty void
 --indent tabs
+--smarttabs true
 
 # no headers
 --header strip
