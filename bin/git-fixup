@@ -2,8 +2,12 @@
 
 set -e
 
-get_sha() {
+function get_sha() {
 	[ "$1" ] && echo "$1"
+}
+
+function has_branch() {
+	git show-branch "$1" &>/dev/null
 }
 
 if [ "$1" = 'apply' ]; then
@@ -12,7 +16,20 @@ if [ "$1" = 'apply' ]; then
 	# TODO: cleanup
 	# TODO: preselect oldest not pushed commit (if no sha is provided)
 
-	sha=$(get_sha "$@" || git logf --prompt='Fixup> ' --header='Select the oldest commit before a fixed commit.')
+	# $ as parameter selects the current upstream branch
+	if [ "$1" = "$" ]
+	then
+		shift
+		branch="$(git remote | head -n 1)/$(git branch --show-current)"
+		if has_branch "$branch"
+		then
+			sha="$branch"
+		fi
+	fi
+
+	if [ -z "$sha" ]; then
+		sha=$(get_sha "$@" || git logf --prompt='Fixup> ' --header='Select the oldest commit before a fixed commit.')
+	fi
 
 	git rebase --interactive --autosquash "${sha%% *}"
 	exit
