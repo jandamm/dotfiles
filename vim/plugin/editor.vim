@@ -7,6 +7,7 @@ augroup my_editor_group
 	au!
 	autocmd FocusLost * if bufname() !=? '' | update | endif
 	autocmd WinEnter * if winnr('$') == 1 && &buftype == "quickfix" | q | endif
+	autocmd User ProsessionPre wall
 augroup END
 
 " Command to set my default tabwidth etc.
@@ -28,3 +29,7 @@ let g:smalls_jump_keys = 'ARSTNEIODHPLFUWY;QGJVMBKCXZ'
 let g:smalls_jump_trigger = ';'
 let g:smalls_auto_jump = 1
 let g:smalls_auto_jump_timeout = 0.5
+
+
+
+
