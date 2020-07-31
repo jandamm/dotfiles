@@ -37,7 +37,6 @@
 	uncommit = reset HEAD~
 	unamend = reset --soft HEAD@{1}
 	update = fetch --all --prune
-	vim = !nvim # Easier to use with gsh
 	wipa = wip --all
 
 # Command configuration
