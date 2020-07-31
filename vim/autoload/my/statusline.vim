@@ -93,6 +93,6 @@ endfunction
 function! my#statusline#terminal(bufnr, active) abort
 	let term_title = getbufvar(a:bufnr, 'term_title')
 	" get dir, pid and bin. Replace with dir, bufnr, bin, pid
-	let term = substitute(term_title, '\vterm:\/\/(.*)\/\/(\d*):%(\/usr\/%(local\/)?bin\/)?(.*)', '\1%* '.my#statusline#part#bufnr(a:bufnr, a:active).' [\3] [\2]', '')
+	let term = substitute(term_title, '\vterm:\/\/(.*)\/\/(\d*):%(\/usr\/%(local\/)?bin\/)?(.*)', '\1%*'.my#statusline#part#bufnr(a:bufnr, a:active).' [\3] [\2]', '')
 	return (a:active ? '%1*' : '').'λ '.term.'%*%='.my#statusline#part#viewport(a:bufnr, a:active)
 endfunction
