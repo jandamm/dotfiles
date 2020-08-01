@@ -12,7 +12,7 @@
     "prefix": ["aug", "augrp"],
     "body": [
       "augroup ${1:name}",
-      "\taugroup!",
+      "\tautocmd!",
       "\t${2:${TM_SELECTED_TEXT:auc}}",
       "augroup END"
     ],
