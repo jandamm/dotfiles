@@ -38,15 +38,12 @@ function! s:dirvish(dir) abort
 	execute 'Dirvish'.bang.a:dir
 endfunction
 
-" d -> Directory
 nmap <silent> <Leader>d   :call <SID>dirvish('')<CR>
-let g:lmap.d = 'Root-Directory'
+" let g:lmap.d = 'Root-Directory'
 nmap <silent> <Leader>D   :call <SID>dirvish('%')<CR>
-let g:lmap.D = 'Directory'
-" f -> Format
+" let g:lmap.D = 'Directory'
 
 " Leader G
-" Fugitive/Git
 let g:lmap.g = { 'name': 'git' }
 nmap <silent> <Leader>gb         :CtrlPGitBranch<CR>
 nmap <silent> <Leader>gc         :Gcommit<CR>
@@ -56,9 +53,12 @@ nmap <silent> <Leader>gF         :Gpull<CR>
 nmap          <Leader>gg         :Git<SPACE>
 let g:lmap.g.h = { 'name': 'hunk' }
 nmap <silent> <Leader>ghd        :SignifyHunkDiff<CR>
+let g:lmap.g.h.d = 'Diff'
 nmap <silent> <Leader>ghu        :SignifyHunkUndo<CR>
+let g:lmap.g.h.u = 'Undo'
 let g:lmap.g.l = { 'name': 'log' }
 nmap <silent> <Leader>glf        :0Glog<CR>
+let g:lmap.g.l.f = 'File'
 nmap <silent> <Leader>gll        :Glog<CR>
 nmap <silent> <Leader>gm         :Gmerge<CR>
 nmap <silent> <Leader>gp         :Gpush<CR>
@@ -68,7 +68,9 @@ nmap <silent> <Leader>gs         :Gstatus<CR>
 nmap <silent> <Leader>gw         :Gblame<CR>
 
 nmap <silent> <Leader>l          <Plug>window:quickfix:loop
+let g:lmap.l = 'Toggle quickfix'
 nmap <silent> <Leader>s          :call my#spelling#toggle()<CR>
+let g:lmap.s = 'Toggle spelling'
 nmap <silent> <Leader>t          :CtrlPTag<CR>
 nmap <silent> <Leader>u          :UndotreeToggle<CR>
 nmap          <Leader>y          <Plug>(YoinkRotateBack)
