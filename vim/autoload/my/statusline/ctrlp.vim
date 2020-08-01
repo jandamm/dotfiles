@@ -15,9 +15,7 @@ function! my#statusline#ctrlp#main(focus, byfname, regex, prev, item, next, mark
 		let line .= a:focus
 	endif
 	let line .= '%*'
-	" cpsm doesn't support regex so don't show it.
-	" let line .= ' (%3*' . (a:regex ? 'regex-' : '') . a:byfname . '%*)'
-	let line .= ' (%3*' . a:byfname . '%*)'
+	let line .= ' (%3*' . (a:regex ? 'regex-' : '') . a:byfname . '%*)'
 	let line .= ' [%2*'.a:prev.'%*|%1*'.a:item.'%*|%2*'.a:next.'%*]'
 	let line .= a:marked ==? '<->' ? a:marked : ''
 	let line .= '%=%{getcwd()}'

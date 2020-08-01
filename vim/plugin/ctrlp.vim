@@ -22,7 +22,7 @@ let g:ctrlp_filer_disable_lcd = 1
 let g:ctrlp_filer_show_hidden = 1
 
 " Use better CtrlP matcher (CPSM)
-let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+let g:ctrlp_match_func = {'match': 'my#ctrlp#match'}
 
 " Add support for more buftag languages
 let g:ctrlp_buftag_types = {
