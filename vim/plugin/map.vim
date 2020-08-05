@@ -127,7 +127,7 @@ xmap gav :Tabularize<SPACE>/\V
 
 for shortcut in [':', '=', ',', '.']
 	execute 'nmap ga'.shortcut.' <CMD>Tabularize /\V'.shortcut.'<CR>'
-	execute 'xmap ga'.shortcut.' <CMD>Tabularize /\V'.shortcut.'<CR>'
+	execute 'xmap ga'.shortcut.' :Tabularize /\V'.shortcut.'<CR>'
 endfor
 
 " Set ga to gA (ga is Tabularize, gA is print ascii)
