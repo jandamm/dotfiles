@@ -14,19 +14,19 @@ endfunction
 
 function! my#map#leader#compile() abort
 	if !s:executed('compile')
-		echo s:undefined('compiler')
+		call s:undefined('compiler')
 	endif
 endfunction
 
 function! my#map#leader#run() abort
 	if !s:executed('run')
-		echo s:undefined('run')
+		call s:undefined('run')
 	endif
 endfunction
 
 function! my#map#leader#test() abort
 	if !s:executed('test')
-		echo s:undefined('test')
+		call s:undefined('test')
 	endif
 endfunction
 
@@ -42,5 +42,7 @@ function! s:executed(func) abort
 endfunction
 
 function! s:undefined(type) abort
-	return '{' . a:type . '} is not defined for [' . &filetype . ']'
+	echohl Error
+	echo '{' . a:type . '} is not defined for [' . &filetype . ']'
+	echohl NONE
 endfunction
