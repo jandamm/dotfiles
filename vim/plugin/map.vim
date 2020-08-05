@@ -107,11 +107,11 @@ inoremap <expr>   <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 imap              <C-s>   <C-x><C-p>
 
-imap     <expr>   <C-f>   vsnip#available(1)  ? '<Plug>(vsnip-jump-next)' : '<C-x><C-f>'
-smap     <expr>   <C-f>   vsnip#available(1)  ? '<Plug>(vsnip-jump-next)' : '<C-f>'
+imap     <expr>   <C-f>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-x><C-f>'
+smap     <expr>   <C-f>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-f>'
 
-imap     <expr>   <C-b>   vsnip#available(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
-smap     <expr>   <C-b>   vsnip#available(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
+imap     <expr>   <C-b>   vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
+smap     <expr>   <C-b>   vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
 
 imap     <expr>   <C-t>   pumvisible() ? '<Plug>(ctrlp_complete)' : '<C-t>'
 
