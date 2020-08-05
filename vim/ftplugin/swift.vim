@@ -10,7 +10,7 @@ let g:loaded_swift_ftplugin = 1
 call lsp#register_server({
 			\ 'name': 'sourcekit-lsp',
 			\ 'cmd': {server_info->['lsp-swift']},
-			\ 'whitelist': ['swift'],
+			\ 'allowlist': ['swift'],
 			\ })
 
 " }}}

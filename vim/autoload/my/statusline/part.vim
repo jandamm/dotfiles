@@ -17,6 +17,10 @@ function! my#statusline#part#filename(bufnr, active, prefix) abort
 	return (a:active ? '%1*' : '') . a:prefix . '%<%f%*'
 endfunction
 
+function! my#statusline#part#qf(bufnr, active, prefix) abort
+	return exists('w:quickfix_title') ? ' '.w:quickfix_title : ''
+endfunction
+
 function! my#statusline#part#sleuth(bufnr, active) abort
 	let ret = SleuthIndicator()
 	return ret !=? 'ts=2' ? ' [' . ret . ']' : ''
@@ -30,8 +34,6 @@ function! my#statusline#part#viewport(bufnr, active) abort
 	return ' %P-%l-%c'
 endfunction
 
-" Neomake {{{
-
 function! my#statusline#part#neomake(bufnr, active) abort
 	if !exists('*neomake#GetJobs') | return '' | endif
 	let jobs = filter(neomake#GetJobs(), 'a:bufnr == v:val.bufnr')
@@ -43,6 +45,8 @@ function! my#statusline#part#neomake(bufnr, active) abort
 	let space = loc !=? '' && qf !=? '' ? ' ' : ''
 	return loc . space . qf
 endfunction
+
+" Neomake {{{
 
 function! s:NeomakeRunning(jobs, loc) abort
 	return !empty(filter(copy(a:jobs), 'v:val.file_mode == ' . a:loc))

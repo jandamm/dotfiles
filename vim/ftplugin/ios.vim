@@ -12,16 +12,11 @@ let g:xcode_runner_command = 'TermDo {cmd}'
 
 " LSP {{{
 
-if executable('lsp-ios')
-	augroup ios_lsp_setup
-		au!
-		autocmd User lsp_setup call lsp#register_server({
-					\ 'name': 'sourcekit-lsp',
-					\ 'cmd': {server_info->['lsp-ios']},
-					\ 'whitelist': ['ios.swift', 'ios'],
-					\ })
-	augroup END
-endif
+call lsp#register_server({
+			\ 'name': 'sourcekit-lsp-ios',
+			\ 'cmd': {server_info->['lsp-ios']},
+			\ 'allowlist': ['ios.swift', 'ios'],
+			\ })
 
 " }}}
 
