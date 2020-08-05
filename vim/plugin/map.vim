@@ -37,15 +37,18 @@ xnoremap # :<C-u>call my#map#visualSearch('?')<CR>/<C-r>=@/<CR><CR>
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 
-" QuickFix mappings {{{
+" Buffer local mappings {{{
 
-augroup qf_mappings
-	au!
+augroup ft_mappings
+	autocmd!
 	autocmd Filetype qf call s:qf_mappings()
+	autocmd Filetype qf,help,gitmessengerpopup call s:quit_mapping()
 augroup END
 
+function! s:quit_mapping() abort
+	nnoremap <silent> <buffer>   gq  <CMD>q<CR>
+endfunction
 function! s:qf_mappings() abort
-	nnoremap <silent> <buffer>   q   :q<CR>
 	" Deactivate CtrlP in qf
 	nnoremap          <buffer> <C-n> <C-n>
 	nnoremap          <buffer> <C-p> <C-p>
