@@ -14,7 +14,9 @@ function! s:MakeLspSettings() abort
 	nmap <buffer> gt <Plug>(lsp-type-definition)
 	nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
 	nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
-	nmap <buffer> K  <Plug>(lsp-hover)
+	if &filetype !=? 'vim'
+		nmap <buffer> K  <Plug>(lsp-hover)
+	endif
 
 	" Not sure how to integrate yet
 	" nmap <buffer> <leader>rn <plug>(lsp-rename)
