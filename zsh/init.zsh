@@ -159,8 +159,7 @@ unsetopt nullglob
 # Completion {{{
 
 # Initialize zsh completion
-# Always use cached version. Recreating is done in zlogin. (Should only dump if there is no file)
-autoload -Uz compinit && compinit -C -d "$HOME/.zsh/zcompdump_$ZSH_VERSION"
+autoload -Uz compinit && compinit -d "$HOME/.zsh/zcompdump_$ZSH_VERSION"
 
 # load bash completion
 # autoload bashcompinit && bashcompinit
