@@ -23,6 +23,8 @@ endif
 set number
 set relativenumber
 
+" Will be adjusted to be enabled only in the active window
+set cursorline
 set colorcolumn=120,160
 
 set signcolumn=yes
