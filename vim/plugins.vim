@@ -70,7 +70,7 @@ call packager#add('hrsh7th/vim-vsnip')
 call packager#add('hrsh7th/vim-vsnip-integ')
 
 " LSP
-call packager#add('prabirshrestha/vim-lsp')
+call packager#add('jandamm/vim-lsp')
 
 " Languages
 call packager#add('sheerun/vim-polyglot')

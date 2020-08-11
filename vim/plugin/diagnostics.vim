@@ -36,6 +36,7 @@ function! s:RegisterLsp(...) abort
 				\ 'name': 'sourcekit-lsp-ios',
 				\ 'cmd': {server_info->['lsp-ios']},
 				\ 'allowlist': ['ios', 'ios.swift'],
+				\ 'languageId': 'swift',
 				\ })
 	call lsp#register_server({
 				\ 'name': 'sourcekit-lsp',
