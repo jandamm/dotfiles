@@ -41,6 +41,10 @@ function! my#statusline#get(winnr, active) abort
 		return my#statusline#terminal(bufnr, a:active)
 	endif
 
+	if filetype ==# 'dirvish'
+		return my#statusline#dirvish(bufnr, a:active)
+	endif
+
 	if filetype ==# 'fugitive'
 		return my#statusline#fugitive(bufnr, a:active)
 	endif
@@ -55,21 +59,19 @@ endfunction
 function! my#statusline#default(bufnr, active) abort
 	" Left part
 	let line = my#statusline#part#filename(a:bufnr, a:active, 'ν ')
-
 	let line .= my#statusline#part#bufnr(a:bufnr, a:active)
 
 	if a:active
 		let line .= my#statusline#part#git(a:bufnr, a:active)
-		let line .= &filetype !=? '' ? ' %y' : ''         " filetype if set abort
+		let line .= &filetype !=? '' ? ' %y' : '' " filetype if set
 		let line .= my#statusline#part#spell(a:bufnr, a:active)
 		let line .= my#statusline#part#sleuth(a:bufnr, a:active)
 	endif
 
-	let line .= '%4m'                                  " modified ' [+]' (always 4 chars)
-	let line .= '%5r'                                  " readonly with ' [RO]' (always 5 chars)
+	let line .= '%4m' " modified ' [+]' (always 4 chars)
+	let line .= '%5r' " readonly with ' [RO]' (always 5 chars)
 
-	" Break sides
-	let line .= '%='
+	let line .= '%=' " Break sides
 
 	" Right part
 	let line .= my#statusline#part#neomake(a:bufnr, a:active)
@@ -81,6 +83,14 @@ endfunction
 function! my#statusline#light(bufnr, active) abort
 	return my#statusline#part#filename(a:bufnr, a:active, '')
 				\ .my#statusline#part#qf(a:bufnr, a:active, '')
+				\ .'%='
+				\ .my#statusline#part#viewport(a:bufnr, a:active)
+endfunction
+
+function! my#statusline#dirvish(bufnr, active) abort
+	return my#statusline#part#filename(a:bufnr, a:active, 'ν ')
+				\ .my#statusline#part#bufnr(a:bufnr, a:active)
+				\ .my#statusline#part#git(a:bufnr, a:active)
 				\ .'%='
 				\ .my#statusline#part#viewport(a:bufnr, a:active)
 endfunction
