@@ -14,6 +14,8 @@ nnoremap <silent> gO :call my#map#outline()<CR>
 
 nnoremap <C-n> <CMD>CtrlPMenu<CR>
 
+nnoremap g<C-]> <CMD>CtrlPtjump<CR>
+
 nnoremap <silent> [w :tabprevious<CR>
 nnoremap <silent> ]w :tabnext<CR>
 nnoremap <silent> [W :tabfirst<CR>
@@ -29,6 +31,8 @@ inoremap <C-w> <C-g>u<C-w>
 
 " Quick replace with s
 xnoremap s :s/
+
+xnoremap g<C-]> <CMD>CtrlPtjumpVisual<CR>
 
 xnoremap * :<C-u>call my#map#visualSearch('/')<CR>/<C-r>=@/<CR><CR>
 xnoremap # :<C-u>call my#map#visualSearch('?')<CR>/<C-r>=@/<CR><CR>
