@@ -58,6 +58,9 @@ function! s:qf_mappings() abort
 	nnoremap          <buffer> <C-p> <C-p>
 endfunction
 
+" Show overview of fugitive mappings with g?
+let g:fuguidive_map_help = 'g?'
+
 " }}}
 
 " Command line {{{
