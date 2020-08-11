@@ -17,9 +17,13 @@ augroup my_completion
 	autocmd CompleteDone * call timer_start(0, { -> s:on_complete_done() })
 
 	" Insert lsp snippet with ctrlp complete
-	autocmd User ctrlp_complete call feedkeys("\<C-x>\<C-o>", 'n')
+	autocmd User ctrlp_complete call s:on_ctrlp_complete_done()
 augroup END
 
+function s:on_ctrlp_complete_done()
+	if &filetype =~? 'swift' | return | endif
+	call feedkeys("\<C-x>\<C-o>", 'n')
+endfunction
 function s:on_complete_done()
 	if &completeopt =~# '\v<menuone>' | return | endif
 	let info = complete_info(['selected', 'mode'])
