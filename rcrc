@@ -1,3 +1,3 @@
 EXCLUDES="zinit README.md Brewfile* resources node_modules pip3-requirements Gemfile*"
-SYMLINK_DIRS="vim/vsnip/**"
+SYMLINK_DIRS="vim/vsnip/*"
 DOTFILES_DIRS="$DOTFILES $DOTFILES_PRIVATE"
