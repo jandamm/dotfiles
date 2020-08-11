@@ -14,14 +14,20 @@ function! my#statusline#colorscheme() abort
 		if !exists('s:colors')
 			let s:colors = g:OceanicMaterialPalette()
 		endif
-		call s:define_User(1, s:colors.blue)
-		call s:define_User(2, s:colors.grey1)
-		call s:define_User(3, s:colors.yellow)
+		call s:define_User(1, s:colors.blue, ['NONE'])
+		call s:define_User(2, s:colors.grey1, ['NONE'])
+		call s:define_User(3, s:colors.yellow, ['NONE'])
+	elseif g:colors_name ==# 'dracula'
+		call s:define_User(1, g:dracula#palette.purple, g:dracula#palette.subtle)
+		call s:define_User(2, [g:dracula#palette.color_8], g:dracula#palette.subtle)
+		call s:define_User(3, g:dracula#palette.yellow, g:dracula#palette.subtle)
+		hi! clear Statusline
+		execute 'hi! Statusline guibg='.g:dracula#palette.subtle[0]
 	endif
 endfunction
 
-function! s:define_User(num, fg) abort
-	exec 'hi! User'.a:num.' guifg='.a:fg[0]
+function! s:define_User(num, fg, bg) abort
+	exec 'hi! User'.a:num.' guifg='.a:fg[0].' guibg='.a:bg[0]
 endfunction
 
 call my#statusline#colorscheme()

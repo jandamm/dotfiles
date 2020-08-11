@@ -56,6 +56,7 @@ call packager#add('ivalkeen/vim-ctrlp-tjump')
 " Themes
 call packager#add('jandamm/vim-one', { 'type': 'opt' })
 call packager#add('hardcoreplayers/oceanic-material', { 'type': 'opt' })
+call packager#add('dracula/vim', { 'name': 'dracula' })
 
 " Ctags
 call packager#add('ludovicchabant/vim-gutentags')

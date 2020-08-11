@@ -15,6 +15,11 @@ let g:oceanic_material_allow_undercurl = 1
 
 let g:colors_name = 'one'
 " let g:colors_name = 'oceanic_material'
+" packadd! dracula
+" runtime autoload/dracula.vim
+" let g:dracula#palette.purple[0] = '#9482FF'
+" let g:dracula#palette.green[0] = '#95FA92'
+" colorscheme dracula
 
 if !has('gui_running')
 	set guioptions=M
