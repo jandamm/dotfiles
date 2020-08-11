@@ -82,7 +82,7 @@ call packager#add('junegunn/vader.vim')
 call packager#add('tpope/vim-scriptease')
 
 " iOS
-call packager#add('gfontenot/vim-xcode')
+call packager#add('jandamm/vim-xcode')
 
 " Misc
 call packager#add('neomake/neomake')
