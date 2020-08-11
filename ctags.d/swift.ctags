@@ -8,4 +8,5 @@
 --regex-swift=/[[:<:]]struct[[:>:]][[:space:]]+([[:alnum:]_]+)/\1/s,struct/
 --regex-swift=/[[:<:]]typealias[[:>:]][[:space:]]+([[:alnum:]_]+)/\1/t,typealias/
 --regex-swift=/[[:<:]]var[[:>:]][[:space:]]+([[:alnum:]_]+)/\1/v,variable/
+--regex-swift=/[[:<:]]case[[:>:]][[:space:]]+([[:alnum:]_]+)/\1/v,constant/
 --regex-swift=/[[:<:]]extension[[:>:]][[:space:]]+([[:alnum:]_]+)/\1/E,extension/
