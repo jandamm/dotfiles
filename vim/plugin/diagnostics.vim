@@ -26,7 +26,35 @@ augroup my_diagnostics
 	au!
 	autocmd Filetype * ++once call neomake#configure#automake('rnw', 500)
 	autocmd User lsp_buffer_enabled call s:MakeLspSettings()
+	autocmd User lsp_setup ++once call s:RegisterLsp()
 augroup END
+
+" LSP {{{
+
+function! s:RegisterLsp(...) abort
+	call lsp#register_server({
+				\ 'name': 'sourcekit-lsp-ios',
+				\ 'cmd': {server_info->['lsp-ios']},
+				\ 'allowlist': ['ios', 'ios.swift'],
+				\ })
+	call lsp#register_server({
+				\ 'name': 'sourcekit-lsp',
+				\ 'cmd': {server_info->['lsp-swift']},
+				\ 'allowlist': ['swift'],
+				\ })
+	call lsp#register_server({
+				\ 'name': 'bash-language-server',
+				\ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
+				\ 'allowlist': ['sh'],
+				\ })
+	call lsp#register_server({
+				\ 'name': 'vim-language-server',
+				\ 'cmd': {server_info->['vim-language-server', '--stdio']},
+				\ 'allowlist': ['vim'],
+				\ })
+endfunction
+
+" }}}
 
 let g:neomake_info_sign = {
 			\ 'text': 'i',

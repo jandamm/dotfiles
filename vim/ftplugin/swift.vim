@@ -5,16 +5,6 @@ if exists('g:loaded_swift_ftplugin')
 endif
 let g:loaded_swift_ftplugin = 1
 
-" LSP {{{
-
-call lsp#register_server({
-			\ 'name': 'sourcekit-lsp',
-			\ 'cmd': {server_info->['lsp-swift']},
-			\ 'allowlist': ['swift'],
-			\ })
-
-" }}}
-
 " Neomake {{{
 
 function! s:RunNeomake(...) abort

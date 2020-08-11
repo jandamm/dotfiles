@@ -10,13 +10,6 @@ let g:xcode_runner_command = 'TermDo {cmd}'
 
 " }}}
 
-" LSP {{{
-
-call lsp#register_server({
-			\ 'name': 'sourcekit-lsp-ios',
-			\ 'cmd': {server_info->['lsp-ios']},
-			\ 'allowlist': ['ios.swift', 'ios'],
-			\ })
 
 " }}}
 
