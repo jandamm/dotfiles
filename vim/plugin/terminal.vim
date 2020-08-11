@@ -8,14 +8,6 @@ let g:loaded_terminal = 1
 
 command! Gsh :vsplit <BAR> terminal gsh
 
-function! s:TermDo(cmd) abort
-	vsplit
-	execute 'terminal '.a:cmd
-	wincmd w
-endfunction
-
-command! -nargs=* TermDo call s:TermDo(<q-args>)
-
 if has($TMUX)
 	packadd vim-tmux-navigator
 else

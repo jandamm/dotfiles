@@ -14,17 +14,18 @@ function! my#ft#swift#swiftformat(path) abort
 	echo line('$') . ' lines formatted'
 endfunction
 
+" TODO: Add compiler swiftpm
 function! my#ft#swift#compile() abort
 	wall
-	TermDo swift build
+	Dispatch swift build
 endfunction
 
 function! my#ft#swift#run() abort
 	wall
-	TermDo swift run
+	Dispatch swift run
 endfunction
 
 function! my#ft#swift#test() abort
 	wall
-	TermDo swift test
+	Dispatch swift test
 endfunction
