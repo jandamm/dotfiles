@@ -1,7 +1,7 @@
 FZF_TAB_COMMAND=(
 	fzf
 	--ansi
-	--expect='$continuous_trigger'
+	--expect='$continuous_trigger,$print_query'
 	'--color=hl:$(( $#headers == 0 ? 108 : 255 ))'
 	--nth=2,3
 	--delimiter='\x00'
@@ -13,6 +13,7 @@ FZF_TAB_COMMAND=(
 	--cycle
 	'--query=$query'
 	'--header-lines=$#headers'
+	--print-query
 )
 zstyle ':fzf-tab:*' command $FZF_TAB_COMMAND
 
