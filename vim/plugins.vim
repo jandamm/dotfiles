@@ -50,6 +50,7 @@ call packager#add('jandamm/ctrlp-filer')
 call packager#add('jandamm/ctrlp-complete.vim')
 call packager#add('gikmx/vim-ctrlposession')
 call packager#add('jandamm/ctrlp_bdelete.vim')
+call packager#add('fisadev/vim-ctrlp-cmdpalette')
 call packager#add('ivalkeen/vim-ctrlp-tjump')
 
 " Themes
