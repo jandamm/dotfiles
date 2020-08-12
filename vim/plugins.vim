@@ -43,7 +43,7 @@ call packager#add('jandamm/vim-leader-guide') " Show leader mappings
 call packager#add('jandamm/vim-fuguidive') " Show leader mappings for fugitive
 
 call packager#add('justinmk/vim-dirvish')
-" call packager#add('kristijanhusak/vim-dirvish-git')
+call packager#add('kristijanhusak/vim-dirvish-git')
 
 " Fuzzy finding
 call packager#add('ctrlpvim/ctrlp.vim')
