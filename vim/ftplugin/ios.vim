@@ -9,6 +9,9 @@ let g:xcode_default_simulator = 'iPhone 11 Pro'
 let g:xcode_runner_command = 'Dispatch {cmd}'
 let g:xcode_xcpretty_flags = '--no-utf --color'
 
+nmap <silent> <buffer> <leader>ck <CMD>Xclean<CR>
+let g:lmap.c.k = 'Clean'
+
 " }}}
 
 " Neomake {{{
