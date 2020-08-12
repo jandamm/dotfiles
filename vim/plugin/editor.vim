@@ -6,9 +6,13 @@ let g:loaded_editor = 1
 augroup my_editor_group
 	au!
 	autocmd FocusLost * if bufname() !=? '' | update | endif
+
 	autocmd WinEnter * if winnr('$') == 1 && &buftype == "quickfix" | q | endif
+	autocmd FileType qf wincmd J
+
 	autocmd BufEnter * setlocal cursorline
 	autocmd BufLeave * setlocal nocursorline
+
 	autocmd User ProsessionPre wall
 augroup END
 
