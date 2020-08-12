@@ -46,11 +46,16 @@ xnoremap & :&&<CR>
 augroup ft_mappings
 	autocmd!
 	autocmd Filetype qf call s:qf_mappings()
-	autocmd Filetype qf,help,gitmessengerpopup call s:quit_mapping()
+	autocmd Filetype qf,help call s:quit_mapping()
+	autocmd Filetype gitmessengerpopup call s:gitmess_quit_mapping()
 augroup END
 
+function! s:gitmess_quit_mapping() abort
+	call s:quit_mapping()
+	nnoremap <silent> <buffer> <ESC> <CMD>q<CR>
+endfunction
 function! s:quit_mapping() abort
-	nnoremap <silent> <buffer>   gq  <CMD>q<CR>
+	nnoremap <silent> <buffer> gq  <CMD>q<CR>
 endfunction
 function! s:qf_mappings() abort
 	" Deactivate CtrlP in qf
