@@ -24,7 +24,7 @@ function! s:Grep(hidden, operator, verbatim, rg, search) abort
 	let hidden = a:hidden ? '--hidden' : ''
 	let case = &smartcase ? '--smart-case' : (&ignorecase ? '--ignore-case' : '--case-sensitive')
 	let verbatim = a:verbatim ? '"' : ''
-	let search = printf('%s%s%s', verbatim, fnameescape(a:search), verbatim)
+	let search = printf('%s%s%s', verbatim, escape(a:search, '%#'), verbatim)
 
 	let title = 'grep'. (a:hidden ? '! ' : ' ') . search
 	if a:operator | echo title | endif
