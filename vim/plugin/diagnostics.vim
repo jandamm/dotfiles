@@ -29,7 +29,7 @@ augroup my_diagnostics
 	autocmd User lsp_setup ++once call s:RegisterLsp()
 augroup END
 
-" LSP {{{
+" LSP Server Config {{{
 
 function! s:RegisterLsp(...) abort
 	call lsp#register_server({

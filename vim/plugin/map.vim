@@ -91,9 +91,16 @@ xmap ac <Plug>(signify-motion-outer-visual)
 
 " Cursor movement {{{
 
-nmap gs <Plug>(smalls)
-xmap gs <Plug>(smalls)
-omap gs <Plug>(smalls)
+nmap gs <Plug>Sneak_s
+xmap gs <Plug>Sneak_s
+omap gs <Plug>Sneak_s
+nmap gS <Plug>Sneak_S
+xmap gS <Plug>Sneak_S
+omap gS <Plug>Sneak_S
+
+nmap <Leader>s <Plug>(smalls)
+xmap <Leader>s <Plug>(smalls)
+omap <Leader>s <Plug>(smalls)
 
 " }}}
 
