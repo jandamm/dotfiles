@@ -1,3 +1,4 @@
-EXCLUDES="zinit README.md Brewfile* resources node_modules pip3-requirements Gemfile*"
-SYMLINK_DIRS="vim/vsnip/default"
 DOTFILES_DIRS="$DOTFILES $DOTFILES_PRIVATE"
+EXCLUDES="zinit README.md Brewfile* resources node_modules pip3-requirements Gemfile*"
+SYMLINK_DIRS="vim/vsnip/default Library/Developer/Xcode/UserData/FontAndColorThemes"
+UNDOTTED="Library"
