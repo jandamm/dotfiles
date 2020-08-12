@@ -134,6 +134,10 @@ smap     <expr>   <C-b>   vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b
 
 imap     <expr>   <C-t>   pumvisible() ? '<Plug>(ctrlp_complete)' : '<C-t>'
 
+" CtrlP confuses me, maybe I should switch CtrlP C-p/n with C-j/k?
+inoremap <expr>   <C-j>   pumvisible() ? '<C-n>' : '<C-j>'
+inoremap <expr>   <C-k>   pumvisible() ? '<C-p>' : '<C-k>'
+
 " }}}
 
 " Tabular {{{
