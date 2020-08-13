@@ -18,7 +18,10 @@ function! my#statusline#part#filename(bufnr, active, prefix) abort
 endfunction
 
 function! my#statusline#part#qf(bufnr, active, prefix) abort
-	return exists('w:quickfix_title') ? ' '.w:quickfix_title : ''
+	let title = getwinvar(bufwinnr(a:bufnr), 'quickfix_title', '')
+	return empty(title)
+				\ ? ''
+				\ : ' '.s:trunc(title, 100)
 endfunction
 
 function! my#statusline#part#sleuth(bufnr, active) abort
@@ -45,6 +48,16 @@ function! my#statusline#part#neomake(bufnr, active) abort
 	let space = loc !=? '' && qf !=? '' ? ' ' : ''
 	return loc . space . qf
 endfunction
+
+" Helper {{{
+
+" Truncate string to a length of count
+function! s:trunc(string, count) abort
+	let len = a:count-1
+	return substitute(a:string, '\v^(.{'.len.'}).+$', '\1>', '')
+endfunction
+
+" }}}
 
 " Neomake {{{
 
