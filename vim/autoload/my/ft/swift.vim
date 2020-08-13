@@ -3,6 +3,10 @@ if exists('g:autoloaded_ft_swift')
 endif
 let g:autoloaded_ft_swift = 1
 
+function! my#ft#swift#compiler_flags() abort
+	return get(b:, 'swift_compiler_flags', []) + get(g:, 'swift_compiler_flags', [])
+endfunction
+
 function! my#ft#swift#format() abort
 	call my#ft#swift#swiftformat('%')
 endfunction

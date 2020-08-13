@@ -6,6 +6,7 @@ endif
 let g:loaded_swift_ftplugin = 1
 
 " Neomake {{{
+
 let s:makers = neomake#makers#ft#swift#EnabledMakers()
 if string(s:makers) =~# 'swiftpm'
 	let g:neomake_swift_enabled_makers = ['swiftlint']
@@ -13,21 +14,6 @@ else
 	" Until my PR is accepted
 	let g:neomake_swift_enabled_makers = add(s:makers, 'swiftlint')
 endif
-
-" Swiftlint maker
-function! s:MySwiftLint() abort
-	let maker = {
-				\ 'exe': 'neomake-swiftlint',
-				\ 'append_file': 1,
-				\ 'errorformat': '%f:%l:%c: %trror: %m,' .
-				\ '%f:%l:%c: %tarning: %m,' .
-				\ '%f:%l: %trror: %m,' .
-				\ '%f:%l: %tarning: %m',
-				\ }
-	let maker.exe = 'neomake-swiftlint'
-	let maker.args = []
-	return maker
-endfunction
 
 function! s:MySwiftPM() abort
 	return {
@@ -52,7 +38,14 @@ function! s:MySwiftC() abort
 	return maker
 endfunction
 
-let g:neomake_swift_swiftlint_maker = s:MySwiftLint()
+let g:neomake_swift_swiftlint_maker = {
+				\ 'exe': 'neomake-swiftlint',
+				\ 'append_file': 1,
+				\ 'errorformat': '%f:%l:%c: %trror: %m,' .
+				\ '%f:%l:%c: %tarning: %m,' .
+				\ '%f:%l: %trror: %m,' .
+				\ '%f:%l: %tarning: %m',
+				\ }
 let g:neomake_swift_swiftpm_maker = s:MySwiftPM()
 let g:neomake_swift_swiftc_maker = s:MySwiftC()
 
