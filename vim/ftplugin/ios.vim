@@ -17,7 +17,8 @@ let g:lmap.c.k = 'Clean'
 " Neomake {{{
 
 let g:neomake_ios_swiftpm_maker = {
-			\ 'exe': 'neomake-swiftbuildios',
+			\ 'exe': 'neovim-swift',
+			\ 'args': ['build', 'ios'],
 			\ 'append_file': 0,
 			\ 'errorformat':
 			\ '%E%f:%l:%c: error: %m,' .

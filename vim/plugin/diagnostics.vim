@@ -34,13 +34,13 @@ augroup END
 function! s:RegisterLsp(...) abort
 	call lsp#register_server({
 				\ 'name': 'sourcekit-lsp-ios',
-				\ 'cmd': {server_info->['lsp-ios']},
+				\ 'cmd': {server_info->['neovim-swift', 'lsp', 'ios']},
 				\ 'allowlist': ['ios', 'ios.swift'],
 				\ 'languageId': 'swift',
 				\ })
 	call lsp#register_server({
 				\ 'name': 'sourcekit-lsp',
-				\ 'cmd': {server_info->['lsp-swift']},
+				\ 'cmd': {server_info->['neovim-swift', 'lsp']},
 				\ 'allowlist': ['swift'],
 				\ })
 	call lsp#register_server({
