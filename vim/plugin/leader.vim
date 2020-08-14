@@ -24,6 +24,8 @@ let g:lmap.b.b = 'Buffers'
 " Leader C
 " nmap <silent> <Leader>c          :call my#map#leader#compile()<CR>
 let g:lmap.c = { 'name': 'code' }
+nmap <silent> <Leader>c.         :AbortDispatch<CR>
+let g:lmap.c['.'] = 'Abort Dispatch'
 nmap <silent> <Leader>cc         :call my#map#leader#compile()<CR>
 let g:lmap.c.c = 'Compile'
 nmap <silent> <Leader>cf         :call my#map#leader#format()<CR>
@@ -36,12 +38,19 @@ let g:lmap.c.u = 'Test'
 let g:lmap.f = { 'name': 'file' }
 nmap <silent> <expr> <Leader>fd  winnr('$') == 1 ? ":Dirvish! %\<CR>" : ":Dirvish %\<CR>"
 let g:lmap.f.d = 'Directory'
+nmap <silent>        <Leader>fo  :!open %<CR>
+let g:lmap.f.o = 'Open externally'
+nmap <silent> <Leader>fw         :update<CR>
+let g:lmap.f.w = 'Save'
 
 " Leader G
 let g:lmap.g = { 'name': 'git and more' }
 nmap <silent> <Leader>gb         :CtrlPGitBranch<CR>
-nmap <silent> <Leader>gd         :Gvdiffsplit!<CR>
-let g:lmap.g.d = 'Diff'
+let g:lmap.g.d = { 'name': 'diff' }
+nmap <silent> <Leader>gdd        :Gvdiffsplit!<CR>
+let g:lmap.g.d.d = 'Diff'
+nmap <silent> <Leader>gdo        :SignifyFold!<CR>
+let g:lmap.g.d.o = 'Show only changes'
 nmap <silent> <Leader>gf         :Gfetch<CR>
 nmap <silent> <Leader>gF         :Gpull<CR>
 nmap          <Leader>g<Space>   :Git<SPACE>
@@ -61,11 +70,19 @@ nmap <silent> <Leader>gr         :Grebase<CR>
 " w -> Who did this?
 nmap <silent> <Leader>gw         :Gblame<CR>
 
+let g:lmap.o = { 'name': 'open' }
+nmap <silent> <Leader>ot         :vsplit <BAR> terminal<CR>
+let g:lmap.o.t = 'Terminal'
+
 let g:lmap.p = { 'name': 'project' }
 nmap <silent> <expr> <Leader>pd  winnr('$') == 1 ? ":Dirvish!\<CR>" : ":Dirvish\<CR>"
 let g:lmap.p.d = 'Directory'
+nmap <silent> <Leader>pp         :CtrlPObsession<CR>
+let g:lmap.p.p = 'Sessions'
 nmap <silent> <Leader>pt         :CtrlPTag<CR>
 let g:lmap.p.t = 'Tags'
+nmap <silent> <Leader>pw         :wall<CR>
+let g:lmap.p.w = 'Save'
 
 let g:lmap.s = 'Quicksearch'
 
