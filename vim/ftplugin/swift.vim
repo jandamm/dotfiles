@@ -7,28 +7,13 @@ let g:loaded_swift_ftplugin = 1
 
 " Neomake {{{
 
+" Disable swiftpm
 let s:makers = neomake#makers#ft#swift#EnabledMakers()
 if string(s:makers) =~# 'swiftpm'
 	let g:neomake_swift_enabled_makers = ['swiftlint']
 else
-	" Until my PR is accepted
 	let g:neomake_swift_enabled_makers = add(s:makers, 'swiftlint')
 endif
-
-function! s:MySwiftPM() abort
-	return {
-				\ 'exe': 'neovim-swift',
-				\ 'args': ['build'],
-				\ 'append_file': 0,
-				\ 'errorformat':
-				\ '%E%f:%l:%c: error: %m,' .
-				\ '%E%f:%l: error: %m,' .
-				\ '%E%f: error: %m,' .
-				\ '%W%f:%l:%c: warning: %m,' .
-				\ '%Z%\s%#^~%#,' .
-				\ '%-G%.%#',
-				\ }
-endfunction
 
 " single file maker
 function! s:MySwiftC() abort
@@ -46,7 +31,18 @@ let g:neomake_swift_swiftlint_maker = {
 				\ '%f:%l: %trror: %m,' .
 				\ '%f:%l: %tarning: %m',
 				\ }
-let g:neomake_swift_swiftpm_maker = s:MySwiftPM()
+let g:neomake_swift_swiftpm_maker = {
+				\ 'exe': 'neovim-swift',
+				\ 'args': ['build'],
+				\ 'append_file': 0,
+				\ 'errorformat':
+				\ '%E%f:%l:%c: error: %m,' .
+				\ '%E%f:%l: error: %m,' .
+				\ '%E%f: error: %m,' .
+				\ '%W%f:%l:%c: warning: %m,' .
+				\ '%Z%\s%#^~%#,' .
+				\ '%-G%.%#',
+				\ }
 let g:neomake_swift_swiftc_maker = s:MySwiftC()
 
 " }}}
