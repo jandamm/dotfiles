@@ -23,7 +23,7 @@ call packager#add('tpope/vim-rhubarb') " Gbrowse for Github
 call packager#add('shumphrey/fugitive-gitlab.vim') " Gbrowse for GitLab
 call packager#add('tommcdo/vim-fugitive-blame-ext') " Gblame commit messages
 call packager#add('tpope/vim-dispatch') " Easy dispatching of jobs
-call packager#add('radenling/vim-dispatch-neovim') " Dispatch using the neovim terminal
+call packager#add('jandamm/vim-dispatch-neovim') " Dispatch using the neovim terminal
 call packager#add('tpope/vim-sleuth') " Automatically set spaces/tabs
 call packager#add('tpope/vim-eunuch') " Unix commands in vim
 call packager#add('tpope/vim-obsession') " Save sessions easily
