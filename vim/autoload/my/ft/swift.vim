@@ -13,7 +13,7 @@ endfunction
 
 function! my#ft#swift#swiftformat(path) abort
 	let cursor = getcurpos()
-	silent execute '0,$!neomake-swiftformat ' . a:path
+	silent execute '0,$!neovim-swiftformat ' . a:path
 	call setpos('.', cursor)
 	echo line('$') . ' lines formatted'
 endfunction

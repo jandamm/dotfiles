@@ -24,7 +24,7 @@ function! s:MySwiftC() abort
 endfunction
 
 let g:neomake_swift_swiftlint_maker = {
-				\ 'exe': 'neomake-swiftlint',
+				\ 'exe': 'neovim-swiftlint',
 				\ 'append_file': 1,
 				\ 'errorformat': '%f:%l:%c: %trror: %m,' .
 				\ '%f:%l:%c: %tarning: %m,' .
