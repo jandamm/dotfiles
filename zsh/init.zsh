@@ -175,7 +175,7 @@ compdef _gnu_generic \
 	fasd fd fzf \
 	pod \
 	swiftformat \
-	xed
+	xcpretty xed
 
 compdef g=git
 
