@@ -1,8 +1,19 @@
 packadd vim-packager
 
+" Setup {{{
 call packager#init({ 'dir': '~/.vim/pack/packager', 'jobs': 0})
 
+command! -nargs=+ -bar Pack call packager#add(<args>)
+command! -nargs=+ -bar PackOpt call s:packOpt(<args>)
+function! s:packOpt(name, ...) abort
+	let opts = a:0 ? a:1 : {}
+	let opts.type = 'opt'
+	call packager#add(a:name, opts)
+endfunction
+
 call packager#add('kristijanhusak/vim-packager', { 'type': 'opt' })
+
+" }}}
 
 " Usage
 call packager#add('tpope/vim-surround') " Add(y)/change(c)/remove(d) surroundings
