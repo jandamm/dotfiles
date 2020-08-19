@@ -52,6 +52,7 @@ call packager#add('qpkorr/vim-bufkill') " BD to kill buffer but keep window
 call packager#add('svermeulen/vim-yoink') " Yank history
 call packager#add('jandamm/vim-leader-guide') " Show leader mappings
 call packager#add('jandamm/vim-fuguidive') " Show leader mappings for fugitive
+Pack 'tommcdo/vim-exchange' " Switch text with cx
 
 call packager#add('justinmk/vim-dirvish')
 call packager#add('kristijanhusak/vim-dirvish-git')
