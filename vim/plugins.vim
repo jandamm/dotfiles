@@ -98,7 +98,7 @@ call packager#add('junegunn/vader.vim')
 call packager#add('tpope/vim-scriptease')
 
 " iOS
-call packager#add('jandamm/vim-xcode')
+Pack 'jandamm/vim-xcode'
 
 " Misc
 call packager#add('neomake/neomake')

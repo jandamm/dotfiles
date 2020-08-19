@@ -16,7 +16,9 @@ let g:loaded_ios_ftplugin = 1
 
 let g:xcode_default_simulator = 'iPhone 11 Pro'
 let g:xcode_runner_command = 'Dispatch {cmd}'
-let g:xcode_xcpretty_flags = '--no-utf --color'
+let g:xcode_disable_xcpretty = 1
+let g:xcode_additional_xcargs = '-quiet 2>/dev/null'
+let g:xcode_additional_xcargs_test = '2>/dev/null | xcpretty --no-utf --color'
 
 " }}}
 

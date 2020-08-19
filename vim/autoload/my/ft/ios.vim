@@ -6,20 +6,20 @@ let g:autoloaded_ft_ios = 1
 function! my#ft#ios#compile() abort
 	wall
 	silent AbortDispatch xcode
-	Xcompiler build
+	Xcompiler! build
 	Make
 endfunction
 
 function! my#ft#ios#run() abort
 	wall
 	silent AbortDispatch xcode
-	Xcompiler run
+	Xcompiler! run
 	Make
 endfunction
 
 function! my#ft#ios#test() abort
 	wall
 	silent AbortDispatch xcode
-	Xcompiler test
+	Xcompiler! test
 	Make
 endfunction
