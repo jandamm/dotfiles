@@ -57,6 +57,25 @@ endfunction
 
 " }}}
 
+" Quickfix Signs {{{
+
+" Enable 'loc' when neomake is disabled
+let g:quickfixsigns_classes = ['qfl', 'marks', 'vcsmerge', 'breakpoints']
+let g:quickfixsigns_list_types = 'EWIewi'
+
+function! s:define(char, text, hl) abort
+	" execute 'sign define QFS_LOC_'.toupper(a:char).' text='.a:text.' texthl='.a:hl
+	" execute 'sign define QFS_LOC_'.tolower(a:char).' text='.a:text.' texthl='.a:hl
+	execute 'sign define QFS_QFL_'.toupper(a:char).' text='.a:text.' texthl='.a:hl
+	execute 'sign define QFS_QFL_'.tolower(a:char).' text='.a:text.' texthl='.a:hl
+endfunction
+
+call s:define('E', '✖', 'DraculaRed')
+call s:define('W', '‼', 'DraculaOrange')
+call s:define('I', 'i', 'DraculaCyan')
+
+" }}}
+
 let g:neomake_info_sign = {
 			\ 'text': 'i',
 			\ 'texthl': 'NeomakeInfoSign'
