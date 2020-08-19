@@ -46,6 +46,11 @@ let g:lmap.f.w = 'Save'
 " Leader G
 let g:lmap.g = { 'name': 'git and more' }
 nmap <silent> <Leader>gb         :CtrlPGitBranch<CR>
+
+let g:git_messenger_no_default_mappings = v:true
+nmap <silent> <Leader>gc         <Plug>(git-messenger)
+let g:lmap.g.c = 'Show commit'
+
 let g:lmap.g.d = { 'name': 'diff' }
 nmap <silent> <Leader>gdd        :Gvdiffsplit!<CR>
 let g:lmap.g.d.d = 'Diff'
@@ -64,7 +69,8 @@ let g:lmap.g.l = { 'name': 'log' }
 nmap <silent> <Leader>glf        :0Glog<CR>
 let g:lmap.g.l.f = 'File'
 nmap <silent> <Leader>gll        :Glog<CR>
-let g:lmap.g.m = 'Commit message'
+nmap <silent> <Leader>gm         :CtrlPModified<CR>
+let g:lmap.g.m = 'Modified files'
 nmap <silent> <Leader>gp         :Gpush<CR>
 nmap <silent> <Leader>gr         :Grebase<CR>
 " w -> Who did this?
