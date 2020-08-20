@@ -73,6 +73,7 @@ endfunction
 call s:define('E', '✖', 'DraculaRed')
 call s:define('W', '‼', 'DraculaOrange')
 call s:define('I', 'i', 'DraculaCyan')
+sign define QFS_QFL text=» texthl=DraculaPink
 
 " }}}
 
