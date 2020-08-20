@@ -59,7 +59,8 @@ let g:lmap.g.d.o = 'Show only changes'
 nmap <silent> <Leader>gf         :Gfetch<CR>
 nmap <silent> <Leader>gF         :Gpull<CR>
 nmap          <Leader>g<Space>   :Git<SPACE>
-nmap <silent> <Leader>gg         :Gstatus<CR>
+nmap <silent> <Leader>gg         :cclose <BAR> lclose <BAR> Gstatus<CR>
+let g:lmap.g.g = 'Fugitive'
 let g:lmap.g.h = { 'name': 'hunk' }
 nmap <silent> <Leader>ghd        :SignifyHunkDiff<CR>
 let g:lmap.g.h.d = 'Diff'
