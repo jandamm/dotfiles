@@ -94,10 +94,12 @@ let g:lmap.p.w = 'Save'
 let g:lmap.s = 'Quicksearch'
 
 let g:lmap.t = { 'name': 'toggle' }
+nmap <silent> <Leader>tf         :call my#spelling#toggle()<CR>
+let g:lmap.t.s = 'Spelling'
 nmap <silent> <Leader>tl         <Plug>window:quickfix:loop
 let g:lmap.t.l = 'Quickfix'
-nmap <silent> <Leader>ts         :call my#spelling#toggle()<CR>
-let g:lmap.t.s = 'Spelling'
+nmap <silent> <Leader>ts         <CMD>QuickfixsignsToggle<CR>
+let g:lmap.t.s = 'Signs'
 nmap <silent> <Leader>tu         :UndotreeToggle<CR>
 let g:lmap.t.u = 'Undotree'
 
