@@ -94,7 +94,6 @@ call packager#add('jandamm/vim-lsp')
 " Languages
 call packager#add('sheerun/vim-polyglot')
 call packager#add('keith/xcconfig.vim')
-call packager#add('zphere-zsh/zsh-omni-completion')
 
 " Vim Plugins
 call packager#add('junegunn/vader.vim')
