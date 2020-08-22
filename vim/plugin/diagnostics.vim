@@ -77,6 +77,10 @@ sign define QFS_QFL text=» texthl=DraculaPink
 
 " }}}
 
+" vim-qf don't open qf automatically. (Incompatible with vim-dispatch)
+let g:qf_auto_open_loclist = 0
+let g:qf_auto_open_quickfix = 0
+
 let g:neomake_info_sign = {
 			\ 'text': 'i',
 			\ 'texthl': 'NeomakeInfoSign'

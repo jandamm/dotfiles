@@ -17,6 +17,12 @@ nnoremap <C-n> <CMD>CtrlPMenu<CR>
 
 nnoremap g<C-]> <CMD>CtrlPtjump<CR>
 
+" Better mappings for qf/loc list
+nmap [l <Plug>(qf_loc_previous)
+nmap ]l <Plug>(qf_loc_next)
+nmap [q <Plug>(qf_qf_previous)
+nmap ]q <Plug>(qf_qf_next)
+
 nnoremap <silent> [w :tabprevious<CR>
 nnoremap <silent> ]w :tabnext<CR>
 nnoremap <silent> [W :tabfirst<CR>
@@ -55,7 +61,6 @@ xnoremap & :&&<CR>
 
 augroup ft_mappings
 	autocmd!
-	autocmd Filetype qf call s:qf_mappings()
 	autocmd Filetype qf,help call s:quit_mapping()
 	autocmd Filetype gitmessengerpopup call s:gitmess_quit_mapping()
 augroup END
@@ -66,11 +71,6 @@ function! s:gitmess_quit_mapping() abort
 endfunction
 function! s:quit_mapping() abort
 	nnoremap <silent> <buffer> gq  <CMD>q<CR>
-endfunction
-function! s:qf_mappings() abort
-	" Deactivate CtrlP in qf
-	nnoremap          <buffer> <C-n> <C-n>
-	nnoremap          <buffer> <C-p> <C-p>
 endfunction
 
 " Show overview of fugitive mappings with g?

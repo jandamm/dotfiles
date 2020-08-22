@@ -44,7 +44,6 @@ call packager#add('tpope/vim-obsession') " Save sessions easily
 call packager#add('dhruvasagar/vim-prosession') " Automatically save/load sessions
 call packager#add('airblade/vim-rooter') " Always cd into root of project
 call packager#add('jandamm/vim-projplugin') " Load project specific config
-call packager#add('drmingdrmer/vim-toggle-quickfix') " Toggle QF and Loc List
 call packager#add('mbbill/undotree') " Show undo history as a tree
 call packager#add('machakann/vim-highlightedyank') " Highlight yanked text
 call packager#add('rhysd/git-messenger.vim') " Quickly show last commit message
@@ -58,6 +57,7 @@ call packager#add('jandamm/vim-fuguidive') " Show leader mappings for fugitive
 Pack 'tommcdo/vim-exchange' " Switch text with cx
 Pack 'tomtom/quickfixsigns_vim' " Show signs for qfl and more
 Pack 'chrisbra/Recover.vim' " Allow comparing swap files
+Pack 'romainl/vim-qf' " Improve quickfix lists
 
 call packager#add('justinmk/vim-dirvish')
 call packager#add('kristijanhusak/vim-dirvish-git')
