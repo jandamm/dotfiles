@@ -6,6 +6,7 @@ nnoremap Y y$
 
 " Esc clears last search
 nnoremap <silent> <ESC> :nohlsearch<CR>
+nnoremap <silent> <C-l> :nohlsearch<CR>:diffupdate<CR>:syntax sync fromstart<CR><C-l>
 
 " Remap U Redo
 nnoremap U <C-r>
@@ -41,6 +42,10 @@ xnoremap g<C-]> <CMD>CtrlPtjumpVisual<CR>
 
 xnoremap * :<C-u>call my#map#visualSearch('/')<CR>/<C-r>=@/<CR><CR>
 xnoremap # :<C-u>call my#map#visualSearch('?')<CR>/<C-r>=@/<CR><CR>
+
+" Select mode
+" <C-w> deletes selection and stays goes into insert mode
+snoremap <C-w> <BS>i
 
 " Repeat replace
 nnoremap & :&&<CR>
