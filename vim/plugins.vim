@@ -15,6 +15,9 @@ call packager#add('kristijanhusak/vim-packager', { 'type': 'opt' })
 
 " }}}
 
+" Fix CursorHold for nvim: https://github.com/neovim/neovim/issues/12587
+Pack 'antoinemadec/FixCursorHold.nvim'
+
 " Usage
 call packager#add('tpope/vim-surround') " Add(y)/change(c)/remove(d) surroundings
 call packager#add('tpope/vim-repeat') " Add . macro to supported plugins
@@ -54,6 +57,7 @@ call packager#add('jandamm/vim-leader-guide') " Show leader mappings
 call packager#add('jandamm/vim-fuguidive') " Show leader mappings for fugitive
 Pack 'tommcdo/vim-exchange' " Switch text with cx
 Pack 'tomtom/quickfixsigns_vim' " Show signs for qfl and more
+Pack 'chrisbra/Recover.vim' " Allow comparing swap files
 
 call packager#add('justinmk/vim-dirvish')
 call packager#add('kristijanhusak/vim-dirvish-git')
