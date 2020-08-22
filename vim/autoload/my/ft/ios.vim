@@ -4,21 +4,21 @@ endif
 let g:autoloaded_ft_ios = 1
 
 function! my#ft#ios#compile() abort
-	wall
+	silent! wall
 	silent AbortDispatch xcode
 	Xcompiler! build
 	Make
 endfunction
 
 function! my#ft#ios#run() abort
-	wall
+	silent! wall
 	silent AbortDispatch xcode
 	Xcompiler! run
 	Make
 endfunction
 
 function! my#ft#ios#test() abort
-	wall
+	silent! wall
 	silent AbortDispatch xcode
 	Xcompiler! test
 	Make

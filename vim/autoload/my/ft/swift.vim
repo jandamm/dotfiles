@@ -20,16 +20,16 @@ endfunction
 
 " TODO: Add compiler swiftpm
 function! my#ft#swift#compile() abort
-	wall
+	silent! wall
 	Dispatch swift build
 endfunction
 
 function! my#ft#swift#run() abort
-	wall
+	silent! wall
 	Dispatch swift run
 endfunction
 
 function! my#ft#swift#test() abort
-	wall
+	silent! wall
 	Dispatch swift test
 endfunction
