@@ -71,7 +71,7 @@ function! my#statusline#default(bufnr, active) abort
 		let line .= my#statusline#part#git(a:bufnr, a:active)
 		let line .= &filetype !=? '' ? ' %y' : '' " filetype if set
 		let line .= my#statusline#part#spell(a:bufnr, a:active)
-		let line .= my#statusline#part#sleuth(a:bufnr, a:active)
+		let line .= my#statusline#part#indent(a:bufnr, a:active)
 	endif
 
 	let line .= '%4m' " modified ' [+]' (always 4 chars)

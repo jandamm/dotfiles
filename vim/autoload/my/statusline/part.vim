@@ -24,7 +24,7 @@ function! my#statusline#part#qf(bufnr, active, prefix) abort
 				\ : ' '.s:trunc(title, 100)
 endfunction
 
-function! my#statusline#part#sleuth(bufnr, active) abort
+function! my#statusline#part#indent(bufnr, active) abort
 	let ret = SleuthIndicator()
 	return ret !=? 'ts=2' ? ' [' . ret . ']' : ''
 endfunction
