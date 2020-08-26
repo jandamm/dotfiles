@@ -1,3 +1,5 @@
+scriptencoding utf-8
+
 if exists('g:loaded_diagnostics')
 	finish
 endif
@@ -36,7 +38,7 @@ function! s:RegisterLsp(...) abort
 				\ 'name': 'sourcekit-lsp-ios',
 				\ 'cmd': {server_info->['neovim-swift', 'lsp', 'ios'] + my#ft#swift#compiler_flags() },
 				\ 'allowlist': ['ios', 'ios.swift'],
-				\ 'languageId': 'swift',
+				\ 'languageId': {server_info->'swift'},
 				\ })
 	call lsp#register_server({
 				\ 'name': 'sourcekit-lsp',
