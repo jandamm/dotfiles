@@ -149,5 +149,3 @@ if has('nvim')
 endif
 
 " }}}
-
-" vim:set foldmethod=marker:
