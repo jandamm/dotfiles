@@ -9,22 +9,24 @@ let s:rgformat = '%f:%l:%c:%m,%f:%l%m,%f\ \ %l%m'
 let &grepprg = s:rgprg
 let &grepformat = s:rgformat
 
-function! s:Grep(hidden, operator, verbatim, rg, search) abort
-	if a:rg
+function! s:Grep(hidden, operator, rg, search) abort
 		let prg = &grepprg
 		let format = &grepformat
 
 		let &grepprg = s:rgprg
 		let &grepformat = s:rgformat
-	endif
 
 	if !a:operator | cclose | endif
 
 	let buf = bufnr()
 	let hidden = a:hidden ? '--hidden' : ''
 	let case = &smartcase ? '--smart-case' : (&ignorecase ? '--ignore-case' : '--case-sensitive')
-	let verbatim = a:verbatim ? '"' : ''
-	let search = printf('%s%s%s', verbatim, escape(a:search, '%#'), verbatim)
+	let search = escape(a:search, '%#')
+
+	" Do a verbatim search in Grep
+	if !a:rg
+		let search = printf('--fixed-strings "%s"', search)
+	endif
 
 	let title = 'grep'. (a:hidden ? '! ' : ' ') . search
 	if a:operator | echo title | endif
@@ -37,14 +39,12 @@ function! s:Grep(hidden, operator, verbatim, rg, search) abort
 		copen
 	endif
 
-	if a:rg
 		let &grepprg = prg
 		let &grepformat = format
-	endif
 endfunction
 
-command! -bang -nargs=* Grep call s:Grep(<bang>0, 0, 1, 0, <q-args>)
-command! -bang -nargs=* -complete=dir Rg call s:Grep(<bang>0, 0, 0, 1, <q-args>)
+command! -bang -nargs=* Grep call s:Grep(<bang>0, 0, 0, <q-args>)
+command! -bang -nargs=* -complete=dir Rg call s:Grep(<bang>0, 0, 1, <q-args>)
 
 function! s:GrepOperator(type) abort
 	let reg_g = @g
@@ -57,7 +57,7 @@ function! s:GrepOperator(type) abort
 	endif
 	let search = @g
 	let @g = reg_g
-	call s:Grep(0, 1, 1, 0, search)
+	call s:Grep(0, 1, 0, search)
 endfunction
 
 nnoremap <silent> g/ :set operatorfunc=<SID>GrepOperator<CR>g@
