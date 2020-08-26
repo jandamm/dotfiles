@@ -13,13 +13,23 @@ let g:oceanic_material_allow_italic = 1
 let g:oceanic_material_allow_underline = 1
 let g:oceanic_material_allow_undercurl = 1
 
-let g:colors_name = 'one'
+let g:nord_italic = 1
+let g:nord_italic_comments = 1
+let g:nord_uniform_diff_background = 1
+" let g:nord_uniform_status_lines = 1
+let g:nord_underline = 1
+
+" let g:colors_name = 'one'
 " let g:colors_name = 'oceanic_material'
 " packadd! dracula
 " runtime autoload/dracula.vim
 " let g:dracula#palette.purple[0] = '#9482FF'
 " let g:dracula#palette.green[0] = '#95FA92'
 " colorscheme dracula
+" Fix no whitespace visible in current line
+" hi! link Whitespace Comment
+" let g:colors_name = 'solarized8'
+let g:colors_name = 'nord'
 
 if !has('gui_running')
 	set guioptions=M
