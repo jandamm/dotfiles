@@ -26,11 +26,11 @@ if !has('gui_running')
 endif
 
 set number
-set relativenumber
 
 " Will be adjusted to be enabled only in the active window
-set cursorline
-set colorcolumn=120,160
+set relativenumber cursorline
+
+set colorcolumn=120
 
 set signcolumn=yes
 let g:signify_sign_change = '△'
