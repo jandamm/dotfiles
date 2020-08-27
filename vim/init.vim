@@ -77,7 +77,10 @@ set splitbelow
 set splitright
 
 " Spacing
+set noexpandtab " Use tabs
+set shiftwidth=2 " Size of shifting code
 set tabstop=2 " Size of Tab
+let g:detectindent_preferred_indent = 2
 
 " Show statusline always
 set laststatus=2

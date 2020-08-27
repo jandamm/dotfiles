@@ -25,8 +25,17 @@ function! my#statusline#part#qf(bufnr, active, prefix) abort
 endfunction
 
 function! my#statusline#part#indent(bufnr, active) abort
-	let ret = SleuthIndicator()
-	return ret !=? 'ts=2' ? ' [' . ret . ']' : ''
+	let sw = &shiftwidth ? &shiftwidth : &tabstop
+	if &expandtab
+		let ret = 'sw='.sw
+	elseif &tabstop == 2 && sw == 2
+		return '' " My default setting
+	elseif &tabstop == sw
+		let ret = 'ts='.&tabstop
+	else
+		let ret = 'sw='.sw.',ts='.&tabstop
+	endif
+	return ' ['.ret.']'
 endfunction
 
 function! my#statusline#part#spell(bufnr, active) abort
