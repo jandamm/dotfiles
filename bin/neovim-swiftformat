@@ -18,7 +18,7 @@ CONFIG=$(get_config_file "$filename" "$FILE")
 
 if [ -f "$CONFIG" ]
 then
-	"$cmd" --quiet --config "$CONFIG"
+	"$cmd" --quiet --config "$CONFIG" "$@"
 else
-	"$cmd" --quiet
+	"$cmd" --quiet "$@"
 fi
