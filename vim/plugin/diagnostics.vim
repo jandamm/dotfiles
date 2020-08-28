@@ -59,11 +59,6 @@ endfunction
 
 " }}}
 
-hi! link QuickfixsignsError LSPDiagnosticsError
-hi! link QuickfixsignsWarning LSPDiagnosticsWarning
-hi! link QuickfixsignsInfo LSPDiagnosticsHint
-hi! link Quickfixsigns Number
-
 " Quickfix Signs {{{
 
 " Enable 'loc' when neomake is disabled
@@ -77,10 +72,10 @@ function! s:define(char, text, hl) abort
 	execute 'sign define QFS_QFL_'.tolower(a:char).' text='.a:text.' texthl='.a:hl
 endfunction
 
-call s:define('E', '✖', 'QuickfixsignsError')
-call s:define('W', '‼', 'QuickfixsignsWarning')
-call s:define('I', 'i', 'QuickfixsignsInfo')
-sign define QFS_QFL text=» texthl=Quickfixsigns
+call s:define('E', '✖', 'QfSignE')
+call s:define('W', '‼', 'QfSignW')
+call s:define('I', 'i', 'QfSignI')
+sign define QFS_QFL text=» texthl=QfSign
 
 " }}}
 

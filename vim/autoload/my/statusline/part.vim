@@ -5,7 +5,8 @@ let g:autoloaded_statusline_part = 1
 
 function! my#statusline#part#bufnr(bufnr, active) abort
 	let c2 = a:active ? '%2*' : '%*'
-	return ' '.c2.'(%3*%n'.c2.')%*'
+	let c3 = a:active ? '%3*' : '%4*'
+	return ' '.c2.'('.c3.'%n'.c2.')%*'
 endfunction
 
 function! my#statusline#part#git(bufnr, active) abort

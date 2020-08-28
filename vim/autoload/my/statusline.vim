@@ -5,33 +5,6 @@ let g:autoloaded_statusline = 1
 
 scriptencoding utf-8
 
-function! my#statusline#colorscheme() abort
-	if g:colors_name ==# 'one'
-		hi! link User1 OneStatusLineHue2
-		hi! link User2 OneStatusLineMono2
-		hi! link User3 OneStatusLineHue62
-	elseif g:colors_name ==# 'oceanic_material'
-		if !exists('s:colors')
-			let s:colors = g:OceanicMaterialPalette()
-		endif
-		call s:define_User(1, s:colors.blue, ['NONE'])
-		call s:define_User(2, s:colors.grey1, ['NONE'])
-		call s:define_User(3, s:colors.yellow, ['NONE'])
-	elseif g:colors_name ==# 'dracula'
-		call s:define_User(1, g:dracula#palette.purple, g:dracula#palette.subtle)
-		call s:define_User(2, [g:dracula#palette.color_8], g:dracula#palette.subtle)
-		call s:define_User(3, g:dracula#palette.yellow, g:dracula#palette.subtle)
-		hi! clear Statusline
-		execute 'hi! Statusline guibg='.g:dracula#palette.subtle[0]
-	endif
-endfunction
-
-function! s:define_User(num, fg, bg) abort
-	exec 'hi! User'.a:num.' guifg='.a:fg[0].' guibg='.a:bg[0]
-endfunction
-
-call my#statusline#colorscheme()
-
 let s:light_statusline_ft = ['qf', 'help', 'man']
 
 function! my#statusline#overwrite(winnr, active) abort
