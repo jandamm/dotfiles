@@ -53,6 +53,9 @@ function! my#statusline#default(bufnr, active) abort
 	let line .= '%=' " Break sides
 
 	" Right part
+	if a:active
+		let line .= my#statusline#part#qf_count(a:bufnr, a:active)
+	endif
 	let line .= my#statusline#part#neomake(a:bufnr, a:active)
 	let line .= ' '.my#statusline#part#viewport(a:bufnr, a:active)
 
@@ -61,7 +64,7 @@ endfunction
 
 function! my#statusline#light(bufnr, active) abort
 	return my#statusline#part#filename(a:bufnr, a:active, '')
-				\ .my#statusline#part#qf(a:bufnr, a:active, '')
+				\ .my#statusline#part#qf_title(a:bufnr, a:active, '')
 				\ .'%='
 				\ .my#statusline#part#viewport(a:bufnr, a:active)
 endfunction

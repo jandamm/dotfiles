@@ -18,13 +18,6 @@ function! my#statusline#part#filename(bufnr, active, prefix) abort
 	return (a:active ? '%1*' : '') . a:prefix . '%<%f%*'
 endfunction
 
-function! my#statusline#part#qf(bufnr, active, prefix) abort
-	let title = getwinvar(bufwinnr(a:bufnr), 'quickfix_title', '')
-	return empty(title)
-				\ ? ''
-				\ : ' '.s:trunc(title, 100)
-endfunction
-
 function! my#statusline#part#indent(bufnr, active) abort
 	let sw = &shiftwidth ? &shiftwidth : &tabstop
 	if &expandtab
@@ -39,12 +32,38 @@ function! my#statusline#part#indent(bufnr, active) abort
 	return ' ['.ret.']'
 endfunction
 
+function! my#statusline#part#qf_title(bufnr, active, prefix) abort
+	let title = getwinvar(bufwinnr(a:bufnr), 'quickfix_title', '')
+	return empty(title)
+				\ ? ''
+				\ : ' '.s:trunc(title, 100)
+endfunction
+
 function! my#statusline#part#spell(bufnr, active) abort
 	return &spell ? ' [' . toupper(strcharpart(&spelllang, 0, 2)) . ']' : ''
 endfunction
 
 function! my#statusline#part#viewport(bufnr, active) abort
 	return ' %P-%l-%c'
+endfunction
+
+function! my#statusline#part#qf_count(bufnr, active) abort
+	let qf = getqflist()
+	let line = s:qf_part(qf, '', a:active, ' && v:val.lnum > 0')
+				\ . s:qf_part(qf, 'E', a:active, '')
+				\ . s:qf_part(qf, 'W', a:active, '')
+				\ . s:qf_part(qf, 'I', a:active, '')
+
+	return empty(line) ? '' : ' c['.substitute(line, ',$', '', '').']'
+endfunction
+
+function! s:qf_part(all, type, active, check) abort
+	let hi = a:active ? '%#QfStatus'.a:type.'#' : ''
+	let c = len(filter(copy(a:all), 'v:val.type ==? "'.a:type.'"'.a:check))
+	let equals = empty(a:type) ? '' : '='
+	return c > 0
+				\ ? hi.a:type.equals.c.'%*,'
+				\ : ''
 endfunction
 
 function! my#statusline#part#neomake(bufnr, active) abort
@@ -55,8 +74,11 @@ function! my#statusline#part#neomake(bufnr, active) abort
 		return loc
 	endif
 	let qf = s:NeomakeListErrors('c', s:NeomakeRunning(jobs, 0), neomake#statusline#QflistCounts(), a:active)
+	if empty(loc) && empty(qf)
+		return ''
+	endif
 	let space = loc !=? '' && qf !=? '' ? ' ' : ''
-	return loc . space . qf
+	return ' ' . loc . space . qf
 endfunction
 
 " Helper {{{
