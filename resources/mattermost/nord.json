@@ -21,6 +21,6 @@
 	"errorTextColor":"#bf616a",
 	"mentionHighlightBg":"#ebcb8b",
 	"mentionHighlightLink":"#4c566a",
-	"codeTheme":"solarized_dark",
+	"codeTheme":"solarized-dark",
 	"mentionBg":"#ebcb8b"
 }
