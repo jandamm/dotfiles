@@ -15,8 +15,8 @@ function! my#statusline#ctrlp#main(focus, byfname, regex, prev, item, next, mark
 		let line .= a:focus
 	endif
 	let line .= '%*'
-	let line .= ' (%3*' . (a:regex ? 'regex-' : '') . a:byfname . '%*)'
-	let line .= ' [%2*'.a:prev.'%*|%1*'.a:item.'%*|%2*'.a:next.'%*]'
+	let line .= ' (%2*' . (a:regex ? 'regex-' : '') . a:byfname . '%*)'
+	let line .= ' [%9*'.a:prev.'%*|%1*'.a:item.'%*|%9*'.a:next.'%*]'
 	let line .= a:marked ==? '<->' ? a:marked : ''
 	let line .= '%=%{getcwd()}'
 	return line
@@ -25,4 +25,3 @@ endfunction
 function! my#statusline#ctrlp#prog(progress) abort
 	return a:progress
 endfunction
-

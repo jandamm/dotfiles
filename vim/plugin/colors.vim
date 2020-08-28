@@ -29,12 +29,14 @@ let s:nord15_gui       = '#B48EAD' " Purple
 function! s:colors() abort
 	if g:colors_name ==# 'one'
 		hi! link User1 OneStatusLineHue2
-		hi! link User2 OneStatusLineMono2
-		hi! link User3 OneStatusLineHue62
+		hi! link User2 OneStatusLineHue62
+		hi! link User8 StatuslineNC
+		hi! link User9 OneStatusLineMono2
 	elseif g:colors_name ==# 'dracula'
 		call s:define_User(1, g:dracula#palette.purple, g:dracula#palette.subtle)
-		call s:define_User(2, [g:dracula#palette.color_8], g:dracula#palette.subtle)
-		call s:define_User(3, g:dracula#palette.yellow, g:dracula#palette.subtle)
+		call s:define_User(2, g:dracula#palette.yellow, g:dracula#palette.subtle)
+		call s:define_User(9, [g:dracula#palette.color_8], g:dracula#palette.subtle)
+		hi! link User8 StatuslineNC
 		hi! link Whitespace Comment
 		hi! clear Statusline
 		execute 'hi! Statusline guibg='.g:dracula#palette.subtle[0]
@@ -44,9 +46,9 @@ function! s:colors() abort
 		execute 'hi StatusLine   guibg='.s:nord3_gui.' guifg='s:nord4_gui
 		execute 'hi StatusLineNC guibg='.s:nord1_gui.' guifg='s:nord4_gui.' gui=italic'
 		execute 'hi User1        guibg='.s:nord3_gui.' guifg='s:nord8_gui.' gui=bold'
-		execute 'hi User2        guibg='.s:nord3_gui.' guifg='s:nord4_gui
-		execute 'hi User3        guibg='.s:nord3_gui.' guifg='s:nord13_gui
-		execute 'hi User4        guibg='.s:nord3_gui.' guifg='s:nord5_gui.' gui=bold'
+		execute 'hi User2        guibg='.s:nord3_gui.' guifg='s:nord13_gui
+		execute 'hi User8        guibg='.s:nord3_gui.' guifg='s:nord4_gui.' gui=bold'
+		execute 'hi User9        guibg='.s:nord3_gui.' guifg='s:nord4_gui
 		execute 'hi QfStatus     guibg='.s:nord3_gui.' guifg='s:nord15_gui
 		execute 'hi QfStatusE    guibg='.s:nord3_gui.' guifg='s:nord11_gui
 		execute 'hi QfStatusW    guibg='.s:nord3_gui.' guifg='s:nord13_gui
