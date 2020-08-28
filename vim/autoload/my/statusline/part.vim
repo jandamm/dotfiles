@@ -32,6 +32,11 @@ function! my#statusline#part#indent(bufnr, active) abort
 	return ' ['.ret.']'
 endfunction
 
+function! my#statusline#part#paste(bufnr, active) abort
+	let c = a:active ? '%2*' : ''
+	return &paste ? ' ['.c.'paste%*]' : ''
+endfunction
+
 function! my#statusline#part#qf_title(bufnr, active, prefix) abort
 	let title = getwinvar(bufwinnr(a:bufnr), 'quickfix_title', '')
 	return empty(title)

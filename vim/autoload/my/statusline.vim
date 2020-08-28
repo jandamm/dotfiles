@@ -42,6 +42,7 @@ function! my#statusline#default(bufnr, active) abort
 
 	if a:active
 		let line .= my#statusline#part#git(a:bufnr, a:active)
+		let line .= my#statusline#part#paste(a:bufnr, a:active)
 		let line .= &filetype !=? '' ? ' %y' : '' " filetype if set
 		let line .= my#statusline#part#spell(a:bufnr, a:active)
 		let line .= my#statusline#part#indent(a:bufnr, a:active)
