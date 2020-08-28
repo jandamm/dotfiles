@@ -12,6 +12,7 @@ fi
 
 # File is only to find the correct config.
 FILE="$1"
+shift
 filename='.swiftformat'
 
 CONFIG=$(get_config_file "$filename" "$FILE")
