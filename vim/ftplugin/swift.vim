@@ -1,5 +1,10 @@
 command! -buffer -nargs=* SwiftFormat call my#ft#swift#swiftformat('<args>')
 setlocal formatprg=neovim\ swiftformat\ %\ --fragment\ true
+compiler swiftpm
+
+if filereadable('Makefile')
+	set makeprg=make
+endif
 
 if exists('g:loaded_swift_ftplugin')
 	finish

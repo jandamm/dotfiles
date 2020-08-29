@@ -18,18 +18,19 @@ function! my#ft#swift#swiftformat(path) abort
 	echo line('$') . ' lines formatted'
 endfunction
 
-" TODO: Add compiler swiftpm
+" compiler is either swiftpm or make (checked for Makefile).
+" errorformat should always be for swiftpm
 function! my#ft#swift#compile() abort
 	silent! wall
-	Dispatch swift build
+	Make build
 endfunction
 
 function! my#ft#swift#run() abort
 	silent! wall
-	Dispatch swift run
+	Make run
 endfunction
 
 function! my#ft#swift#test() abort
 	silent! wall
-	Dispatch swift test
+	Make test
 endfunction
