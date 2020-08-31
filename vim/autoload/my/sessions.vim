@@ -6,13 +6,13 @@ let g:autoloaded_my_session = 1
 let s:sessions_dir = expand('~/.vim/session/')
 
 " Create a session for the current dir
-function! my#sessions#make() abort
+function! my#sessions#make(bang) abort
 	if exists('g:this_obsession')
 		call s:error('Already in obsession.', 'WarningMsg')
 		return
 	endif
 	let session = s:cur_session_file()
-	if filereadable(session)
+	if !a:bang && filereadable(session)
 		call s:error('Session file already exists.')
 		return
 	endif
@@ -20,15 +20,17 @@ function! my#sessions#make() abort
 endfunction
 
 " Session file or session for current dir
-function! my#sessions#load(...) abort
-	let session = a:0 ? s:session_file(a:1) : s:cur_session_file()
+function! my#sessions#load(bang, path) abort
+	let session = s:session_file(a:path)
 	if exists('g:this_obsession') && g:this_obsession ==# session
-		call s:error('Already in this obsession.', 'Normal')
+		if !a:bang
+			call s:error('Already in this obsession.', 'Normal')
+		endif
 	elseif filereadable(session)
 		call my#sessions#end()
 		execute 'silent source '.fnameescape(session)
-	else
-		call s:error('No session exists.')
+	elseif !a:bang
+		call s:error('No session exists. '.session)
 	endif
 endfunction
 
@@ -44,8 +46,8 @@ function! my#sessions#end() abort
 endfunction
 
 " Delete the current or given session
-function! my#sessions#delete(...) abort
-	let session = a:0 ? s:session_file(a:1) : s:cur_session_file()
+function! my#sessions#delete(path) abort
+	let session = s:session_file(a:path)
 	if exists('g:this_obsession') && g:this_obsession ==# session
 		silent Obsession!
 	elseif filereadable(session)
@@ -65,7 +67,9 @@ function! s:cur_session_file() abort
 endfunction
 
 function! s:session_file(path) abort
-	return s:sessions_dir . s:escape(substitute(a:path, '^'.s:sessions_dir, '' ,''))
+	return empty(a:path)
+				\ ? s:cur_session_file()
+				\ : s:sessions_dir . s:escape(substitute(a:path, '^'.s:sessions_dir, '' ,''))
 endfunction
 
 function! s:escape(path) abort

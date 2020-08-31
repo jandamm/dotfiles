@@ -3,8 +3,8 @@ if exists('g:loaded_session_cmds')
 endif
 let g:loaded_session_cmds = 1
 
-command! Mksession call my#sessions#make()
-command! -nargs=? Session call my#sessions#load(<q-args>)
-command! -nargs=? Rmsession call my#sessions#delete(<q-args>)
+command! -bang          Mksession call my#sessions#make(<bang>0)
+command! -bang -nargs=? Session   call my#sessions#load(<bang>0, <q-args>)
+command!       -nargs=? Rmsession call my#sessions#delete(<q-args>)
 
 command! CtrlPSession call ctrlp#init(ctrlp#sessions#id())

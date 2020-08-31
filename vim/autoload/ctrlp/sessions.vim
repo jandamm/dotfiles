@@ -56,7 +56,7 @@ endfunction
 "  a:str    the selected string
 function! ctrlp#sessions#accept(mode, str) abort
 	call ctrlp#exit()
-	call my#sessions#load(a:str.'.vim')
+	execute 'Session '.a:str.'.vim'
 endfunction
 
 
