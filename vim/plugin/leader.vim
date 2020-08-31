@@ -94,7 +94,7 @@ let g:lmap.o.t = 'Terminal'
 let g:lmap.p = { 'name': 'project' }
 nmap <silent> <expr> <Leader>pd  winnr('$') == 1 ? ":Dirvish!\<CR>" : ":Dirvish\<CR>"
 let g:lmap.p.d = 'Directory'
-nmap <silent> <Leader>pp         :CtrlPObsession<CR>
+nmap <silent> <Leader>pp         :CtrlPSession<CR>
 let g:lmap.p.p = 'Sessions'
 nmap <silent> <Leader>pt         :CtrlPTag<CR>
 let g:lmap.p.t = 'Tags'
@@ -131,7 +131,7 @@ nmap          <Leader>Y          <Plug>(YoinkRotateForward)
 let g:lmap.Y = 'Yank history forward'
 nmap <silent> <Leader><SPACE>    :CtrlP<CR>
 let g:lmap[' '] = 'Files'
-nmap <silent> <Leader><TAB>      :CtrlPObsession<CR>
+nmap <silent> <Leader><TAB>      :CtrlPSession<CR>
 let g:lmap['<C-I>'] = 'Sessions'
 nmap          <Leader>/          :Grep<SPACE>
 let g:lmap['/'] = 'Grep'
@@ -139,5 +139,3 @@ nmap          <Leader>?          :Rg<SPACE>
 let g:lmap['?'] = 'Rg'
 nmap <Leader>: :CtrlPCmdPalette<CR>
 let g:lmap[':'] = 'Commands'
-
-" vim:set foldmethod=marker:

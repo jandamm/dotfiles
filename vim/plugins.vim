@@ -41,7 +41,6 @@ call packager#add('jandamm/vim-dispatch-neovim') " Dispatch using the neovim ter
 Pack 'roryokane/detectindent' " Automatically set spaces/tabs
 call packager#add('tpope/vim-eunuch') " Unix commands in vim
 call packager#add('tpope/vim-obsession') " Save sessions easily
-call packager#add('dhruvasagar/vim-prosession') " Automatically save/load sessions
 call packager#add('airblade/vim-rooter') " Always cd into root of project
 call packager#add('jandamm/vim-projplugin') " Load project specific config
 call packager#add('mbbill/undotree') " Show undo history as a tree
@@ -68,7 +67,6 @@ call packager#add('nixprime/cpsm', { 'do': 'env PY3=ON ./install.sh' }) " Improv
 call packager#add('mattn/ctrlp-git')
 call packager#add('jandamm/ctrlp-filer')
 call packager#add('jandamm/ctrlp-complete.vim')
-call packager#add('gikmx/vim-ctrlposession')
 call packager#add('jandamm/ctrlp_bdelete.vim')
 call packager#add('fisadev/vim-ctrlp-cmdpalette')
 Pack 'jasoncodes/ctrlp-modified.vim'
