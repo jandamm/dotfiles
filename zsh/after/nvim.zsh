@@ -1,6 +1,14 @@
 alias ovim=$(which vim)
 alias vim="nvim"
 
+function nvim() {
+	if [ $# -eq 0 ]; then
+		command nvim -c 'Session!'
+	else
+		command nvim $@
+	fi
+}
+
 function fuzzy_open_file() {
 	local editor
 	editor="$1"
