@@ -62,6 +62,12 @@ function! my#sessions#list() abort
 	return map(systemlist('ls '.s:sessions_dir), { _, val -> s:unescape(val) })
 endfunction
 
+function! my#sessions#complete(arglead, cmdline, cursorpos) abort
+	" Convert glob to regex and don't require end of line
+	let input = substitute(glob2regpat(a:arglead), '\$$', '', '')
+	return filter(my#sessions#list(), 'v:val =~ "'.input.'"')
+endfunction
+
 function! s:cur_session_file() abort
 	return s:session_file(getcwd().'.vim')
 endfunction

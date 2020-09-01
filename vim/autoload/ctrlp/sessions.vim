@@ -26,7 +26,7 @@ let s:ctrlp_var = {
 			\ 'accept': 'ctrlp#sessions#accept',
 			\ 'lname' : 'sessions',
 			\ 'sname' : 'sess',
-			\ 'type'  : 'line',
+			\ 'type'  : 'path',
 			\ 'sort'  : 0,
 			\ 'nolim' : 1,
 			\ }
