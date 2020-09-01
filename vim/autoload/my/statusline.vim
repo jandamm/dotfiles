@@ -24,7 +24,7 @@ function! my#statusline#get(winnr, active) abort
 		return my#statusline#dirvish(bufnr, a:active)
 	endif
 
-	if filetype ==# 'fugitive'
+	if filetype ==# 'fugitive' || bufname(bufnr) =~# '^fugitive://'
 		return my#statusline#fugitive(bufnr, a:active)
 	endif
 
@@ -37,11 +37,12 @@ endfunction
 
 function! my#statusline#default(bufnr, active) abort
 	" Left part
-	let line = my#statusline#part#filename(a:bufnr, a:active, 'ν ')
+	let line  = my#statusline#part#filename(a:bufnr, a:active, 'ν ')
 	let line .= my#statusline#part#bufnr(a:bufnr, a:active)
 
 	if a:active
 		let line .= my#statusline#part#git(a:bufnr, a:active)
+		let line .= my#statusline#part#sessions(a:bufnr, a:active)
 		let line .= my#statusline#part#paste(a:bufnr, a:active)
 		let line .= &filetype !=? '' ? ' %y' : '' " filetype if set
 		let line .= my#statusline#part#spell(a:bufnr, a:active)
@@ -91,10 +92,12 @@ function! my#statusline#terminal(bufnr, active) abort
 	let pat = '\vterm:\/\/(.*)\/\/(\d*):%(\/usr\/%(local\/)?bin\/)?(.*)'
 	" set dir, bufnr, bin, pid
 	let rep = '\1%*'.my#statusline#part#bufnr(a:bufnr, a:active).' [\3] [\2]'
+	let term_title = substitute(getbufvar(a:bufnr, 'term_title'), pat, rep, '')
+	let is_gsh = match(term_title, '^[^\[]*\[gsh\]') == 0
 
 	return (a:active ? '%1*' : '')
-				\ .'λ '
-				\ .substitute(getbufvar(a:bufnr, 'term_title'), pat, rep, '').'%*'
+				\ .(is_gsh ? 'δ ' : 'λ ')
+				\ .term_title.'%*'
 				\ .'%='
 				\ .my#statusline#part#viewport(a:bufnr, a:active)
 endfunction

@@ -44,6 +44,10 @@ function! my#statusline#part#qf_title(bufnr, active, prefix) abort
 				\ : ' '.s:trunc(title, 100)
 endfunction
 
+function! my#statusline#part#sessions(bufnr, active) abort
+	return '%{ObsessionStatus(" [$]", "")}'
+endfunction
+
 function! my#statusline#part#spell(bufnr, active) abort
 	return &spell ? ' [' . toupper(strcharpart(&spelllang, 0, 2)) . ']' : ''
 endfunction
