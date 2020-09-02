@@ -52,6 +52,7 @@ function! my#sessions#delete(path) abort
 		silent Obsession!
 	elseif filereadable(session)
 		call system('rm '.session)
+		echo 'Removed session file for '.a:path
 	else
 		call s:error('No session file found.')
 	endif

@@ -55,8 +55,16 @@ endfunction
 "           the values are 'e', 'v', 't' and 'h', respectively
 "  a:str    the selected string
 function! ctrlp#sessions#accept(mode, str) abort
-	call ctrlp#exit()
-	execute 'Session '.a:str.'.vim'
+	" Trash session
+	if a:mode ==# 't'
+		let pos = getpos('.')
+		execute 'Rmsession '.a:str.'.vim'
+		exec "normal \<f5>"
+		call setpos('.', pos)
+	else
+		call ctrlp#exit()
+		execute 'Session '.a:str.'.vim'
+	endif
 endfunction
 
 
