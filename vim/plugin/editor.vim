@@ -17,7 +17,7 @@ augroup my_editor_group
 augroup END
 
 " Command to set my default tabwidth etc.
-command! SleuthOverwrite call my#format#default()
+command! IndentDefault call my#format#default()
 
 command! X !chmod +x %
 
@@ -28,6 +28,7 @@ let g:git_messenger_always_into_popup = v:true
 let g:undotree_SetFocusWhenToggle = 1
 function! g:Undotree_CustomMap() abort
 	map <buffer> U <C-r>
+	map <buffer> gq <CMD>UndotreeHide<CR>
 endfunction
 
 " Smalls

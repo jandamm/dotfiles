@@ -25,6 +25,8 @@ nmap <silent> <Leader>c.         :AbortDispatch<CR>
 let g:lmap.c['.'] = 'Abort Dispatch'
 nmap <silent> <Leader>cc         :call my#map#leader#compile()<CR>
 let g:lmap.c.c = 'Compile'
+let g:quickfixsigns_echo_map = '<Leader>ce'
+let g:lmap.c.e = 'Error message'
 nmap <silent> <Leader>cf         :call my#map#leader#format()<CR>
 let g:lmap.c.f = 'Format'
 nmap <silent> <Leader>cr         :call my#map#leader#run()<CR>
@@ -71,9 +73,9 @@ let g:lmap.g.h.u = 'Undo'
 " }}}2
 " Leader G L {{{2
 let g:lmap.g.l = { 'name': 'log' }
-nmap <silent> <Leader>glf        :0Glog<CR>
+nmap <silent> <Leader>glf        :0Gclog<CR>
 let g:lmap.g.l.f = 'File'
-nmap <silent> <Leader>gll        :Glog<CR>
+nmap <silent> <Leader>gll        :Gclog<CR>
 " }}}2
 nmap <silent> <Leader>gm         :CtrlPModified<CR>
 let g:lmap.g.m = 'Modified files'
@@ -116,6 +118,7 @@ let g:lmap.t.L = 'Loclist stay'
 nmap <silent> <Leader>tn         <CMD>setlocal relativenumber!<CR>
 let g:lmap.t.n = 'Line numbers'
 nmap <silent> <Leader>tp         <CMD>set paste!<CR>
+xmap <silent> <Leader>tp         <CMD>set paste!<CR>
 let g:lmap.t.p = 'Paste'
 nmap <silent> <Leader>tq         <Plug>(qf_qf_toggle)
 let g:lmap.t.q = 'Quickfix'
