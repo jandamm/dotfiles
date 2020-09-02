@@ -1,7 +1,9 @@
 command! -buffer -nargs=* SwiftFormat call my#ft#swift#swiftformat('<args>')
 setlocal formatprg=neovim\ swiftformat\ %\ --fragment\ true
-compiler swiftpm
+nmap <buffer> <Leader>cb <CMD>call my#ft#swift#build()<CR>
+let g:lmap.c.b = 'Build with spm'
 
+compiler swiftpm
 if filereadable('Makefile')
 	set makeprg=make
 endif

@@ -18,6 +18,12 @@ function! my#ft#swift#swiftformat(path) abort
 	echo line('$') . ' lines formatted'
 endfunction
 
+function! my#ft#swift#build() abort
+	silent! wall
+	let ios = &filetype =~# 'ios' ? 'ios ' : ''
+	execute 'Dispatch -compiler=swiftpm neovim swift build '.ios.join(my#ft#swift#compiler_flags(), ' ')
+endfunction
+
 " compiler is either swiftpm or make (checked for Makefile).
 " errorformat should always be for swiftpm
 function! my#ft#swift#compile() abort
