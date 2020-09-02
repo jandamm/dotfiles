@@ -43,30 +43,33 @@ function! s:colors() abort
 	elseif g:colors_name ==# 'nord'
 		execute 'hi Folded guibg='.s:nord0_gui
 
-		execute 'hi StatusLine   guibg='.s:nord3_gui.' guifg='s:nord4_gui
-		execute 'hi StatusLineNC guibg='.s:nord1_gui.' guifg='s:nord4_gui.' gui=italic'
-		execute 'hi User1        guibg='.s:nord3_gui.' guifg='s:nord8_gui.' gui=bold'
-		execute 'hi User2        guibg='.s:nord3_gui.' guifg='s:nord13_gui
-		execute 'hi User8        guibg='.s:nord3_gui.' guifg='s:nord4_gui.' gui=bold'
-		execute 'hi User9        guibg='.s:nord3_gui.' guifg='s:nord4_gui
-		execute 'hi QfStatus     guibg='.s:nord3_gui.' guifg='s:nord15_gui
-		execute 'hi QfStatusE    guibg='.s:nord3_gui.' guifg='s:nord11_gui
-		execute 'hi QfStatusW    guibg='.s:nord3_gui.' guifg='s:nord13_gui
-		execute 'hi QfStatusI    guibg='.s:nord3_gui.' guifg='s:nord10_gui
-		execute 'hi QfSign       guibg='.s:nord0_gui.' guifg='s:nord15_gui
-		execute 'hi QfSignE      guibg='.s:nord0_gui.' guifg='s:nord11_gui
-		execute 'hi QfSignW      guibg='.s:nord0_gui.' guifg='s:nord13_gui
-		execute 'hi QfSignI      guibg='.s:nord0_gui.' guifg='s:nord10_gui
+		execute 'hi StatusLine   guibg='.s:nord3_gui.' guifg='.s:nord4_gui
+		execute 'hi StatusLineNC guibg='.s:nord1_gui.' guifg='.s:nord4_gui.' gui=italic'
+		execute 'hi User1        guibg='.s:nord3_gui.' guifg='.s:nord8_gui.' gui=bold'
+		execute 'hi User2        guibg='.s:nord3_gui.' guifg='.s:nord13_gui
+		execute 'hi User8        guibg='.s:nord3_gui.' guifg='.s:nord4_gui.' gui=bold'
+		execute 'hi User9        guibg='.s:nord3_gui.' guifg='.s:nord4_gui
+		execute 'hi QfStatus     guibg='.s:nord3_gui.' guifg='.s:nord15_gui
+		execute 'hi QfStatusE    guibg='.s:nord3_gui.' guifg='.s:nord11_gui
+		execute 'hi QfStatusW    guibg='.s:nord3_gui.' guifg='.s:nord13_gui
+		execute 'hi QfStatusI    guibg='.s:nord3_gui.' guifg='.s:nord10_gui
+
+		execute 'hi QfSign       guibg='.s:nord0_gui.' guifg='.s:nord15_gui
+		execute 'hi QfSignE      guibg='.s:nord0_gui.' guifg='.s:nord11_gui
+		execute 'hi QfSignW      guibg='.s:nord0_gui.' guifg='.s:nord13_gui
+		execute 'hi QfSignI      guibg='.s:nord0_gui.' guifg='.s:nord10_gui
 		hi! link NeomakeStatColorTypeE QfStatusE
 		hi! link NeomakeStatColorTypeW QfStatusW
 		hi! link NeomakeStatColorTypeI QfStatusI
-		execute 'hi LeaderGuideKeys           guibg='.s:nord0_gui.' guifg='s:nord13_gui
-		execute 'hi LeaderGuideMenu           guibg='.s:nord0_gui.' guifg='s:nord7_gui
-		execute 'hi LeaderGuideKeysStatusline guibg='.s:nord3_gui.' guifg='s:nord13_gui
-		execute 'hi LeaderGuideMenuStatusline guibg='.s:nord3_gui.' guifg='s:nord7_gui
+		execute 'hi Sneak        guibg='.s:nord14_gui.' guifg='.s:nord0_gui
+
+		execute 'hi LeaderGuideKeys            guibg='.s:nord0_gui.' guifg='.s:nord13_gui
+		execute 'hi LeaderGuideMenu            guibg='.s:nord0_gui.' guifg='.s:nord7_gui
+		execute 'hi LeaderGuideKeysStatusline  guibg='.s:nord3_gui.' guifg='.s:nord13_gui
+		execute 'hi LeaderGuideMenuStatusline  guibg='.s:nord3_gui.' guifg='.s:nord7_gui
 		hi! link LeaderGuideBrackets   Comment
 
-		execute 'hi helpExample  guibg='.s:nord0_gui.' guifg='s:nord10_gui
+		execute 'hi helpExample  guibg='.s:nord0_gui.' guifg='.s:nord10_gui
 	endif
 endfunction
 function! s:define_User(num, fg, bg) abort
