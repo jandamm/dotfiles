@@ -13,6 +13,22 @@ function nvim() {
 	fi
 }
 
+function v() {
+	if [ -n "$1" ]; then
+		z $@ && vim
+	else
+		nvim
+	fi
+}
+
+function vv() {
+	if [ -n "$1" ]; then
+		zz $@ && vim
+	else
+		nvim
+	fi
+}
+
 function fuzzy_open_file() {
 	local editor
 	editor="$1"
@@ -60,7 +76,7 @@ function vrc() {
 		&& nvim "${file/\~/$HOME}"
 	}
 
-function v() {
+function e() {
 	if [ -e "$1" ]
 	then nvim "$@"
 	else
@@ -71,6 +87,5 @@ function v() {
 	fi
 }
 
-alias e="fuzzy_open_file nvim"
-alias vv="fuzzy_open_file nvim"
-alias vvv="fuzzy_search_open_file nvim -1"
+alias ee="fuzzy_open_file nvim"
+alias eee="fuzzy_search_open_file nvim -1"
