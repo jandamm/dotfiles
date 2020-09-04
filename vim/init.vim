@@ -115,6 +115,9 @@ let g:vsnip_snippet_dir = expand('~/.vim/vsnip/default')
 " Python path
 let g:python3_host_prog = '/usr/local/bin/python3'
 
+" Ensure g:projectionist_heuristics is set to modify it in plugin files
+let g:projectionist_heuristics = {}
+
 " Check for file specific vim settings in the last 3 lines of the file
 set modeline
 set modelines=3

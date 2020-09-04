@@ -57,6 +57,7 @@ Pack 'tommcdo/vim-exchange' " Switch text with cx
 Pack 'tomtom/quickfixsigns_vim' " Show signs for qfl and more
 Pack 'chrisbra/Recover.vim' " Allow comparing swap files
 Pack 'romainl/vim-qf' " Improve quickfix lists
+Pack 'tpope/vim-projectionist' " Projects in vim
 
 call packager#add('justinmk/vim-dirvish')
 call packager#add('kristijanhusak/vim-dirvish-git')
