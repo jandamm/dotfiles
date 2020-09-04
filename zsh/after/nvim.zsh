@@ -2,10 +2,14 @@ alias ovim=$(which vim)
 alias vim="nvim"
 
 function nvim() {
-	if [ $# -eq 0 ]; then
-		command nvim -c 'Session!'
+	if [ -u $NVIM_LISTEN_ADDRESS ]; then
+		if [ $# -eq 0 ]; then
+			command nvim -c 'Session!'
+		else
+			command nvim $@
+		fi
 	else
-		command nvim $@
+		nvr $@
 	fi
 }
 
@@ -43,7 +47,7 @@ function fuzzy_search_open_file() {
 		&& file=$(echo $file | tr '\n' ' ') \
 		&& eval "fasd -A $file" \
 		&& eval "$editor $file"
-}
+	}
 
 function vrc() {
 	local dir_glob file_glob
@@ -54,7 +58,7 @@ function vrc() {
 	file=$(rg --files "$DOTFILES" "$DOTFILES_PRIVATE" --iglob "$dir_glob" --iglob "$file_glob" 2>/dev/null | sed "s_^${HOME}_~_" | fzf -1 -0) \
 		&& fasd -A "${file/\~/$HOME}" \
 		&& nvim "${file/\~/$HOME}"
-}
+	}
 
 function v() {
 	if [ -e "$1" ]
