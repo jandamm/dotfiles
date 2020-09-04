@@ -29,6 +29,12 @@ function! my#editor#swap_cmd(bang, l1, l2, ...) abort
 	endtry
 endfunction
 
+function! my#editor#tree_cmd(vertical, ...) abort
+	let path = a:0 ? fnamemodify(expand(a:1), ':h') : '.'
+	call my#util#temp_buffer(a:vertical)
+	call append(0, systemlist('tree ' . path))
+endfunction
+
 function! s:error(message) abort
 	echohl Error
 	echo a:message
