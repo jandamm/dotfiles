@@ -44,7 +44,7 @@ endif
 "
 " Return: command
 function! ctrlp#sessions#init() abort
-	return map(my#sessions#list(), { _, val -> substitute(val, '\.vim$', '', '') })
+	return map(my#sessions#list(1), { _, val -> substitute(val, '\.vim$', '', '') })
 endfunction
 
 

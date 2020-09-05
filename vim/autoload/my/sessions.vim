@@ -59,8 +59,13 @@ function! my#sessions#delete(path) abort
 endfunction
 
 " List all session files
-function! my#sessions#list() abort
-	return map(systemlist('ls '.s:sessions_dir), { _, val -> s:unescape(val) })
+function! my#sessions#list(...) abort
+	let files = systemlist('ls '.s:sessions_dir)
+	if a:0 && a:1 && exists('g:this_obsession')
+		let session = substitute(g:this_obsession, '^'.s:sessions_dir, '', '')
+		let files = filter(files, 'v:val !=# "'.session.'"')
+	endif
+	return map(files, { _, val -> s:unescape(val) })
 endfunction
 
 function! my#sessions#complete(arglead, cmdline, cursorpos) abort
