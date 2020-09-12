@@ -3,6 +3,26 @@ if exists('g:loaded_projections')
 endif
 let g:loaded_projections = 1
 
+" LUA {{{
+let g:projectionist_heuristics['&lua/*.lua'] = {
+			\  'lua/*.lua': { 'type': 'lua' },
+			\ }
+" }}}
+
+" VIM {{{
+let g:projectionist_heuristics['&*.vim'] = {
+			\  'after/*.vim'    : { 'type': 'after'    },
+			\  'autoload/*.vim' : { 'type': 'autoload' },
+			\  'compiler/*.vim' : { 'type': 'compiler' },
+			\  'ftdetect/*.vim' : { 'type': 'detect'   },
+			\  'ftplugin/*.vim' : { 'type': 'ftplugin' },
+			\  'plugin/*.vim'   : { 'type': 'plugin'   },
+			\  'syntax/*.vim'   : { 'type': 'syntax'   },
+			\  'doc/*.vim'      : { 'type': 'doc'      },
+			\  'readme.md'      : { 'type': 'doc'      },
+			\ }
+" }}}
+
 " VIMRC {{{
 let g:projectionist_heuristics['&init.vim'] = {
 			\  'ftplugin/*.vim': {
@@ -35,8 +55,7 @@ let g:projectionist_heuristics['&init.vim'] = {
 			\      'alternate': 'plugin/{}.vim',
 			\      'related': ['after/plugin/{}.vim', 'plugin/{}.vim'],
 			\  },
-			\  'compiler/*.vim': { 'type': 'compiler' },
-			\  'ftdetect/*.vim': { 'type': 'detect' },
+			\  'init.vim': { 'type': 'init' },
 			\  'plugin/ctrlp.vim': { 'type': 'ctrlp' },
 			\  'autoload/ctrlp/*.vim': { 'type': 'ctrlp' },
 			\  'projplugin/*.vim': { 'type': 'projplugin' },
