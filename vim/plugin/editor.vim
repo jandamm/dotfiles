@@ -35,6 +35,9 @@ command! X !chmod +x %
 " Git Messenger
 let g:git_messenger_always_into_popup = v:true
 
+" Quick Scope
+let g:qs_highlight_on_keys = ['f', 'F']
+
 " Undo Tree
 let g:undotree_SetFocusWhenToggle = 1
 function! g:Undotree_CustomMap() abort

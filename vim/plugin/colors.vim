@@ -68,6 +68,9 @@ function! s:colors() abort
 		execute 'hi LeaderGuideMenuStatusline  guibg='.s:nord3_gui.' guifg='.s:nord7_gui
 		hi! link LeaderGuideBrackets   Comment
 
+		hi! link QuickScopePrimary ALEError
+		hi! link QuickScopeSecondary ALEWarning
+
 		execute 'hi helpExample  guibg='.s:nord0_gui.' guifg='.s:nord10_gui
 	endif
 endfunction
