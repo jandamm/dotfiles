@@ -86,6 +86,7 @@ if exists('+breakindent')
 	set breakindent
 	set breakindentopt=shift:2
 endif
+set nojoinspaces
 
 " Allow folder specific tags with .root or .tagroot file
 let g:gutentags_project_root=['.root', '.tagroot']
