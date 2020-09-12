@@ -41,9 +41,3 @@ function! g:Undotree_CustomMap() abort
 	map <buffer> U <C-r>
 	map <buffer> gq <CMD>UndotreeHide<CR>
 endfunction
-
-" Smalls
-let g:smalls_jump_keys = 'ARSTNEIODHPLFUWY;QGJVMBKCXZ'
-let g:smalls_jump_trigger = ';'
-let g:smalls_auto_jump = 1
-let g:smalls_auto_jump_timeout = 0.5

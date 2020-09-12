@@ -61,7 +61,6 @@ function! s:colors() abort
 		hi! link NeomakeStatColorTypeE QfStatusE
 		hi! link NeomakeStatColorTypeW QfStatusW
 		hi! link NeomakeStatColorTypeI QfStatusI
-		execute 'hi Sneak        guibg='.s:nord14_gui.' guifg='.s:nord0_gui
 
 		execute 'hi LeaderGuideKeys            guibg='.s:nord0_gui.' guifg='.s:nord13_gui
 		execute 'hi LeaderGuideMenu            guibg='.s:nord0_gui.' guifg='.s:nord7_gui

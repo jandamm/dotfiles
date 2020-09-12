@@ -104,9 +104,6 @@ nmap <silent> <Leader>pw         :wall<CR>
 let g:lmap.p.w = 'Save'
 " }}}
 
-" vim-smalls
-let g:lmap.s = 'Quicksearch'
-
 " Leader T {{{1
 let g:lmap.t = { 'name': 'toggle' }
 nmap <silent> <Leader>tf         :call my#spelling#toggle()<CR>
