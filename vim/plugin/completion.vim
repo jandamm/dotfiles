@@ -4,6 +4,7 @@ endif
 let g:loaded_completion = 1
 
 set completeopt=menu
+set infercase
 
 augroup my_completion
 	au!
