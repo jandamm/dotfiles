@@ -3,6 +3,6 @@
 # Initialize zinit
 declare -A ZINIT
 ZINIT[BIN_DIR]="$DOTFILES/zinit"
-ZINIT[HOME_DIR]="$DOTFILES_CACHE/zsh/zinit"
+ZINIT[HOME_DIR]="$XDG_CACHE_HOME/zsh/zinit"
 
 source "$DOTFILES/zinit/zinit.zsh"

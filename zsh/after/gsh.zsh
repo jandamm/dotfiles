@@ -12,7 +12,7 @@ function __set_gsh() {
 	if [ ! $PER_DIRECTORY_HISTORY_BASE_DEFAULT ]; then
 		PER_DIRECTORY_HISTORY_BASE_DEFAULT=$PER_DIRECTORY_HISTORY_BASE
 	fi
-	PER_DIRECTORY_HISTORY_BASE="$DOTFILES_CACHE/gsh/history_dirs"
+	PER_DIRECTORY_HISTORY_BASE="$XDG_CACHE_HOME/gsh/history_dirs"
 	_per-directory-history-change-directory
 }
 

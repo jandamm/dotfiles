@@ -274,19 +274,19 @@ then
 	# install tmux terminal
 	if is_install
 	then
-		if [[ ! -x  "$DOTFILES_CACHE/tmux/plugins/tpm/tpm" ]]; then
+		if [[ ! -x  "$XDG_CACHE_HOME/tmux/plugins/tpm/tpm" ]]; then
 			echo 'Installing tpm'
-			git clone https://github.com/tmux-plugins/tpm "$DOTFILES_CACHE/tmux/plugins/tpm"
+			git clone https://github.com/tmux-plugins/tpm "$XDG_CACHE_HOME/tmux/plugins/tpm"
 		fi
 
 		echo 'Installing tmux plugins'
-		"$DOTFILES_CACHE"/tmux/plugins/tpm/bin/install_plugins
+		"$XDG_CACHE_HOME"/tmux/plugins/tpm/bin/install_plugins
 	fi
 
 	if is_update
 	then
 		echo 'Updating tmux plugins'
-		"$DOTFILES_CACHE"/tmux/plugins/tpm/bin/update_plugins all
+		"$XDG_CACHE_HOME"/tmux/plugins/tpm/bin/update_plugins all
 	fi
 fi
 

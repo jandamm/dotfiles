@@ -25,16 +25,16 @@ then
 	alias diag="diagzinit && diagzprof"
 
 	# No instant prompt with gsh, as gsh is expected to print before first prompt.
-elif [[ -r "${XDG_CACHE_HOME:-$DOTFILES_CACHE}/p10k-instant-prompt-${(%):-%n}.zsh" ]] && [ -z "$GSH" ]
+elif [[ -r "${XDG_CACHE_HOME:-$XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh" ]] && [ -z "$GSH" ]
 then
-	source "${XDG_CACHE_HOME:-$DOTFILES_CACHE}/p10k-instant-prompt-${(%):-%n}.zsh"
+	source "${XDG_CACHE_HOME:-$XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # }}}
 
 # History {{{
 
-export HISTFILE="$DOTFILES_CACHE/zsh/zsh_history"
+export HISTFILE="$XDG_CACHE_HOME/zsh/zsh_history"
 export HISTSIZE=10000
 export HISTFILESIZE=${HISTSIZE}
 
@@ -49,7 +49,7 @@ setopt sharehistory       # share history between sessions*
 
 PER_DIRECTORY_HISTORY_TOGGLE='^g'
 PER_DIRECTORY_HISTORY_NEW_PROMPT=false
-PER_DIRECTORY_HISTORY_BASE="$DOTFILES_CACHE/zsh/history_dirs"
+PER_DIRECTORY_HISTORY_BASE="$XDG_CACHE_HOME/zsh/history_dirs"
 
 # }}}
 

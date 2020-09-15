@@ -1,8 +1,10 @@
 # Shortcut to my dotfiles directory
 export DOTFILES="$HOME/.dotfiles"
 export DOTFILES_PRIVATE="$HOME/.pdotfiles"
-export DOTFILES_CACHE="$HOME/.cache"
-export DOTFILES_ZSH="$DOTFILES/zsh"
+
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
 
 path=(
 	"$HOME/.bin"
