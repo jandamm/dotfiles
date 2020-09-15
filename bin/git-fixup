@@ -31,7 +31,7 @@ if [ "$1" = 'apply' ]; then
 		sha=$(get_sha "$@" || git logf --prompt='Fixup> ' --header='Select the oldest commit before a fixed commit.')
 	fi
 
-	git rebase --interactive --autosquash "${sha%% *}"
+	GIT_SEQUENCE_EDITOR=true git rebase --interactive --autosquash "${sha%% *}"
 	exit
 fi
 
