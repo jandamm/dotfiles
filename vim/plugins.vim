@@ -47,7 +47,7 @@ call packager#add('mbbill/undotree') " Show undo history as a tree
 call packager#add('machakann/vim-highlightedyank') " Highlight yanked text
 call packager#add('rhysd/git-messenger.vim') " Quickly show last commit message
 call packager#add('wellle/targets.vim') " Quickly show last commit message
-call packager#add('qpkorr/vim-bufkill') " BD to kill buffer but keep window
+Pack 'mhinz/vim-sayonara' " Delete buffers but keep window alive
 call packager#add('svermeulen/vim-yoink') " Yank history
 call packager#add('jandamm/vim-leader-guide') " Show leader mappings
 call packager#add('jandamm/vim-fuguidive') " Show leader mappings for fugitive

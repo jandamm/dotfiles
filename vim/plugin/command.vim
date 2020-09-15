@@ -3,6 +3,8 @@ let g:loaded_commands = 1
 
 command! -nargs=* Terminal vsplit <BAR> terminal <args>
 
+command! -bar BD Sayonara!
+
 " Command to set my default tabwidth etc.
 command! IndentDefault call my#format#default()
 
