@@ -299,9 +299,7 @@ then
 	if is_install
 	then
 		mkdir -p "$XDG_CACHE_HOME/zsh"
-		mkdir -p "$XDG_DATA_HOME/zsh/plugins"
-		ln -s "$XDG_DATA_HOME/zsh/plugins" "$HOME/.zgen" # Easier than setting ZGEN_DIR
-		git clone https://github.com/jandamm/zgenom.git "$XDG_DATA_HOME/zsh/zgenom"
+		git clone https://github.com/jandamm/zgenom.git "$XDG_DATA_HOME/zgenom"
 
 		echo 'Installing zsh plugins'
 		zsh -c "source $DOTFILES/zsh/init.zsh"
@@ -310,10 +308,13 @@ then
 	if is_update
 	then
 		echo 'Updating zgenom'
-		zsh -c "source $XDG_DATA_HOME/zsh/zgenom/zgen.zsh && zgen selfupdate"
+		zsh -c "source $XDG_DATA_HOME/zgenom/zgen.zsh && zgen selfupdate"
 
 		echo 'Updating zsh plugins'
-		zsh -c "source $XDG_DATA_HOME/zsh/zgenom/zgen.zsh && zgen update"
+		zsh -c "source $XDG_DATA_HOME/zgenom/zgen.zsh && zgen update"
+
+		echo 'Recreate zsh plugins cache'
+		zsh -c "source $DOTFILES/zsh/init.zsh"
 	fi
 fi
 

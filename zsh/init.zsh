@@ -72,7 +72,9 @@ do
 done
 unsetopt nullglob
 
-source $XDG_DATA_HOME/zsh/zgenom/zgen-lazy.zsh
+ZGEN_COMPINIT_FLAGS='-i'
+ZGEN_CUSTOM_COMPDUMP="$HOME/.zsh/zcompdump_$ZSH_VERSION"
+source $XDG_DATA_HOME/zgenom/zgen-lazy.zsh
 
 # Load plugins {{{
 
@@ -116,9 +118,6 @@ unsetopt nullglob
 
 # Completion {{{
 
-# Initialize zsh completion
-autoload -Uz compinit && compinit -d "$HOME/.zsh/zcompdump_$ZSH_VERSION"
-
 # load bash completion
 # autoload bashcompinit && bashcompinit
 # source file/to/bash/completion.sh
@@ -138,7 +137,6 @@ compdef _gnu_generic \
 compdef g=git
 
 # }}}
-
 
 # Change style of global aliases
 FAST_HIGHLIGHT_STYLES[global-alias]=fg=green,bold,underline
