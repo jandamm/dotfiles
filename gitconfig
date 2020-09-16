@@ -29,6 +29,7 @@
 	logga = logg --all
 	logs = log --graph --decorate --format=single
 	logsa = logs --all
+	main = switch main
 	master = switch master
 	publish = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
 	resetp = reset --patch
