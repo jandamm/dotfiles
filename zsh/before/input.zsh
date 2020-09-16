@@ -12,3 +12,11 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
 	zle -N zle-line-init
 	zle -N zle-line-finish
 fi
+
+# [Ctrl+p] Search in History Up
+autoload -U up-line-or-beginning-search
+zle -N up-line-or-beginning-search
+
+# [Ctrl+n] Search in History Down
+autoload -U down-line-or-beginning-search
+zle -N down-line-or-beginning-search

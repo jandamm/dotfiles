@@ -298,22 +298,22 @@ if should_configure zsh
 then
 	if is_install
 	then
-		mkdir -p "$HOME/.cache/zsh"
+		mkdir -p "$XDG_CACHE_HOME/zsh"
+		mkdir -p "$XDG_DATA_HOME/zsh/plugins"
+		ln -s "$XDG_DATA_HOME/zsh/plugins" "$HOME/.zgen" # Easier than setting ZGEN_DIR
+		git clone https://github.com/jandamm/zgenom.git "$XDG_DATA_HOME/zsh/zgenom"
 
 		echo 'Installing zsh plugins'
-		zsh -c "source $DOTFILES/zinit/zinit.zsh && zinit module build"
+		zsh -c "source $DOTFILES/zsh/init.zsh"
 	fi
 
 	if is_update
 	then
-		echo 'Updating zinit'
-		cd "$DOTFILES/zinit"
-		git checkout master
-		git pull
-		cd "$DOTFILES"
+		echo 'Updating zgenom'
+		zsh -c "source $XDG_DATA_HOME/zsh/zgenom/zgen.zsh && zgen selfupdate"
 
 		echo 'Updating zsh plugins'
-		zsh -c "source $DOTFILES/zsh/zinit.zsh && zinit update"
+		zsh -c "source $XDG_DATA_HOME/zsh/zgenom/zgen.zsh && zgen update"
 	fi
 fi
 

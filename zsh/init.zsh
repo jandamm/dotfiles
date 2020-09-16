@@ -15,14 +15,8 @@ fi
 
 if [[ $ZSHRC_CONFIG_DIAG -eq 1 ]]
 then
-	typeset -g ZPLG_MOD_DEBUG=1
-	# If an error occurs probably this needs to be executed: `zinit module build`
-	module_path+=( "$DOTFILES/zinit/zmodules/Src" )
-	zmodload zdharma/zplugin
 	zmodload zsh/zprof
-	alias diagzinit="zpmod source-study | sort -r"
-	alias diagzprof=zprof
-	alias diag="diagzinit && diagzprof"
+	alias diag=zprof
 
 	# No instant prompt with gsh, as gsh is expected to print before first prompt.
 elif [[ -r "${XDG_CACHE_HOME:-$XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh" ]] && [ -z "$GSH" ]
@@ -78,74 +72,38 @@ do
 done
 unsetopt nullglob
 
-source $HOME/.zsh/zinit.zsh
+source $XDG_DATA_HOME/zsh/zgenom/zgen-lazy.zsh
 
 # Load plugins {{{
 
-# Appearance {{{
+if ! zgen saved
+then
+	zgen load fnune/base16-fzf bash/base16-nord.config # base16-theme
+	zgen load romkatv/powerlevel10k powerlevel10k # Prompt theme
+	zgen load jandamm/vi-mode.zsh # Show line cursor in vi mode
 
-# base16-theme
-zinit snippet https://github.com/nicodebo/base16-fzf/blob/master/bash/base16-onedark.config
+	zgen load clvv/fasd fasd
 
-# Prompt theme
-zinit ice depth=1
-zinit light romkatv/powerlevel10k
+	zgen load Aloxaf/fzf-tab # Tab completion is working with fzf
 
-# Show line cursor in vi mode
-zinit light jandamm/vi-mode.zsh
+	zgen load zsh-users/zsh-completions # Load more completions
 
-# # Colors in man pages
-# zinit light ael-code/zsh-colored-man-pages
+	zgen load petervanderdoes/git-flow-completion # Load completion for git flow
 
-# }}}
+	zgen load junegunn/fzf shell/completion.zsh # **TAB to completion options in fzf (not 100% working with fzf-tab, still better than without)
+	zgen load junegunn/fzf shell/key-bindings.zsh # ^t to list all files from ./ in fzf
 
-# Commands {{{
+	zgen load jandamm/per-directory-history # History is saved per directory
 
-zinit ice as'program'
-zinit snippet https://github.com/raylee/tldr/blob/master/tldr
+	zgen load zdharma/history-search-multi-word # History search with syntax highlighting
 
-zinit ice as'program' pick'fasd'
-zinit light clvv/fasd
+	zgen load jandamm/instant-repl.zsh # Quickly create a repl for the current BUFFER
 
-# }}}
+	zgen load zdharma/fast-syntax-highlighting
+	zgen load zsh-users/zsh-autosuggestions
 
-# Completion {{{
-
-# Tab completion is working with fzf
-zinit light Aloxaf/fzf-tab
-
-# Load more completions
-zinit ice blockf atpull'zinit creinstall -q .'
-zinit light zsh-users/zsh-completions
-
-# Load completion for zinit
-zinit ice as'completion'
-zinit light $ZINIT[BIN_DIR]
-
-# Load completion for git flow
-zinit light petervanderdoes/git-flow-completion
-
-# }}}
-
-# FZF
-# **TAB to completion options in fzf (not 100% working with fzf-tab, still better than without)
-zinit snippet https://github.com/junegunn/fzf/blob/master/shell/completion.zsh
-# ^t to list all files from ./ in fzf
-zinit snippet https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh
-
-# History is saved per directory
-zinit light jandamm/per-directory-history
-
-# History search with syntax highlighting
-zinit light zdharma/history-search-multi-word
-
-# Quickly create a repl for the current BUFFER
-zinit light jandamm/instant-repl.zsh
-
-# Use system clipboard with zsh and sync with tmux
-typeset -g ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
-zinit light kutsan/zsh-system-clipboard
-
+	zgen save
+fi
 # }}}
 
 # Load and recompile after plugins
@@ -181,19 +139,9 @@ compdef g=git
 
 # }}}
 
-# Post Completion Plugins {{{
-
-# Here syntax highlighting is loaded before autosuggestions
-# (By the author of fast-syntax-highlighting)
-# https://zdharma.org/zinit/wiki/Example-Minimal-Setup/
-zinit light zdharma/fast-syntax-highlighting
-zinit light zsh-users/zsh-autosuggestions
 
 # Change style of global aliases
 FAST_HIGHLIGHT_STYLES[global-alias]=fg=green,bold,underline
-
-# Add compdef from plugins
-zinit cdreplay -q
 
 # }}}
 
