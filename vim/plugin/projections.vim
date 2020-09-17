@@ -16,6 +16,12 @@ let g:projectionist_heuristics['fastlane/'] = {
 			\ }
 " }}}
 
+" gitlab {{{
+let g:projectionist_heuristics['.gitlab-ci.yml'] = {
+			\  '.gitlab-ci.yml' : { 'type': 'gitlab' },
+			\ }
+" }}}
+
 " cocoa pods {{{
 let g:projectionist_heuristics['Podfile'] = {
 			\  'Podfile' : { 'type': 'pods' },
@@ -24,7 +30,10 @@ let g:projectionist_heuristics['Podfile'] = {
 
 " scripts {{{
 let g:projectionist_heuristics['scripts/&!.zshrc&!vim/'] = {
-			\  'scripts/*' : { 'type': 'scripts' },
+			\  'scripts/*.sh' : {
+			\      'type': 'scripts',
+			\      'template': ['#!/usr/bin/env bash', ''],
+			\  },
 			\ }
 " }}}
 
