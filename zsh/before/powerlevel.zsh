@@ -481,7 +481,7 @@
 
   function prompt_lambda() {
     local color=yellow
-    if [ $(jobs | grep . -c) -eq 0 ]; then
+    if [ -z "$(jobs)" ]; then
       color=blue
     fi
     if is_gsh; then
