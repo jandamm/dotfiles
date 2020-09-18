@@ -84,7 +84,8 @@ then
 	zgen load romkatv/powerlevel10k powerlevel10k # Prompt theme
 	zgen load jandamm/vi-mode.zsh # Show line cursor in vi mode
 
-	zgen load clvv/fasd fasd
+	zgen bin clvv/fasd
+	zgen bin raylee/tldr-sh-client tldr
 
 	zgen load Aloxaf/fzf-tab # Tab completion is working with fzf
 
