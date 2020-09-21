@@ -1,0 +1,37 @@
+#!/bin/bash
+
+set -euo pipefail
+
+readonly pr_commit="${1:-main}"
+
+# Autogenerate a branch name based on the commit subject.
+readonly branch_name="$(git show --no-patch --format="%f" "$pr_commit")"
+
+# Create the new branch and switch to it.
+git fetch origin main
+git branch --no-track "$branch_name" origin/main
+git switch "$branch_name"
+
+# Cherry pick the desired commit.
+if ! git cherry-pick "$pr_commit"; then
+    git cherry-pick --abort
+    git switch main
+    git branch -d "$branch_name"
+    printf '\033[0;31mCould not cherry-pick commit. There is probably a dependency to a previous commit.\n'
+    exit 1
+fi
+
+readonly remote_url="$(git remote get-url origin)"
+case "$remote_url" in
+    *github.*)
+        # Create a new remote branch by the same name.
+        git -c push.default=current push
+        # Use GitHub's cli to create the PR from the branch.
+        gh pr create --fill
+        ;;
+    *gitlab.*) git -c push.default=current push -o merge_request.create ;;
+    *) exit 1;;
+esac
+
+# Go back to main branch.
+git switch main

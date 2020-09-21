@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ $# -ne 1 ]]; then
+    echo "usage: $0 <pr-commit>" 2>&1
+    exit
+fi
+
+readonly pr_commit=$1
+
+readonly branch_name="$(git show --no-patch --format="%f" "$pr_commit")"
+
+git switch "$branch_name"
+
+# Cherrypick the latest commit to the PR branch.
+if ! git cherry-pick main; then
+    git cherry-pick --abort
+    git switch main
+    printf '\033[0;31mCould not cherry-pick commit. There is probably a dependency to a previous commit.\n'
+    exit 1
+fi
+
+# Push the updated branch.
+git -c push.default=current push
+
+# Go back to main.
+git switch main
+
+# This allows for scripted (non-interactive) use of interactive rebase.
+export GIT_SEQUENCE_EDITOR=/usr/bin/true
+
+# In two steps, squash the latest commit into its PR commit.
+# 1. Mark the commit as a fixup
+git commit --amend --fixup="$pr_commit"
+# 2. Use the autosquash feature of interactive rebase to perform the squash.
+git rebase --interactive --autosquash "${pr_commit}^"
