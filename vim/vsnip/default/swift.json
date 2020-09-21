@@ -1,0 +1,14 @@
+{
+  "Function": {
+    "prefix": ["func"],
+    "body": [
+      "func ${1:name}($2) {",
+      "\t${3:$TM_SELECTED_TEXT}${0}",
+      "}"
+    ]
+  },
+  "Bracket": {
+    "prefix": ["{"],
+    "body": ["{", "\t${0:$TM_SELECTED_TEXT}", "}"]
+  }
+}
