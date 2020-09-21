@@ -15,7 +15,7 @@ function nvim() {
 
 function v() {
 	if [ -n "$1" ]; then
-		z $@ && vim
+		fasd_cd -d $@ && vim
 	else
 		nvim
 	fi
