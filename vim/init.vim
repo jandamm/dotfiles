@@ -39,15 +39,17 @@ let g:signify_sign_change = '△'
 
 " Wild Menu Completion {{{
 
+set wildmenu
+set wildignorecase
 set wildmode=longest:full,full
+
 set wildignore+=.root                                  " Custom project root marker
 set wildignore+=.hg,.git,.svn                          " Version control
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg         " binary images
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest,*.pyc " compiled object files
 set wildignore+=*.spl,*.zwc                            " compiled files
 set wildignore+=tags,.tags
-set wildmenu
-set wildoptions-=pum
+set wildignore+=Pods/*
 
 " }}}
 

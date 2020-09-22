@@ -70,8 +70,8 @@ endfunction
 
 function! my#sessions#complete(arglead, cmdline, cursorpos) abort
 	" Convert glob to regex and don't require end of line
-	let input = substitute(glob2regpat(a:arglead), '\$$', '', '')
-	return filter(my#sessions#list(), 'v:val =~ "'.input.'"')
+	let input = substitute(glob2regpat(a:arglead), '\v(^\^|\$$)', '', 'g')
+	return filter(my#sessions#list(), 'v:val =~ "'.input.'.*\.vim$"')
 endfunction
 
 function! s:cur_session_file() abort
