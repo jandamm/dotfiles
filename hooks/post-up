@@ -8,4 +8,4 @@ zsh -c "zcompile $HOME/.zshrc; zcompile $HOME/.zprofile; zcompile $HOME/.zlogin"
 
 # regenerate compdump
 # compile ~/.zsh
-"$HOME/.dotfiles/scripts/compile_zsh.zsh"
+zgen compile "${HOME}/.zsh"
