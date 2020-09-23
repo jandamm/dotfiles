@@ -6,19 +6,11 @@ scriptencoding utf-8
 
 set termguicolors
 
-let g:one_allow_italics = 1
-
 let g:nord_italic = 1
 let g:nord_italic_comments = 1
 let g:nord_uniform_diff_background = 1
 let g:nord_underline = 1
 
-" let g:colors_name = 'one'
-" packadd! dracula
-" runtime autoload/dracula.vim
-" let g:dracula#palette.purple[0] = '#9482FF'
-" let g:dracula#palette.green[0] = '#95FA92'
-" colorscheme dracula
 let g:colors_name = 'nord'
 
 if !has('gui_running')

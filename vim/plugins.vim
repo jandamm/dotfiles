@@ -73,8 +73,6 @@ Pack 'jasoncodes/ctrlp-modified.vim'
 call packager#add('ivalkeen/vim-ctrlp-tjump')
 
 " Themes
-call packager#add('jandamm/vim-one', { 'type': 'opt' })
-call packager#add('dracula/vim', { 'name': 'dracula' })
 PackOpt 'arcticicestudio/nord-vim'
 
 " Ctags
