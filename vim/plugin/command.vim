@@ -1,7 +1,9 @@
-if exists('g:loaded_commands') | finish | endif
-let g:loaded_commands = 1
+if exists('g:loaded_command')
+	finish
+endif
+let g:loaded_command = 1
 
-command! -nargs=* Terminal vsplit <BAR> terminal <args>
+command! -bang -nargs=* Terminal call my#command#terminal(<bang>0, <q-args>)
 
 command! -bar BD Sayonara!
 

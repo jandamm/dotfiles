@@ -1,5 +1,24 @@
-if exists('g:autoloaded_my_commands') | finish | endif
+if exists('g:autoloaded_my_commands')
+	finish
+endif
 let g:autoloaded_my_commands = 1
+
+if !exists('s:terminals')
+	let s:terminals = {}
+endif
+" TODO: Not reusing buffers from restored sessions
+function! my#command#terminal(bang, ...) abort
+	let command = a:0 ? a:1 : 'zsh'
+	if a:bang
+		vsplit
+	endif
+	if has_key(s:terminals, command) && bufexists(s:terminals[command])
+		execute 'buffer '.s:terminals[command]
+	else
+		execute 'terminal '.command
+		let s:terminals[command] = bufnr()
+	endif
+endfunction
 
 function! my#command#swap(bang, l1, l2, ...) abort
 	if a:0 != 2 || a:1 == a:2
