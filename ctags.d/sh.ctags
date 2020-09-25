@@ -1,0 +1,2 @@
+# Not sure if this is pratical
+--regex-sh=/([[:alnum:]_]+)\=/\1/v,variable/
