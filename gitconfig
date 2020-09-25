@@ -40,6 +40,13 @@
 	update = fetch --all --prune
 	wipa = wip --all
 
+	# Aliase for Fugitive to find/complete git-* commands
+	fixup = fixup
+	newpr = newpr
+	unwip = unwip
+	updatepr = updatepr
+	wip = wip
+
 # Command configuration
 [commit]
 	verbose = true
