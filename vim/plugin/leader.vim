@@ -89,8 +89,12 @@ nmap          <Leader>g<Space>   :Git<SPACE>
 let g:lmap.o = { 'name': 'open' }
 nmap <silent> <Leader>og         :Gsh<CR>
 let g:lmap.o.g = 'Gsh'
-nmap <silent> <Leader>ot         :vsplit <BAR> terminal<CR>
+nmap <silent> <Leader>oG         :Gsh!<CR>
+let g:lmap.o.G = 'Gsh split'
+nmap <silent> <Leader>ot         :Terminal<CR>
 let g:lmap.o.t = 'Terminal'
+nmap <silent> <Leader>oT         :Terminal!<CR>
+let g:lmap.o.T = 'Terminal split'
 
 " Leader P {{{1
 let g:lmap.p = { 'name': 'project' }
