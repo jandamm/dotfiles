@@ -3,6 +3,11 @@ setlocal formatprg=neovim\ swiftformat\ %\ --fragment\ true
 nmap <buffer> <Leader>cb <CMD>call my#ft#swift#build()<CR>
 let g:lmap.c.b = 'Build with spm'
 
+" Add nicer version keeping correct indentation
+command! -range -buffer MultilineFormat
+			\ <line1>,<line2>substitute/\v%(\(\zs *\ze[^)]|\[\zs *\ze[^]]|,\zs *\ze.|[^(]\zs *\ze\)|[^[]\zs *\ze\])/\r/g <BAR>
+			\ nohlsearch
+
 compiler swiftpm
 if filereadable('Makefile')
 	set makeprg=make
@@ -32,25 +37,25 @@ function! s:MySwiftC() abort
 endfunction
 
 let g:neomake_swift_swiftlint_maker = {
-				\ 'exe': 'neovim-swiftlint',
-				\ 'append_file': 1,
-				\ 'errorformat': '%f:%l:%c: %trror: %m,' .
-				\ '%f:%l:%c: %tarning: %m,' .
-				\ '%f:%l: %trror: %m,' .
-				\ '%f:%l: %tarning: %m',
-				\ }
+			\ 'exe': 'neovim-swiftlint',
+			\ 'append_file': 1,
+			\ 'errorformat': '%f:%l:%c: %trror: %m,' .
+			\ '%f:%l:%c: %tarning: %m,' .
+			\ '%f:%l: %trror: %m,' .
+			\ '%f:%l: %tarning: %m',
+			\ }
 let g:neomake_swift_swiftpm_maker = {
-				\ 'exe': 'neovim-swift',
-				\ 'args': ['build'],
-				\ 'append_file': 0,
-				\ 'errorformat':
-				\ '%E%f:%l:%c: error: %m,' .
-				\ '%E%f:%l: error: %m,' .
-				\ '%E%f: error: %m,' .
-				\ '%W%f:%l:%c: warning: %m,' .
-				\ '%Z%\s%#^~%#,' .
-				\ '%-G%.%#',
-				\ }
+			\ 'exe': 'neovim-swift',
+			\ 'args': ['build'],
+			\ 'append_file': 0,
+			\ 'errorformat':
+			\ '%E%f:%l:%c: error: %m,' .
+			\ '%E%f:%l: error: %m,' .
+			\ '%E%f: error: %m,' .
+			\ '%W%f:%l:%c: warning: %m,' .
+			\ '%Z%\s%#^~%#,' .
+			\ '%-G%.%#',
+			\ }
 let g:neomake_swift_swiftc_maker = s:MySwiftC()
 
 " }}}
