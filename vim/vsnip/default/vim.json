@@ -8,6 +8,15 @@
     ],
     "description": "Function definition template."
   },
+  "Function autoload": {
+    "prefix": ["afunc"],
+    "body": [
+      "function! ${1:$TM_DIRECTORY#}$TM_FILENAME_BASE#${3:Name}(${4:...}) abort",
+      "\t${0:$TM_SELECTED_TEXT}",
+      "endfunction"
+    ],
+    "description": "Function definition template."
+  },
   "Augroup": {
     "prefix": ["aug", "augrp"],
     "body": [
@@ -28,9 +37,7 @@
   "Is Loaded": {
     "prefix": ["islo", "isloaded"],
     "body": [
-      "if exists('${1:g:loaded_${2:filename}}')",
-      "\tfinish",
-      "endif",
+      "if exists('${1:g:loaded_$2${3:$TM_FILENAME_BASE}}')", "\tfinish", "endif",
       "let $1 = 1",
       "$0"
     ],
@@ -39,9 +46,7 @@
   "Is Autoloaded": {
     "prefix": ["isalo", "isautoloaded"],
     "body": [
-      "if exists('${1:g:autoloaded_${2:filename}}')",
-      "\tfinish",
-      "endif",
+      "if exists('${1:g:autoloaded_$2${3:$TM_FILENAME_BASE}}')", "\tfinish", "endif",
       "let $1 = 1",
       "$0"
     ],
