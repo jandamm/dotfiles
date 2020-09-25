@@ -21,7 +21,7 @@ function! s:Grep(hidden, operator, rg, search) abort
 	let buf = bufnr()
 	let hidden = a:hidden ? '--hidden' : ''
 	let case = &smartcase ? '--smart-case' : (&ignorecase ? '--ignore-case' : '--case-sensitive')
-	let search = escape(a:search, '%#')
+	let search = escape(a:search, '%#|\')
 
 	" Do a verbatim search in Grep
 	if !a:rg
