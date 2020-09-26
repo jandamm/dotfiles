@@ -21,7 +21,7 @@ if ! git cherry-pick "$pr_commit"; then
     exit 1
 fi
 
-readonly remote_url="$(git remote get-url origin)"
+readonly remote_url="$(git ls-remote --get-url)"
 case "$remote_url" in
     *github.*)
         # Create a new remote branch by the same name.
