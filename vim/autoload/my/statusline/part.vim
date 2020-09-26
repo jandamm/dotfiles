@@ -14,8 +14,27 @@ function! my#statusline#part#git(bufnr, active) abort
 	return branch !=? '' ? ' ' . branch : ''
 endfunction
 
-function! my#statusline#part#filename(bufnr, active, prefix) abort
-	return (a:active ? '%1*' : '') . a:prefix . '%<%f%*'
+function! my#statusline#part#filename(bufnr, active, prefix, ...) abort
+	" Light mode
+	if a:0 && a:1
+		let path = ''
+		let file = '%f'
+	else
+		let full = fnamemodify(bufname(a:bufnr), ':~:.')
+		let file = fnamemodify(full, ':t')
+		let path = fnamemodify(full, ':h')
+		if path ==# '.' && !empty(file)
+			" files in pwd show just filenames
+			let path = ''
+		elseif path !=# '.' && path !=# '~' || !empty(file)
+			" Don't append `/` to folders pwd and HOME
+			let path .= '/'
+		endif
+	endif
+	return printf(a:active
+				\ ? '%%1*%s%%3*%%<%s%%1*%s%%*'
+				\ : '%s%%<%s%%8*%s%%*',
+				\ a:prefix, path, file)
 endfunction
 
 function! my#statusline#part#indent(bufnr, active) abort

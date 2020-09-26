@@ -33,6 +33,7 @@ function! s:nord() abort
 	execute 'hi StatusLineNC guibg='.s:nord1_gui.' guifg='.s:nord4_gui.' gui=italic'
 	execute 'hi User1        guibg='.s:nord3_gui.' guifg='.s:nord8_gui.' gui=bold'
 	execute 'hi User2        guibg='.s:nord3_gui.' guifg='.s:nord13_gui
+	execute 'hi User3        guibg='.s:nord3_gui.' guifg='.s:nord9_gui
 	execute 'hi User8        guibg='.s:nord3_gui.' guifg='.s:nord4_gui.' gui=bold'
 	execute 'hi User9        guibg='.s:nord3_gui.' guifg='.s:nord4_gui
 	execute 'hi QfStatus     guibg='.s:nord3_gui.' guifg='.s:nord15_gui
