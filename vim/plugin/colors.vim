@@ -39,12 +39,12 @@ function! s:nord() abort
 	execute 'hi QfStatus     guibg='.s:nord3_gui.' guifg='.s:nord15_gui
 	execute 'hi QfStatusE    guibg='.s:nord3_gui.' guifg='.s:nord11_gui
 	execute 'hi QfStatusW    guibg='.s:nord3_gui.' guifg='.s:nord13_gui
-	execute 'hi QfStatusI    guibg='.s:nord3_gui.' guifg='.s:nord10_gui
+	execute 'hi QfStatusI    guibg='.s:nord3_gui.' guifg='.s:nord9_gui
 
 	execute 'hi QfSign       guibg='.s:nord0_gui.' guifg='.s:nord15_gui
 	execute 'hi QfSignE      guibg='.s:nord0_gui.' guifg='.s:nord11_gui
 	execute 'hi QfSignW      guibg='.s:nord0_gui.' guifg='.s:nord13_gui
-	execute 'hi QfSignI      guibg='.s:nord0_gui.' guifg='.s:nord10_gui
+	execute 'hi QfSignI      guibg='.s:nord0_gui.' guifg='.s:nord9_gui
 	hi! link NeomakeStatColorTypeE QfStatusE
 	hi! link NeomakeStatColorTypeW QfStatusW
 	hi! link NeomakeStatColorTypeI QfStatusI
