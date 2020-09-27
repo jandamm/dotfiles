@@ -8,4 +8,4 @@ zsh -c "zcompile $HOME/.zshrc; zcompile $HOME/.zprofile; zcompile $HOME/.zlogin"
 
 # regenerate compdump
 # compile ~/.zsh
-zgen compile "${HOME}/.zsh"
+zsh -c "source $XDG_DATA_HOME/zgenom/zgen.zsh && zgen compile ${HOME}/.zsh"
