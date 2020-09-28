@@ -3,6 +3,8 @@
 "       - It should confirm if currently in git tracked directory
 nmap <buffer> D .rm -dr
 
+xmap <buffer> D .rm -dr<CR>
+
 " TODO: Improve this mapping.
 "       - It should have a full path instead of %
 "       - It should have a the filetype set?
