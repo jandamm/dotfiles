@@ -15,10 +15,13 @@ function! my#statusline#part#git(bufnr, active) abort
 endfunction
 
 function! my#statusline#part#filename(bufnr, active, prefix, ...) abort
-	let full = fnamemodify(bufname(a:bufnr), ':~:.')
-	let file = fnamemodify(full, ':t')
-	let path = ''
-	if !a:0 || a:1
+	" Light mode
+	if a:0 && a:1
+		let path = ''
+		let file = '%f'
+	else
+		let full = fnamemodify(bufname(a:bufnr), ':~:.')
+		let file = fnamemodify(full, ':t')
 		let path = fnamemodify(full, ':h')
 		if path ==# '.' && !empty(file)
 			" files in pwd show just filenames
