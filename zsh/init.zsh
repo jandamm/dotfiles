@@ -3,13 +3,10 @@
 
 # Save initial TERM and COLORTERM
 # This code is needed for nvim to have the correct values set.
-if [ -z $TMUX ]
-then
-	[ -z $INIT_TERM ] && export INIT_TERM=$TERM
-	[ -z $INIT_COLORTERM ] && export INIT_COLORTERM=$COLORTERM
-	export TERM=$INIT_TERM
-	export COLORTERM=$INIT_COLORTERM
-fi
+[ -z $INIT_TERM ] && export INIT_TERM=$TERM
+[ -z $INIT_COLORTERM ] && export INIT_COLORTERM=$COLORTERM
+export TERM=$INIT_TERM
+export COLORTERM=$INIT_COLORTERM
 
 # Instant Prompt and Diagnose {{{
 
@@ -60,7 +57,7 @@ setopt extendedglob
 # Use same characters for words like vi
 export WORDCHARS='@_'
 
-# This is required by some tools like tmux and fastlane.
+# This is required by some tools like fastlane.
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 

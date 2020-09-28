@@ -4,7 +4,7 @@ set -e
 
 # Possible configurations {{{
 
-all_config=( brew gem npm pip alacritty bat nvim tmux zsh )
+all_config=( brew gem npm pip alacritty bat nvim zsh )
 
 if [ "$1" = "--list" ]
 then
@@ -263,31 +263,6 @@ then
 
 	echo 'Updating vim-pack tags'
 	neovim-packtags
-fi
-
-# }}}
-
-# TMUX {{{
-
-if should_configure tmux
-then
-	# install tmux terminal
-	if is_install
-	then
-		if [[ ! -x  "$XDG_CACHE_HOME/tmux/plugins/tpm/tpm" ]]; then
-			echo 'Installing tpm'
-			git clone https://github.com/tmux-plugins/tpm "$XDG_CACHE_HOME/tmux/plugins/tpm"
-		fi
-
-		echo 'Installing tmux plugins'
-		"$XDG_CACHE_HOME"/tmux/plugins/tpm/bin/install_plugins
-	fi
-
-	if is_update
-	then
-		echo 'Updating tmux plugins'
-		"$XDG_CACHE_HOME"/tmux/plugins/tpm/bin/update_plugins all
-	fi
 fi
 
 # }}}
