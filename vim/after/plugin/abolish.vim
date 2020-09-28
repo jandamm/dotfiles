@@ -129,7 +129,7 @@ iabbrev seperator separator
 iabbrev Seperator Separator
 iabbrev SEPERATOR SEPARATOR
 
-" Abolish {in,}contin{u,o,ou,uo,uu}s{,ly} {}contin{uou}s{}
+" Abolish {in,}contin{u,o,ou,uo,uu,ouo}s{,ly} {}contin{uou}s{}
 iabbrev incontinus incontinuous
 iabbrev Incontinus Incontinuous
 iabbrev INCONTINUS INCONTINUOUS
@@ -170,6 +170,14 @@ iabbrev incontinuusly incontinuously
 iabbrev Incontinuusly Incontinuously
 iabbrev INCONTINUUSLY INCONTINUOUSLY
 
+iabbrev incontinouos incontinuous
+iabbrev Incontinouos Incontinuous
+iabbrev INCONTINOUOS INCONTINUOUS
+
+iabbrev incontinouosly incontinuously
+iabbrev Incontinouosly Incontinuously
+iabbrev INCONTINOUOSLY INCONTINUOUSLY
+
 iabbrev continus continuous
 iabbrev Continus Continuous
 iabbrev CONTINUS CONTINUOUS
@@ -209,6 +217,14 @@ iabbrev CONTINUUS CONTINUOUS
 iabbrev continuusly continuously
 iabbrev Continuusly Continuously
 iabbrev CONTINUUSLY CONTINUOUSLY
+
+iabbrev continouos continuous
+iabbrev Continouos Continuous
+iabbrev CONTINOUOS CONTINUOUS
+
+iabbrev continouosly continuously
+iabbrev Continouosly Continuously
+iabbrev CONTINOUOSLY CONTINUOUSLY
 
 " Abolish {un,,u}ne{c,cc}es{,s}ar{y,ily,ity} {un,}ne{c}es{s}ar{}
 iabbrev unnecesary unnecessary
