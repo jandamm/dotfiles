@@ -6,6 +6,3 @@ https://github.com/kovidgoyal/kitty/raw/master/terminfo/kitty.terminfo
 
 ## Compiling
 `tic -xe alacritty,alacritty-direct alacritty.info`
-
-## Recompile tmux
-`tic -x tmux.terminfo`

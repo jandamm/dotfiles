@@ -8,16 +8,11 @@ let g:loaded_terminal = 1
 
 command! -bang Gsh Terminal<bang> gsh
 
-if has($TMUX)
-	packadd vim-tmux-navigator
-else
-	tnoremap <C-SPACE><ESC> <C-\><C-n>
-	tmap     <C-SPACE>c     <C-\><C-n><C-SPACE>c
-	tmap     <C-SPACE>g     <C-\><C-n><C-SPACE>g
-
-	nnoremap <C-SPACE>c     :Terminal!<CR>
-	nnoremap <C-SPACE>g     :Gsh!<CR>
-endif
+tnoremap <C-SPACE><ESC> <C-\><C-n>
+tmap     <C-SPACE>c     <C-\><C-n><C-SPACE>c
+tmap     <C-SPACE>g     <C-\><C-n><C-SPACE>g
+nnoremap <C-SPACE>c     :Terminal!<CR>
+nnoremap <C-SPACE>g     :Gsh!<CR>
 
 let $VISUAL = 'nvr -cc split --remote-wait'
 let $EDITOR = 'nvr'

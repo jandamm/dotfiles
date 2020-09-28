@@ -81,9 +81,6 @@ call packager#add('ludovicchabant/vim-gutentags')
 " User Interface
 call packager#add('mhinz/vim-signify')
 
-" Tmux
-call packager#add('christoomey/vim-tmux-navigator', { 'type': 'opt' }) " C-hjkl movements with tmux
-
 " Snippets
 call packager#add('hrsh7th/vim-vsnip')
 call packager#add('hrsh7th/vim-vsnip-integ')
