@@ -10,44 +10,42 @@ let &grepprg = s:rgprg
 let &grepformat = s:rgformat
 
 function! s:Grep(hidden, operator, rg, search) abort
-	let prg = &grepprg
-	let format = &grepformat
-
-	let &grepprg = s:rgprg
-	let &grepformat = s:rgformat
-
 	if !a:operator | cclose | endif
 
-	let buf = bufnr()
-	let hidden = a:hidden ? '--hidden' : ''
-	let case = &smartcase ? '--smart-case' : (&ignorecase ? '--ignore-case' : '--case-sensitive')
-	let search = escape(a:search, '%#|\')
+	let command = s:rgprg
+	let command .= a:hidden ? ' --hidden' : ''
+	let command .= &smartcase ? ' --smart-case' : (&ignorecase ? ' --ignore-case' : ' --case-sensitive')
+	let s:search = escape(a:search, '%#|\')
 
 	" Do a verbatim search in Grep
 	if !a:rg
-		let search = printf('--fixed-strings "%s"', search)
+		let s:search = '"'.s:search.'"'
+		let command .= ' --fixed-strings'
 	endif
 
-	let title = 'grep'. (a:hidden ? '! ' : ' ') . search
+	let title = 'grep'. (a:hidden ? '! ' : ' ') . s:search
+
+	augroup grep_highlight
+		autocmd!
+		autocmd QuickFixCmdPost * ++once call s:highlightMatches()
+		if !a:operator
+			autocmd QuickFixCmdPost * ++once cwindow
+		endif
+	augroup END
+
 	if a:operator | echo title | endif
-
-	execute printf('silent grep %s %s %s', hidden, case, search)
-	call setqflist([], 'a', {'title': title})
-	" Highlight matches
-	let @/ = matchstr(search, "\\v(-)\@<!(\<)\@<=\\w+|['\"]\\zs.{-}\\ze['\"]")
-	call feedkeys(":let &hlsearch=1 \| echo \<CR>", 'n')
-	if !a:operator
-		" Reset buffer and open quickfix list
-		execute 'buffer '.buf
-		copen
-	endif
-
-	let &grepprg = prg
-	let &grepformat = format
+	call asyncdo#run(!a:operator, { 'job': command, 'errorformat': s:rgformat, 'title': title }, s:search)
 endfunction
 
-command! -bang -nargs=* Grep call s:Grep(<bang>0, 0, 0, <q-args>)
-command! -bang -nargs=* -complete=dir Rg call s:Grep(<bang>0, 0, 1, <q-args>)
+function! s:highlightMatches() abort
+	if !exists('s:search') | return | endif
+	let @/ = matchstr(s:search, "\\v(-)\@<!(\<)\@<=\\w+|['\"]\\zs.{-}\\ze['\"]")
+	call feedkeys(":let &hlsearch=1 \| echo \<CR>", 'n')
+	unlet s:search
+endfunction
+
+command! -bang -nargs=+ Grep call s:Grep(<bang>0, 0, 0, <q-args>)
+command! -bang -nargs=+ -complete=dir Rg call s:Grep(<bang>0, 0, 1, <q-args>)
 
 function! s:GrepOperator(type) abort
 	let reg_g = @g
@@ -64,4 +62,4 @@ function! s:GrepOperator(type) abort
 endfunction
 
 nnoremap <silent> g/ :set operatorfunc=<SID>GrepOperator<CR>g@
-vnoremap <silent> g/ :<C-u>call <SID>GrepOperator(visualmode())<CR>
+xnoremap <silent> g/ :<C-u>call <SID>GrepOperator(visualmode())<CR>

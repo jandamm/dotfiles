@@ -36,8 +36,6 @@ call packager#add('tpope/vim-fugitive') " Git interface
 call packager#add('tpope/vim-rhubarb') " Gbrowse for Github
 call packager#add('shumphrey/fugitive-gitlab.vim') " Gbrowse for GitLab
 call packager#add('tommcdo/vim-fugitive-blame-ext') " Gblame commit messages
-call packager#add('tpope/vim-dispatch') " Easy dispatching of jobs
-call packager#add('jandamm/vim-dispatch-neovim') " Dispatch using the neovim terminal
 Pack 'roryokane/detectindent' " Automatically set spaces/tabs
 call packager#add('tpope/vim-eunuch') " Unix commands in vim
 call packager#add('tpope/vim-obsession') " Save sessions easily
@@ -71,6 +69,11 @@ call packager#add('jandamm/ctrlp_bdelete.vim')
 call packager#add('fisadev/vim-ctrlp-cmdpalette')
 Pack 'jasoncodes/ctrlp-modified.vim'
 call packager#add('ivalkeen/vim-ctrlp-tjump')
+
+" Dispatching / Async
+Pack 'hauleth/asyncdo.vim' " Easy dispatching for Grep
+Pack 'tpope/vim-dispatch' " Easy dispatching of jobs to the terminal
+Pack 'jandamm/vim-dispatch-neovim' " Dispatch using the neovim terminal
 
 " Themes
 PackOpt 'arcticicestudio/nord-vim'
