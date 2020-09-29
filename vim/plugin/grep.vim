@@ -10,11 +10,11 @@ let &grepprg = s:rgprg
 let &grepformat = s:rgformat
 
 function! s:Grep(hidden, operator, rg, search) abort
-		let prg = &grepprg
-		let format = &grepformat
+	let prg = &grepprg
+	let format = &grepformat
 
-		let &grepprg = s:rgprg
-		let &grepformat = s:rgformat
+	let &grepprg = s:rgprg
+	let &grepformat = s:rgformat
 
 	if !a:operator | cclose | endif
 
@@ -33,14 +33,17 @@ function! s:Grep(hidden, operator, rg, search) abort
 
 	execute printf('silent grep %s %s %s', hidden, case, search)
 	call setqflist([], 'a', {'title': title})
+	" Highlight matches
+	let @/ = matchstr(search, "\\v(-)\@<!(\<)\@<=\\w+|['\"]\\zs.{-}\\ze['\"]")
+	call feedkeys(":let &hlsearch=1 \| echo \<CR>", 'n')
 	if !a:operator
 		" Reset buffer and open quickfix list
 		execute 'buffer '.buf
 		copen
 	endif
 
-		let &grepprg = prg
-		let &grepformat = format
+	let &grepprg = prg
+	let &grepformat = format
 endfunction
 
 command! -bang -nargs=* Grep call s:Grep(<bang>0, 0, 0, <q-args>)
