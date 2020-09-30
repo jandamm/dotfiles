@@ -25,11 +25,8 @@ call packager#add('tpope/vim-speeddating') " Fix i_Ctrl+a for dates
 call packager#add('tpope/vim-commentary') " gc to comment in/out
 call packager#add('godlygeek/tabular') " ga to align
 call packager#add('tpope/vim-endwise') " Insert endif etc automatically
-call packager#add('psliwka/vim-smoothie')
-" Better iabbrev
-" Better :s/abba/bobby/g with :S/{a,A}bba/{b,B}obby/g
-" Change case styles with cr{char}
-call packager#add('tpope/vim-abolish')
+call packager#add('psliwka/vim-smoothie') " Smoother scrolling
+call packager#add('tpope/vim-abolish') " Better :s/abba/bobby/g with :S/{a,A}bba/{b,B}obby/g
 call packager#add('jandamm/vim-abolisher', { 'do': 'make build' }) " Faster vim-abolish!
 call packager#add('tpope/vim-unimpaired') " Better [] mappings
 call packager#add('tpope/vim-fugitive') " Git interface
@@ -57,7 +54,6 @@ Pack 'tpope/vim-projectionist' " Projects in vim
 Pack 'unblevable/quick-scope' " Highlight targets for f
 
 call packager#add('justinmk/vim-dirvish')
-call packager#add('kristijanhusak/vim-dirvish-git')
 
 " Fuzzy finding
 call packager#add('ctrlpvim/ctrlp.vim')
