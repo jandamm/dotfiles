@@ -20,6 +20,19 @@ function! my#command#terminal(bang, ...) abort
 	endif
 endfunction
 
+function! my#command#lmake(bang, ...) abort
+	if a:0 && !empty(a:1)
+		execute 'compiler! '.a:1
+	endif
+	augroup lmake_lwindow
+		autocmd!
+		if !a:bang
+			autocmd QuickFixCmdPost * ++once lwindow
+		endif
+	augroup END
+	call asyncdo#lrun(0, { 'job': &makeprg, 'errorformat': &errorformat})
+endfunction
+
 function! my#command#swap(bang, l1, l2, ...) abort
 	if a:0 != 2 || a:1 == a:2
 		call s:error('Need to provide exactly two different words.')

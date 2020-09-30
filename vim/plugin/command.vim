@@ -5,6 +5,8 @@ let g:loaded_command = 1
 
 command! -bang -nargs=* Terminal call my#command#terminal(<bang>0, <q-args>)
 
+command! -bang -nargs=? -complete=compiler Lmake call my#command#lmake(<bang>0, <f-args>)
+
 command! -bar BD Sayonara!
 
 " Command to set my default tabwidth etc.

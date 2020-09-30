@@ -67,7 +67,7 @@ Pack 'jasoncodes/ctrlp-modified.vim'
 call packager#add('ivalkeen/vim-ctrlp-tjump')
 
 " Dispatching / Async
-Pack 'hauleth/asyncdo.vim' " Easy dispatching for Grep
+Pack 'hauleth/asyncdo.vim' " Easy dispatching for Grep and Lmake
 Pack 'tpope/vim-dispatch' " Easy dispatching of jobs to the terminal
 Pack 'jandamm/vim-dispatch-neovim' " Dispatch using the neovim terminal
 
