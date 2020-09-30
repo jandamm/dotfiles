@@ -1,7 +1,7 @@
 packadd vim-packager
 
 " Setup {{{
-call packager#init({ 'dir': '~/.vim/pack/packager', 'jobs': 0})
+call packager#init({ 'dir': expand('$XDG_DATA_HOME/nvim/site/pack/packager'), 'jobs': 0})
 
 command! -nargs=+ -bar Pack call packager#add(<args>)
 command! -nargs=+ -bar PackOpt call s:packOpt(<args>)

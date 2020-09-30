@@ -2,7 +2,7 @@
 
 set -eu
 
-cd "$HOME/.vim/pack" || exit
+cd "$XDG_DATA_HOME/nvim/site/pack" || exit
 ctags -R --languages=vim
 
 # Unluckily I cannot get cpsm build with ICU support.

@@ -1,2 +1,2 @@
-_FASD_DATA="$XDG_CACHE_HOME/zsh/fasd"
+_FASD_DATA="$XDG_DATA_HOME/zsh/fasd"
 _FASD_IGNORE="fasd ls echo exa"

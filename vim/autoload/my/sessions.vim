@@ -3,7 +3,7 @@ if exists('g:autoloaded_my_session')
 endif
 let g:autoloaded_my_session = 1
 
-let s:sessions_dir = expand('~/.vim/session/')
+let s:sessions_dir = expand('$XDG_DATA_HOME/nvim/session/')
 
 " Create a session for the current dir
 function! my#sessions#make(bang) abort

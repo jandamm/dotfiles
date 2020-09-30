@@ -95,10 +95,7 @@ let g:rooter_cd_cmd = 'lcd'
 set scrolloff=2
 
 " Persist undo
-if has('persistent_undo')
-	set undodir=$HOME/.vim/undodir
-	set undofile
-endif
+set undofile
 
 " Snippet directories
 let g:vsnip_snippet_dir = expand('~/.vim/vsnip/default')

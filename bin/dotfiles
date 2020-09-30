@@ -237,11 +237,11 @@ then
 
 	if is_install
 	then
-		mkdir -p "$HOME/.vim/undodir"
+		mkdir -p "$XDG_DATA_HOME/nvim/undo"
 
-		if [ ! -d "$HOME/.vim/pack/packager/opt/vim-packager" ]
+		if [ ! -d "$XDG_DATA_HOME/nvim/site/pack/packager/opt/vim-packager" ]
 		then
-			git clone https://github.com/kristijanhusak/vim-packager "$HOME/.vim/pack/packager/opt/vim-packager"
+			git clone https://github.com/kristijanhusak/vim-packager "$XDG_DATA_HOME/nvim/site/pack/packager/opt/vim-packager"
 		fi
 
 		echo 'Installing vim plugins'
@@ -274,6 +274,7 @@ then
 	if is_install
 	then
 		mkdir -p "$XDG_CACHE_HOME/zsh"
+		mkdir -p "$XDG_DATA_HOME/zsh"
 		git clone https://github.com/jandamm/zgenom.git "$XDG_DATA_HOME/zgenom"
 
 		echo 'Installing zsh plugins'
