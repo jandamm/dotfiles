@@ -76,13 +76,20 @@ function! my#statusline#part#viewport(bufnr, active) abort
 endfunction
 
 function! my#statusline#part#qf_count(bufnr, active) abort
-	let qf = getqflist()
-	let line = s:qf_part(qf, '', a:active, ' && v:val.lnum > 0')
-				\ . s:qf_part(qf, 'E', a:active, '')
-				\ . s:qf_part(qf, 'W', a:active, '')
-				\ . s:qf_part(qf, 'I', a:active, '')
+	return s:list_summary(getqflist(), a:active, 'c')
+endfunction
 
-	return empty(line) ? '' : ' c['.substitute(line, ',$', '', '').']'
+function! my#statusline#part#loc_count(bufnr, active) abort
+	return s:list_summary(getloclist(bufwinnr(a:bufnr)), a:active, 'l')
+endfunction
+
+function! s:list_summary(list, active, prefix) abort
+	let line = s:qf_part(a:list, '', a:active, ' && v:val.lnum > 0')
+				\ . s:qf_part(a:list, 'E', a:active, '')
+				\ . s:qf_part(a:list, 'W', a:active, '')
+				\ . s:qf_part(a:list, 'I', a:active, '')
+
+	return empty(line) ? '' : ' '.a:prefix.'['.substitute(line, ',$', '', '').']'
 endfunction
 
 function! s:qf_part(all, type, active, check) abort
