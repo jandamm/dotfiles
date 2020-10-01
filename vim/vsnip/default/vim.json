@@ -34,6 +34,23 @@
     ],
     "description": "Autocmd definition template."
   },
+  "Augroup buffer": {
+    "prefix": ["bufaug", "bufaugrp"],
+    "body": [
+      "augroup ${1:name}",
+      "\tautocmd! * <buffer>",
+      "\t${2:${TM_SELECTED_TEXT:bufauc}}",
+      "augroup END"
+    ],
+    "description": "Augroup definition template."
+  },
+  "Autocmd buffer": {
+    "prefix": ["bufauc", "bufaucmd"],
+    "body": [
+      "autocmd ${1:VimEnter} <buffer> $0"
+    ],
+    "description": "Autocmd definition template."
+  },
   "Is Loaded": {
     "prefix": ["islo", "isloaded"],
     "body": [
