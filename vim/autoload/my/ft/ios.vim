@@ -7,7 +7,7 @@ function! my#ft#ios#compile() abort
 	silent! wall
 	silent AbortDispatch xcode
 	echo 'Building with Xcode...'
-	Xcompiler! build
+	Xcompiler build
 	Make
 endfunction
 
@@ -15,7 +15,7 @@ function! my#ft#ios#run() abort
 	silent! wall
 	silent AbortDispatch xcode
 	echo 'Running with Xcode...'
-	Xcompiler! run
+	Xcompiler run
 	Make
 endfunction
 
@@ -23,6 +23,6 @@ function! my#ft#ios#test() abort
 	silent! wall
 	silent AbortDispatch xcode
 	echo 'Testing with Xcode...'
-	Xcompiler! test
+	Xcompiler test
 	Make
 endfunction

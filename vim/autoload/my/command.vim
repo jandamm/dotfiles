@@ -22,7 +22,7 @@ endfunction
 
 function! my#command#lmake(bang, ...) abort
 	if a:0 && !empty(a:1)
-		execute 'compiler! '.a:1
+		execute 'compiler '.a:1
 	endif
 	augroup lmake_lwindow
 		autocmd!
