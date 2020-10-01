@@ -26,7 +26,6 @@ endfunction
 
 augroup my_diagnostics
 	au!
-	autocmd Filetype * ++once call neomake#configure#automake('rnw', 500)
 	autocmd User lsp_buffer_enabled call s:MakeLspSettings()
 	autocmd User lsp_setup ++once call s:RegisterLsp()
 augroup END
@@ -61,13 +60,14 @@ endfunction
 
 " Quickfix Signs {{{
 
-" Enable 'loc' when neomake is disabled
-let g:quickfixsigns_classes = ['qfl', 'marks', 'vcsmerge', 'breakpoints']
+let g:signify_priority = 6
+"                                  10        8          8          7       4
+let g:quickfixsigns_classes = ['vcsmerge', 'loc', 'breakpoints', 'qfl', 'marks']
 let g:quickfixsigns_list_types = 'EWIewi'
 
 function! s:define(char, text, hl) abort
-	" execute 'sign define QFS_LOC_'.toupper(a:char).' text='.a:text.' texthl='.a:hl
-	" execute 'sign define QFS_LOC_'.tolower(a:char).' text='.a:text.' texthl='.a:hl
+	execute 'sign define QFS_LOC_'.toupper(a:char).' text='.a:text.' texthl='.a:hl
+	execute 'sign define QFS_LOC_'.tolower(a:char).' text='.a:text.' texthl='.a:hl
 	execute 'sign define QFS_QFL_'.toupper(a:char).' text='.a:text.' texthl='.a:hl
 	execute 'sign define QFS_QFL_'.tolower(a:char).' text='.a:text.' texthl='.a:hl
 endfunction
@@ -75,6 +75,7 @@ endfunction
 call s:define('E', '✖', 'QfSignE')
 call s:define('W', '‼', 'QfSignW')
 call s:define('I', 'i', 'QfSignI')
+sign define QFS_LOC text=» texthl=QfSign
 sign define QFS_QFL text=» texthl=QfSign
 
 " }}}
@@ -83,9 +84,3 @@ sign define QFS_QFL text=» texthl=QfSign
 let g:qf_auto_open_loclist = 0
 let g:qf_auto_open_quickfix = 0
 let g:qf_mapping_ack_style = 1
-
-let g:neomake_info_sign = {
-			\ 'text': 'i',
-			\ 'texthl': 'NeomakeInfoSign'
-			\ }
-let g:neomake_message_sign = g:neomake_info_sign

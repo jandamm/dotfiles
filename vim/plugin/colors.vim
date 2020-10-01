@@ -45,9 +45,6 @@ function! s:nord() abort
 	execute 'hi QfSignE      guibg='.s:nord0_gui.' guifg='.s:nord11_gui
 	execute 'hi QfSignW      guibg='.s:nord0_gui.' guifg='.s:nord13_gui
 	execute 'hi QfSignI      guibg='.s:nord0_gui.' guifg='.s:nord9_gui
-	hi! link NeomakeStatColorTypeE QfStatusE
-	hi! link NeomakeStatColorTypeW QfStatusW
-	hi! link NeomakeStatColorTypeI QfStatusI
 
 	execute 'hi LeaderGuideKeys            guibg='.s:nord0_gui.' guifg='.s:nord13_gui
 	execute 'hi LeaderGuideMenu            guibg='.s:nord0_gui.' guifg='.s:nord7_gui

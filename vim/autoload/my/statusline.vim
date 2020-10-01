@@ -57,9 +57,8 @@ function! my#statusline#default(bufnr, active) abort
 	" Right part
 	if a:active
 		let line .= my#statusline#part#qf_count(a:bufnr, a:active)
-		let line .= my#statusline#part#loc_count(a:bufnr, a:active)
 	endif
-	let line .= my#statusline#part#neomake(a:bufnr, a:active)
+	let line .= my#statusline#part#loc_count(a:bufnr, a:active)
 	let line .= ' '.my#statusline#part#viewport(a:bufnr, a:active)
 
 	return line

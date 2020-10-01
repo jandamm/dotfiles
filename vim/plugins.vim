@@ -99,5 +99,4 @@ call packager#add('tpope/vim-scriptease')
 Pack 'jandamm/vim-xcode'
 
 " Misc
-call packager#add('neomake/neomake')
 call packager#add('tweekmonster/startuptime.vim', { 'type': 'opt' })

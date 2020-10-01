@@ -22,20 +22,3 @@ let g:xcode_additional_xcargs = '-quiet 2>/dev/null'
 let g:xcode_additional_xcargs_test = '2>/dev/null | xcpretty --no-utf --color'
 
 " }}}
-
-" Neomake {{{
-
-let g:neomake_ios_swiftpm_maker = {
-			\ 'exe': 'neovim-swift',
-			\ 'args': ['build', 'ios'],
-			\ 'append_file': 0,
-			\ 'errorformat':
-			\ '%E%f:%l:%c: error: %m,' .
-			\ '%E%f:%l: error: %m,' .
-			\ '%E%f: error: %m,' .
-			\ '%W%f:%l:%c: warning: %m,' .
-			\ '%Z%\s%#^~%#,' .
-			\ '%-G%.%#',
-			\ }
-
-" }}}

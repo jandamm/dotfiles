@@ -30,7 +30,9 @@ function! my#command#lmake(bang, ...) abort
 			autocmd QuickFixCmdPost * ++once lwindow
 		endif
 	augroup END
-	call asyncdo#lrun(0, { 'job': &makeprg, 'errorformat': &errorformat})
+
+	silent call asyncdo#lstop()
+	silent call asyncdo#lrun(1, { 'job': &makeprg, 'errorformat': &errorformat})
 endfunction
 
 function! my#command#swap(bang, l1, l2, ...) abort
