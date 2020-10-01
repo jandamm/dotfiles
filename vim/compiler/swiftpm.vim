@@ -3,7 +3,8 @@ if exists('current_compiler')
 endif
 let current_compiler = 'swiftpm'
 
-CompilerSet makeprg=neovim\ swift
+let file = filereadable('Package.swift') ? '' : '\ %'
+execute 'CompilerSet makeprg=neovim\ swift'.file
 
 CompilerSet errorformat=
 			\%E%f:%l:%c:\ error:\ %m,
