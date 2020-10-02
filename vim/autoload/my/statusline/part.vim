@@ -84,12 +84,24 @@ function! my#statusline#part#loc_count(bufnr, active) abort
 endfunction
 
 function! s:list_summary(list, active, prefix) abort
-	let line = s:qf_part(a:list, '', a:active, ' && v:val.lnum > 0')
-				\ . s:qf_part(a:list, 'E', a:active, '')
-				\ . s:qf_part(a:list, 'W', a:active, '')
-				\ . s:qf_part(a:list, 'I', a:active, '')
+	if s:qf_running(a:prefix)
+		let line = '...'
+	else
+		let line = s:qf_part(a:list, '', a:active, ' && v:val.lnum > 0')
+					\ . s:qf_part(a:list, 'E', a:active, '')
+					\ . s:qf_part(a:list, 'W', a:active, '')
+					\ . s:qf_part(a:list, 'I', a:active, '')
+	endif
 
 	return empty(line) ? '' : ' '.a:prefix.'['.substitute(line, ',$', '', '').']'
+endfunction
+
+function! s:qf_running(prefix) abort
+	if a:prefix ==# 'l'
+		return exists('w:asyncdo')
+	elseif a:prefix ==# 'c'
+		return exists('g:asyncdo')
+	endif
 endfunction
 
 function! s:qf_part(all, type, active, check) abort
