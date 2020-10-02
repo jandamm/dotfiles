@@ -39,6 +39,9 @@ inoremap <C-w> <C-g>u<C-w>
 " Quick replace with s
 xnoremap s :s/
 
+xnoremap < <gv
+xnoremap > >gv
+
 " In visual mode p copies the selected text and pastes the previous text.
 " Most of the time I don't want this. If I do, I can still use P which does
 " the same.
