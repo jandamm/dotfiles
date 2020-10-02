@@ -27,7 +27,7 @@ function! s:Grep(hidden, operator, rg, type, search) abort
 
 	augroup grep_highlight
 		autocmd!
-		execute 'autocmd QuickFixCmdPost * ++once call s:highlightMatches('.search.')'
+		execute 'autocmd QuickFixCmdPost * ++once call s:highlightMatches('.!a:rg.','.search.')'
 		call my#asyncdo#openListIf(!a:operator, a:type)
 	augroup END
 
@@ -36,8 +36,12 @@ function! s:Grep(hidden, operator, rg, type, search) abort
 	call my#asyncdo#run(a:type, !a:operator, { 'job': command.' '.search, 'errorformat': s:rgformat, 'title': title })
 endfunction
 
-function! s:highlightMatches(search) abort
-	let @/ = matchstr(a:search, "\\v(-)\@<!(\<)\@<=\\w+|['\"]\\zs.{-}\\ze['\"]")
+function! s:highlightMatches(verbatim, search) abort
+	if a:verbatim
+		let @/ = '\V'.a:search
+	else
+		let @/ = matchstr(a:search, "\\v(-)\@<!(\<)\@<=\\w+|['\"]\\zs.{-}\\ze['\"]")
+	endif
 	call feedkeys(":let &hlsearch=1 \| echo \<CR>", 'n')
 endfunction
 
