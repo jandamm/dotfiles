@@ -6,6 +6,10 @@ let g:loaded_command = 1
 command! -bang -nargs=* Terminal call my#command#terminal(<bang>0, <q-args>)
 
 command! -bang -nargs=? -complete=compiler Lmake call my#command#lmake(<bang>0, <f-args>)
+" Like Lmake but for the qflist.
+" Make either opens a terminal + qf or does nothing.
+" Lmake opens the list or not and never shows a terminal
+command! -bang -nargs=? -complete=compiler Amake call my#command#amake(<bang>0, <f-args>)
 
 command! -bar BD Sayonara!
 

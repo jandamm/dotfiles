@@ -21,18 +21,24 @@ function! my#command#terminal(bang, ...) abort
 endfunction
 
 function! my#command#lmake(bang, ...) abort
-	if a:0 && !empty(a:1)
-		execute 'compiler '.a:1
+	call s:make('l', a:bang, a:0 ? a:1 : '')
+endfunction
+
+function! my#command#amake(bang, ...) abort
+	call s:make('c', a:bang, a:0 ? a:1 : '')
+endfunction
+
+function! s:make(type, bang, compiler) abort
+	if !empty(a:compiler)
+		execute 'compiler '.a:compiler
 	endif
 	augroup lmake_lwindow
 		autocmd!
-		if !a:bang
-			autocmd QuickFixCmdPost * ++once lwindow
-		endif
+		call my#asyncdo#openListIf(!a:bang, a:type)
 	augroup END
 
-	silent call asyncdo#lstop()
-	silent call asyncdo#lrun(1, { 'job': &makeprg, 'errorformat': &errorformat})
+	silent call my#asyncdo#stop(a:type)
+	silent call my#asyncdo#run(a:type, 1, { 'job': &makeprg, 'errorformat': &errorformat})
 endfunction
 
 function! my#command#swap(bang, l1, l2, ...) abort

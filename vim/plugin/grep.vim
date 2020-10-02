@@ -28,18 +28,12 @@ function! s:Grep(hidden, operator, rg, type, search) abort
 	augroup grep_highlight
 		autocmd!
 		execute 'autocmd QuickFixCmdPost * ++once call s:highlightMatches('.search.')'
-		if !a:operator
-			execute 'autocmd QuickFixCmdPost * ++once '.a:type.'window'
-		endif
+		call my#asyncdo#openListIf(!a:operator, a:type)
 	augroup END
 
 	if a:operator | echo title | endif
-	let exec = { 'job': command, 'errorformat': s:rgformat, 'title': title }
-	if a:type ==# 'c'
-		call asyncdo#run(!a:operator, exec, search)
-	else
-		call asyncdo#lrun(!a:operator, exec, search)
-	endif
+	call my#asyncdo#stop(a:type)
+	call my#asyncdo#run(a:type, !a:operator, { 'job': command.' '.search, 'errorformat': s:rgformat, 'title': title })
 endfunction
 
 function! s:highlightMatches(search) abort
