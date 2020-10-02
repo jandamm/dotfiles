@@ -29,6 +29,8 @@ augroup my_diagnostics
 	autocmd User lsp_buffer_enabled call s:MakeLspSettings()
 	autocmd User lsp_setup ++once call s:RegisterLsp()
 
+	autocmd QuickFixCmdPost * QuickfixsignsEnable
+
 	" Stop asyncdo when leaving vim. Otherwise vim might print to stdout.
 	autocmd VimLeavePre * AsyncStop
 	autocmd VimLeavePre * LAsyncStop

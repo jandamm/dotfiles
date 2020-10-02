@@ -31,10 +31,14 @@ function! my#asyncdo#openListIf(bool, type) abort
 endfunction
 
 function! my#asyncdo#openList(type) abort
+	call my#asyncdo#onDone(a:type, a:type.'window')
+endfunction
+
+function! my#asyncdo#onDone(type, command) abort
 	if a:type ==# 'l'
-		autocmd QuickFixCmdPost l* ++once lwindow
+		execute 'autocmd QuickFixCmdPost l* ++once '.a:command
 	elseif a:type ==# 'c'
-		autocmd QuickFixCmdPost [^l]* ++once cwindow
+		execute 'autocmd QuickFixCmdPost [^l]* ++once '.a:command
 	else
 		echoerr 'Unknown type for asyncdo list: '.a:type
 	endif
