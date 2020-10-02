@@ -16,7 +16,7 @@ augroup my_editor_group
 	autocmd User SignifyAutocmds autocmd! signify FocusGained
 	autocmd FocusGained * call timer_start(0, {-> execute('SignifyRefresh') })
 
-	autocmd BufReadPost * DetectIndent
+	autocmd BufReadPost,BufNewFile * DetectIndent
 
 	autocmd User ProsessionPre wall
 augroup END
