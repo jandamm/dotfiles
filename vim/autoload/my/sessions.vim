@@ -43,6 +43,9 @@ function! my#sessions#end() abort
 	silent! tabonly
 	silent! only
 	silent! %bwipe!
+	silent! AsyncStop
+	silent! LAsyncStop
+	silent! AbortDispatch
 endfunction
 
 " Delete the current or given session
