@@ -88,8 +88,12 @@ call packager#add('hrsh7th/vim-vsnip-integ')
 call packager#add('prabirshrestha/vim-lsp')
 
 " Languages
-call packager#add('sheerun/vim-polyglot')
-call packager#add('keith/xcconfig.vim')
+Pack 'bfontaine/Brewfile.vim'
+Pack 'tpope/vim-git'
+" Pack 'plasticboy/vim-markdown'
+" Pack 'gabrielelana/vim-markdown'
+Pack 'keith/swift.vim'
+Pack 'keith/xcconfig.vim'
 
 " Vim Plugins
 call packager#add('junegunn/vader.vim')

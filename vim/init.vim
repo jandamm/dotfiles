@@ -1,5 +1,6 @@
 scriptencoding utf-8
 
+
 " In this file should be no executed code. Only `let` and `set`
 
 " Appearance {{{
@@ -99,6 +100,8 @@ set undofile
 
 " Snippet directories
 let g:vsnip_snippet_dir = expand('~/.vim/vsnip/default')
+
+let g:markdown_fenced_languages = ['bash=sh', 'swift', 'viM', 'zsh']
 
 " }}}
 
