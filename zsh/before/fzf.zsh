@@ -7,7 +7,7 @@
 # - Bind alt-p/k to move preview up
 # - Bind alt-w to wrap preview
 # - Bind alt-z to hide preview
-export FZF_DEFAULT_OPTS='
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"'
 --layout=reverse
 --preview "([ -f {} ] && bat --color=always {}) || ([ -d {} ] && exa -G1 {}) || echo {}"
 --exit-0
