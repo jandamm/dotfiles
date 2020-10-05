@@ -4,7 +4,10 @@ endif
 let g:loaded_grep = 1
 
 let s:rgprg = 'rg --vimgrep'
-let s:rgformat = '%f:%l:%c:%m,%f:%l%m,%f\ \ %l%m'
+let s:rgformat = '%f:%l:%c:%m,%f:%l%m,%f  %l%m'
+
+let s:ackprg = 'ack -s -H --column'
+let s:ackformat = '%f:%l:%c:%m,%f:%l:%m'
 
 let &grepprg = s:rgprg
 let &grepformat = s:rgformat
@@ -66,3 +69,26 @@ endfunction
 
 nnoremap <silent> g/ :set operatorfunc=<SID>GrepOperator<CR>g@
 xnoremap <silent> g/ :<C-u>call <SID>GrepOperator(visualmode())<CR>
+
+" Temporary test for Ack
+" TODO: Migrate if Ack is good
+command! -bang -nargs=+ -complete=dir Ack   call s:Ack(<q-args>)
+function! s:Ack(search) abort
+	cclose
+
+	let command = s:ackprg
+	let command .= &smartcase ? ' --smart-case' : (&ignorecase ? ' --ignore-case' : '')
+	let search = escape(a:search, '%#|\')
+
+	" Do a verbatim search in Grep
+	let title = 'ack '.search
+
+	augroup grep_highlight
+		autocmd!
+		execute 'autocmd QuickFixCmdPost * ++once call s:highlightMatches(0, "'.search.'")'
+		call my#asyncdo#openList('c')
+	augroup END
+
+	call my#asyncdo#stop('c')
+	call my#asyncdo#run('c', 1, { 'job': command.' '.search, 'errorformat': s:ackformat, 'title': title })
+endfunction
