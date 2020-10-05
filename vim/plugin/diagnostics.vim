@@ -8,7 +8,7 @@ let g:loaded_diagnostics = 1
 let g:lsp_diagnostics_enabled = 0
 
 function! s:MakeLspSettings() abort
-	if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+	" if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
 
 	nmap <buffer> gd <Plug>(lsp-definition)
 	nmap <buffer> gr <Plug>(lsp-references)
