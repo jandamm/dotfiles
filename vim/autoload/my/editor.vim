@@ -15,3 +15,13 @@ function! my#editor#winleave() abort
 	let w:cursorline = &cursorline
 	setlocal nocursorline norelativenumber
 endfunction
+
+function! my#editor#case_sensitivity() abort
+	if &smartcase && &ignorecase
+		set nosmartcase
+	elseif !&smartcase && &ignorecase
+		set noignorecase
+	else
+		set smartcase ignorecase
+	endif
+endfunction

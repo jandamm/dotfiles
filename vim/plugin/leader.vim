@@ -110,6 +110,8 @@ let g:lmap.p.w = 'Save'
 
 " Leader T {{{1
 let g:lmap.t = { 'name': 'toggle' }
+nmap <silent> <Leader>tc         <CMD>call my#editor#case_sensitivity()<CR>
+let g:lmap.t.c = 'Case sensitivity'
 nmap <silent> <Leader>tf         :call my#spelling#toggle()<CR>
 let g:lmap.t.f = 'Spelling'
 nmap <silent> <Leader>tl         <Plug>(qf_loc_toggle)

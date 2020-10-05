@@ -9,6 +9,16 @@ function! my#statusline#part#bufnr(bufnr, active) abort
 	return ' '.c2.'('.c3.'%n'.c2.')%*'
 endfunction
 
+function! my#statusline#part#case_sensitivity(bufnr, active) abort
+	if &smartcase && &ignorecase
+		return '' " Smartcase is default
+	elseif !&smartcase && &ignorecase
+		return ' [ic]'
+	else
+		return ' [noic]'
+	endif
+endfunction
+
 function! my#statusline#part#git(bufnr, active) abort
 	let branch = fugitive#head()
 	return branch !=? '' ? ' ' . branch : ''
