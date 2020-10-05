@@ -16,6 +16,7 @@ function! s:Grep(hidden, operator, rg, type, search) abort
 	let command .= a:hidden ? ' --hidden' : ''
 	let command .= &smartcase ? ' --smart-case' : (&ignorecase ? ' --ignore-case' : ' --case-sensitive')
 	let search = escape(a:search, '%#|\')
+	let match = search
 
 	" Do a verbatim search in Grep
 	if !a:rg
@@ -27,7 +28,7 @@ function! s:Grep(hidden, operator, rg, type, search) abort
 
 	augroup grep_highlight
 		autocmd!
-		execute 'autocmd QuickFixCmdPost * ++once call s:highlightMatches('.!a:rg.','.search.')'
+		execute 'autocmd QuickFixCmdPost * ++once call s:highlightMatches('.!a:rg.',"'.match.'")'
 		call my#asyncdo#openListIf(!a:operator, a:type)
 	augroup END
 
