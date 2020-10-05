@@ -86,15 +86,15 @@ function! my#statusline#part#viewport(bufnr, active) abort
 endfunction
 
 function! my#statusline#part#qf_count(bufnr, active) abort
-	return s:list_summary(getqflist(), a:active, 'c')
+	return s:list_summary(getqflist(), a:active, 'c', a:bufnr)
 endfunction
 
 function! my#statusline#part#loc_count(bufnr, active) abort
-	return s:list_summary(getloclist(bufwinnr(a:bufnr)), a:active, 'l')
+	return s:list_summary(getloclist(bufwinnr(a:bufnr)), a:active, 'l', a:bufnr)
 endfunction
 
-function! s:list_summary(list, active, prefix) abort
-	if s:qf_running(a:prefix)
+function! s:list_summary(list, active, prefix, bufnr) abort
+	if my#asyncdo#running(a:prefix, a:bufnr)
 		let line = '...'
 	else
 		let line = s:qf_part(a:list, '', a:active, ' && v:val.lnum > 0')
@@ -104,14 +104,6 @@ function! s:list_summary(list, active, prefix) abort
 	endif
 
 	return empty(line) ? '' : ' '.a:prefix.'['.substitute(line, ',$', '', '').']'
-endfunction
-
-function! s:qf_running(prefix) abort
-	if a:prefix ==# 'l'
-		return exists('w:asyncdo')
-	elseif a:prefix ==# 'c'
-		return exists('g:asyncdo')
-	endif
 endfunction
 
 function! s:qf_part(all, type, active, check) abort
