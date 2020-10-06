@@ -2,6 +2,11 @@
 
 set -euo pipefail
 
+if [ -n "$(git status --porcelain)" ]; then
+    echo "Stash before using this script." 2>&1
+    exit
+fi
+
 readonly pr_commit="${1:-main}"
 
 # Autogenerate a branch name based on the commit subject.

@@ -7,6 +7,11 @@ if [[ $# -ne 1 ]]; then
     exit
 fi
 
+if [ -n "$(git status --porcelain)" ]; then
+    echo "Stash before using this script." 2>&1
+    exit
+fi
+
 readonly pr_commit=$1
 
 readonly branch_name="$(git show --no-patch --format="%f" "$pr_commit")"
