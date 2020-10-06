@@ -20,6 +20,8 @@
 	addp = add --patch
 	amend = commit --amend
 	amendZZ = amend --no-edit
+	bclean = !git branch --merged | egrep -v '(^\\*|master|main|develop)' | xargs git branch -d
+	bcleanr = !git branch -r --merged | egrep -v '(^\\*|master|main|develop)' | tr '/' ' ' | xargs -n 2 git push --delete
 	develop = switch develop
 	ksdiff = difftool -t ksdiff
 	ksdiffall = ksdiff --no-prompt
