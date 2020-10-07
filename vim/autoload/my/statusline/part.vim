@@ -3,13 +3,13 @@ if exists('g:autoloaded_statusline_part')
 endif
 let g:autoloaded_statusline_part = 1
 
-function! my#statusline#part#bufnr(bufnr, active) abort
+function! my#statusline#part#bufnr(winnr, active) abort
 	let c2 = a:active ? '%9*' : '%*'
 	let c3 = a:active ? '%2*' : '%8*'
 	return ' '.c2.'('.c3.'%n'.c2.')%*'
 endfunction
 
-function! my#statusline#part#case_sensitivity(bufnr, active) abort
+function! my#statusline#part#case_sensitivity(winnr, active) abort
 	if &smartcase && &ignorecase
 		return '' " Smartcase is default
 	elseif !&smartcase && &ignorecase
@@ -19,18 +19,18 @@ function! my#statusline#part#case_sensitivity(bufnr, active) abort
 	endif
 endfunction
 
-function! my#statusline#part#git(bufnr, active) abort
+function! my#statusline#part#git(winnr, active) abort
 	let branch = fugitive#head()
 	return branch !=? '' ? ' ' . branch : ''
 endfunction
 
-function! my#statusline#part#filename(bufnr, active, prefix, ...) abort
+function! my#statusline#part#filename(winnr, active, prefix, ...) abort
 	" Light mode
 	if a:0 && a:1
 		let path = ''
 		let file = '%f'
 	else
-		let full = fnamemodify(bufname(a:bufnr), ':~:.')
+		let full = fnamemodify(bufname(winbufnr(a:winnr)), ':~:.')
 		let file = fnamemodify(full, ':t')
 		let path = fnamemodify(full, ':h')
 		if path ==# '.' && !empty(file)
@@ -47,7 +47,7 @@ function! my#statusline#part#filename(bufnr, active, prefix, ...) abort
 				\ a:prefix, path, file)
 endfunction
 
-function! my#statusline#part#indent(bufnr, active) abort
+function! my#statusline#part#indent(winnr, active) abort
 	let sw = &shiftwidth ? &shiftwidth : &tabstop
 	if &expandtab
 		let ret = 'sw='.sw
@@ -61,36 +61,36 @@ function! my#statusline#part#indent(bufnr, active) abort
 	return ' ['.ret.']'
 endfunction
 
-function! my#statusline#part#paste(bufnr, active) abort
+function! my#statusline#part#paste(winnr, active) abort
 	let c = a:active ? '%2*' : ''
 	return &paste ? ' ['.c.'paste%*]' : ''
 endfunction
 
-function! my#statusline#part#qf_title(bufnr, active, prefix) abort
-	let title = getwinvar(bufwinnr(a:bufnr), 'quickfix_title', '')
+function! my#statusline#part#qf_title(winnr, active, prefix) abort
+	let title = getwinvar(a:winnr, 'quickfix_title', '')
 	return empty(title)
 				\ ? ''
 				\ : ' '.s:trunc(title, 100)
 endfunction
 
-function! my#statusline#part#sessions(bufnr, active) abort
+function! my#statusline#part#sessions(winnr, active) abort
 	return '%{ObsessionStatus(" [$]", "")}'
 endfunction
 
-function! my#statusline#part#spell(bufnr, active) abort
+function! my#statusline#part#spell(winnr, active) abort
 	return &spell ? ' [' . toupper(strcharpart(&spelllang, 0, 2)) . ']' : ''
 endfunction
 
-function! my#statusline#part#viewport(bufnr, active) abort
+function! my#statusline#part#viewport(winnr, active) abort
 	return ' %P-%l-%c'
 endfunction
 
-function! my#statusline#part#qf_count(bufnr, active) abort
-	return s:list_summary(getqflist(), a:active, 'c', a:bufnr)
+function! my#statusline#part#qf_count(winnr, active) abort
+	return s:list_summary(getqflist(), a:active, 'c', winbufnr(a:winnr))
 endfunction
 
-function! my#statusline#part#loc_count(bufnr, active) abort
-	return s:list_summary(getloclist(bufwinnr(a:bufnr)), a:active, 'l', a:bufnr)
+function! my#statusline#part#loc_count(winnr, active) abort
+	return s:list_summary(getloclist(a:winnr), a:active, 'l', winbufnr(a:winnr))
 endfunction
 
 function! s:list_summary(list, active, prefix, bufnr) abort
