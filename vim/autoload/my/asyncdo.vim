@@ -16,13 +16,17 @@ function! my#asyncdo#run(type, nojump, cmd, ...) abort
 	endif
 endfunction
 
-" Is asyncdo running? Optinally is loc running for the current buffer.
 function! my#asyncdo#running(type, ...) abort
-	if a:type ==# 'l' && exists('w:asyncdo')
-		if a:0
-			return w:asyncdo.nr == bufwinid(a:1)
-		endif
-		return 1
+	if a:type ==# 'l'
+		" There is a bug which results in asyncdo running local builds only in the
+		" first window. It still may not work when the first window is removed and
+		" asyncdo is started from another window. This also prevents multiple jobs
+		" to run in parallel (one per window).
+		" When this is fixed, the following line should work.
+		" return getwinvar(winnr, 'asyncdo', {}) != {}
+		let winnr = a:0 ? a:1 : winnr()
+		let asyncdo = getwinvar(1, 'asyncdo', {})
+		return has_key(asyncdo, 'nr') && asyncdo.nr == win_getid(winnr)
 	elseif a:type ==# 'c'
 		return exists('g:asyncdo')
 	endif

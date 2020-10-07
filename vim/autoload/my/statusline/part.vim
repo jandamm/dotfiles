@@ -86,15 +86,15 @@ function! my#statusline#part#viewport(winnr, active) abort
 endfunction
 
 function! my#statusline#part#qf_count(winnr, active) abort
-	return s:list_summary(getqflist(), a:active, 'c', winbufnr(a:winnr))
+	return s:list_summary(getqflist(), a:active, 'c', a:winnr)
 endfunction
 
 function! my#statusline#part#loc_count(winnr, active) abort
-	return s:list_summary(getloclist(a:winnr), a:active, 'l', winbufnr(a:winnr))
+	return s:list_summary(getloclist(a:winnr), a:active, 'l', a:winnr)
 endfunction
 
-function! s:list_summary(list, active, prefix, bufnr) abort
-	if my#asyncdo#running(a:prefix, a:bufnr)
+function! s:list_summary(list, active, prefix, winnr) abort
+	if my#asyncdo#running(a:prefix, a:winnr)
 		let line = '...'
 	else
 		let line = s:qf_part(a:list, '', a:active, ' && v:val.lnum > 0')
