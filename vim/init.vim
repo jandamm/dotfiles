@@ -1,6 +1,5 @@
 scriptencoding utf-8
 
-
 " In this file should be no executed code. Only `let` and `set`
 
 " Appearance {{{
