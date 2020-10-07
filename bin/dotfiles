@@ -127,7 +127,7 @@ function brew_install() {
 	if [ -f "$1" ]
 	then
 		echo "$2"
-		brew bundle install --file "$1"
+		brew bundle install --no-lock --file "$1"
 	fi
 }
 
