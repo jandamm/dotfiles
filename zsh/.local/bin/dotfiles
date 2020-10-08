@@ -286,7 +286,7 @@ then
 		git clone https://github.com/jandamm/zgenom.git "$XDG_DATA_HOME/zgenom"
 
 		echo 'Installing zsh plugins'
-		zsh -c "source $DOTFILES/zsh/.zsh/init.zsh"
+		zsh -c "source $DOTFILES/zsh/.config/zsh/.zshrc"
 	fi
 
 	if is_update
@@ -298,7 +298,7 @@ then
 		zsh -c "source $XDG_DATA_HOME/zgenom/zgen.zsh && zgen update"
 
 		echo 'Recreate zsh plugins cache'
-		zsh -c "source $DOTFILES/zsh/.zsh/init.zsh"
+		zsh -c "source $DOTFILES/zsh/.config/zsh/init.zsh"
 	fi
 fi
 

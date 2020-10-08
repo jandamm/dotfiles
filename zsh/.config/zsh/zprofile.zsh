@@ -6,7 +6,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 
 path=(
-	"$HOME/.bin"
+	"$HOME/.local/bin"
 	"$HOME/.rbenv/shims"
 	"/usr/local/opt/coreutils/libexec/gnubin"
 	"/usr/local/opt/gnu-sed/libexec/gnubin"
@@ -21,5 +21,3 @@ then export ZSHRC_CONFIG_USER='MAC'
 elif [ "$(whoami)" = 'openhabian' ]
 then export ZSHRC_CONFIG_USER='HAPI'
 fi
-
-export COMPDUMPNAME="$HOME/.zsh/zcompdump_$ZSH_VERSION"

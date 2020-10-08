@@ -49,7 +49,7 @@ PER_DIRECTORY_HISTORY_BASE="$XDG_DATA_HOME/zsh/history_dirs"
 [ -u $VISUAL ] && export VISUAL=nvim
 export MANPAGER='less -s -M +Gg'
 
-fpath=("$HOME/.zsh/completions" $fpath)
+fpath=("$ZDOTDIR/completions" $fpath)
 
 # adds @(|) *(|) ?(|) +(|) which translate to regex: (|) (|)* (|)? (|)+
 setopt extendedglob
@@ -63,14 +63,14 @@ export LANG=en_US.UTF-8
 
 # Load and recompile before plugins
 setopt nullglob
-for file in $HOME/.zsh/before/*.zsh
+for file in $ZDOTDIR/before/*.zsh
 do
 	source "$file"
 done
 unsetopt nullglob
 
 ZGEN_COMPINIT_FLAGS='-i'
-ZGEN_CUSTOM_COMPDUMP="$HOME/.zsh/zcompdump_$ZSH_VERSION"
+ZGEN_CUSTOM_COMPDUMP="$XDG_DATA_HOME/zsh/zcompdump_$ZSH_VERSION"
 source $XDG_DATA_HOME/zgenom/zgenom.zsh
 
 # Load plugins {{{
@@ -108,7 +108,13 @@ fi
 
 # Load and recompile after plugins
 setopt nullglob
-for file in $HOME/.zsh/after/*.zsh
+for file in $XDG_DATA_HOME/zsh/generated/*.zsh
+do
+	source "$file"
+done
+
+# Load after plugins
+for file in $ZDOTDIR/after/*.zsh
 do
 	source "$file"
 done
