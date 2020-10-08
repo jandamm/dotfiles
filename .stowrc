@@ -1,0 +1,5 @@
+--ignore=\.tags
+--ignore=tags
+--ignore=\.root
+--ignore=\.vimroot
+--ignore=\.tagroot

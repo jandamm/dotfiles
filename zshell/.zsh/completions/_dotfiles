@@ -1,0 +1,8 @@
+#compdef dotfiles
+
+_arguments '1:command:(stow install update)' '*:config:->config'
+
+if [ "$state" = config ]
+then
+	_values config $(dotfiles --list)
+fi
