@@ -4,10 +4,10 @@
 
 [core]
 	pager = my_delta
-	excludesfile = ~/.gitrc/gitignore
+	excludesfile = ~/.config/git/gitignore
 
 [init]
-	templatedir = ~/.gitrc/template
+	templatedir = ~/.config/git/template
 
 [credential]
 	helper = osxkeychain
@@ -52,7 +52,7 @@
 # Command configuration
 [commit]
 	verbose = true
-	template = ~/.gitrc/commit_message_template
+	template = ~/.config/git/commit_message_template
 [format]
 	pretty = default
 
