@@ -280,8 +280,13 @@ fi
 function generate_zlua() {
 	lua "$XDG_DATA_HOME/zgenom/skywind3000/z.lua-master/z.lua" --init zsh enhanced > "$XDG_DATA_HOME/zsh/generated/zlua.zsh"
 }
+function zgen_comp() {
+	zsh -c "source $XDG_DATA_HOME/zgenom/zgen.zsh && zgen compile $1"
+}
 if should_configure zsh
 then
+	stow zsh
+
 	if is_install
 	then
 		mkdir -p "$XDG_CACHE_HOME/zsh"
@@ -319,6 +324,14 @@ do
 		stow "$c"
 	fi
 done
+
+if has_config zsh
+then
+	echo '' && echo 'Recompile zsh dotfiles'
+	zgen_comp "$HOME/.zshenv"
+	zgen_comp "$XDG_CONFIG_HOME/zsh"
+	zgen_comp "$XDG_DATA_HOME/zsh/generated"
+fi
 
 if is_install
 then
