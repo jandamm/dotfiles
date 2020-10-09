@@ -61,7 +61,7 @@ export WORDCHARS='@_'
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-# Load and recompile before plugins
+# Load before plugins
 setopt nullglob
 for file in $ZDOTDIR/before/*.zsh
 do
@@ -81,7 +81,7 @@ then
 	zgen load romkatv/powerlevel10k powerlevel10k # Prompt theme
 	zgen load jandamm/vi-mode.zsh # Show line cursor in vi mode
 
-	zgen bin clvv/fasd
+	zgen clone skywind3000/z.lua
 	zgen bin raylee/tldr-sh-client tldr
 
 	zgen load Aloxaf/fzf-tab # Tab completion is working with fzf
@@ -106,7 +106,7 @@ then
 fi
 # }}}
 
-# Load and recompile after plugins
+# Load generated plugins
 setopt nullglob
 for file in $XDG_DATA_HOME/zsh/generated/*.zsh
 do
@@ -133,7 +133,7 @@ source /usr/local/Cellar/rbenv/*/completions/rbenv.zsh
 # Commands with gnu style '--help' can be added here.
 compdef _gnu_generic \
 	bat \
-	fasd fd fzf \
+	fd fzf \
 	pod \
 	swiftformat \
 	xcpretty xed

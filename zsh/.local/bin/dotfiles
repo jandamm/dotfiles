@@ -277,16 +277,21 @@ fi
 
 # ZSH {{{
 
+function generate_zlua() {
+	lua "$XDG_DATA_HOME/zgenom/skywind3000/z.lua-master/z.lua" --init zsh enhanced > "$XDG_DATA_HOME/zsh/generated/zlua.zsh"
+}
 if should_configure zsh
 then
 	if is_install
 	then
 		mkdir -p "$XDG_CACHE_HOME/zsh"
-		mkdir -p "$XDG_DATA_HOME/zsh"
+		mkdir -p "$XDG_DATA_HOME/zsh/generated"
 		git clone https://github.com/jandamm/zgenom.git "$XDG_DATA_HOME/zgenom"
 
 		echo 'Installing zsh plugins'
 		zsh -c "source $DOTFILES/zsh/.config/zsh/.zshrc"
+
+		generate_zlua
 	fi
 
 	if is_update
@@ -296,6 +301,8 @@ then
 
 		echo 'Updating zsh plugins'
 		zsh -c "source $XDG_DATA_HOME/zgenom/zgen.zsh && zgen update"
+
+		generate_zlua
 
 		echo 'Recreate zsh plugins cache'
 		zsh -c "source $DOTFILES/zsh/.config/zsh/init.zsh"
