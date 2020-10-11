@@ -5,7 +5,7 @@ let g:lmap.c.b = 'Build with spm'
 
 " Add nicer version keeping correct indentation
 command! -range -buffer MultilineFormat
-			\ <line1>,<line2>substitute/\v%(\(\zs *\ze[^)]|\[\zs *\ze[^]]|,\zs *\ze.|[^(]\zs *\ze\)|[^[]\zs *\ze\])/\r/g <BAR>
+			\ <line1>,<line2>substitute/\v%(\(\zs *\ze[^)]|\{\zs *\ze[^}]|\[\zs *\ze[^]]|,\zs *\ze.|[^(]\zs *\ze\)|[^{]\zs *\ze\}|[^[]\zs *\ze\]|<in>\zs ?\ze)/\r/g <BAR>
 			\ nohlsearch
 
 compiler swiftpm
