@@ -29,7 +29,7 @@ let g:projectionist_heuristics['Podfile'] = {
 " }}}
 
 " scripts {{{
-let g:projectionist_heuristics['scripts/&!.zshrc&!vim/'] = {
+let g:projectionist_heuristics['scripts/&!.zshenv&!nvim/'] = {
 			\  'scripts/*.sh' : {
 			\      'type': 'scripts',
 			\      'template': ['#!/usr/bin/env bash', ''],
@@ -37,38 +37,9 @@ let g:projectionist_heuristics['scripts/&!.zshrc&!vim/'] = {
 			\ }
 " }}}
 
-" VIM Shared {{{
-let g:projectionist_heuristics['!vim/&*.vim'] = {
-			\  'ftdetect/*.vim' : { 'type': 'detect'   },
-			\  'compiler/*.vim' : { 'type': 'compiler' },
-			\  'syntax/*.vim'   : { 'type': 'syntax'   },
-			\  'doc/*.vim'      : { 'type': 'doc'      },
-			\  'readme.md'      : { 'type': 'doc'      },
-			\ }
-" }}}
+" VIM {{{
+let g:projectionist_heuristics['!nvim/.config/nvim/&*.vim'] = { 'readme.md': { 'type': 'doc' } }
 
-" VIM Plugins {{{
-let g:projectionist_heuristics['!vim/&*.vim&!init.vim'] = {
-			\  'after/*.vim'    : {
-			\      'type': 'after',
-			\      'template': ["if exists('g:loaded_after_{basename}')", "\tfinish", 'endif', 'let g:loaded_after_{basename} = 1'],
-			\  },
-			\  'autoload/*.vim' : {
-			\      'type': 'autoload',
-			\      'template': ["if exists('g:autoloaded_{basename}')", "\tfinish", 'endif', 'let g:autoloaded_{basename} = 1'],
-			\  },
-			\  'ftplugin/*.vim' : {
-			\      'type': 'ftplugin',
-			\      'template': ["if exists('g:loaded_ft_{basename}')", "\tfinish", 'endif', 'let g:loaded_ft_{basename} = 1'],
-			\  },
-			\  'plugin/*.vim'   : {
-			\      'type': 'plugin',
-			\      'template': ["if exists('g:loaded_{basename}')", "\tfinish", 'endif', 'let g:loaded_{basename} = 1'],
-			\  },
-			\ }
-" }}}
-
-" VIM Dotfiles {{{
 let g:projectionist_heuristics['init.vim'] = {
 			\  'ftplugin/*.vim': {
 			\      'type': 'ftplugin',
@@ -106,12 +77,15 @@ let g:projectionist_heuristics['init.vim'] = {
 			\      'related': ['after/plugin/{}.vim', 'plugin/{}.vim'],
 			\      'template': ["if exists('g:autoloaded_my_{basename}')", "\tfinish", 'endif', 'let g:autoloaded_my_{basename} = 1'],
 			\  },
-			\  'init.vim'             : { 'type': 'init'       },
-			\  'plugin/ctrlp.vim'     : { 'type': 'ctrlp'      },
+			\  'compiler/*.vim'       : { 'type': 'compiler'   },
 			\  'autoload/ctrlp/*.vim' : { 'type': 'ctrlp'      },
+			\  'plugin/ctrlp.vim'     : { 'type': 'ctrlp'      },
+			\  'ftdetect/*.vim'       : { 'type': 'ftdetect'   },
+			\  'init.vim'             : { 'type': 'init'       },
 			\  'projplugin/*.vim'     : { 'type': 'projplugin' },
-			\  'vsnip/default/*.json' : { 'type': 'snippet'    },
+			\  'syntax/*.vim'         : { 'type': 'syntax'     },
 			\  'spell/*.utf-8.add'    : { 'type': 'spell'      },
+			\  'vsnip/default/*.json' : { 'type': 'snippet'    },
 			\ }
 " }}}
 
@@ -133,7 +107,7 @@ let g:projectionist_heuristics['init.zsh'] = {
 			\      'type': 'completion',
 			\  },
 			\  'init.zsh': { 'type': 'init' },
-			\  'profile.zsh': { 'type': 'profile' },
-			\  'login.zsh': { 'type': 'login' },
+			\  'zprofile.zsh': { 'type': 'profile' },
+			\  'zlogin.zsh': { 'type': 'login' },
 			\ }
 " }}}
