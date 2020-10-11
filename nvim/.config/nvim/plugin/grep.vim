@@ -18,7 +18,7 @@ function! s:Grep(hidden, operator, rg, type, search) abort
 	let command = s:rgprg
 	let command .= a:hidden ? ' --hidden' : ''
 	let command .= &smartcase ? ' --smart-case' : (&ignorecase ? ' --ignore-case' : ' --case-sensitive')
-	let search = escape(a:search, '%#|\')
+	let search = escape(a:search, '%#|' . (a:rg ? '' : '\'))
 	let match = search
 
 	" Do a verbatim search in Grep
@@ -77,8 +77,8 @@ function! s:Ack(search) abort
 	cclose
 
 	let command = s:ackprg
-	let command .= &smartcase ? ' --smart-case' : (&ignorecase ? ' --ignore-case' : '')
-	let search = escape(a:search, '%#|\')
+	let command .= &smartcase ? ' --smart-case' : (&ignorecase ? ' --ignore-case' : ' --no-ignore-case')
+	let search = escape(a:search, '%#|')
 
 	" Do a verbatim search in Grep
 	let title = 'ack '.search
