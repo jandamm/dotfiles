@@ -6,8 +6,8 @@ set -e
 if [ -z "$DOTFILES" ]
 then
 	echo "Not yet set up. Sourcing zprofile"
-	# shellcheck source=../.config/zsh/.zprofile
-	source "${0%/*}/../.config/zsh/.zprofile"
+	# shellcheck source=../.config/zsh/zprofile.zsh
+	source "${0%/*}/../.config/zsh/zprofile.zsh"
 fi
 
 cd "$DOTFILES" || exit
@@ -134,6 +134,10 @@ fi
 function brew_install() {
 	if [ -f "$1" ]
 	then
+		for i in $(command cat "$1" | grep -E 'args.*"HEAD"' | sed "s/brew '\(.*\)'.*/\1/"); do
+			brew remove "$i" || true
+		done
+
 		echo "$2"
 		brew bundle install --no-lock --file "$1"
 	fi
