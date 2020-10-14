@@ -7,7 +7,6 @@ export XDG_CACHE_HOME="$HOME/.cache"
 
 path=(
 	"$HOME/.local/bin"
-	"$HOME/.rbenv/shims"
 	"/usr/local/opt/coreutils/libexec/gnubin"
 	"/usr/local/opt/gnu-sed/libexec/gnubin"
 	$path
