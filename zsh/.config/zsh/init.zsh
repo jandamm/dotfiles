@@ -103,6 +103,12 @@ then
 	zgen load zsh-users/zsh-autosuggestions
 
 	zgen save
+
+	rbenv rehash
+
+	zgen compile "$HOME/.zshenv"
+	zgen compile "$XDG_CONFIG_HOME/zsh"
+	zgen compile "$XDG_DATA_HOME/zsh/generated"
 fi
 # }}}
 
