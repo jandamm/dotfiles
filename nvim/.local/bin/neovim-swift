@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # xcrun --sdk iphonesimulator --show-sdk-path
-xcode_version='11.7'
-simos_version='13.7'
+xcode_version='12.0.1'
+simos_version='14.0'
 
 if [ $# -eq 0 ]
 then
