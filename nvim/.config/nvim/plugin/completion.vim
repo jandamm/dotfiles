@@ -11,11 +11,10 @@ augroup my_completion
 	" Enable syntaxcomplete if no omnifunc is present
 	autocmd Filetype * if &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
 
-	" Enable lsp specific stuff
-	autocmd User lsp_buffer_enabled setlocal omnifunc=lsp#complete
 
 	" Insert lsp snippet when there is only one match
-	autocmd CompleteDone * call timer_start(0, { -> s:on_complete_done() })
+	" Does not work for vim-lsc
+	" autocmd CompleteDone * call timer_start(0, { -> s:on_complete_done() })
 
 	" Insert lsp snippet with ctrlp complete
 	autocmd User ctrlp_complete call s:on_ctrlp_complete_done()

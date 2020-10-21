@@ -6,29 +6,21 @@ endif
 let g:loaded_diagnostics = 1
 
 let g:lsp_diagnostics_enabled = 0
+let g:lsc_enable_autocomplete = v:false
+let g:lsc_enable_diagnostics  = v:false
 
-function! s:MakeLspSettings() abort
-	" if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-
-	nmap <buffer> gd <Plug>(lsp-definition)
-	nmap <buffer> gr <Plug>(lsp-references)
-	nmap <buffer> gi <Plug>(lsp-implementation)
-	nmap <buffer> gt <Plug>(lsp-type-definition)
-	nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
-	nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
-	if &filetype !=? 'vim'
-		nmap <buffer> K  <Plug>(lsp-hover)
-	endif
-
-	" Not sure how to integrate yet
-	" nmap <buffer> <leader>rn <plug>(lsp-rename)
-endfunction
+let g:lsc_auto_map = {
+    \ 'GoToDefinition': 'gd',
+    \ 'GoToDefinitionSplit': '<C-w>gd',
+    \ 'FindReferences': 'gr',
+    \ 'Rename': 'gR',
+    \ 'ShowHover': v:true,
+    \ 'Completion': 'omnifunc',
+    \}
 
 augroup my_diagnostics
 	au!
-	autocmd User lsp_buffer_enabled call s:MakeLspSettings()
-	autocmd User lsp_setup ++once call s:RegisterLsp()
-
+	" Refresh Quickfixsigns
 	autocmd QuickFixCmdPost * QuickfixsignsEnable
 
 	" Stop asyncdo when leaving vim. Otherwise vim might print to stdout.
@@ -38,29 +30,12 @@ augroup END
 
 " LSP Server Config {{{
 
-function! s:RegisterLsp(...) abort
-	call lsp#register_server({
-				\ 'name': 'sourcekit-lsp-ios',
-				\ 'cmd': {server_info->['neovim-swift', 'lsp', 'ios'] + my#ft#swift#compiler_flags() },
-				\ 'allowlist': ['ios', 'ios.swift'],
-				\ 'languageId': {server_info->'swift'},
-				\ })
-	call lsp#register_server({
-				\ 'name': 'sourcekit-lsp',
-				\ 'cmd': {server_info->['neovim-swift', 'lsp'] + my#ft#swift#compiler_flags() },
-				\ 'allowlist': ['swift'],
-				\ })
-	call lsp#register_server({
-				\ 'name': 'bash-language-server',
-				\ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
-				\ 'allowlist': ['sh'],
-				\ })
-	call lsp#register_server({
-				\ 'name': 'vim-language-server',
-				\ 'cmd': {server_info->['vim-language-server', '--stdio']},
-				\ 'allowlist': ['vim'],
-				\ })
-endfunction
+if !exists('g:lsc_server_commands') | let g:lsc_server_commands = {} | endif
+
+let g:lsc_server_commands['ios.swift'] = { 'command': ['neovim', 'swift', 'lsp', 'ios'], 'languageId': 'swift'}
+let g:lsc_server_commands.swift = ['neovim', 'swift', 'lsp']
+let g:lsc_server_commands.sh = ['bash-language-server', 'start']
+let g:lsc_server_commands.vim = ['vim-language-server', '--stdio']
 
 " }}}
 
