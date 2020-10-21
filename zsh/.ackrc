@@ -1,0 +1,17 @@
+# Ignore dirs
+--ignore-dir=.build
+--ignore-dir=Pods
+--ignore-dir=Pod
+--ignore-dir=match:\.xcodeproj
+--ignore-dir=match:\.xcworkspace
+--ignore-dir=match:\.noindex
+
+# Ignore files
+--ignore-file=is:.tags
+--ignore-file=is:tags
+--ignore-file=ext:lock
+--ignore-file=ext:junit
+--ignore-file=ext:spl
+--ignore-file=ext:zwc
+
+# vim:set ft=sh:

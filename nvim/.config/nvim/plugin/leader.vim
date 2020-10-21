@@ -100,14 +100,13 @@ let g:lmap.o.T = 'Terminal split'
 let g:lmap.p = { 'name': 'project' }
 nmap <silent> <expr> <Leader>pd  winnr('$') == 1 ? ":Dirvish!\<CR>" : ":Dirvish\<CR>"
 let g:lmap.p.d = 'Directory'
-nmap <silent> <Leader>pp         :CtrlPSession<CR>
+nmap          <Leader>pp         :Session<Space>
 let g:lmap.p.p = 'Sessions'
-nmap <silent> <Leader>pt         :CtrlPTag<CR>
+nmap          <Leader>pt         :tjump<Space>/
 let g:lmap.p.t = 'Tags'
 nmap <silent> <Leader>pw         :wall<CR>
 let g:lmap.p.w = 'Save'
 " }}}
-
 " Leader T {{{1
 let g:lmap.t = { 'name': 'toggle' }
 nmap <silent> <Leader>tc         <CMD>call my#editor#case_sensitivity()<CR>
@@ -141,9 +140,9 @@ nmap <silent> <Leader><SPACE>    :CtrlP<CR>
 let g:lmap[' '] = 'Files'
 nmap <silent> <Leader><TAB>      :CtrlPSession<CR>
 let g:lmap['<C-I>'] = 'Sessions'
-nmap          <Leader>/          :Grep<SPACE>
-let g:lmap['/'] = 'Grep'
-nmap          <Leader>?          :Rg<SPACE>
-let g:lmap['?'] = 'Rg'
 nmap <Leader>: :CtrlPCmdPalette<CR>
 let g:lmap[':'] = 'Commands'
+nmap          <Leader>?          :Grep<SPACE>
+let g:lmap['?'] = 'Grep'
+nmap          <Leader>/          :Ack<SPACE>
+let g:lmap['/'] = 'Ack'
