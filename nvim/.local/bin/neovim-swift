@@ -23,4 +23,4 @@ then
 	shift
 fi
 
-eval "$cmd $ios $* $apx"
+eval "$cmd $ios $NEOVIM_SWIFT_COMPILER_FLAGS $* $apx"

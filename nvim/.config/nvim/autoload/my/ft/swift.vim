@@ -3,8 +3,8 @@ if exists('g:autoloaded_ft_swift')
 endif
 let g:autoloaded_ft_swift = 1
 
-function! my#ft#swift#compiler_flags() abort
-	return get(b:, 'swift_compiler_flags', []) + get(g:, 'swift_compiler_flags', [])
+function! my#ft#swift#add_compiler_flags(...) abort
+	let $NEOVIM_SWIFT_COMPILER_FLAGS .= ' '.join(a:000, ' ')
 endfunction
 
 function! my#ft#swift#format() abort
@@ -21,7 +21,7 @@ endfunction
 function! my#ft#swift#build() abort
 	silent! wall
 	let ios = &filetype =~# 'ios' ? 'ios ' : ''
-	execute 'Dispatch -compiler=swiftpm neovim swift build '.ios.join(my#ft#swift#compiler_flags(), ' ')
+	execute 'Dispatch -compiler=swiftpm neovim swift build '.ios
 endfunction
 
 " compiler is either swiftpm or make (checked for Makefile).
