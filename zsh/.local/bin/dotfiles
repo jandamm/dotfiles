@@ -187,6 +187,7 @@ rbenv rehash
 if should_configure npm
 then
 	echo 'Installing npms'
+	npm install --global npm
 	#shellcheck disable=SC2046
 	npm install --global $(command cat "$DOTFILES/node_modules")
 
