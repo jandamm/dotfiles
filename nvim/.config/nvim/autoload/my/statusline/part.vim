@@ -86,33 +86,68 @@ function! my#statusline#part#viewport(winnr, active) abort
 endfunction
 
 function! my#statusline#part#qf_count(winnr, active) abort
-	return s:list_summary(getqflist(), a:active, 'c', a:winnr)
+	return s:qf_summary('c', a:winnr, a:active)
 endfunction
 
 function! my#statusline#part#loc_count(winnr, active) abort
-	return s:list_summary(getloclist(a:winnr), a:active, 'l', a:winnr)
+	return s:qf_summary('l', a:winnr, a:active)
 endfunction
 
-function! s:list_summary(list, active, prefix, winnr) abort
-	if my#asyncdo#running(a:prefix, a:winnr)
-		let line = '...'
-	else
-		let line = s:qf_part(a:list, '', a:active, ' && v:val.lnum > 0')
-					\ . s:qf_part(a:list, 'E', a:active, '')
-					\ . s:qf_part(a:list, 'W', a:active, '')
-					\ . s:qf_part(a:list, 'I', a:active, '')
+if !exists('s:qf_cache') | let s:qf_cache = {} | endif
+
+function! s:qf_cached(prefix, winnr) abort
+	" Should I use winid? Leads to less recomputation but increases cache since
+	" every new window gets its own entry.
+	let key = a:prefix ==# 'c' ? 'qf' : win_getid(a:winnr)
+	let id = s:get_list(key, 'id')
+	if has_key(s:qf_cache, key) && s:qf_cache[key]['id'] == id
+		return s:qf_cache[key]
 	endif
 
-	return empty(line) ? '' : ' '.a:prefix.'['.substitute(line, ',$', '', '').']'
+	let entry = { '': 0, 'E': 0, 'W': 0, 'I': 0, 'id': id }
+	let s:qf_cache[key] = entry
+	let items = s:get_list(key, 'items')
+
+	for item in items
+		if item.type ==? 'E'
+			let entry.E += 1
+		elseif item.type ==? 'W'
+			let entry.W += 1
+		elseif item.type ==? 'I'
+			let entry.I += 1
+		elseif item.type ==? '' && item.lnum > 0
+			let entry[''] += 1
+		endif
+	endfor
+	return entry
 endfunction
 
-function! s:qf_part(all, type, active, check) abort
+function! s:get_list(list, value) abort
+	let list = a:list ==# 'qf' ? getqflist({ a:value : 0 }) : getloclist(a:list, { a:value : 0 })
+	return list[a:value]
+endfunction
+
+function! s:qf_summary(prefix, winnr, active) abort
+	let format = ' '.a:prefix.'[%s]'
+	if my#asyncdo#running(a:prefix, a:winnr)
+		return printf(format, '...')
+	else
+		let data = s:qf_cached(a:prefix, a:winnr)
+		let line = s:qf_part(data, '', a:active)
+					\ . s:qf_part(data, 'E', a:active)
+					\ . s:qf_part(data, 'W', a:active)
+					\ . s:qf_part(data, 'I', a:active)
+	endif
+
+	return empty(line) ? '' : printf(format, substitute(line, ',$', '', ''))
+endfunction
+
+function! s:qf_part(data, type, active) abort
+	let c = a:data[a:type]
+	if c == 0 | return '' | endif
 	let hi = a:active ? '%#QfStatus'.a:type.'#' : ''
-	let c = len(filter(copy(a:all), 'v:val.type ==? "'.a:type.'"'.a:check))
 	let equals = empty(a:type) ? '' : '='
-	return c > 0
-				\ ? hi.a:type.equals.c.'%*,'
-				\ : ''
+	return hi.a:type.equals.c.'%*,'
 endfunction
 
 " Helper {{{
