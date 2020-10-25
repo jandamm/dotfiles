@@ -1,7 +1,7 @@
-if exists('g:loaded_completion')
+if exists('g:loaded_my_completion')
 	finish
 endif
-let g:loaded_completion = 1
+let g:loaded_my_completion = 1
 
 set completeopt=menu
 set infercase
@@ -9,25 +9,30 @@ set infercase
 augroup my_completion
 	au!
 	" Enable syntaxcomplete if no omnifunc is present
-	autocmd Filetype * if &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
-
+	autocmd Filetype * if &omnifunc ==# '' | setlocal omnifunc=syntaxcomplete#Complete | endif
 
 	" Insert lsp snippet when there is only one match
-	" Does not work for vim-lsc
-	" autocmd CompleteDone * call timer_start(0, { -> s:on_complete_done() })
+	autocmd User LSCOnChangesFlushed if &omnifunc ==# 'lsc#complete#complete' | setlocal omnifunc=LSCOmniWrapper | endif
 
 	" Insert lsp snippet with ctrlp complete
 	autocmd User ctrlp_complete call s:on_ctrlp_complete_done()
 augroup END
 
+function! LSCOmniWrapper(a, b) abort
+	let results = lsc#complete#complete(a:a, a:b)
+	if !(&completeopt =~# '\v<(menuone|noinsert)>')
+		call timer_start(0, { -> s:expand_single_complete_entry() })
+	endif
+	return results
+endfunction
+
+function s:expand_single_complete_entry()
+	if complete_info(['selected']).selected == -2
+		call feedkeys(" \<BS>", 'n')
+	endif
+endfunction
+
 function s:on_ctrlp_complete_done()
 	if &filetype =~? 'swift' | return | endif
 	call feedkeys("\<C-x>\<C-o>", 'n')
-endfunction
-function s:on_complete_done()
-	if &completeopt =~# '\v<menuone>' | return | endif
-	let info = complete_info(['selected', 'mode'])
-	if info.mode ==? 'eval' && info.selected == -2
-		call feedkeys(" \<BS>", 'n')
-	endif
 endfunction
