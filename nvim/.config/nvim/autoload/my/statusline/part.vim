@@ -66,7 +66,7 @@ function! my#statusline#part#paste(winnr, active) abort
 	return &paste ? ' ['.c.'paste%*]' : ''
 endfunction
 
-function! my#statusline#part#qf_title(winnr, active, prefix) abort
+function! my#statusline#part#qf_title(winnr, active) abort
 	let title = getwinvar(a:winnr, 'quickfix_title', '')
 	return empty(title)
 				\ ? ''
@@ -83,6 +83,11 @@ endfunction
 
 function! my#statusline#part#viewport(winnr, active) abort
 	return ' %P-%l-%c'
+endfunction
+
+function! my#statusline#part#qf_loc_count(winnr, active) abort
+	let type = getbufvar(winbufnr(a:winnr), 'qf_isLoc') ? 'l' : 'c'
+	return s:qf_summary(type, a:winnr, a:active, '')
 endfunction
 
 function! my#statusline#part#qf_count(winnr, active) abort
@@ -127,12 +132,13 @@ function! s:get_list(list, value) abort
 	return list[a:value]
 endfunction
 
-function! s:qf_summary(prefix, winnr, active) abort
-	let format = ' '.a:prefix.'[%s]'
-	if my#asyncdo#running(a:prefix, a:winnr)
+function! s:qf_summary(type, winnr, active, ...) abort
+	let prefix = a:0 ? a:1 : a:type
+	let format = ' '.prefix.'[%s]'
+	if my#asyncdo#running(a:type, a:winnr)
 		return printf(format, '...')
 	else
-		let data = s:qf_cached(a:prefix, a:winnr)
+		let data = s:qf_cached(a:type, a:winnr)
 		let line = s:qf_part(data, '', a:active)
 					\ . s:qf_part(data, 'E', a:active)
 					\ . s:qf_part(data, 'W', a:active)

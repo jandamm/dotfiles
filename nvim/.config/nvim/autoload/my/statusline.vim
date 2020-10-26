@@ -28,6 +28,10 @@ function! my#statusline#get(winnr, active) abort
 		return my#statusline#fugitive(a:winnr, a:active)
 	endif
 
+	if filetype ==# 'qf'
+		return my#statusline#qf(a:winnr, a:active)
+	endif
+
 	if index(s:light_statusline_ft, filetype) > -1
 		return my#statusline#light(a:winnr, a:active)
 	endif
@@ -67,9 +71,16 @@ endfunction
 
 function! my#statusline#light(winnr, active) abort
 	return my#statusline#part#filename(a:winnr, a:active, '', 1)
-				\ .my#statusline#part#qf_title(a:winnr, a:active, '')
 				\ .'%='
 				\ .my#statusline#part#viewport(a:winnr, a:active)
+endfunction
+
+function! my#statusline#qf(winnr, active) abort
+	return my#statusline#part#filename(a:winnr, a:active, '', 1)
+				\ .my#statusline#part#qf_title(a:winnr, a:active)
+				\ .'%='
+				\ .my#statusline#part#qf_loc_count(a:winnr, a:active)
+				\ .' '.my#statusline#part#viewport(a:winnr, a:active)
 endfunction
 
 function! my#statusline#dirvish(winnr, active) abort
