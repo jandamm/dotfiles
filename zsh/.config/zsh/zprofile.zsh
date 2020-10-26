@@ -9,6 +9,7 @@ path=(
 	"$HOME/.local/bin"
 	"/usr/local/opt/coreutils/libexec/gnubin"
 	"/usr/local/opt/gnu-sed/libexec/gnubin"
+	"/usr/local/Cellar/node/15.0.1/bin"
 	$path
 )
 
