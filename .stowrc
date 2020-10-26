@@ -3,3 +3,4 @@
 --ignore=\.root
 --ignore=\.vimroot
 --ignore=\.tagroot
+--ignore=\.projections\.json

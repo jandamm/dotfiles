@@ -1,0 +1,12 @@
+{
+  ".local/bin/*": { "type": "bin" },
+  ".config/zsh/after/*": { "type": "after" },
+  ".config/zsh/before/*": { "type": "before" },
+  ".config/zsh/after/*.zsh": { "type": "plugin" },
+  ".config/zsh/before/*.zsh": { "type": "plugin" },
+  ".config/zsh/completions/_*": { "type": "completion" },
+  ".config/zsh/init.zsh": { "type": "init" },
+  ".config/zsh/zprofile.zsh": { "type": "profile" },
+  ".config/zsh/zlogin.zsh": { "type": "login" },
+  ".zshenv": { "type": "env" }
+}

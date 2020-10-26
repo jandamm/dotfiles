@@ -1,0 +1,47 @@
+{
+  ".config/nvim/after/*.vim"             : { "type" : "after"      },
+  ".config/nvim/autoload/my/*.vim"       : { "type" : "autoload",
+    "alternate": ".config/nvim/plugin/{}.vim",
+    "related": [".config/nvim/after/plugin/{}.vim", ".config/nvim/plugin/{}.vim"],
+    "template": ["if exists('g:autoloaded_my_{basename}')", "\tfinish", "endif", "let g:autoloaded_my_{basename} = 1"]
+  },
+  ".local/bin/neovim-*"                  : { "type" : "bin"        },
+  ".config/nvim/compiler/*.vim"          : { "type" : "compiler",
+    "template": ["if exists('current_compiler')", "\tfinish", "endif", "let current_compiler = '{}'"]
+  },
+  ".config/nvim/autoload/ctrlp/*.vim"    : { "type" : "ctrlp"      },
+  ".config/nvim/plugin/ctrlp.vim"        : { "type" : "ctrlp"      },
+  ".config/nvim/ftdetect/*.vim"          : { "type" : "ftdetect"   },
+  ".config/nvim/ftplugin/*.vim"          : { "type" : "ftplugin",
+    "alternate": ".config/nvim/autoload/my/ft/{}.vim",
+    "related": [".config/nvim/after/ftplugin/{}.vim", ".config/nvim/autoload/my/ft/{}.vim"],
+    "template": ["if exists('g:loaded_ft_{basename}')", "\tfinish", "endif", "let g:loaded_ft_{basename} = 1"]
+  },
+  ".config/nvim/init.vim"                : { "type" : "init"       },
+  ".config/nvim/projplugin/*.vim"        : { "type" : "projplugin" },
+  ".config/nvim/plugin/*.vim"            : { "type" : "plugin",
+    "alternate": ".config/nvim/autoload/my/{}.vim",
+    "related": [".config/nvim/after/plugin/{}.vim", ".config/nvim/autoload/my/{}.vim"],
+    "template": ["if exists('g:loaded_{basename}')", "\tfinish", "endif", "let g:loaded_{basename} = 1"]
+  },
+  "../private/.config/nvim/*.vim"        : { "type" : "private"    },
+  ".config/nvim/syntax/*.vim"            : { "type" : "syntax"     },
+  ".config/nvim/spell/*.utf-8.add"       : { "type" : "spell"      },
+  ".config/nvim/vsnip/default/*.json"    : { "type" : "snippet"    },
+  "../private/.config/nvim/vsnip/*.json" : { "type" : "snippet"    },
+  ".config/nvim/after/plugin/*.vim"      : {
+    "alternate": ".config/nvim/plugin/{}.vim",
+    "related": [".config/nvim/autoload/my/{}.vim", ".config/nvim/plugin/{}.vim"],
+    "template": ["if exists('g:loaded_after_{basename}')", "\tfinish", "endif", "let g:loaded_after_{basename} = 1"]
+  },
+  ".config/nvim/after/ftplugin/*.vim"    : {
+    "alternate": ".config/nvim/ftplugin/{}.vim",
+    "related": [".config/nvim/autoload/my/ft/{}.vim", ".config/nvim/ftplugin/{}.vim"],
+    "template": ["if exists('g:loaded_after_ft_{basename}')", "\tfinish", "endif", "let g:loaded_after_ft_{basename} = 1"]
+  },
+  ".config/nvim/autoload/my/ft/*.vim"    : {
+    "alternate": ".config/nvim/ftplugin/{}.vim",
+    "related": [".config/nvim/after/ftplugin/{}.vim", ".config/nvim/ftplugin/{}.vim"],
+    "template": ["if exists('g:autoloaded_ft_{basename}')", "\tfinish", "endif", "let g:autoloaded_ft_{basename} = 1"]
+  }
+}
