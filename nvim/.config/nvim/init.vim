@@ -35,7 +35,7 @@ set wildmenu
 set wildignorecase
 set wildmode=longest:full,full
 
-set wildignore+=.root                                  " Custom project root marker
+set wildignore+=.root,.tagroot,.vimroot                " Custom project root marker
 set wildignore+=.hg,.git,.svn                          " Version control
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg         " binary images
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest,*.pyc " compiled object files
@@ -47,7 +47,7 @@ set wildignore+=Pods/*
 
 " Editor {{{
 
-" Default path for generic plugins
+" Default path for generic projects
 set path=.,**
 
 " Increase time for keyboard shortcuts a bit (default: 1000)
@@ -87,6 +87,8 @@ set nojoinspaces
 
 " Allow folder specific tags with .root or .tagroot file
 let g:gutentags_project_root=['.root', '.tagroot']
+" Don't print current dir
+let g:rooter_silent_chdir = 1
 " Hide tags file
 let g:gutentags_ctags_tagfile='.tags'
 " Prefer .root file over .vimroot over submodule over .git folder
