@@ -1,4 +1,1 @@
-augroup shell_linter
-	autocmd! * <buffer>
-	autocmd BufWritePost <buffer> Lmake shell
-augroup END
+call my#lint#setup('shell', 1)

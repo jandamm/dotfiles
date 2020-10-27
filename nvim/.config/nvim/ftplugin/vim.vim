@@ -3,7 +3,4 @@ setlocal foldmarker={{{,}}}
 
 call my#map#apply#tagInclude(':')
 
-augroup vim_linter
-	autocmd! * <buffer>
-	autocmd BufWritePost <buffer> Lmake! vint
-augroup END
+call my#lint#setup('vint')

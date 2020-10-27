@@ -13,10 +13,7 @@ if filereadable('Makefile')
 	set makeprg=make
 endif
 
-augroup swift_linter
-	autocmd! * <buffer>
-	autocmd BufWritePost <buffer> Lmake! swiftlint
-augroup END
+call my#lint#setup('swiftlint')
 
 " if exists('g:loaded_swift_ftplugin')
 " 	finish
