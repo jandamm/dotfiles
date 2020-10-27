@@ -41,7 +41,7 @@ endfunction
 
 function! my#statusline#default(winnr, active) abort
 	" Left part
-	let line  = my#statusline#part#filename(a:winnr, a:active, 'ν ')
+	let line  = my#statusline#part#filename(a:winnr, a:active, 'Ϟ ')
 	let line .= my#statusline#part#bufnr(a:winnr, a:active)
 
 	if a:active
@@ -84,7 +84,7 @@ function! my#statusline#qf(winnr, active) abort
 endfunction
 
 function! my#statusline#dirvish(winnr, active) abort
-	return my#statusline#part#filename(a:winnr, a:active, 'ν ')
+	return my#statusline#part#filename(a:winnr, a:active, 'Ϟ ')
 				\ .my#statusline#part#bufnr(a:winnr, a:active)
 				\ .my#statusline#part#git(a:winnr, a:active)
 				\ .'%='
