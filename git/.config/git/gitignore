@@ -1,4 +1,6 @@
 .tags
 .tags.*
+tags
+tags.*
 *.zwc
 Session.vim

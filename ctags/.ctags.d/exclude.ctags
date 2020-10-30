@@ -1,5 +1,4 @@
 --exclude=.git
---exclude=.config
 --exclude=.cache
 --exclude=.build
 --exclude=.tags

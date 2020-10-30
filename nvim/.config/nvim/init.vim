@@ -40,7 +40,7 @@ set wildignore+=.hg,.git,.svn                          " Version control
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg         " binary images
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest,*.pyc " compiled object files
 set wildignore+=*.spl,*.zwc                            " compiled files
-set wildignore+=tags,.tags
+set wildignore+=tags
 set wildignore+=Pods/*
 
 " }}}
@@ -89,8 +89,6 @@ set nojoinspaces
 let g:gutentags_project_root=['.root', '.tagroot']
 " Don't print current dir
 let g:rooter_silent_chdir = 1
-" Hide tags file
-let g:gutentags_ctags_tagfile='.tags'
 " Prefer .root file over .vimroot over submodule over .git folder
 let g:rooter_patterns = ['.root', '.vimroot', '.git', '.git/']
 " Change cwd for current window only
@@ -105,7 +103,7 @@ set undofile
 " Snippet directories
 let g:vsnip_snippet_dir = expand('~/.config/nvim/vsnip/default')
 
-let g:markdown_fenced_languages = ['bash=sh', 'swift', 'viM', 'zsh']
+let g:markdown_fenced_languages = ['bash=sh', 'swift', 'vim', 'zsh']
 
 " }}}
 
