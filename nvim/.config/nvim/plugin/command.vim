@@ -24,5 +24,5 @@ command! -nargs=? Vtree call my#command#tree(1,<f-args>)
 
 command! X !chmod +x %
 
-command!       -nargs=0 -complete=file AsyncStop call my#asyncdo#stop()
-command!       -nargs=0 -complete=file LAsyncStop call my#asyncdo#lstop()
+command!       -nargs=0 -complete=file AsyncStop call my#asyncdo#stop('c')
+command!       -nargs=0 -complete=file LAsyncStop call my#asyncdo#stop('l')

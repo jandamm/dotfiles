@@ -3,19 +3,27 @@ if exists('g:autoloaded_my_asyncdo')
 endif
 let g:autoloaded_my_asyncdo = 1
 
-func! s:finalize(scope, prefix, settitle) abort
-	let l:job = get(a:scope, 'asyncdo')
+func! s:finalize(prefix, settitle, winid) abort
+	let l:job = s:get(a:prefix, a:winid)
 	if type(l:job) isnot v:t_dict | return | endif
 	try
 		let l:tmp = &errorformat
 		if has_key(l:job, 'errorformat')
 			let &errorformat = l:job.errorformat
 		endif
-		exe a:prefix.(l:job.jump ? '' : 'get').'file '.l:job.file
-		call a:settitle(has_key(l:job, 'title') ? l:job.title : l:job.cmd, l:job.nr)
+			let isCurwin = a:prefix ==# 'c' || s:winid() == a:winid
+			if !isCurwin && l:job.jump
+				let isCurwin = win_gotoid(a:winid)
+			endif
+			if isCurwin
+				exe a:prefix.(l:job.jump ? '' : 'get').'file '.l:job.file
+			else
+				call setloclist(a:winid, [], ' ', { 'lines': readfile(l:job.file) })
+			endif
+			call a:settitle(has_key(l:job, 'title') ? l:job.title : l:job.cmd, a:winid)
 	finally
 		let &errorformat = l:tmp
-		unlet! a:scope.asyncdo
+		call s:del(a:prefix, a:winid)
 		call delete(l:job.file)
 	endtry
 endfunc
@@ -34,10 +42,38 @@ func! s:escape(str) abort
 	return s:slashescape(s:fnameexpand(a:str))
 endfunc
 
-func! s:build(scope, prefix, settitle) abort
-	function! Run(nojump, cmd, ...) abort closure
-		if type(get(a:scope, 'asyncdo')) == v:t_dict
+func! s:get(prefix, winid) abort
+	try
+		if a:prefix ==# 'l'
+			return nvim_win_get_var(a:winid, 'asyncdo')
+		else
+			return nvim_get_var('asyncdo')
+		endif
+	catch | return | endtry
+endfunc
+
+func! s:set(prefix, winid, value) abort
+	if a:prefix ==# 'l'
+		call nvim_win_set_var(a:winid, 'asyncdo', a:value)
+	else
+		call nvim_set_var('asyncdo', a:value)
+	endif
+endfunc
+
+func! s:del(prefix, winid) abort
+	try
+		if a:prefix ==# 'l'
+			call nvim_win_del_var(a:winid, 'asyncdo')
+		else
+			call nvim_del_var('asyncdo')
+		endif
+	catch | return | endtry
+endfunc
+
+func! s:build(prefix, settitle) abort
+	function! Run(winid, nojump, cmd, ...) abort closure
 			echoerr 'There is currently running job, just wait' | return
+		if s:isRunning(a:prefix, a:winid)
 		endif
 
 		if type(a:cmd) == type({})
@@ -48,7 +84,7 @@ func! s:build(scope, prefix, settitle) abort
 			let l:cmd = a:cmd
 		endif
 
-		call extend(l:job, {'nr': win_getid(), 'file': tempname(), 'jump': !a:nojump})
+		call extend(l:job, {'file': tempname(), 'jump': !a:nojump})
 		let l:args = copy(a:000)
 		if l:cmd =~# '\$\*'
 			let l:job.cmd = substitute(l:cmd, '\$\*', join(l:args), 'g')
@@ -57,108 +93,86 @@ func! s:build(scope, prefix, settitle) abort
 		endif
 		echom l:job.cmd
 		let l:spec = [&shell, &shellcmdflag, l:job.cmd . printf(&shellredir, l:job.file)]
-		let l:Cb = {-> s:finalize(a:scope, a:prefix, a:settitle)}
+		let l:Cb = {-> s:finalize(a:prefix, a:settitle, a:winid)}
 		if !has_key(l:job, 'errorformat')
 			let l:job.errorformat = &errorformat
 		endif
 
-		if has('nvim')
-			let l:job.id = jobstart(l:spec, {'on_exit': l:Cb})
-		else
-			let l:job.id = job_start(l:spec, {
-						\   'in_io': 'null','out_io': 'null','err_io': 'null',
-						\   'exit_cb': l:Cb
-						\ })
-		endif
-		let a:scope['asyncdo'] = l:job
+		let l:job.id = jobstart(l:spec, {'on_exit': l:Cb})
+		call s:set(a:prefix, a:winid, l:job)
 	endfunc
 
-	func! Stop() abort closure
-		let l:job = get(a:scope, 'asyncdo')
+	func! Stop(winid) abort closure
+		let l:job = s:get(a:prefix, a:winid)
 		if type(l:job) is v:t_dict
-			if has('nvim')
-				call jobstop(l:job.id)
-			else
-				call job_stop(l:job.id)
-			endif
-			unlet! a:scope['asyncdo']
+			call jobstop(l:job.id)
+			call s:del(a:prefix, a:winid)
 		endif
 	endfunc
 
 	return { 'run': funcref('Run'), 'stop': funcref('Stop') }
 endfunc
 
-let s:qf = s:build(g:, 'c', {title, nr -> setqflist([], 'a', {'title': title})})
-let s:ll = s:build(w:, 'l', {title, nr -> setloclist(nr, [], 'a', {'title': title})})
+function! s:isRunning(prefix, winid) abort
+	return type(s:get(a:prefix, a:winid)) == v:t_dict
+endfunction
 
-func! my#asyncdo#crun(...) abort
-	call call(s:qf.run, a:000)
-endfunc
-func! my#asyncdo#cstop(...) abort
-	call call(s:qf.stop, a:000)
-endfunc
-func! my#asyncdo#lrun(...) abort
-	call call(s:ll.run, a:000)
-endfunc
-func! my#asyncdo#lstop(...) abort
-	call call(s:ll.stop, a:000)
-endfunc
+let s:qf = s:build('c', {title, nr -> setqflist([], 'a', {'title': title})})
+let s:ll = s:build('l', {title, nr -> setloclist(nr, [], 'a', {'title': title})})
 
-function! my#asyncdo#run(type, nojump, cmd, ...) abort
-	let args = a:0 ? a:1 : ''
-	if my#asyncdo#running(a:type)
-		echoerr 'Asyncdo is already running for: '.a:type
-	elseif a:type ==# 'l'
-		call my#asyncdo#lrun(a:nojump, a:cmd, args)
-	elseif a:type ==# 'c'
-		call my#asyncdo#crun(a:nojump, a:cmd, args)
+function! s:winid(...) abort
+	if !a:0 || a:1 <= 0
+		return win_getid()
+	elseif a:1 < 1000
+		return win_getid(a:1)
 	else
-		echoerr 'Unknown type for asyncdo run: '.a:type
+		return a:1
 	endif
 endfunction
 
-function! my#asyncdo#running(type, ...) abort
-	if a:type ==# 'l'
-		" There is a bug which results in asyncdo running local builds only in the
-		" first window. It still may not work when the first window is removed and
-		" asyncdo is started from another window. This also prevents multiple jobs
-		" to run in parallel (one per window).
-		" When this is fixed, the following line should work.
-		" return getwinvar(winnr, 'asyncdo', {}) != {}
-		let winnr = a:0 ? a:1 : winnr()
-		let asyncdo = getwinvar(1, 'asyncdo', {})
-		return has_key(asyncdo, 'nr') && asyncdo.nr == win_getid(winnr)
-	elseif a:type ==# 'c'
-		return exists('g:asyncdo')
-	endif
+function! my#asyncdo#run(prefix, ...) abort
+	call s:run(a:prefix, [s:winid()] + a:000)
 endfunction
 
-function! my#asyncdo#stop(type) abort
-	if a:type ==# 'l'
-		call my#asyncdo#lstop()
-	elseif a:type ==# 'c'
-		call my#asyncdo#cstop()
+function! my#asyncdo#runIn(prefix, winid, ...) abort
+	call s:run(a:prefix, [s:winid(a:winid)] + a:000)
+endfunction
+
+function! s:run(prefix, args) abort
+	if a:prefix ==# 'l'
+		call call(s:ll.run, a:args)
 	else
-		echoerr 'Unknown type for asyncdo stop: '.a:type
+		call call(s:qf.run, a:args)
 	endif
 endfunction
 
-function! my#asyncdo#openListIf(bool, type) abort
+function! my#asyncdo#stop(prefix, ...) abort
+	let winid = [s:winid(a:0 ? a:1 : 0)]
+	if a:prefix ==# 'l'
+		call call(s:ll.stop, winid)
+	else
+		call call(s:qf.stop, winid)
+	endif
+endfunction
+
+function! my#asyncdo#running(prefix, ...) abort
+	return s:isRunning(a:prefix, s:winid(a:0 ? a:1 : 0))
+endfunction
+
+function! my#asyncdo#openListIf(bool, prefix) abort
 	if a:bool
-		call my#asyncdo#openList(a:type)
+		call my#asyncdo#openList(a:prefix)
 	endif
 endfunction
 
-function! my#asyncdo#openList(type) abort
-	call my#asyncdo#onDone(a:type, a:type.'window')
+function! my#asyncdo#openList(prefix) abort
+	call my#asyncdo#onDone(a:prefix, a:prefix.'window')
 endfunction
 
-function! my#asyncdo#onDone(type, command) abort
-	if a:type ==# 'l'
+function! my#asyncdo#onDone(prefix, command) abort
+	if a:prefix ==# 'l'
 		execute 'autocmd QuickFixCmdPost l* ++once '.a:command
-	elseif a:type ==# 'c'
-		execute 'autocmd QuickFixCmdPost [^l]* ++once '.a:command
 	else
-		echoerr 'Unknown type for asyncdo list: '.a:type
+		execute 'autocmd QuickFixCmdPost [^l]* ++once '.a:command
 	endif
 endfunction

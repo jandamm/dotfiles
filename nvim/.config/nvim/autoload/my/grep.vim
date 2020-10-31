@@ -36,7 +36,7 @@ function! my#grep#command(bang, operator, mode, scope, search) abort
 	if !a:operator | execute a:scope.'close' | endif
 
 	call my#asyncdo#stop(a:scope)
-	call my#asyncdo#run(a:scope, !a:operator, { 'job': command, 'errorformat': format, 'title': title }, search)
+	call my#asyncdo#run(a:scope, 0, !a:operator, { 'job': command, 'errorformat': format, 'title': title }, search)
 endfunction
 
 function! s:getCommand(bang, ack) abort
