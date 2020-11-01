@@ -42,6 +42,10 @@ func! s:escape(str) abort
 	return s:slashescape(s:fnameexpand(a:str))
 endfunc
 
+function! s:echoerr(message) abort
+	echohl Error | echom a:message | echohl Normal
+endfunction
+
 func! s:get(prefix, winid) abort
 	try
 		if a:prefix ==# 'l'
@@ -72,8 +76,8 @@ endfunc
 
 func! s:build(prefix, settitle) abort
 	function! Run(winid, nojump, cmd, ...) abort closure
-			echoerr 'There is currently running job, just wait' | return
 		if s:isRunning(a:prefix, a:winid)
+			call s:echoerr('There is currently running job, just wait') | return
 		endif
 
 		if type(a:cmd) == type({})
