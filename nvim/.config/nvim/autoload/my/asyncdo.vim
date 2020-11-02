@@ -47,13 +47,13 @@ function! s:echoerr(message) abort
 endfunction
 
 func! s:get(prefix, winid) abort
-	try
+	" try
 		if a:prefix ==# 'l'
-			return nvim_win_get_var(a:winid, 'asyncdo')
+			silent! return nvim_win_get_var(a:winid, 'asyncdo')
 		else
-			return nvim_get_var('asyncdo')
+			silent! return nvim_get_var('asyncdo')
 		endif
-	catch | return | endtry
+	" catch | return | endtry
 endfunc
 
 func! s:set(prefix, winid, value) abort
@@ -65,18 +65,16 @@ func! s:set(prefix, winid, value) abort
 endfunc
 
 func! s:del(prefix, winid) abort
-	try
-		if a:prefix ==# 'l'
-			call nvim_win_del_var(a:winid, 'asyncdo')
-		else
-			call nvim_del_var('asyncdo')
-		endif
-	catch | return | endtry
+	if a:prefix ==# 'l'
+		silent! call nvim_win_del_var(a:winid, 'asyncdo')
+	else
+		silent! call nvim_del_var('asyncdo')
+	endif
 endfunc
 
 func! s:build(prefix, settitle) abort
 	function! Run(winid, nojump, cmd, ...) abort closure
-		if s:isRunning(a:prefix, a:winid)
+		if s:running(a:prefix, a:winid)
 			call s:echoerr('There is currently running job, just wait') | return
 		endif
 
@@ -95,7 +93,6 @@ func! s:build(prefix, settitle) abort
 		else
 			let l:job.cmd = join([s:escape(l:cmd)] + l:args)
 		endif
-		echom l:job.cmd
 		let l:spec = [&shell, &shellcmdflag, l:job.cmd . printf(&shellredir, l:job.file)]
 		let l:Cb = {-> s:finalize(a:prefix, a:settitle, a:winid)}
 		if !has_key(l:job, 'errorformat')
@@ -117,12 +114,26 @@ func! s:build(prefix, settitle) abort
 	return { 'run': funcref('Run'), 'stop': funcref('Stop') }
 endfunc
 
-function! s:isRunning(prefix, winid) abort
+function! s:running(prefix, winid) abort
 	return type(s:get(a:prefix, a:winid)) == v:t_dict
 endfunction
 
-let s:qf = s:build('c', {title, nr -> setqflist([], 'a', {'title': title})})
-let s:ll = s:build('l', {title, nr -> setloclist(nr, [], 'a', {'title': title})})
+function! s:run(prefix, winid, args) abort
+	let args = [a:winid] + a:args
+	if a:prefix ==# 'l'
+		call call(s:ll.run, args)
+	else
+		call call(s:qf.run, args)
+	endif
+endfunction
+
+function! s:stop(prefix, winid) abort
+	if a:prefix ==# 'l'
+		call call(s:ll.stop, [a:winid])
+	else
+		call call(s:qf.stop, [a:winid])
+	endif
+endfunction
 
 function! s:winid(...) abort
 	if !a:0 || a:1 <= 0
@@ -134,33 +145,32 @@ function! s:winid(...) abort
 	endif
 endfunction
 
-function! my#asyncdo#run(prefix, ...) abort
-	call s:run(a:prefix, [s:winid()] + a:000)
-endfunction
+let s:qf = s:build('c', {title, nr -> setqflist([], 'a', {'title': title})})
+let s:ll = s:build('l', {title, nr -> setloclist(nr, [], 'a', {'title': title})})
 
-function! my#asyncdo#runIn(prefix, winid, ...) abort
-	call s:run(a:prefix, [s:winid(a:winid)] + a:000)
-endfunction
-
-function! s:run(prefix, args) abort
-	if a:prefix ==# 'l'
-		call call(s:ll.run, a:args)
-	else
-		call call(s:qf.run, a:args)
-	endif
+function! my#asyncdo#run(prefix, winid, ...) abort
+	call s:run(a:prefix, s:winid(a:winid), a:000)
 endfunction
 
 function! my#asyncdo#stop(prefix, ...) abort
-	let winid = [s:winid(a:0 ? a:1 : 0)]
-	if a:prefix ==# 'l'
-		call call(s:ll.stop, winid)
+	call s:stop(a:prefix, s:winid(a:0 ? a:1 : 0))
+endfunction
+
+function! my#asyncdo#stopAndRun(prefix, winid, ...) abort
+	let winid = s:winid(a:winid)
+	if s:running(a:prefix, winid)
+		" After stopping a run, a timeout is needed. Otherwise the old job
+		" finishes the new job. calling the callback with the new data.
+		call s:stop(a:prefix, winid)
+		let args = a:000
+		call timer_start(250, {-> s:run(a:prefix, winid, args) })
 	else
-		call call(s:qf.stop, winid)
+		call s:run(a:prefix, winid, a:000)
 	endif
 endfunction
 
 function! my#asyncdo#running(prefix, ...) abort
-	return s:isRunning(a:prefix, s:winid(a:0 ? a:1 : 0))
+	return s:running(a:prefix, s:winid(a:0 ? a:1 : 0))
 endfunction
 
 function! my#asyncdo#openListIf(bool, prefix) abort

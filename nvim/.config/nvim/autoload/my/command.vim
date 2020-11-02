@@ -37,8 +37,7 @@ function! s:make(type, bang, compiler) abort
 		call my#asyncdo#openListIf(!a:bang, a:type)
 	augroup END
 
-	silent call my#asyncdo#stop(a:type)
-	silent call my#asyncdo#run(a:type, 1, { 'job': &makeprg, 'errorformat': &errorformat})
+	call my#asyncdo#stopAndRun(a:type, 0, 1, { 'job': &makeprg, 'errorformat': &errorformat})
 endfunction
 
 function! my#command#swap(bang, l1, l2, ...) abort
