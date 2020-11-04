@@ -52,14 +52,13 @@ function! s:echoerr(message) abort
 	echohl Error | echom a:message | echohl Normal
 endfunction
 
+" GET/SET/DEL {{{
 func! s:get(prefix, winid) abort
-	" try
-		if a:prefix ==# 'l'
-			silent! return nvim_win_get_var(a:winid, 'asyncdo')
-		else
-			silent! return nvim_get_var('asyncdo')
-		endif
-	" catch | return | endtry
+	if a:prefix ==# 'l'
+		silent! return nvim_win_get_var(a:winid, 'asyncdo')
+	else
+		silent! return nvim_get_var('asyncdo')
+	endif
 endfunc
 
 func! s:set(prefix, winid, value) abort
@@ -77,6 +76,7 @@ func! s:del(prefix, winid) abort
 		silent! call nvim_del_var('asyncdo')
 	endif
 endfunc
+" }}}
 
 func! s:build(prefix, settitle) abort
 	function! Run(winid, nojump, cmd, ...) abort closure
@@ -120,25 +120,20 @@ func! s:build(prefix, settitle) abort
 	return { 'run': funcref('Run'), 'stop': funcref('Stop') }
 endfunc
 
+function! s:type(prefix) abort
+	return a:prefix ==# 'l' ? s:ll : s:qf
+endfunction
+
 function! s:running(prefix, winid) abort
 	return type(s:get(a:prefix, a:winid)) == v:t_dict
 endfunction
 
 function! s:run(prefix, winid, args) abort
-	let args = [a:winid] + a:args
-	if a:prefix ==# 'l'
-		call call(s:ll.run, args)
-	else
-		call call(s:qf.run, args)
-	endif
+	call call(s:type(a:prefix).run, [a:winid] + a:args)
 endfunction
 
 function! s:stop(prefix, winid) abort
-	if a:prefix ==# 'l'
-		call call(s:ll.stop, [a:winid])
-	else
-		call call(s:qf.stop, [a:winid])
-	endif
+	call call(s:type(a:prefix).stop, [a:winid])
 endfunction
 
 function! s:winid(...) abort
@@ -190,9 +185,6 @@ function! my#asyncdo#openList(prefix) abort
 endfunction
 
 function! my#asyncdo#onDone(prefix, command) abort
-	if a:prefix ==# 'l'
-		execute 'autocmd QuickFixCmdPost l* ++once '.a:command
-	else
-		execute 'autocmd QuickFixCmdPost [^l]* ++once '.a:command
-	endif
+	let filter = a:prefix ==# 'l' ? 'l' : '[^l]'
+	execute 'autocmd QuickFixCmdPost '.filter.'* ++once '.a:command
 endfunction
