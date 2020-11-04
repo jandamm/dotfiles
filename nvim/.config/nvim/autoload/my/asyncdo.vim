@@ -3,7 +3,7 @@ if exists('g:autoloaded_my_asyncdo')
 endif
 let g:autoloaded_my_asyncdo = 1
 
-func! s:finalize(prefix, settitle, winid) abort
+func! s:finalize(prefix, settitle, winid, exitCode) abort
 	let l:job = s:get(a:prefix, a:winid)
 	if type(l:job) isnot v:t_dict | return | endif
 	try
@@ -11,6 +11,7 @@ func! s:finalize(prefix, settitle, winid) abort
 		if has_key(l:job, 'errorformat')
 			let &errorformat = l:job.errorformat
 		endif
+		if filereadable(l:job.file)
 			let isCurwin = a:prefix ==# 'c' || s:winid() == a:winid
 			if !isCurwin && l:job.jump
 				let isCurwin = win_gotoid(a:winid)
@@ -21,6 +22,11 @@ func! s:finalize(prefix, settitle, winid) abort
 				call setloclist(a:winid, [], ' ', { 'lines': readfile(l:job.file) })
 			endif
 			call a:settitle(has_key(l:job, 'title') ? l:job.title : l:job.cmd, a:winid)
+		elseif a:exitCode != 0
+			call s:echoerr('Job did fail: '.a:exitCode)
+		else
+			call s:echoerr('No file, no fail')
+		endif
 	finally
 		let &errorformat = l:tmp
 		call s:del(a:prefix, a:winid)
@@ -94,7 +100,7 @@ func! s:build(prefix, settitle) abort
 			let l:job.cmd = join([s:escape(l:cmd)] + l:args)
 		endif
 		let l:spec = [&shell, &shellcmdflag, l:job.cmd . printf(&shellredir, l:job.file)]
-		let l:Cb = {-> s:finalize(a:prefix, a:settitle, a:winid)}
+		let l:Cb = { id, code, type -> s:finalize(a:prefix, a:settitle, a:winid, code)}
 		if !has_key(l:job, 'errorformat')
 			let l:job.errorformat = &errorformat
 		endif
