@@ -9,4 +9,5 @@
 --regex-swift=/[[:<:]]typealias[[:>:]][[:space:]]+([[:alnum:]_]+)/\1/t,typealias/
 --regex-swift=/[[:<:]]var[[:>:]][[:space:]]+([[:alnum:]_]+)/\1/v,variable/
 --regex-swift=/[[:<:]]case[[:>:]][[:space:]]+([[:alnum:]_]+)/\1/l,constant/
---regex-swift=/[[:<:]]extension[[:>:]][[:space:]]+([[:alnum:]_]+)/\1/E,extension/
+--regex-swift=/[[:<:]]extension[[:>:]][[:space:]]+[[:alnum:]_.]+[.]([[:alnum:]_]+)[[:space:]:{]/\1/E,extension/
+--regex-swift=/[[:<:]]extension[[:>:]][[:space:]]+([[:alnum:]_]+)[[:space:]:{]/\1/E,extension/
