@@ -1,6 +1,6 @@
---ignore=\.tags
---ignore=tags
---ignore=\.root
---ignore=\.vimroot
---ignore=\.tagroot
---ignore=\.projections\.json
+--ignore=^\.tags
+--ignore=^tags
+--ignore=^\.root
+--ignore=^\.vimroot
+--ignore=^\.tagroot
+--ignore=^\.projections\.json
