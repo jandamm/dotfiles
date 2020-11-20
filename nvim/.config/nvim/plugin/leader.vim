@@ -87,6 +87,8 @@ nmap          <Leader>g<Space>   :Git<SPACE>
 
 " Leader O {{{1
 let g:lmap.o = { 'name': 'open' }
+nmap <silent> <Leader>od         :Dash<CR>
+let g:lmap.o.d = 'Dash'
 nmap <silent> <Leader>og         :Gsh<CR>
 let g:lmap.o.g = 'Gsh'
 nmap <silent> <Leader>oG         :Gsh!<CR>

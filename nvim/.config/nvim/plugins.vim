@@ -102,4 +102,5 @@ call packager#add('tpope/vim-scriptease')
 Pack 'jandamm/vim-xcode'
 
 " Misc
+Pack 'rizzatti/dash.vim'
 call packager#add('tweekmonster/startuptime.vim', { 'type': 'opt' })

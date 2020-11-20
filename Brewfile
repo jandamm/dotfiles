@@ -1,6 +1,7 @@
 tap 'homebrew/cask-fonts'
 
 cask 'alacritty'
+cask 'dash'
 cask 'font-jetbrains-mono'
 cask 'vimr'
 
