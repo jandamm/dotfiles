@@ -2,6 +2,7 @@ tap 'homebrew/cask-fonts'
 
 cask 'alacritty'
 cask 'dash'
+cask 'firefox'
 cask 'font-jetbrains-mono'
 cask 'vimr'
 

@@ -1,0 +1,12 @@
+" This file is the real config everything inside firefox is just for the given
+" session. To extract a config :mkt could be used.
+sanitise tridactyllocal tridactylsync
+
+set update.lastchecktime 1604768982404
+set configversion 2.0
+
+set theme dark
+set searchengine duckduckgo
+" set newtab about:newtab
+
+" vim: set filetype=tridactyl
