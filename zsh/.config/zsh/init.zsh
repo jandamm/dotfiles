@@ -140,6 +140,7 @@ compdef _gnu_generic \
 	xcpretty xed
 
 compdef g=git
+compdef v=_zlua
 
 # }}}
 
