@@ -253,6 +253,15 @@ fi
 
 # }}}
 
+# IOS {{{
+
+if is_install && should_configure ios
+then
+	defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
+fi
+
+# }}}
+
 # NVIM {{{
 
 if should_configure nvim
