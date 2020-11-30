@@ -61,7 +61,7 @@ let g:lmap.g.c = 'Show commit'
 let g:lmap.g.d = { 'name': 'diff' }
 nmap <silent> <Leader>gdd        :Gvdiffsplit!<CR>
 let g:lmap.g.d.d = 'Diff'
-nmap <silent> <Leader>gdk        :Git ksdiffall<CR>
+nmap <silent> <Leader>gdk        :G ksdiffall<CR>
 let g:lmap.g.d.k = 'Kaleidoscope'
 nmap <silent> <Leader>gdo        :SignifyFold!<CR>
 let g:lmap.g.d.o = 'Show only changes'
@@ -87,7 +87,7 @@ nmap <silent> <Leader>gp         :Gpush<CR>
 nmap <silent> <Leader>gr         :Grebase<CR>
 " w -> Who did this?
 nmap <silent> <Leader>gw         :Gblame<CR>
-nmap          <Leader>g<Space>   :Git<SPACE>
+nmap          <Leader>g<Space>   :G<SPACE>
 
 " Leader O {{{1
 let g:lmap.o = { 'name': 'open' }
