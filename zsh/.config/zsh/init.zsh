@@ -75,40 +75,38 @@ source $XDG_DATA_HOME/zgenom/zgenom.zsh
 
 # Load plugins {{{
 
-if ! zgen saved
+if ! zgenom saved
 then
-	zgen load fnune/base16-fzf bash/base16-nord.config # base16-theme
-	zgen load romkatv/powerlevel10k powerlevel10k # Prompt theme
-	zgen load jandamm/vi-mode.zsh # Show line cursor in vi mode
+	zgenom load fnune/base16-fzf bash/base16-nord.config # base16-theme
+	zgenom load romkatv/powerlevel10k powerlevel10k # Prompt theme
+	zgenom load jandamm/vi-mode.zsh # Show line cursor in vi mode
 
-	zgen clone skywind3000/z.lua
-	zgen bin raylee/tldr-sh-client tldr
+	zgenom clone skywind3000/z.lua
+	zgenom bin raylee/tldr-sh-client tldr
 
-	zgen load Aloxaf/fzf-tab # Tab completion is working with fzf
+	zgenom load Aloxaf/fzf-tab # Tab completion is working with fzf
 
-	zgen load zsh-users/zsh-completions # Load more completions
+	zgenom load zsh-users/zsh-completions src # Load more completions
 
-	zgen load petervanderdoes/git-flow-completion # Load completion for git flow
+	zgenom load junegunn/fzf shell/completion.zsh # **TAB to completion options in fzf (not 100% working with fzf-tab, still better than without)
+	zgenom load junegunn/fzf shell/key-bindings.zsh # ^t to list all files from ./ in fzf
 
-	zgen load junegunn/fzf shell/completion.zsh # **TAB to completion options in fzf (not 100% working with fzf-tab, still better than without)
-	zgen load junegunn/fzf shell/key-bindings.zsh # ^t to list all files from ./ in fzf
+	zgenom load jandamm/per-directory-history # History is saved per directory
 
-	zgen load jandamm/per-directory-history # History is saved per directory
+	zgenom load zdharma/history-search-multi-word # History search with syntax highlighting
 
-	zgen load zdharma/history-search-multi-word # History search with syntax highlighting
+	zgenom load jandamm/instant-repl.zsh # Quickly create a repl for the current BUFFER
 
-	zgen load jandamm/instant-repl.zsh # Quickly create a repl for the current BUFFER
+	zgenom load zdharma/fast-syntax-highlighting
+	zgenom load zsh-users/zsh-autosuggestions
 
-	zgen load zdharma/fast-syntax-highlighting
-	zgen load zsh-users/zsh-autosuggestions
-
-	zgen save
+	zgenom save
 
 	rbenv rehash
 
-	zgen compile "$HOME/.zshenv"
-	zgen compile "$XDG_CONFIG_HOME/zsh"
-	zgen compile "$XDG_DATA_HOME/zsh/generated"
+	zgenom compile "$HOME/.zshenv"
+	zgenom compile "$XDG_CONFIG_HOME/zsh"
+	zgenom compile "$XDG_DATA_HOME/zsh/generated"
 fi
 # }}}
 
