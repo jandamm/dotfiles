@@ -8,9 +8,8 @@ command! -range -buffer MultilineFormat
 			\ <line1>,<line2>substitute/\v%(\(\zs *\ze[^)]|\{\zs *\ze[^}]|\[\zs *\ze[^]]|,\zs *\ze.|[^(]\zs *\ze\)|[^{]\zs *\ze\}|[^[]\zs *\ze\]|<in>\zs ?\ze)/\r/g <BAR>
 			\ nohlsearch
 
-compiler swiftpm
 if filereadable('Makefile')
-	set makeprg=make
+	let b:uses_make=1
 endif
 
 call my#lint#setup('swiftlint')

@@ -24,19 +24,27 @@ function! my#ft#swift#build() abort
 	execute 'Dispatch -compiler=swiftpm neovim swift build '.ios
 endfunction
 
-" compiler is either swiftpm or make (checked for Makefile).
-" errorformat should always be for swiftpm
 function! my#ft#swift#compile() abort
 	silent! wall
+	call s:set_compiler()
 	Make build
 endfunction
 
 function! my#ft#swift#run() abort
 	silent! wall
+	call s:set_compiler()
 	Make run
 endfunction
 
 function! my#ft#swift#test() abort
 	silent! wall
+	call s:set_compiler()
 	Make test
+endfunction
+
+function! s:set_compiler() abort
+	compiler swiftpm
+	if exists('b:uses_make')
+		set makeprg=make
+	endif
 endfunction
