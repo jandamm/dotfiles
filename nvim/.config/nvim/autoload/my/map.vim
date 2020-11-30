@@ -16,6 +16,6 @@ function! my#map#outline() abort
 		normal! gO
 	else
 		" Here should buffer tags be loaded into loc/qf list
-		CtrlPBufTag
+		" FIXME
 	endif
 endfunction

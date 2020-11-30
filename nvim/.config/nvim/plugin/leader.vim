@@ -16,8 +16,8 @@ vnoremap <silent> <leader> <CMD>LeaderGuideVisual  '<Space>'<CR>
 
 " Leader B {{{1
 let g:lmap.b = { 'name': 'buffer' }
-nmap <silent> <Leader>bb         :CtrlPBuffer<CR>
-let g:lmap.b.b = 'Buffers'
+nmap          <Leader>b          :ls<CR>:buffer<Space>
+let g:lmap.b = 'Buffers'
 
 " Leader C {{{1
 let g:lmap.c = { 'name': 'code' }
@@ -38,6 +38,14 @@ let g:lmap.c.u = 'Test'
 let g:lmap.f = { 'name': 'file' }
 nmap <silent> <expr> <Leader>fd  winnr('$') == 1 ? ":Dirvish! %\<CR>" : ":Dirvish %\<CR>"
 let g:lmap.f.d = 'Directory'
+nnoremap <leader>ff :find *
+nnoremap <leader>fs :sfind *
+nnoremap <leader>fv :vert sfind *
+nnoremap <leader>ft :tabfind *
+nnoremap <leader>fF :find <C-R>=expand('%:h').'/*'<CR>
+nnoremap <leader>fS :sfind <C-R>=expand('%:h').'/*'<CR>
+nnoremap <leader>fV :vert sfind <C-R>=expand('%:h').'/*'<CR>
+nnoremap <leader>fT :tabfind <C-R>=expand('%:h').'/*'<CR>
 nmap <silent>        <Leader>fo  :!open %<CR>
 let g:lmap.f.o = 'Open externally'
 nmap <silent> <Leader>fw         :update<CR>
@@ -45,8 +53,6 @@ let g:lmap.f.w = 'Save'
 
 " Leader G {{{1
 let g:lmap.g = { 'name': 'git and more' }
-nmap <silent> <Leader>gb         :CtrlPGitBranch<CR>
-
 let g:git_messenger_no_default_mappings = v:true
 nmap <silent> <Leader>gc         <Plug>(git-messenger)
 let g:lmap.g.c = 'Show commit'
@@ -77,8 +83,6 @@ nmap <silent> <Leader>glf        :0Gclog<CR>
 let g:lmap.g.l.f = 'File'
 nmap <silent> <Leader>gll        :Gclog<CR>
 " }}}2
-nmap <silent> <Leader>gm         :CtrlPModified<CR>
-let g:lmap.g.m = 'Modified files'
 nmap <silent> <Leader>gp         :Gpush<CR>
 nmap <silent> <Leader>gr         :Grebase<CR>
 " w -> Who did this?
@@ -138,12 +142,10 @@ nmap          <Leader>y          <Plug>(YoinkRotateBack)
 let g:lmap.y = 'Yank history'
 nmap          <Leader>Y          <Plug>(YoinkRotateForward)
 let g:lmap.Y = 'Yank history forward'
-nmap <silent> <Leader><SPACE>    :CtrlP<CR>
+nmap          <Leader><SPACE>    :find *
 let g:lmap[' '] = 'Files'
-nmap <silent> <Leader><TAB>      :CtrlPSession<CR>
+nmap <silent> <Leader><TAB>      :Session<Space>
 let g:lmap['<C-I>'] = 'Sessions'
-nmap <Leader>: :CtrlPCmdPalette<CR>
-let g:lmap[':'] = 'Commands'
 nmap          <Leader>?          :Grep<SPACE>
 let g:lmap['?'] = 'Grep'
 nmap          <Leader>/          :Ack<SPACE>

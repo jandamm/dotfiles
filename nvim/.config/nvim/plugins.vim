@@ -56,15 +56,9 @@ Pack 'unblevable/quick-scope' " Highlight targets for f
 call packager#add('justinmk/vim-dirvish')
 
 " Fuzzy finding
-call packager#add('ctrlpvim/ctrlp.vim')
-call packager#add('nixprime/cpsm', { 'do': 'env PY3=ON ./install.sh' }) " Improve matching speed/accuracy for ctrlp
-call packager#add('mattn/ctrlp-git')
-call packager#add('jandamm/ctrlp-filer')
-call packager#add('jandamm/ctrlp-complete.vim')
-call packager#add('jandamm/ctrlp_bdelete.vim')
-call packager#add('fisadev/vim-ctrlp-cmdpalette')
-Pack 'jasoncodes/ctrlp-modified.vim'
-call packager#add('ivalkeen/vim-ctrlp-tjump')
+Pack 'ctrlpvim/ctrlp.vim'
+Pack 'nixprime/cpsm', { 'do': 'env PY3=ON ./install.sh' } " Improve matching speed/accuracy for ctrlp
+Pack 'jandamm/ctrlp-complete.vim'
 
 " Dispatching / Async
 Pack 'tpope/vim-dispatch' " Easy dispatching of jobs to the terminal

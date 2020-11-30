@@ -9,5 +9,3 @@ command! -bang -nargs=? -complete=customlist,my#sessions#complete Session   call
 command!       -nargs=? -complete=customlist,my#sessions#complete Rmsession call my#sessions#delete(<q-args>)
 
 command! Endsession call my#sessions#end()
-
-command! CtrlPSession call ctrlp#init(ctrlp#sessions#id())

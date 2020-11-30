@@ -5,17 +5,12 @@ let g:BufKillCreateMappings = 0
 nnoremap Y y$
 
 " Esc clears last search
-nnoremap <silent> <ESC> :nohlsearch<CR>
 nnoremap <silent> <C-l> :nohlsearch<CR>:diffupdate<CR>:syntax sync fromstart<CR><C-l>
 
 " Remap U Redo
 nnoremap U <C-r>
 
 nnoremap <silent> gO :call my#map#outline()<CR>
-
-nnoremap <C-n> <CMD>CtrlPMenu<CR>
-
-nnoremap g<C-]> <CMD>CtrlPtjump<CR>
 
 " Better mappings for qf/loc list
 nmap [l <Plug>(qf_loc_previous)
@@ -46,8 +41,6 @@ xnoremap > >gv
 " Most of the time I don't want this. If I do, I can still use P which does
 " the same.
 xnoremap <expr> p '"_c<C-r>'.v:register.'<ESC>'
-
-xnoremap g<C-]> <CMD>CtrlPtjumpVisual<CR>
 
 xnoremap * :<C-u>call my#map#visualSearch('/')<CR>/<C-r>=@/<CR><CR>
 xnoremap # :<C-u>call my#map#visualSearch('?')<CR>/<C-r>=@/<CR><CR>
@@ -134,7 +127,6 @@ smap     <expr>   <C-b>   vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b
 
 imap     <expr>   <C-t>   pumvisible() ? '<Plug>(ctrlp_complete)' : '<C-t>'
 
-" CtrlP confuses me, maybe I should switch CtrlP C-p/n with C-j/k?
 inoremap <expr>   <C-j>   pumvisible() ? '<C-n>' : '<C-j>'
 inoremap <expr>   <C-k>   pumvisible() ? '<C-p>' : '<C-k>'
 
