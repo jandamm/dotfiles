@@ -125,18 +125,8 @@ set mouse=a
 " Do not redraw screen while executing macros
 set lazyredraw
 
-" Clipboard
-if has('clipboard')     " If the feature is available
-	set clipboard=unnamed " copy to the system clipboard
-
-	if has('unnamedplus')
-		set clipboard+=unnamedplus
-	endif
-endif
-
 let g:yoinkMaxItems = 50
 let g:yoinkSyncNumberedRegisters = 1
-let g:yoinkIncludeDeleteOperations = 1
 
 " }}}
 

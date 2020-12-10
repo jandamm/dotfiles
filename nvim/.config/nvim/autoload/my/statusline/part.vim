@@ -63,7 +63,7 @@ endfunction
 
 function! my#statusline#part#paste(winnr, active) abort
 	let c = a:active ? '%2*' : ''
-	return &paste ? ' ['.c.'paste%*]' : ''
+	return &paste ? ' ['.c.'system%*]' : ''
 endfunction
 
 function! my#statusline#part#qf_title(winnr, active) abort

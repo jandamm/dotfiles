@@ -125,8 +125,8 @@ nmap <silent> <Leader>tL         <Plug>(qf_loc_toggle_stay)
 let g:lmap.t.L = 'Loclist stay'
 nmap <silent> <Leader>tn         <CMD>setlocal relativenumber!<CR>
 let g:lmap.t.n = 'Line numbers'
-nmap <silent> <Leader>tp         <CMD>set paste!<CR>
-xmap <silent> <Leader>tp         <CMD>set paste!<CR>
+nmap <silent> <Leader>tp         <CMD>call my#map#leader#clipboard()<CR>
+xmap <silent> <Leader>tp         <CMD>call my#map#leader#clipboard()<CR>
 let g:lmap.t.p = 'Paste'
 nmap <silent> <Leader>tq         <Plug>(qf_qf_toggle)
 let g:lmap.t.q = 'Quickfix'
