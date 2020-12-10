@@ -49,7 +49,7 @@ PER_DIRECTORY_HISTORY_BASE="$XDG_DATA_HOME/zsh/history_dirs"
 [ -u $VISUAL ] && export VISUAL=nvim
 export MANPAGER='less -s -M +Gg'
 
-fpath=("$ZDOTDIR/completions" $fpath)
+fpath=("$ZDOTDIR/functions" $fpath)
 
 # adds @(|) *(|) ?(|) +(|) which translate to regex: (|) (|)* (|)? (|)+
 setopt extendedglob
