@@ -304,7 +304,7 @@ fi
 # ZSH {{{
 
 function generate_zlua() {
-	lua "$XDG_DATA_HOME/zgenom/sources/skywind3000/z.lua-___/z.lua" --init zsh enhanced > "$XDG_DATA_HOME/zsh/generated/zlua.zsh"
+	lua "$XDG_DATA_HOME/zgenom/sources/skywind3000/z.lua/___/z.lua" --init zsh enhanced > "$XDG_DATA_HOME/zsh/generated/zlua.zsh"
 }
 function zgen_comp() {
 	zsh -c "source $XDG_DATA_HOME/zgenom/zgen.zsh && zgen compile $1"
