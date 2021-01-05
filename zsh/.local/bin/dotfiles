@@ -15,17 +15,21 @@ cd "$DOTFILES" || exit
 # Possible configurations {{{
 
 all_config=( brew gem npm pip )
+all_dirs=()
 
 for folder in */
 do
 	if [[ ! -e "$folder.nostow" ]]; then
 		all_config+=("${folder%/}")
+		all_dirs+=("${folder%/}")
 	fi
 done
 
-if [ "$1" = "--list" ]
-then
+if [ "$1" = "--list" ]; then
 	echo "${all_config[*]}"
+	exit
+elif [ "$1" = "--list-dirs" ]; then
+	echo "${all_dirs[*]}"
 	exit
 fi
 
@@ -88,9 +92,18 @@ do
 		update)
 			set_mode 2;;
 		*)
-			has_mode || quit_setup
-			[[ " ${all_config[*]} " = *" ${1} "* ]] || quit_setup "$1"
-			set_config "$1";;
+			if has_mode; then
+				[[ " ${all_config[*]} " = *" ${1} "* ]] || quit_setup "$1"
+				set_config "$1"
+			elif hash "dotfiles-$1" 2>/dev/null; then
+				cmd="dotfiles-$1"
+				shift
+				$cmd "$@"
+				exit $?
+			else
+				quit_setup
+			fi
+			;;
 	esac
 	shift
 done

@@ -1,0 +1,34 @@
+#!/usr/bin/env zsh
+
+set -eu
+
+if [[ ! $# -eq 2 ]]; then
+	echo "Wrong usage"
+	exit 1
+fi
+if [[ ! -d $DOTFILES ]]; then
+	exit 1
+fi
+
+stow_dir=$1
+new_file=${2:A}
+
+avail_dirs=$(dotfiles --list-dirs)
+if [[ ! " ${avail_dirs[*]} " = *" $stow_dir "* ]]; then
+	echo "Invalid directory: $stow_dir."
+	echo "Must be one of: $avail_dirs."
+	exit 2
+fi
+
+if [[ ! -e $new_file ]]; then
+	echo "Invalid path: $2."
+	exit 3
+fi
+
+new_file=${new_file#$HOME/}
+base=$DOTFILES/$stow_dir
+
+mkdir -p $base/${new_file:h}
+mv $HOME/$new_file $base/$new_file
+
+dotfiles stow $stow_dir
