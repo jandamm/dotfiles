@@ -127,10 +127,14 @@ if ! hash brew &>/dev/null; then
 	esac
 fi
 
-# put every dotfile in place
-if is_install
-then
-	# Install rcm via brew, if not installed.
+if is_install; then
+	# Install mas via brew, if not installed.
+	if ! hash mas &>/dev/null; then
+		echo 'Installing brew "mas"'
+		brew install mas
+	fi
+
+	# Install gnu-stow via brew, if not installed.
 	if ! hash stow &>/dev/null; then
 		echo 'Installing brew "stow"'
 		brew install stow
