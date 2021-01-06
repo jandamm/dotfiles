@@ -5,9 +5,8 @@ if exists('g:loaded_diagnostics')
 endif
 let g:loaded_diagnostics = 1
 
-let g:lsp_diagnostics_enabled = 0
 let g:lsc_enable_autocomplete = v:false
-let g:lsc_enable_diagnostics  = v:false
+let g:lsc_enable_diagnostics  = v:true
 
 let g:lsc_auto_map = {
     \ 'GoToDefinition': 'gd',
