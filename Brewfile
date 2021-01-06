@@ -7,9 +7,12 @@ cask 'font-jetbrains-mono'
 cask 'vimr'
 
 brew 'ack'
+brew 'bat'
 brew 'boost' # Used for vim cpsm
 brew 'coreutils'
 brew 'universal-ctags/universal-ctags/universal-ctags', args: ["HEAD"]
+brew 'exa'
+brew 'fd'
 brew 'fzf'
 brew 'gh'
 brew 'git'
