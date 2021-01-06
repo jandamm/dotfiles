@@ -1,8 +1,26 @@
 #compdef dotfiles
 
-_arguments '1:command:(stow install update)' '*:config:->config'
+_arguments '1: :->cmd' '2: :->arg1' '3: :->arg2' '*: :->argn'
 
-if [ "$state" = config ]
-then
+function _dotfiles-add() {
+	case $state in
+		arg1) _dotfiles-stow;;
+		arg2) _files;;
+	esac
+}
+function _dotfiles-stow() {
+	_values config $(dotfiles --list-dirs)
+}
+function _dotfiles-default() {
 	_values config $(dotfiles --list)
+}
+
+if [[ $state = 'cmd' ]]; then
+	_values command 'stow' 'install' 'update' 'add'
+else
+	case $line[1] in
+		add)  _dotfiles-add;;
+		stow) _dotfiles-stow;;
+		*)    _dotfiles-default;;
+	esac
 fi
