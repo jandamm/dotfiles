@@ -6,6 +6,8 @@ cask 'firefox'
 cask 'font-jetbrains-mono'
 cask 'vimr'
 
+mas "Vimari", id: 1480933944
+
 brew 'ack'
 brew 'bat'
 brew 'boost' # Used for vim cpsm

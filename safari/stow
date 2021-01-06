@@ -1,0 +1,37 @@
+#!/usr/bin/env zsh
+
+cd ${0:h:A}
+
+name=userSettings.json
+file=$(echo **/$name)
+
+[[ "$file" = "" ]] && exit 1
+
+dest=$HOME/$file
+bak=$dest.bak
+
+if [[ -f $bak ]]; then
+	if [[ $file -nt $dest ]] && [[ ! $dest -nt $bak ]]; then
+		# file changed, dest is unchanged
+		cp -p $file ${dest:h}
+	elif [[ $dest -nt $file ]] && [[ ! $file -nt $bak ]]; then
+		# dest changed, file is unchanged
+		cp -p $dest ${file:h}
+	elif [[ ! $dest -nt $bak ]] && [[ ! $file -nt $bak ]]; then
+		# nothing changed
+		exit
+	else
+		# both changed
+		nvim -d $file $bak $dest -c 'wincmd w'
+		if [[ $? -ne 0 ]]; then
+			exit $?
+		fi
+		cp -p $bak $file
+		cp -p $bak $dest
+	fi
+else
+	cp -p $file ${dest:h}
+fi
+
+# update backup file
+cp -p $file $bak
