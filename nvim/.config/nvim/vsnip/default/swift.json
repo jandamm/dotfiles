@@ -10,5 +10,9 @@
   "Bracket": {
     "prefix": ["{"],
     "body": ["{", "\t${0:$TM_SELECTED_TEXT}", "}"]
+  },
+  "Bracket2": {
+    "prefix": [" in"],
+    "body": [" in", "\t${0:$TM_SELECTED_TEXT}", "}"]
   }
 }
