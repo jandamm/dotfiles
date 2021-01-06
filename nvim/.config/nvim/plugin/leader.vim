@@ -142,8 +142,7 @@ nmap          <Leader>y          <Plug>(YoinkRotateBack)
 let g:lmap.y = 'Yank history'
 nmap          <Leader>Y          <Plug>(YoinkRotateForward)
 let g:lmap.Y = 'Yank history forward'
-nmap          <Leader><SPACE>    :find *
-let g:lmap[' '] = 'Files'
+let g:lmap[' '] = 'EasyMotion'
 nmap <silent> <Leader><TAB>      :Session<Space>
 let g:lmap['<C-I>'] = 'Sessions'
 nmap          <Leader>?          :Grep<SPACE>

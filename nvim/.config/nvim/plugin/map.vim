@@ -55,6 +55,16 @@ snoremap <C-n> <BS>i<C-n>
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 
+" Easy Motion {{{
+
+let g:EasyMotion_keys = 'arstneiodhqwfpluygj'
+map  <Space><Space> <Plug>(easymotion-prefix)
+nmap <ESC><ESC>     <Plug>(easymotion-overwin-line)
+omap <Space>        <Plug>(easymotion-prefix)
+omap <Space><Space> <Plug>(easymotion-bd-w)
+
+" }}}
+
 " Buffer local mappings {{{
 
 augroup ft_mappings

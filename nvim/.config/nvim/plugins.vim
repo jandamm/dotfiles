@@ -52,6 +52,7 @@ Pack 'chrisbra/Recover.vim' " Allow comparing swap files
 Pack 'romainl/vim-qf' " Improve quickfix lists
 Pack 'tpope/vim-projectionist' " Projects in vim
 Pack 'unblevable/quick-scope' " Highlight targets for f
+Pack 'easymotion/vim-easymotion' " Faster cursor movement
 
 call packager#add('justinmk/vim-dirvish')
 
