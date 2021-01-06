@@ -88,7 +88,6 @@ Pack 'tpope/vim-git'
 " Pack 'gabrielelana/vim-markdown'
 Pack 'keith/swift.vim'
 Pack 'keith/xcconfig.vim'
-Pack 'tridactyl/vim-tridactyl'
 
 " Vim Plugins
 call packager#add('junegunn/vader.vim')
