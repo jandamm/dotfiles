@@ -364,7 +364,7 @@ for c in ${config[*]}
 do
 	if [[ -d "$c" ]]; then
 		echo "  - $c"
-		stow "$c"
+		dotfiles-stow --force "$c"
 	fi
 done
 

@@ -1,0 +1,38 @@
+#!/usr/bin/env zsh
+
+set -eu
+
+function die() {
+	echo "Wrong usage"
+	exit 1
+}
+
+case $# in
+	1) stow_dir=$1; force=false;;
+	2) force=true
+		if [[ $1 = '--force' ]]; then
+			stow_dir=$2
+		elif [[ $2 = '--force' ]]; then
+			stow_dir=$1
+		else
+			die
+		fi ;;
+	*) die;;
+esac
+
+cd $DOTFILES || exit 1
+
+if ! $force; then
+	avail_dirs=$(dotfiles --list-dirs)
+	if [[ ! " ${avail_dirs[*]} " = *" $stow_dir "* ]]; then
+		echo "Invalid directory: $stow_dir."
+		echo "Must be one of: $avail_dirs."
+		exit 2
+	fi
+fi
+
+if [[ -x "$stow_dir/stow" ]]; then
+	"$stow_dir/stow"
+else
+	stow "$stow_dir"
+fi
