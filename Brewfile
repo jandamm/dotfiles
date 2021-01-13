@@ -1,23 +1,22 @@
+tap 'homebrew/bundle'
+tap 'homebrew/cask'
+tap 'homebrew/cask-drivers'
 tap 'homebrew/cask-fonts'
-
-cask 'alacritty'
-cask 'dash'
-cask 'font-jetbrains-mono'
-cask 'vimr'
-
-mas "Vimari", id: 1480933944
+tap 'homebrew/cask-versions'
+tap 'homebrew/core'
 
 brew 'ack'
 brew 'bat'
 brew 'boost' # Used for vim cpsm
 brew 'coreutils'
-brew 'universal-ctags/universal-ctags/universal-ctags', args: ["HEAD"]
+brew 'universal-ctags/universal-ctags/universal-ctags', args: ['HEAD']
 brew 'exa'
 brew 'fd'
 brew 'fzf'
 brew 'gh'
 brew 'git'
 brew 'git-delta'
+brew 'gnu-sed'
 brew 'less'
 brew 'lua'
 brew 'mas'
@@ -27,7 +26,6 @@ brew 'python3'
 brew 'rbenv'
 brew 'renameutils'
 brew 'ripgrep'
-brew 'gnu-sed'
 brew 'shellcheck'
 brew 'stow'
 brew 'swiftformat'
@@ -35,3 +33,10 @@ brew 'swiftlint'
 brew 'wget'
 brew 'yamllint'
 brew 'zsh'
+
+cask 'alacritty'
+cask 'dash'
+cask 'font-jetbrains-mono'
+cask 'vimr'
+
+mas 'Vimari', id: 1480933944
