@@ -344,11 +344,14 @@ then
 
 	if is_update
 	then
+		echo 'Cleaning zsh plugins'
+		zsh -c "source $XDG_DATA_HOME/zgenom/zgen.zsh && zgenom clean"
+
 		echo 'Updating zgenom'
-		zsh -c "source $XDG_DATA_HOME/zgenom/zgen.zsh && zgen selfupdate"
+		zsh -c "source $XDG_DATA_HOME/zgenom/zgen.zsh && zgenom selfupdate"
 
 		echo 'Updating zsh plugins'
-		zsh -c "source $XDG_DATA_HOME/zgenom/zgen.zsh && zgen update"
+		zsh -c "source $XDG_DATA_HOME/zgenom/zgen.zsh && zgenom update"
 
 		generate_zlua
 
