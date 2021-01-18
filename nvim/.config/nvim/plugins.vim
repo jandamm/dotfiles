@@ -41,7 +41,6 @@ call packager#add('jandamm/vim-projplugin') " Load project specific config
 call packager#add('mbbill/undotree') " Show undo history as a tree
 call packager#add('machakann/vim-highlightedyank') " Highlight yanked text
 call packager#add('rhysd/git-messenger.vim') " Quickly show last commit message
-call packager#add('wellle/targets.vim') " Quickly show last commit message
 Pack 'mhinz/vim-sayonara' " Delete buffers but keep window alive
 call packager#add('svermeulen/vim-yoink') " Yank history
 call packager#add('jandamm/vim-leader-guide') " Show leader mappings
@@ -55,6 +54,13 @@ Pack 'unblevable/quick-scope' " Highlight targets for f
 Pack 'easymotion/vim-easymotion' " Faster cursor movement
 
 call packager#add('justinmk/vim-dirvish')
+
+" Text Objects
+Pack 'wellle/targets.vim'
+Pack 'kana/vim-textobj-user'
+Pack 'kana/vim-textobj-entire'
+Pack 'kana/vim-textobj-indent'
+Pack 'kana/vim-textobj-line'
 
 " Fuzzy finding
 Pack 'ctrlpvim/ctrlp.vim'
