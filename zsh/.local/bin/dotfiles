@@ -359,10 +359,13 @@ fi
 
 # }}}
 
-echo '' && echo 'Putting files into place for:'
 for c in ${config[*]}
 do
 	if [[ -d "$c" ]]; then
+		if [[ -z "$stowing" ]]; then
+			echo '' && echo 'Putting files into place for:'
+			stowing=yes
+		fi
 		echo "  - $c"
 		dotfiles-stow --force "$c"
 	fi
