@@ -32,6 +32,7 @@ call packager#add('tpope/vim-unimpaired') " Better [] mappings
 call packager#add('tpope/vim-fugitive') " Git interface
 call packager#add('tpope/vim-rhubarb') " Gbrowse for Github
 call packager#add('shumphrey/fugitive-gitlab.vim') " Gbrowse for GitLab
+Pack 'tommcdo/vim-fubitive'
 call packager#add('tommcdo/vim-fugitive-blame-ext') " Gblame commit messages
 Pack 'roryokane/detectindent' " Automatically set spaces/tabs
 call packager#add('tpope/vim-eunuch') " Unix commands in vim
