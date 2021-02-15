@@ -133,6 +133,7 @@ unsetopt nullglob
 # Define completions for command options
 # Commands with gnu style '--help' can be added here.
 compdef _gnu_generic \
+	ack \
 	bat \
 	fd fzf \
 	pod \
