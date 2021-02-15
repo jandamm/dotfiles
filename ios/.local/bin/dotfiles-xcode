@@ -1,0 +1,35 @@
+#!/usr/bin/env zsh
+
+set -e
+
+dir=$XDG_DATA_HOME/xvim/sources
+
+# TODO: Use xcodes cli
+
+# Clean up
+setopt extendedglob nullglob
+for version in $dir/../v[1-2]*; do
+	if [[ ! -e /Applications/Xcode_${version#$dir/../v}.app ]]; then
+		rm $version
+	fi
+done
+
+if [[ -n $1 ]]; then
+	sudo xcode-select -s $1
+fi
+
+xcode_path=$(xcode-select -p)
+xcode_version=${${xcode_path#*/Xcode_}%\.app*}
+
+if [[ -f $dir/../v$xcode_version ]]; then
+	echo "The version \"$xcode_version\" is already patched."
+	exit 1
+fi
+echo Using \"Xcode $xcode_version\"
+
+sudo codesign -f -s XcodeSign ${xcode_path%/Contents/Developer}
+
+cd $dir
+make
+
+touch $dir/../v$xcode_version

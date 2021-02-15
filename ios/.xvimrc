@@ -1,0 +1,15 @@
+" Feature List:
+" https://github.com/XVimProject/XVim2/blob/master/Documents/FeatureList.md
+
+" MARK: CONFIGURE
+set relativenumber
+
+" MARK: Mapping
+nmap U <C-r>
+nmap gcc :xcmenucmd Comment Selection<CR>
+nnoremap Y y$
+
+" MARK: Leader
+nmap <SPACE>cc :w | make<CR>
+nmap <SPACE>cr :w | run<CR>
+nmap <SPACE>cu :w | xcmenurun Test<CR>
