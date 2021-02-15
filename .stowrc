@@ -1,5 +1,6 @@
 --ignore=^\.tags
 --ignore=^tags
+--ignore=\.DS_Store
 --ignore=^\.root
 --ignore=^\.vimroot
 --ignore=^\.tagroot
