@@ -34,6 +34,10 @@ let g:projectionist_heuristics['scripts/&!.zshenv&!nvim/'] = {
 			\      'type': 'scripts',
 			\      'template': ['#!/usr/bin/env bash', ''],
 			\  },
+			\  'Scripts/*.sh' : {
+			\      'type': 'scripts',
+			\      'template': ['#!/usr/bin/env bash', ''],
+			\  },
 			\ }
 " }}}
 
