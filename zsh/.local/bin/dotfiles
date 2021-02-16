@@ -151,7 +151,7 @@ fi
 function brew_install() {
 	if [ -f "$1" ]
 	then
-		for i in $(command cat "$1" | grep -E 'args.*"HEAD"' | sed "s/brew '\(.*\)'.*/\1/"); do
+		for i in $(command cat "$1" | grep -E "args.*'HEAD'" | sed "s/brew '\(.*\)',.*/\1/"); do
 			brew upgrade "$i" --fetch-HEAD || true
 		done
 
