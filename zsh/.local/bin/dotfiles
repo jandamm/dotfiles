@@ -260,16 +260,6 @@ fi
 
 # }}}
 
-# FIREFOX {{{
-
-if is_install && should_configure firefox
-then
-	# Autmatically updates afterwards
-	curl -fsSl https://raw.githubusercontent.com/tridactyl/tridactyl/master/native/install.sh -o /tmp/trinativeinstall.sh && bash /tmp/trinativeinstall.sh 1.20.2
-fi
-
-# }}}
-
 # IOS {{{
 
 if is_install && should_configure ios
