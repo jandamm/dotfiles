@@ -13,6 +13,11 @@ path=(
 	$path
 )
 
+fpath=(
+	"$XDG_DATA_HOME/zsh/generated/functions"
+	$fpath
+)
+
 # Where I keep my projects
 export PROJECTS="$HOME/Projects/"
 
