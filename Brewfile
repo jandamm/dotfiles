@@ -5,11 +5,15 @@ tap 'homebrew/cask-fonts'
 tap 'homebrew/cask-versions'
 tap 'homebrew/core'
 
+# Third party taps
+tap 'robotsandpencils/made'
+tap 'universal-ctags/universal-ctags'
+
 brew 'ack'
+brew 'aria2' # Faster downloads for xcodes
 brew 'bat'
 brew 'boost' # Used for vim cpsm
 brew 'coreutils'
-brew 'universal-ctags/universal-ctags/universal-ctags', args: ['HEAD']
 brew 'exa'
 brew 'fd'
 brew 'fzf'
@@ -30,7 +34,9 @@ brew 'shellcheck'
 brew 'stow'
 brew 'swiftformat'
 brew 'swiftlint'
+brew 'universal-ctags', args: ['HEAD']
 brew 'wget'
+brew 'xcodes'
 brew 'yamllint'
 brew 'zsh'
 

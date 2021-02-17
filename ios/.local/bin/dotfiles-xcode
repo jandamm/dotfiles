@@ -2,26 +2,55 @@
 
 set -e
 
-dir=$XDG_DATA_HOME/xvim/sources
+selection=$1
+xvim_dir=$XDG_DATA_HOME/xvim/sources
 
-# TODO: Use xcodes cli
+function set_xcode_info() {
+	xcode_path=$(xcode-select -p)
+	xcode_version=${${xcode_path#*/Xcode-}%\.app*}
+}
+
+function is_patched() {
+	[[ -f $xvim_dir/../v$xcode_version ]]
+}
+
+function is_installed() {
+	[[ -e /Applications/Xcode-$1.app ]]
+}
 
 # Clean up
 setopt extendedglob nullglob
-for version in $dir/../v[1-2]*; do
-	if [[ ! -e /Applications/Xcode_${version#$dir/../v}.app ]]; then
+for patched_version in $xvim_dir/../v[1-2]*; do
+	if ! is_installed ${patched_version#$xvim_dir/../v}; then
 		rm $version
 	fi
 done
 
-if [[ -n $1 ]]; then
-	sudo xcode-select -s $1
+set_xcode_info
+
+# selected current or none and current is not patched
+if [[ $selection = $xcode_version ]] || ([[ -z $selection ]] && ! is_patched); then
+	echo "Using current Xcode version: \"$xcode_version\""
+else
+
+	# selected none and current is patched
+	if [[ -z $selection ]]; then
+		xcodes select
+
+	# selected version is installed
+	elif is_installed $selection; then
+		xcodes select $selection
+
+	# selected version is not installed
+	else
+		xcodes install $selection
+		xcodes select $selection
+	fi
+
+	set_xcode_info
 fi
 
-xcode_path=$(xcode-select -p)
-xcode_version=${${xcode_path#*/Xcode_}%\.app*}
-
-if [[ -f $dir/../v$xcode_version ]]; then
+if is_patched; then
 	echo "The version \"$xcode_version\" is already patched."
 	exit 1
 fi
@@ -29,7 +58,7 @@ echo Using \"Xcode $xcode_version\"
 
 sudo codesign -f -s XcodeSign ${xcode_path%/Contents/Developer}
 
-cd $dir
+cd $xvim_dir
 make
 
-touch $dir/../v$xcode_version
+touch $xvim_dir/../v$xcode_version
