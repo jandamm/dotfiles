@@ -5,6 +5,8 @@ call my#format#git()
 nmap <buffer> <C-f> i<TAB>
 nmap <buffer> <C-b> i<S-TAB>
 
+noremap C "_C
+
 " Jump forward with TAB
 " Expand or Jump
 nmap <buffer>          <TAB> A<Plug>(vsnip-expand-or-jump)
