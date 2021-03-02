@@ -22,7 +22,7 @@ command! -bang -range -nargs=+ Swap call my#command#swap(<bang>0,<line1>,<line2>
 command! -nargs=? Tree  call my#command#tree(0,<f-args>)
 command! -nargs=? Vtree call my#command#tree(1,<f-args>)
 
-command! X !chmod +x %
+command! X !chmod +x "%"
 
-command!       -nargs=0 -complete=file AsyncStop call my#asyncdo#stop('c')
-command!       -nargs=0 -complete=file LAsyncStop call my#asyncdo#stop('l')
+command! -nargs=0 -complete=file AsyncStop call my#asyncdo#stop('c')
+command! -nargs=0 -complete=file LAsyncStop call my#asyncdo#stop('l')
