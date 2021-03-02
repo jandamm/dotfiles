@@ -5,9 +5,18 @@
 set relativenumber
 
 " MARK: Mapping
-nmap U <C-r>
-nmap gcc :xcmenucmd Comment Selection<CR>
+nnoremap U <C-r>
 nnoremap Y y$
+
+" Basic commentary
+nmap gcc :xcmenucmd Comment Selection<CR>
+vmap gc  :xcmenucmd Comment Selection<CR>
+
+vmap > >gv
+vmap < <gv
+
+nmap == :xcmenucmd Re-Indent<CR>
+vmap =  :xcmenucmd Re-Indent<CR>
 
 " MARK: Leader
 nmap <SPACE>cc :w | make<CR>
