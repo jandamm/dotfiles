@@ -18,6 +18,12 @@ function is_installed() {
 	[[ -e /Applications/Xcode-$1.app ]]
 }
 
+# ensure full semver: 1.2.3
+if [[ -n $selection ]]; then
+	selection=( ${(ps:.:)selection} )
+	selection="$selection[1].${selection[2]:-0}.${selection[3]:-0}"
+fi
+
 # Clean up
 setopt extendedglob nullglob
 for patched_version in $xvim_dir/../v[1-2]*; do
