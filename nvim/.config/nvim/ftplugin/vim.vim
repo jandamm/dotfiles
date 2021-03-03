@@ -3,4 +3,4 @@ setlocal foldmarker={{{,}}}
 
 call my#map#apply#tagInclude(':')
 
-call my#lint#setup('vint')
+	call my#lint#enable('vint')

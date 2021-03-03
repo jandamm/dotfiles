@@ -12,7 +12,7 @@ if filereadable('Makefile')
 	let b:uses_make=1
 endif
 
-call my#lint#setup('swiftlint')
+call my#lint#enable('swiftlint')
 
 " if exists('g:loaded_swift_ftplugin')
 " 	finish

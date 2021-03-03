@@ -1,1 +1,1 @@
-call my#lint#setup('shellcheck')
+call my#lint#enable('shellcheck')

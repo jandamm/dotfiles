@@ -1,2 +1,2 @@
 call my#spelling#en()
-call my#lint#setup('markdownlint')
+call my#lint#enable('markdownlint')

@@ -1,1 +1,1 @@
-call my#lint#setup('shell', 1)
+call my#lint#enable('shell', 1)

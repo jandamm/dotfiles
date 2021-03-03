@@ -1,1 +1,1 @@
-call my#lint#setup('jsonlint')
+call my#lint#enable('jsonlint')
