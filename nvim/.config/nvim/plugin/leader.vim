@@ -66,9 +66,9 @@ let g:lmap.g.d.k = 'Kaleidoscope'
 nmap <silent> <Leader>gdo        :SignifyFold!<CR>
 let g:lmap.g.d.o = 'Show only changes'
 " }}}2
-nmap <silent> <Leader>gf         :Gfetch<CR>
-nmap <silent> <Leader>gF         :Gpull<CR>
-nmap <silent> <Leader>gg         :cclose <BAR> lclose <BAR> Gstatus<CR>
+nmap <silent> <Leader>gf         :G fetch<CR>
+nmap <silent> <Leader>gF         :G pull<CR>
+nmap <silent> <Leader>gg         :cclose <BAR> lclose <BAR> G<CR>
 let g:lmap.g.g = 'Fugitive'
 " Leader G H {{{2
 let g:lmap.g.h = { 'name': 'hunk' }
@@ -83,10 +83,10 @@ nmap <silent> <Leader>glf        :0Gclog<CR>
 let g:lmap.g.l.f = 'File'
 nmap <silent> <Leader>gll        :Gclog<CR>
 " }}}2
-nmap <silent> <Leader>gp         :Gpush<CR>
-nmap <silent> <Leader>gr         :Grebase<CR>
+nmap <silent> <Leader>gp         :G push<CR>
+nmap <silent> <Leader>gr         :G rebase<CR>
 " w -> Who did this?
-nmap <silent> <Leader>gw         :Gblame<CR>
+nmap <silent> <Leader>gw         :G blame<CR>
 nmap          <Leader>g<Space>   :G<SPACE>
 
 " Leader O {{{1
