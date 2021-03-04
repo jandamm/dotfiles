@@ -51,6 +51,7 @@ else
 	else
 		xcodes install $selection
 		xcodes select $selection
+		xcode-select --install
 	fi
 
 	set_xcode_info
