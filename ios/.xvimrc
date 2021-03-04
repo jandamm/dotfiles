@@ -19,6 +19,8 @@ nmap == :xcmenucmd Re-Indent<CR>
 vmap =  :xcmenucmd Re-Indent<CR>
 
 " MARK: Leader
-nmap <SPACE>cc :w | make<CR>
-nmap <SPACE>cr :w | run<CR>
-nmap <SPACE>cu :w | xcmenurun Test<CR>
+nmap <SPACE>cc :make<CR>
+nmap <SPACE>cr :run<CR>
+nmap <SPACE>cu :xcmenucmd Test<CR>
+
+nmap <SPACE>ff :xcmenucmd Open Quickly...<CR>
