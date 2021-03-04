@@ -266,9 +266,11 @@ if should_configure ios
 then
 	if is_install
 	then
+		echo 'Set Xcode to show build times.'
 		defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
 		git clone https://github.com/XVimProject/XVim2.git "$XDG_DATA_HOME/xvim/sources"
 	fi
+	echo 'Generate "xcodes" completion.'
 	mkdir -p "$XDG_DATA_HOME/zsh/generated/functions"
 	xcodes --generate-completion-script > "$XDG_DATA_HOME/zsh/generated/functions/_xcodes"
 fi
