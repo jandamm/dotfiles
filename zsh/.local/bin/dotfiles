@@ -242,10 +242,15 @@ fi
 
 # ALACRITTY {{{
 
-if is_install && should_configure alacritty
+if should_configure alacritty
 then
-	# Set font rendering for non retina
-	defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
+	if is_install
+	then
+		# Set font rendering for non retina
+		defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
+	fi
+	echo 'Updating alacritty completion.'
+	aria2c https://raw.githubusercontent.com/alacritty/alacritty/master/extra/completions/_alacritty -d "$XDG_DATA_HOME/zsh/generated/functions" --console-log-level=warn --allow-overwrite
 fi
 
 # }}}
