@@ -95,13 +95,15 @@ do
 			if has_mode; then
 				[[ " ${all_config[*]} " = *" ${1} "* ]] || quit_setup "$1"
 				set_config "$1"
-			elif hash "dotfiles-$1" 2>/dev/null; then
-				cmd="dotfiles-$1"
-				shift
-				$cmd "$@"
-				exit $?
 			else
-				quit_setup
+				set +e
+				shimmer --quiet 'dotfiles-' "$@"
+				if [[ $? -ge 254 ]]
+				then
+					quit_setup
+				else
+					exit $?
+				fi
 			fi
 			;;
 	esac

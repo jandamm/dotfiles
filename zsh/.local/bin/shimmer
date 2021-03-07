@@ -1,0 +1,50 @@
+#!/usr/bin/env zsh
+
+# USAGE:
+# shimmer --quiet 'dotfiles-' "$@"
+#    - This will allow usage of any dotfiles-* in the path
+#
+# `--quiet` must precede the shim
+#    - It will silence all runtime errors of shimmer.
+#    - Setup issues won't be silenced.
+#
+# return codes of the script are >= 253
+#    - 253 -> Wrong implementation
+#    - 254 -> No subcommand provided
+#    - 255 -> No subcommand found
+
+quiet=false
+
+function error() {
+	$quiet || echo $2 >&2
+	exit $1
+}
+
+# Read shimmer config
+if [[ $1 == '--quiet' ]]
+then
+	quiet=true
+	shift
+fi
+
+if [[ -z $1 ]]
+then
+	quiet=false
+	error 253 'Wrong usage: shimmer [--quiet] "command to shim"'
+fi
+
+shim=$1
+shift
+
+# Check shimmed command config
+
+[[ -z $1 ]] && error 254 "No subcommand provided."
+
+cmd=$shim$1
+shift
+
+if ! hash $cmd 2>/dev/null
+then error 255 "Unknown subcommand: $1 ($cmd)."
+fi
+
+$cmd $@
