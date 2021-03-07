@@ -7,26 +7,36 @@ if [ -n "$(git status --porcelain)" ]; then
     exit
 fi
 
-readonly pr_commit="${1:-main}"
+if ! git fetch origin main ; then
+    default=main
+elif ! git fetch origin develop ; then
+    default=develop
+else
+    default=master
+    git fetch origin $default
+fi
 
+readonly pr_commit="${1:-$default}"
+
+readonly remote_url="$(git ls-remote --get-url)"
+
+readonly commit_name="$(git show --no-patch --format="%f" "$pr_commit")"
 # Autogenerate a branch name based on the commit subject.
-readonly branch_name="$(git show --no-patch --format="%f" "$pr_commit")"
+readonly branch_name="$commit_name"
 
 # Create the new branch and switch to it.
-git fetch origin main
-git branch --no-track "$branch_name" origin/main
+git branch --no-track "$branch_name" origin/$default
 git switch "$branch_name"
 
 # Cherry pick the desired commit.
 if ! git cherry-pick "$pr_commit"; then
     git cherry-pick --abort
-    git switch main
+    git switch $default
     git branch -d "$branch_name"
     printf '\033[0;31mCould not cherry-pick commit. There is probably a dependency to a previous commit.\n'
     exit 1
 fi
 
-readonly remote_url="$(git ls-remote --get-url)"
 case "$remote_url" in
     *github.*)
         # Create a new remote branch by the same name.
@@ -38,5 +48,5 @@ case "$remote_url" in
     *) exit 1;;
 esac
 
-# Go back to main branch.
-git switch main
+# Go back to $default branch.
+git switch $default
