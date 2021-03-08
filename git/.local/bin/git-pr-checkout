@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+readonly remote_url="$(git ls-remote --get-url)"
+
+pr_number=$1
+
+case "$remote_url" in
+	*github.*)
+		git fetch origin "pull/123/$pr_number:pr/$pr_number"
+		;;
+	*gitlab.*)
+		echo 'Not yet implemented for gitlab' >&2
+		exit 123 ;;
+esac

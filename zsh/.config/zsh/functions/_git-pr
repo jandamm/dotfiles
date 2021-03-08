@@ -1,7 +1,7 @@
 #compdef git-pr
 
 function _git-pr() {
-	_values command 'new' 'update' 'open'
+	_values command 'new' 'update' 'checkout' 'open'
 }
 
 _git-pr "$@"
