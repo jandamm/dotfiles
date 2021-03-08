@@ -1,40 +1,37 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -euo pipefail
 
+function error() {
+    printf "%s\n" "$2" >&2
+    exit "$1"
+}
+
 if [ -n "$(git status --porcelain)" ]; then
-    echo "Stash before using this script." 2>&1
-    exit
+    error 0 "Stash before using this script."
 fi
 
-if ! git fetch origin main ; then
-    default=main
-elif ! git fetch origin develop ; then
-    default=develop
-else
-    default=master
-    git fetch origin $default
-fi
+readonly default_branch="$(git-pr_default_branch)"
+readonly pr_commit="${1:-$default_branch}"
 
-readonly pr_commit="${1:-$default}"
+readonly branch_name="$(git-pr_branch_name $pr_commit)"
 
-# Autogenerate a branch name based on the commit subject.
-readonly branch_name="$(git show --no-patch --format="%f" "$pr_commit")"
+# Update the remote branch
+git fetch origin "$default_branch"
 
 # Create the new branch and switch to it.
-git branch --no-track "$branch_name" origin/$default
+git branch --no-track "$branch_name" "origin/$default_branch"
 git switch "$branch_name"
 
 # Cherry pick the desired commit.
 if ! git cherry-pick "$pr_commit"; then
     git cherry-pick --abort
-    git switch $default
+    git switch "$default_branch"
     git branch -d "$branch_name"
-    printf '\033[0;31mCould not cherry-pick commit. There is probably a dependency to a previous commit.\n'
-    exit 1
+    error 1 '\033[0;31mCould not cherry-pick commit. There is probably a dependency to a previous commit.'
 fi
 
 git-pr-open --push
 
-# Go back to $default branch.
-git switch $default
+# Go back to $default_branch branch.
+git switch "$default_branch"

@@ -2,19 +2,23 @@
 
 set -euo pipefail
 
+function error() {
+    printf "%s\n" "$2" >&2
+    exit "$1"
+}
+
 if [[ $# -ne 1 ]]; then
-    echo "usage: $0 <pr-commit>" 2>&1
-    exit
+    error 0 "usage: $0 <pr-commit>"
 fi
 
 if [ -n "$(git status --porcelain)" ]; then
-    echo "Stash before using this script." 2>&1
-    exit
+    error 0 "Stash before using this script."
 fi
 
-readonly pr_commit=$1
+readonly default_branch="$(git-pr_default_branch)"
+readonly pr_commit="${1:-$default_branch}"
 
-readonly branch_name="$(git show --no-patch --format="%f" "$pr_commit")"
+readonly branch_name="$(git-pr_branch_name $pr_commit)"
 
 git switch "$branch_name"
 

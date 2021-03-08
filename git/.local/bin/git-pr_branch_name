@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+pr_commit="$1"
+
+# Autogenerate a branch name based on the commit subject.
+readonly commit_name="$(git show --no-patch --format="%f" "$pr_commit")"
+# Add git-flow prefix (if the team has decided gitflow is a thing)
+readonly prefix="$(git config --get gitflow.prefix.feature)"
+echo "$prefix$commit_name"

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Get default branch (git-flow > develop > main > master)
+readonly gitflow_branch="$(git config --get gitflow.branch.develop)"
+if [[ -n "$gitflow_branch" ]] ; then
+    readonly default_branch="$gitflow_branch"
+elif git rev-parse --verify develop &>/dev/null ; then
+    readonly default_branch=develop
+elif git rev-parse --verify main &>/dev/null ; then
+    readonly default_branch=main
+elif git rev-parse --verify aster &>/dev/null ; then
+    readonly default_branch=master
+else
+    error 1 "fatal: couldn't find either ref: develop, main, master. (Only local branches are checked)"
+fi
+
+echo "$default_branch"
