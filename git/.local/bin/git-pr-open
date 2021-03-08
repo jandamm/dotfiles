@@ -1,0 +1,31 @@
+#!/bin/bash
+
+set -euo pipefail
+
+readonly remote_url="$(git ls-remote --get-url)"
+
+push=$1
+function push() {
+    [[ "$push" = '--push' ]]
+}
+
+case "$remote_url" in
+    *github.*)
+        if push
+        then
+            # Create a new remote branch by the same name.
+            git -c push.default=current push
+        fi
+        # Use GitHub's cli to create the PR from the branch.
+        gh pr create --fill
+        ;;
+    *gitlab.*)
+        if ! push
+        then
+            echo 'Gitlab needs a push to create a PR.'
+            read -rp "Continue? (y/n): " yn
+            [[ "$yn" =~ [Yy].* ]] || exit 1
+        fi
+        git -c push.default=current push -o merge_request.create ;;
+    *) exit 1;;
+esac

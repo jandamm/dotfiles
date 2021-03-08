@@ -18,11 +18,8 @@ fi
 
 readonly pr_commit="${1:-$default}"
 
-readonly remote_url="$(git ls-remote --get-url)"
-
-readonly commit_name="$(git show --no-patch --format="%f" "$pr_commit")"
 # Autogenerate a branch name based on the commit subject.
-readonly branch_name="$commit_name"
+readonly branch_name="$(git show --no-patch --format="%f" "$pr_commit")"
 
 # Create the new branch and switch to it.
 git branch --no-track "$branch_name" origin/$default
@@ -37,16 +34,7 @@ if ! git cherry-pick "$pr_commit"; then
     exit 1
 fi
 
-case "$remote_url" in
-    *github.*)
-        # Create a new remote branch by the same name.
-        git -c push.default=current push
-        # Use GitHub's cli to create the PR from the branch.
-        gh pr create --fill
-        ;;
-    *gitlab.*) git -c push.default=current push -o merge_request.create ;;
-    *) exit 1;;
-esac
+git-pr-open --push
 
 # Go back to $default branch.
 git switch $default
