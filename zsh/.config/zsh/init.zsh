@@ -84,7 +84,6 @@ then
 	zgenom clone skywind3000/z.lua
 	zgenom bin raylee/tldr-sh-client tldr
 
-	zgenom load Aloxaf/fzf-tab # Tab completion is working with fzf
 
 	zgenom load zsh-users/zsh-completions src # Load more completions
 
