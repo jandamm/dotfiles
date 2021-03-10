@@ -26,8 +26,8 @@ nnoremap <silent> ]W :tablast<CR>
 " Insert mode
 
 " Make i_CTRL-u and w undoable, C-u also kills whole line
-inoremap <C-u> <C-g>u<C-u><C-o>"_D
-inoremap <C-w> <C-g>u<C-w>
+inoremap        <C-u> <C-g>u<C-u><C-o>"_D
+inoremap <expr> <C-w> pumvisible() ? '<C-e>' : '<C-g>u<C-w>'
 
 " Visual mode
 
