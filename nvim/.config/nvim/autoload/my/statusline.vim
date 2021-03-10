@@ -110,6 +110,7 @@ function! my#statusline#terminal(winnr, active) abort
 	return (a:active ? '%1*' : '')
 				\ .(is_gsh ? 'δ ' : 'λ ')
 				\ .term_title.'%*'
+				\ .(a:active ? my#statusline#part#paste(a:winnr, a:active) : '')
 				\ .'%='
 				\ .my#statusline#part#viewport(a:winnr, a:active)
 endfunction
