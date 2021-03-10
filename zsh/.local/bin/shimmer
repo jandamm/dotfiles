@@ -16,7 +16,7 @@
 quiet=false
 
 function error() {
-	$quiet || echo $2 >&2
+	$quiet || printf "%s\n" $2 >&2
 	exit $1
 }
 
@@ -41,10 +41,10 @@ shift
 [[ -z $1 ]] && error 254 "No subcommand provided."
 
 cmd=$shim$1
-shift
 
-if ! hash $cmd 2>/dev/null
+if ! hash $cmd &>/dev/null
 then error 255 "Unknown subcommand: $1 ($cmd)."
 fi
 
+shift
 $cmd $@
