@@ -1,0 +1,32 @@
+#!/usr/bin/env zsh
+
+set -euo pipefail
+
+readonly remote_url="$1"
+
+function create_pr() {
+    curl -s -o /dev/null -w "%{http_code}" \
+        -X "POST" \
+        "https://bitbucket.org/api/2.0/repositories/$repo/pullrequests" \
+        --netrc \
+        -H 'Content-Type: application/json' \
+        -d "{
+            \"title\": \"$title\",
+            \"description\": \"$desc\",
+            \"close_source_branch\": true,
+            \"source\": { \"branch\": { \"name\": \"$src\" } },
+            \"destination\": { \"branch\": { \"name\": \"$dest\" } }
+        }"
+}
+
+readonly repo=${${remote_url#*bitbucket.org?}%.git}
+readonly title=$(git show -s --format=%s)
+readonly desc=$(git show -s --format=%b)
+readonly dest=$(git-pr_default_branch)
+readonly src=$(git branch --show-current)
+
+readonly stat=$(create_pr)
+if [[ $stat -ge 200 ]] && [[ $stat -le 299 ]]
+then exit 0
+else exit 1
+fi

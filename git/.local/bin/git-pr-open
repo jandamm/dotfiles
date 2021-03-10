@@ -27,5 +27,13 @@ case "$remote_url" in
             [[ "$yn" =~ [Yy].* ]] || exit 1
         fi
         git -c push.default=current push -o merge_request.create ;;
+    *bitbucket.*)
+        if push
+        then
+            git -c push.default=current push
+        fi
+
+        git-pr_open_bitbucket "$remote_url"
+        ;;
     *) exit 1;;
 esac

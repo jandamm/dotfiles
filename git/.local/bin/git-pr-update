@@ -18,7 +18,7 @@ fi
 readonly default_branch="$(git-pr_default_branch)"
 readonly pr_commit="${1:-$default_branch}"
 
-readonly branch_name="$(git-pr_branch_name $pr_commit)"
+readonly branch_name="$(git-pr_branch_name "$pr_commit")"
 
 git switch "$branch_name"
 
