@@ -25,7 +25,6 @@ call packager#add('tpope/vim-speeddating') " Fix i_Ctrl+a for dates
 call packager#add('tpope/vim-commentary') " gc to comment in/out
 call packager#add('godlygeek/tabular') " ga to align
 call packager#add('tpope/vim-endwise') " Insert endif etc automatically
-call packager#add('psliwka/vim-smoothie') " Smoother scrolling
 call packager#add('tpope/vim-abolish') " Better :s/abba/bobby/g with :S/{a,A}bba/{b,B}obby/g
 call packager#add('jandamm/vim-abolisher', { 'do': 'make build' }) " Faster vim-abolish!
 call packager#add('tpope/vim-unimpaired') " Better [] mappings
@@ -94,6 +93,7 @@ Pack 'tpope/vim-git'
 " Pack 'plasticboy/vim-markdown'
 " Pack 'gabrielelana/vim-markdown'
 Pack 'keith/swift.vim'
+Pack 'cespare/vim-toml'
 Pack 'keith/xcconfig.vim'
 
 " Vim Plugins
