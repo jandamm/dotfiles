@@ -1,24 +1,3 @@
 #!/usr/bin/env bash
 
-function error(){
-	red="\e[1;31m"
-	reset="\e[0m"
-	printf "${red}%s${reset}\n" "$1" >&2
-	exit 1
-}
-
-dir="${0%/*}"
-for cmd in $( rg --glob='neovim-*' --files --follow --max-depth=1 "$dir" 2>/dev/null )
-do
-	if [ "$cmd" = "$dir/neovim-$1" ]; then
-		command="$cmd"
-		shift
-		break
-	fi
-done
-
-if [ -n "$command" ]; then
-	$command "$@"
-else
-	error "Unknown command: neovim $1"
-fi
+shimmer 'neovim-' "$@"
