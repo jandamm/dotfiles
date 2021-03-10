@@ -1,7 +1,16 @@
 #compdef git-pr
 
-function _git-pr() {
-	_values command 'new' 'update' 'checkout' 'open'
+_arguments '1: :->cmd' '2: :->arg1'
+
+function _last_refs() {
+	_values refs $(git log --format='%h' head...origin/head)
 }
 
-_git-pr "$@"
+if [[ $state = 'cmd' ]]; then
+	_values command 'new' 'update' 'checkout' 'open'
+else
+	case $line[1] in
+		new|update)  _last_refs;;
+		open) _values option --pull;;
+	esac
+fi
