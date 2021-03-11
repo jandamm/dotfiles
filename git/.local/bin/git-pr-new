@@ -7,7 +7,7 @@ function error() {
     exit "$1"
 }
 
-if [ -n "$(git status --porcelain)" ]; then
+if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
     error 0 "Stash before using this script."
 fi
 

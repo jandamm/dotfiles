@@ -11,7 +11,7 @@ if [[ $# -ne 1 ]]; then
     error 0 "usage: $0 <pr-commit>"
 fi
 
-if [ -n "$(git status --porcelain)" ]; then
+if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
     error 0 "Stash before using this script."
 fi
 
