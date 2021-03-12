@@ -84,6 +84,7 @@ then
 	zgenom clone skywind3000/z.lua
 	zgenom bin raylee/tldr-sh-client tldr
 
+	zgenom load jandamm/git-pr
 
 	zgenom load zsh-users/zsh-completions src # Load more completions
 

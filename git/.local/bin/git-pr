@@ -1,3 +1,0 @@
-#!/usr/bin/env zsh
-
-shimmer git-pr- $@
