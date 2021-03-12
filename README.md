@@ -2,8 +2,8 @@
 
 ## Full installation
 
-- `git clone --recurse-submodules git@github.com:jandamm/dotfiles.git ~/.dotfiles`
-- `cd ~/.dotfiles && ./zsh/.local/bin/dotfiles install`
+- `git clone git@github.com:jandamm/dotfiles.git ~/.dotfiles`
+- `cd ~/.dotfiles && ./dotfiles install`
 
 ### Use zsh from Homebrew as login shell
 
@@ -16,7 +16,8 @@
 
 ## Introduce new files
 
-`dotfiles stow`
+- `dotfiles add` to add existing files to ~/.dotfiles
+- `dotfiles stow` after creating files inside ~/.dotfiles
 
 ## Excluding folders
 

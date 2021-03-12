@@ -1,0 +1,401 @@
+#!/bin/bash
+
+set -e
+
+# Switch to correct folder
+if [ -z "$DOTFILES" ]
+then
+	echo "Not yet set up. Sourcing zprofile"
+	# shellcheck source=../../.config/zsh/zprofile.zsh
+	source "${0%/*}/../../.config/zsh/zprofile.zsh"
+fi
+
+cd "$DOTFILES" || exit
+
+# Possible configurations {{{
+
+all_config=( brew gem npm pip )
+all_dirs=()
+
+for folder in */
+do
+	if [[ ! -e "$folder.nostow" ]]; then
+		all_config+=("${folder%/}")
+		all_dirs+=("${folder%/}")
+	fi
+done
+
+if [ "$1" = "--list" ]; then
+	echo "${all_config[*]}"
+	exit
+elif [ "$1" = "--list-dirs" ]; then
+	echo "${all_dirs[*]}"
+	exit
+fi
+
+# }}}
+
+# Helper functions {{{
+
+function quit_setup() {
+	[ -n "$1" ] && echo "Unknown Config: $1"
+	echo "Usage:"
+	echo "  dotfile-setup 'mode'"
+	echo "Modes: stow, install & update"
+	echo "Configurations (optional):"
+	echo "${all_config[*]}"
+	exit 1
+}
+
+mode=-1
+
+function is_install() {
+	[ $mode -eq 1 ]
+}
+
+function is_update() {
+	[ $mode -eq 2 ]
+}
+
+function should_configure() {
+	[ $mode -ge 1 ] && has_config "$1" && printf '\n==================== %s ====================\n' "$1"
+}
+
+function has_mode() {
+	[ $mode -ge 0 ]
+}
+
+function set_mode() {
+	[ $mode -eq -1 ] || quit_setup
+	mode=$1
+}
+
+config=()
+
+function set_config() {
+	config+=("$1")
+}
+
+function has_config() {
+	[[ " ${config[*]} " = *" ${1} "* ]]
+}
+
+# }}}
+
+while [ -n "$1" ]
+do
+	case "$1" in
+		stow)
+			set_mode 0;;
+		install)
+			set_mode 1;;
+		update)
+			set_mode 2;;
+		*)
+			if has_mode; then
+				[[ " ${all_config[*]} " = *" ${1} "* ]] || quit_setup "$1"
+				set_config "$1"
+			else
+				set +e
+				shimmer --quiet 'dotfiles-' "$@"
+				if [[ $? -ge 254 ]]
+				then
+					quit_setup
+				else
+					exit $?
+				fi
+			fi
+			;;
+	esac
+	shift
+done
+
+has_mode || quit_setup
+
+# Set all configs if none specified
+[ ${#config[@]} -eq 0 ] && config=( "${all_config[*]}" )
+
+# Setup environment {{{
+
+# Install homebrew if not available
+if ! hash brew &>/dev/null; then
+	url='https://raw.githubusercontent.com/Homebrew/install/master/install.sh'
+	echo 'Install homebrew before continuing with this setup.'
+	echo "Do you wish to install brew now? ($url)"
+	read -rp "(y/n): " yn
+	case ${yn^^} in
+		Y) /bin/bash -c "$(curl -fsSL $url)";;
+		*) exit 1;;
+	esac
+fi
+
+if is_install; then
+	# Install mas via brew, if not installed.
+	if ! hash mas &>/dev/null; then
+		echo 'Installing brew "mas"'
+		brew install mas
+	fi
+
+	# Install gnu-stow via brew, if not installed.
+	if ! hash stow &>/dev/null; then
+		echo 'Installing brew "stow"'
+		brew install stow
+	fi
+fi
+
+# }}}
+
+
+# INSTALLATION
+
+# Install brews {{{
+
+function brew_install() {
+	if [ -f "$1" ]
+	then
+		for formula in $(command cat "$1" | grep -E "args.*'HEAD'" | sed "s/brew '\(.*\)',.*/\1/"); do
+			brew upgrade "$formula" --fetch-HEAD || true
+		done
+
+		echo "$2"
+		brew bundle install --no-lock --file "$1"
+	fi
+}
+
+if should_configure brew
+then
+	brew_install "$DOTFILES/Brewfile" 'Installing brews'
+	brew_install "$DOTFILES/private/.Brewfile" 'Installing private brews'
+	brew cleanup
+fi
+
+# uninstall git completions as zsh completions are way better!
+rm /usr/local/share/zsh/site-functions/_git 2>/dev/null || true
+
+# }}}
+
+# Install gems {{{
+
+if should_configure gem
+then
+	if is_install
+	then
+		echo "Installing missing ruby with rbenv"
+		# installs ruby version in ~/.ruby-version
+		rbenv install --skip-existing
+
+		echo 'Installing gems'
+		bundle install
+	fi
+
+	if is_update
+	then
+		echo 'Updating gems'
+		bundle update
+	fi
+
+	rbenv init - --no-rehash zsh > "$XDG_DATA_HOME/zsh/generated/rbenv.zsh"
+fi
+
+rbenv rehash
+
+# }}}
+
+# Install npms {{{
+
+if should_configure npm
+then
+	echo 'Installing npms'
+	npm install --global npm
+	#shellcheck disable=SC2046
+	npm install --global $(command cat "$DOTFILES/node_modules")
+
+	if is_update
+	then
+		echo 'Updating npms'
+		#shellcheck disable=SC2046
+		npm update --global $(command cat "$DOTFILES/node_modules")
+	fi
+fi
+
+# }}}
+
+# Install pips {{{
+
+if should_configure pip
+then
+	if is_install
+	then
+		echo 'Installing pips'
+		pip3 install -r "$DOTFILES/pip3-requirements"
+	fi
+
+	if is_update
+	then
+		echo 'Updating pips'
+		pip3 install -U -r "$DOTFILES/pip3-requirements"
+	fi
+fi
+
+# }}}
+
+
+# CONFIGURATION
+
+# ALACRITTY {{{
+
+if should_configure alacritty
+then
+	if is_install
+	then
+		# Set font rendering for non retina
+		defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
+	fi
+	echo 'Updating alacritty completion.'
+	aria2c https://raw.githubusercontent.com/alacritty/alacritty/master/extra/completions/_alacritty -d "$XDG_DATA_HOME/zsh/generated/functions" --console-log-level=warn --allow-overwrite
+fi
+
+# }}}
+
+# BAT {{{
+
+if should_configure bat
+then
+	# recompile with theme
+	bat cache --build
+fi
+
+# }}}
+
+# IOS {{{
+
+if should_configure ios
+then
+	if is_install
+	then
+		echo 'Set Xcode to show build times.'
+		defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
+		git clone https://github.com/XVimProject/XVim2.git "$XDG_DATA_HOME/xvim/sources"
+	fi
+	echo 'Generate "xcodes" completion.'
+	mkdir -p "$XDG_DATA_HOME/zsh/generated/functions"
+	xcodes --generate-completion-script > "$XDG_DATA_HOME/zsh/generated/functions/_xcodes"
+fi
+
+# }}}
+
+# NVIM {{{
+
+if should_configure nvim
+then
+	nvim_update_file="$(mktemp)"
+	trap 'rm "$nvim_update_file"' EXIT
+
+	if is_install
+	then
+		mkdir -p "$XDG_DATA_HOME/nvim/undo"
+
+		if [ ! -d "$XDG_DATA_HOME/nvim/site/pack/packager/opt/vim-packager" ]
+		then
+			git clone https://github.com/kristijanhusak/vim-packager "$XDG_DATA_HOME/nvim/site/pack/packager/opt/vim-packager"
+		fi
+
+		echo 'Installing vim plugins'
+		nvim --headless --noplugin -u nvim/.config/nvim/plugins.vim "$nvim_update_file" "+call packager#install({ 'on_finish': \"source $DOTFILES/scripts/print_update.vim\" })" &>/dev/null
+
+		for file in vim/spell/*.add; do
+			echo 'Compiling vim Spellfiles'
+			nvim "+mkspell! $file" +qa
+		done
+	fi
+
+	if is_update
+	then
+		echo 'Updating vim plugins'
+		nvim --headless --noplugin -u nvim/.config/nvim/plugins.vim "$nvim_update_file" "+call packager#update({ 'on_finish': \"source $DOTFILES/scripts/print_update.vim\" })" &>/dev/null
+	fi
+
+	cat "$nvim_update_file"
+
+	echo 'Updating vim-pack tags'
+	neovim-packtags
+fi
+
+# }}}
+
+# ZSH {{{
+
+function generate_zlua() {
+	lua "$XDG_DATA_HOME/zgenom/sources/skywind3000/z.lua/___/z.lua" --init zsh enhanced > "$XDG_DATA_HOME/zsh/generated/zlua.zsh"
+}
+function zgen_comp() {
+	zsh -c "source $XDG_DATA_HOME/zgenom/zgen.zsh && zgen compile $1"
+}
+if should_configure zsh
+then
+	stow zsh
+
+	if is_install
+	then
+		mkdir -p "$XDG_CACHE_HOME/zsh"
+		mkdir -p "$XDG_DATA_HOME/zsh/generated"
+		git clone https://github.com/jandamm/zgenom.git "$XDG_DATA_HOME/zgenom"
+
+		echo 'Installing zsh plugins'
+		zsh -c "source $DOTFILES/zsh/.config/zsh/.zshrc"
+
+		generate_zlua
+	fi
+
+	if is_update
+	then
+		echo 'Cleaning zsh plugins'
+		zsh -c "source $XDG_DATA_HOME/zgenom/zgen.zsh && zgenom clean"
+
+		echo 'Updating zgenom'
+		zsh -c "source $XDG_DATA_HOME/zgenom/zgen.zsh && zgenom selfupdate"
+
+		echo 'Updating zsh plugins'
+		zsh -c "source $XDG_DATA_HOME/zgenom/zgen.zsh && zgenom update"
+
+		generate_zlua
+
+		echo 'Recreate zsh plugins cache'
+		zsh -c "source $DOTFILES/zsh/.config/zsh/init.zsh"
+	fi
+fi
+
+# }}}
+
+for c in ${config[*]}
+do
+	if [[ -d "$c" ]]; then
+		if [[ -z "$stowing" ]]; then
+			echo '' && echo 'Putting files into place for:'
+			stowing=yes
+		fi
+		echo "  - $c"
+		dotfiles-stow --force "$c"
+	fi
+done
+
+if has_config zsh
+then
+	echo '' && echo 'Recompile zsh dotfiles'
+	zgen_comp "$HOME/.zshenv"
+	zgen_comp "$XDG_CONFIG_HOME/zsh"
+	zgen_comp "$XDG_DATA_HOME/zsh/generated"
+fi
+
+if is_install
+then
+	echo '' && echo 'Do you want to use zsh from homebrew as your default shell?'
+	read -rp "(y/n): " yn
+	if [ "${yn^^}" = 'Y' ]
+	then
+		sudo sh -c 'echo "/usr/local/bin/zsh" >> /etc/shells'
+		chsh -s /usr/local/bin/zsh
+	fi
+fi
+
+# vim:set foldmethod=marker:
