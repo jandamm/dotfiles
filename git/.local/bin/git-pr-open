@@ -11,6 +11,11 @@ function push() {
 
 case "$remote_url" in
     *github.*)
+        if ! hash gh &>/dev/null
+        then
+            printf 'gh needs to be installed. (brew install gh)\nSee https://github.com/cli/cli\n' >&2
+            exit 1
+        fi
         if push
         then
             # Create a new remote branch by the same name.
