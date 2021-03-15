@@ -1,8 +1,3 @@
-if exists('g:autoloaded_my_session')
-	finish
-endif
-let g:autoloaded_my_session = 1
-
 let s:sessions_dir = expand('$XDG_DATA_HOME/nvim/session/')
 
 " Create a session for the current dir
@@ -76,23 +71,23 @@ function! s:list(filter) abort
 		let session = substitute(g:this_obsession, '^'.s:sessions_dir, '', '')
 		let files = filter(files, 'v:val !=# "'.session.'"')
 	endif
-	return map(files, { _, val -> s:unescape(val) })
+	return map(files, { _, val -> substitute(s:unescape(val), '\.vim$', '', '') })
 endfunction
 
 function! my#sessions#complete(arglead, cmdline, cursorpos) abort
 	" Convert glob to regex and don't require end of line
 	let input = substitute(glob2regpat(a:arglead), '\v(^\^|\$$)', '', 'g')
-	return filter(my#sessions#list(), 'v:val =~ "'.input.'.*\.vim$"')
+	return filter(my#sessions#list(), 'v:val =~ "'.input.'.*"')
 endfunction
 
 function! s:cur_session_file() abort
-	return s:session_file(getcwd().'.vim')
+	return s:session_file(getcwd())
 endfunction
 
 function! s:session_file(path) abort
 	return empty(a:path)
 				\ ? s:cur_session_file()
-				\ : s:sessions_dir . s:escape(substitute(a:path, '^'.s:sessions_dir, '' ,''))
+				\ : s:sessions_dir . s:escape(substitute(a:path, '^'.s:sessions_dir, '' ,'').'.vim')
 endfunction
 
 function! s:escape(path) abort
