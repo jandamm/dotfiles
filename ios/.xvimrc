@@ -3,6 +3,7 @@
 
 " MARK: CONFIGURE
 set relativenumber
+set clipboard=unnamed
 
 " MARK: Mapping
 nnoremap U <C-r>
