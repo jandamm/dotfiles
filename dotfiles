@@ -10,12 +10,12 @@ then
 	source "${0%/*}/../../.config/zsh/zprofile.zsh"
 fi
 
-cd "$DOTFILES" || exit
-
 # Possible configurations {{{
 
 all_config=( brew gem npm pip )
 all_dirs=()
+
+pushd "$DOTFILES" >/dev/null
 
 for folder in */
 do
@@ -32,6 +32,8 @@ elif [ "$1" = "--list-dirs" ]; then
 	echo "${all_dirs[*]}"
 	exit
 fi
+
+popd >/dev/null
 
 # }}}
 
@@ -109,6 +111,8 @@ do
 	esac
 	shift
 done
+
+cd "$DOTFILES" || exit
 
 has_mode || quit_setup
 
