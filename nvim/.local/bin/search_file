@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+filename=$1
+dir=${${2:-$(pwd)}:A}
+file=$dir/$filename
+
+while [ ! -f $file ]
+do
+	[ ! $dir = '/' ] || exit 1
+	dir="${dir:h}"
+	file="${dir%/}/$filename"
+done
+
+echo $file

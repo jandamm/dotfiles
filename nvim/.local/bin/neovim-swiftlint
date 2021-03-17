@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 
-# shellcheck source=../scripts/files.sh
-source "$DOTFILES/scripts/files.sh"
-
 # If no file is provided pwd will be linted and checked for config
 FILE="$1"
 filename='.swiftlint.yml'
 
-CONFIG=$(get_config_file "$filename" "$FILE")
+CONFIG=$(search_file "$filename" "$FILE")
 
 # Swiftlint does not support global configs. Otherwise it will find the correct config.
 if [ -f "$CONFIG" ] && [ "$CONFIG" == "$HOME/$filename" ]

@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# shellcheck source=../scripts/files.sh
-source "$DOTFILES/scripts/files.sh"
-
 git_root="$(git rev-parse --show-toplevel)"
 cmd="$git_root/Pods/SwiftFormat/CommandLineTool/swiftformat"
 
@@ -15,7 +12,7 @@ FILE="$1"
 shift
 filename='.swiftformat'
 
-CONFIG=$(get_config_file "$filename" "$FILE")
+CONFIG=$(search_file "$filename" "$FILE")
 
 if [ -f "$CONFIG" ]
 then
