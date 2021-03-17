@@ -6,8 +6,8 @@ set -e
 if [ -z "$DOTFILES" ]
 then
 	echo "Not yet set up. Sourcing zprofile"
-	# shellcheck source=../../.config/zsh/zprofile.zsh
-	source "${0%/*}/../../.config/zsh/zprofile.zsh"
+	# shellcheck source=zsh/.config/zsh/zprofile.zsh
+	source "${0%/*}zsh/.config/zsh/zprofile.zsh"
 fi
 
 # Possible configurations {{{
@@ -305,7 +305,7 @@ then
 		fi
 
 		echo 'Installing vim plugins'
-		nvim --headless --noplugin -u nvim/.config/nvim/plugins.vim "$nvim_update_file" "+call packager#install({ 'on_finish': \"source $DOTFILES/scripts/print_update.vim\" })" &>/dev/null
+		nvim --headless --noplugin -u nvim/.config/nvim/plugins.vim "$nvim_update_file" "+call packager#install({ 'on_finish': \"source $DOTFILES/resources/print_update.vim\" })" &>/dev/null
 
 		for file in vim/spell/*.add; do
 			echo 'Compiling vim Spellfiles'
@@ -316,7 +316,7 @@ then
 	if is_update
 	then
 		echo 'Updating vim plugins'
-		nvim --headless --noplugin -u nvim/.config/nvim/plugins.vim "$nvim_update_file" "+call packager#update({ 'on_finish': \"source $DOTFILES/scripts/print_update.vim\" })" &>/dev/null
+		nvim --headless --noplugin -u nvim/.config/nvim/plugins.vim "$nvim_update_file" "+call packager#update({ 'on_finish': \"source $DOTFILES/resources/print_update.vim\" })" &>/dev/null
 	fi
 
 	cat "$nvim_update_file"
