@@ -10,7 +10,7 @@ CompilerSet errorformat=
 			\%E%f:%l:%c:\ error:\ %m,
 			\%E%f:%l:\ error:\ %m,
 			\%E%f:\ error:\ %m,
-			\%Eerror:\ %m,
 			\%W%f:%l:%c:\ warning:\ %m,
 			\%Z%\s%#^~%#,
+			\%Eerror:\ %m,
 			\%-G%.%#
