@@ -32,6 +32,7 @@ brew 'renameutils'
 brew 'ripgrep'
 brew 'shellcheck'
 brew 'stow'
+brew 'swift-sh'
 brew 'swiftformat'
 brew 'swiftlint'
 brew 'universal-ctags', args: ['HEAD']
