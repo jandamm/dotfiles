@@ -77,6 +77,9 @@
 [merge]
 	ff = false
 	tool = fugitive
+[mergetool]
+	# Don't ask before opening the next file
+	prompt = false
 [mergetool "fugitive"]
 	cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
 [mergetool "ksdiff"]
