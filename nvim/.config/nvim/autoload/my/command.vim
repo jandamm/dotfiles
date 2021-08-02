@@ -56,6 +56,11 @@ function! my#command#swap(bang, l1, l2, ...) abort
 	endtry
 endfunction
 
+function! my#command#substitute_range(l1, l2, search, pat, ...) abort
+	let rep = a:0 == 0 ? '' : a:1
+	execute a:l1.','.a:l2.'substitute/'.a:search.'/\=substitute(submatch(0),"'.a:pat.'","'.rep.'","g")/g'
+endfunction
+
 function! my#command#tree(vertical, ...) abort
 	let path = a:0 ? fnamemodify(expand(a:1), ':p') : '.'
 	call my#util#temp_buffer(a:vertical)
