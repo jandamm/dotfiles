@@ -7,7 +7,6 @@ tap 'homebrew/core'
 
 # Third party taps
 tap 'robotsandpencils/made'
-tap 'universal-ctags/universal-ctags'
 
 brew 'ack'
 brew 'aria2' # Faster downloads for xcodes
@@ -35,7 +34,7 @@ brew 'stow'
 brew 'swift-sh'
 brew 'swiftformat'
 brew 'swiftlint'
-brew 'universal-ctags', args: ['HEAD']
+brew 'universal-ctags'
 brew 'wget'
 brew 'xcodes'
 brew 'yamllint'
