@@ -3,15 +3,10 @@
 set -e
 
 selection=$1
-xvim_dir=$XDG_DATA_HOME/xvim/sources
 
 function set_xcode_info() {
 	xcode_path=$(xcode-select -p)
 	xcode_version=${${xcode_path#*/Xcode-}%\.app*}
-}
-
-function is_patched() {
-	[[ -f $xvim_dir/../v$xcode_version ]]
 }
 
 function is_installed() {
@@ -24,18 +19,10 @@ if [[ -n $selection ]]; then
 	selection="$selection[1].${selection[2]:-0}.${selection[3]:-0}"
 fi
 
-# Clean up
-setopt extendedglob nullglob
-for patched_version in $xvim_dir/../v[1-2]*; do
-	if ! is_installed ${patched_version#$xvim_dir/../v}; then
-		rm $version
-	fi
-done
-
 set_xcode_info
 
 # selected current or none and current is not patched
-if [[ $selection = $xcode_version ]] || ([[ -z $selection ]] && ! is_patched); then
+if [[ $selection = $xcode_version ]]; then
 	echo "Using current Xcode version: \"$xcode_version\""
 else
 
@@ -55,17 +42,5 @@ else
 	fi
 
 	set_xcode_info
+	echo "Using \"Xcode $xcode_version\""
 fi
-
-if is_patched; then
-	echo "The version \"$xcode_version\" is already patched."
-	exit 1
-fi
-echo Using \"Xcode $xcode_version\"
-
-sudo codesign -f -s XcodeSign ${xcode_path%/Contents/Developer}
-
-cd $xvim_dir
-make
-
-touch $xvim_dir/../v$xcode_version
