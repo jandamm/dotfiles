@@ -36,7 +36,10 @@ else
 
 	# selected version is not installed
 	else
-		xcodes install $selection
+		if ! xcodes install $selection; then
+			xcodes update
+			xcodes install $selection
+		fi
 		xcodes select $selection
 		xcode-select --install
 	fi
