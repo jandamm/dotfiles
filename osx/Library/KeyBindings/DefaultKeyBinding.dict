@@ -1,0 +1,17 @@
+// https://github.com/ttscoff/KeyBindings
+// http://xahlee.info/kbd/osx_keybinding_action_code.html
+
+{
+// Emacs Move
+"^a" = (moveToBeginningOfParagraph:);
+"^b" = (moveBackward:);
+"~b" = (moveWordBackward:);
+"^e" = (moveToEndOfParagraph:);
+"^f" = (moveForward:);
+"~f" = (moveWordForward:);
+
+// Delete
+"^w" = (deleteWordBackward:);
+// delete whole line
+"^u" = (selectParagraph:, delete:, moveToBeginningOfParagraph:);
+}

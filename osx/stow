@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+
+dotfiles-stow-copy osx DefaultKeyBinding.dict
