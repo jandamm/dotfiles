@@ -9,7 +9,10 @@ function _dotfiles-add() {
 	esac
 }
 function _dotfiles-xcode() {
-	_values version ${${$(print -rl /Applications/Xcode_*.app)#/Applications/Xcode_}%\.app}
+	local versions=(${${$(print -rl /Applications/Xcode-*.app)#/Applications/Xcode-}%\.app})
+	if [[ -n $versions ]]; then
+		_values version $versions
+	fi
 }
 function _dotfiles-stow() {
 	_values config $(dotfiles --list-dirs)
