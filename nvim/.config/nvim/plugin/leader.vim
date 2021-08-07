@@ -79,9 +79,9 @@ let g:lmap.g.h.u = 'Undo'
 " }}}2
 " Leader G L {{{2
 let g:lmap.g.l = { 'name': 'log' }
-nmap <silent> <Leader>glf        :0Gclog<CR>
+nmap <silent> <Leader>glf        :0Gclog -n 100<CR>
 let g:lmap.g.l.f = 'File'
-nmap <silent> <Leader>gll        :Gclog<CR>
+nmap <silent> <Leader>gll        :Gclog -n 100<CR>
 " }}}2
 nmap <silent> <Leader>gp         :G push<CR>
 nmap <silent> <Leader>gr         :G rebase<CR>
