@@ -832,8 +832,12 @@ key_bindings:
   #- { key: B,              mods: Command, mode: ~Search,     action: SearchBackward   }
 
   # https://stackoverflow.com/a/42461580
-  - { key: Return,   mods: Shift,   chars: "\x1b[13;2u" } # Allow mapping <S-CR> in vim
-  - { key: Return,   mods: Control, chars: "\x1b[13;5u" } # Allow mapping <C-CR> in vim
+  # `brew install key-codes` is an easy way to find keycodes.
+  #                                               13 is unicode Enter (2u probably shift)
+  - { key: Return,    mods: Shift,   chars: "\x1b[13;2u"            } # Allow mapping <S-CR> in vim
+  - { key: Return,    mods: Control, chars: "\x1b[13;5u"            } # Allow mapping <C-CR> in vim
+  - { key: Escape,    mods: Control, chars: "\x1b[92;5u\x1b[110;5u" } # Map <C-ESC> to leave nvims terminal mode
+
 #debug:
   # Display the time it takes to redraw each frame.
   #render_timer: false
