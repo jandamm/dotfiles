@@ -379,7 +379,7 @@ do
 			stowing=yes
 		fi
 		echo "  - $c"
-		dotfiles-stow --force "$c"
+		dotfiles-stow "$c"
 	fi
 done
 
