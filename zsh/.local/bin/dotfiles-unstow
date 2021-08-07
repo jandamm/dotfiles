@@ -1,0 +1,33 @@
+#!/usr/bin/env zsh
+
+set -eu
+
+function error() {
+	echo $2 >&2
+	exit $1
+}
+
+cd $DOTFILES || exit 1
+
+case $# in
+	1) stow_dir=$1 ;;
+	0)
+		for dir in ${(s: :)$(dotfiles --list-dirs)}
+		do
+			$0 $dir
+		done
+		exit
+		;;
+	*)
+		for dir in ${@}
+		do
+			$0 $dir
+		done
+		exit ;;
+esac
+
+if [[ -x $stow_dir/unstow ]]; then
+	$stow_dir/unstow
+else
+	stow -D $stow_dir
+fi

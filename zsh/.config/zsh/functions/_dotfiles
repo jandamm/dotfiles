@@ -22,11 +22,11 @@ function _dotfiles-default() {
 }
 
 if [[ $state = 'cmd' ]]; then
-	_values command 'stow' 'install' 'update' 'add' 'xcode'
+	_values command 'stow' 'unstow' 'install' 'update' 'add' 'xcode'
 else
 	case $line[1] in
 		add)  _dotfiles-add;;
-		stow) _dotfiles-stow;;
+		stow | unstow) _dotfiles-stow;;
 		xcode) _dotfiles-xcode;;
 		*)    _dotfiles-default;;
 	esac
