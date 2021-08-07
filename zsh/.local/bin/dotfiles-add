@@ -15,9 +15,15 @@ new_file=${2:A}
 
 avail_dirs=$(dotfiles --list-dirs)
 if [[ ! " ${avail_dirs[*]} " = *" $stow_dir "* ]]; then
-	echo "Invalid directory: $stow_dir."
-	echo "Must be one of: $avail_dirs."
-	exit 2
+	if read -q "REPLY?'$stow_dir' does not exist. Do you want to create it?"; then
+		echo
+		mkdir $DOTFILES/$stow_dir
+	else
+		echo "\n"
+		echo "Invalid directory: $stow_dir."
+		echo "Must be one of: $avail_dirs."
+		exit 2
+	fi
 fi
 
 if [[ ! -e $new_file ]]; then
