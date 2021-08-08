@@ -331,8 +331,8 @@ fi
 function generate_zlua() {
 	lua "$XDG_DATA_HOME/zgenom/sources/skywind3000/z.lua/___/z.lua" --init zsh enhanced > "$XDG_DATA_HOME/zsh/generated/zlua.zsh"
 }
-function zgen_comp() {
-	zsh -c "source $XDG_DATA_HOME/zgenom/zgen.zsh && zgen compile $1"
+function zgenom_comp() {
+	zsh -c "source $XDG_DATA_HOME/zgenom/zgenom.zsh && zgenom compile $1"
 }
 if should_configure zsh
 then
@@ -353,13 +353,13 @@ then
 	if is_update
 	then
 		echo 'Cleaning zsh plugins'
-		zsh -c "source $XDG_DATA_HOME/zgenom/zgen.zsh && zgenom clean"
+		zsh -c "source $DOTFILES/zsh/.config/zsh/init.zsh &>/dev/null && source $XDG_DATA_HOME/zgenom/zgenom.zsh && zgenom clean"
 
 		echo 'Updating zgenom'
-		zsh -c "source $XDG_DATA_HOME/zgenom/zgen.zsh && zgenom selfupdate"
+		zsh -c "source $XDG_DATA_HOME/zgenom/zgenom.zsh && zgenom selfupdate"
 
 		echo 'Updating zsh plugins'
-		zsh -c "source $XDG_DATA_HOME/zgenom/zgen.zsh && zgenom update"
+		zsh -c "source $XDG_DATA_HOME/zgenom/zgenom.zsh && zgenom update"
 
 		generate_zlua
 
@@ -385,9 +385,9 @@ done
 if has_config zsh
 then
 	echo '' && echo 'Recompile zsh dotfiles'
-	zgen_comp "$HOME/.zshenv"
-	zgen_comp "$XDG_CONFIG_HOME/zsh"
-	zgen_comp "$XDG_DATA_HOME/zsh/generated"
+	zgenom_comp "$HOME/.zshenv"
+	zgenom_comp "$XDG_CONFIG_HOME/zsh"
+	zgenom_comp "$XDG_DATA_HOME/zsh/generated"
 fi
 
 if is_install
