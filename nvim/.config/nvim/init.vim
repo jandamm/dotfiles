@@ -40,8 +40,8 @@ set wildignore+=.hg,.git,.svn                          " Version control
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg         " binary images
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest,*.pyc " compiled object files
 set wildignore+=*.spl,*.zwc                            " compiled files
-set wildignore+=tags
-set wildignore+=Pods/*
+set wildignore+=tags,*.orig
+set wildignore+=Pods/*,*.xcassets/*
 
 " }}}
 
