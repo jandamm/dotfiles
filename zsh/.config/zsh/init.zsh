@@ -54,6 +54,9 @@ fpath=("$ZDOTDIR/functions" $fpath)
 # adds @(|) *(|) ?(|) +(|) which translate to regex: (|) (|)* (|)? (|)+
 setopt extendedglob
 
+# automatically cd into a folder by just providing a path
+setopt autocd
+
 # Use same characters for words like vi
 export WORDCHARS='@_'
 
