@@ -136,6 +136,7 @@ compdef _gnu_generic \
 	ack aria2c \
 	bat \
 	fd fzf \
+	ksdiff \
 	pod \
 	swiftformat \
 	xcpretty xed
