@@ -89,9 +89,9 @@ then
 
 	zgenom load jandamm/git-pr
 
-	zgenom load zsh-users/zsh-completions src # Load more completions
+	zgenom load zsh-users/zsh-completions # Load more completions
 
-	zgenom load junegunn/fzf shell/completion.zsh # **TAB to completion options in fzf (not 100% working with fzf-tab, still better than without)
+	zgenom load junegunn/fzf shell/completion.zsh # **TAB to completion options in fzf
 	zgenom load junegunn/fzf shell/key-bindings.zsh # ^t to list all files from ./ in fzf
 
 	zgenom load jandamm/per-directory-history # History is saved per directory
