@@ -18,11 +18,15 @@
     "template": ["if exists('g:loaded_ft_{basename}')", "\tfinish", "endif", "let g:loaded_ft_{basename} = 1"]
   },
   ".config/nvim/init.vim"                : { "type" : "init"       },
+  ".config/nvim/lua/my/*.lua"            : { "type" : "lua"        },
   ".config/nvim/projplugin/*.vim"        : { "type" : "projplugin" },
   ".config/nvim/plugin/*.vim"            : { "type" : "plugin",
     "alternate": ".config/nvim/autoload/my/{}.vim",
     "related": [".config/nvim/after/plugin/{}.vim", ".config/nvim/autoload/my/{}.vim"],
     "template": ["if exists('g:loaded_{basename}')", "\tfinish", "endif", "let g:loaded_{basename} = 1"]
+  },
+  ".config/nvim/plugin/*.lua"            : { "type" : "plugin",
+    "alternate": ".config/nvim/lua/my/{}.lua"
   },
   "../private/.config/nvim/*.vim"        : { "type" : "private"    },
   ".config/nvim/syntax/*.vim"            : { "type" : "syntax"     },
