@@ -59,8 +59,10 @@ let g:lmap.g.c = 'Show commit'
 
 " Leader G D {{{2
 let g:lmap.g.d = { 'name': 'diff' }
-nmap <silent> <Leader>gdd        :Gvdiffsplit!<CR>
+nmap <silent> <Leader>gdd        <CMD>DiffviewOpen<CR>
 let g:lmap.g.d.d = 'Diff'
+nmap <silent> <Leader>gdf        :Gvdiffsplit!<CR>
+let g:lmap.g.d.f = 'Diff with Fugitive'
 nmap <silent> <Leader>gdk        :G ksdiffall<CR>
 let g:lmap.g.d.k = 'Kaleidoscope'
 nmap <silent> <Leader>gdo        :SignifyFold!<CR>

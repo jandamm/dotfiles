@@ -53,6 +53,7 @@ Pack 'tpope/vim-projectionist' " Projects in vim
 Pack 'unblevable/quick-scope' " Highlight targets for f
 Pack 'easymotion/vim-easymotion' " Faster cursor movement
 Pack 'mhinz/vim-grepper'
+Pack 'sindrets/diffview.nvim'
 
 call packager#add('justinmk/vim-dirvish')
 
