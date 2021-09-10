@@ -4,7 +4,7 @@ endif
 let g:autoloaded_map_key = 1
 
 function! my#map#key#enter() abort
-	if pumvisible()
+	if s:inCompletion()
 		return "\<C-y>"
 	elseif s:matchesCommentsOrWhitespace(getline('.'))
 		return "\<C-u>"
@@ -19,7 +19,7 @@ function! my#map#key#tab() abort
 	let l:before = strpart(getline('.'), 0, col('.') - 1)
 	if vsnip#expandable()
 		return "\<Plug>(vsnip-expand)"
-	elseif pumvisible()
+	elseif s:inCompletion()
 		return "\<C-n>"
 	elseif l:before ==? '' || l:before =~? '\t$'
 		return "\<TAB>"
@@ -28,6 +28,10 @@ function! my#map#key#tab() abort
 	else
 		return "\<C-x>\<C-o>"
 	endif
+endfunction
+
+function! s:inCompletion() abort
+	return pumvisible() || complete_info(['mode']).mode !=? ''
 endfunction
 
 function! s:matchesCommentsOrWhitespace(input) abort
