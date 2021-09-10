@@ -145,7 +145,7 @@ let g:lmap.Y = 'Yank history forward'
 let g:lmap[' '] = 'EasyMotion'
 nmap <silent> <Leader><TAB>      :Session<Space>
 let g:lmap['<C-I>'] = 'Sessions'
-nmap          <Leader>?          :Grep<SPACE>
-let g:lmap['?'] = 'Grep'
-nmap          <Leader>/          :Ack<SPACE>
+nmap          <Leader>?          :GrepperRg<SPACE>
+let g:lmap['?'] = 'Rg'
+nmap          <Leader>/          :GrepperAck<SPACE>
 let g:lmap['/'] = 'Ack'

@@ -10,6 +10,8 @@ function! my#ft#yaml#compile() abort
 		Make
 	else
 		noautocmd silent write
-		Lmake! yamllint
+		" TODO: Removed AsyncDo
+		compiler yamllint
+		Make!
 	endif
 endfunction

@@ -59,7 +59,9 @@ function! s:lint(bang, bufnr, compiler, ...) abort
 	if a:0 && a:1 && get(g:, 'disable_auto_lint', 0) | return | endif
 	let winid = bufwinid(a:bufnr)
 	if winid <= 0 | return | endif
-	call my#command#lmake(a:bang, winid, a:compiler)
+	" call my#command#lmake(a:bang, winid, a:compiler)
+	" TODO: Removed AsyncDo
+	echom 'Setup null-ls'
 endfunction
 
 " Get/Set linters

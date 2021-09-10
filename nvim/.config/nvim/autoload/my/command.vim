@@ -20,29 +20,6 @@ function! my#command#terminal(bang, ...) abort
 	endif
 endfunction
 
-function! my#command#lmake(bang, win, ...) abort
-	call s:make('l', a:bang, a:win, a:0 ? a:1 : '')
-endfunction
-
-function! my#command#amake(bang, win, ...) abort
-	call s:make('c', a:bang, a:win, a:0 ? a:1 : '')
-endfunction
-
-function! s:make(prefix, bang, win, compiler) abort
-	if !empty(a:compiler)
-		execute 'compiler '.a:compiler
-	endif
-	augroup lmake_lwindow
-		autocmd!
-		call my#asyncdo#openListIf(!a:bang, a:prefix)
-	augroup END
-
-	" Replace % with filename
-	let bufnr = winbufnr(a:win)
-	let makeprg = bufnr > 0 ? substitute(&makeprg, '\V%', bufname(bufnr), 'g') : &makeprg
-	silent call my#asyncdo#stopAndRun(a:prefix, a:win, 1, { 'job': makeprg, 'errorformat': &errorformat})
-endfunction
-
 function! my#command#swap(bang, l1, l2, ...) abort
 	if a:0 != 2 || a:1 == a:2
 		call s:error('Need to provide exactly two different words.')

@@ -5,12 +5,6 @@ let g:loaded_command = 1
 
 command! -bang -nargs=* Terminal call my#command#terminal(<bang>0, <q-args>)
 
-command! -bang -nargs=? -complete=compiler Lmake call my#command#lmake(<bang>0, 0, <f-args>)
-" Like Lmake but for the qflist.
-" Make either opens a terminal + qf or does nothing.
-" Lmake opens the list or not and never shows a terminal
-command! -bang -nargs=? -complete=compiler Amake call my#command#amake(<bang>0, 0, <f-args>)
-
 command! -bar BD Sayonara!
 
 " Command to set my default tabwidth etc.
@@ -27,6 +21,3 @@ command! -nargs=? Tree  call my#command#tree(0,<f-args>)
 command! -nargs=? Vtree call my#command#tree(1,<f-args>)
 
 command! X !chmod +x "%"
-
-command! -nargs=0 -complete=file AsyncStop call my#asyncdo#stop('c')
-command! -nargs=0 -complete=file LAsyncStop call my#asyncdo#stop('l')

@@ -133,19 +133,21 @@ function! s:get_list(list, value) abort
 endfunction
 
 function! s:qf_summary(type, winnr, active, ...) abort
-	let prefix = a:0 ? a:1 : a:type
-	let format = ' '.prefix.'[%s]'
-	if my#asyncdo#running(a:type, a:winnr)
-		return printf(format, '...')
-	else
-		let data = s:qf_cached(a:type, a:winnr)
-		let line = s:qf_part(data, '', a:active)
-					\ . s:qf_part(data, 'E', a:active)
-					\ . s:qf_part(data, 'W', a:active)
-					\ . s:qf_part(data, 'I', a:active)
-	endif
+	" let prefix = a:0 ? a:1 : a:type
+	" let format = ' '.prefix.'[%s]'
+	" if my#asyncdo#running(a:type, a:winnr)
+	" 	return printf(format, '...')
+	" else
+	" 	let data = s:qf_cached(a:type, a:winnr)
+	" 	let line = s:qf_part(data, '', a:active)
+	" 				\ . s:qf_part(data, 'E', a:active)
+	" 				\ . s:qf_part(data, 'W', a:active)
+	" 				\ . s:qf_part(data, 'I', a:active)
+	" endif
 
-	return empty(line) ? '' : printf(format, substitute(line, ',$', '', ''))
+	" TODO: Removed AsyncDo
+	return ':('
+	" return empty(line) ? '' : printf(format, substitute(line, ',$', '', ''))
 endfunction
 
 function! s:qf_part(data, type, active) abort

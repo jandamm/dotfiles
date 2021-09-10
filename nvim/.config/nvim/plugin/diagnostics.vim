@@ -21,10 +21,6 @@ augroup my_diagnostics
 	au!
 	" Refresh Quickfixsigns
 	autocmd QuickFixCmdPost * QuickfixsignsEnable
-
-	" Stop asyncdo when leaving vim. Otherwise vim might print to stdout.
-	autocmd VimLeavePre * AsyncStop
-	autocmd VimLeavePre * LAsyncStop
 augroup END
 
 " LSP Server Config {{{
