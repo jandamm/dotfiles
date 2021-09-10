@@ -1,5 +1,8 @@
 scriptencoding utf-8
 
+" This makes loading lua plugins much faster.
+lua require('impatient')
+
 " In this file should be no executed code. Only `let` and `set`
 
 " Appearance {{{

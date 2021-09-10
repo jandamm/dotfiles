@@ -18,6 +18,7 @@ call packager#add('kristijanhusak/vim-packager', { 'type': 'opt' })
 " Fix CursorHold for nvim: https://github.com/neovim/neovim/issues/12587
 Pack 'antoinemadec/FixCursorHold.nvim'
 
+Pack 'lewis6991/impatient.nvim'
 " Usage
 call packager#add('tpope/vim-surround') " Add(y)/change(c)/remove(d) surroundings
 call packager#add('tpope/vim-repeat') " Add . macro to supported plugins
