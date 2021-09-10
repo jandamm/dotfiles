@@ -39,11 +39,14 @@ function! s:matchesCommentsOrWhitespace(input) abort
 endfunction
 
 function! s:matchesComments(input, matchToEnd) abort
-	let l:match = '\v^\s*(//|#|")\s*'
+	let comment = &commentstring
+	if comment ==# '' | return 0 | endif
+	let comment = substitute(printf(comment, ''), '\s', '', 'g')
+	let match = printf('\v^\s*%s\s*', escape(comment, '*-'))
 	if a:matchToEnd
-		let l:match .= '$'
+		let match .= '$'
 	endif
-	return a:input =~? l:match
+	return a:input =~? match
 endfunction
 
 function! s:shiftwidthSpaces() abort
