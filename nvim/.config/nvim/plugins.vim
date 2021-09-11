@@ -3,8 +3,8 @@ packadd vim-packager
 " Setup {{{
 call packager#init({ 'dir': expand('$XDG_DATA_HOME/nvim/site/pack/packager'), 'jobs': 0})
 
-command! -nargs=+ -bar Pack call packager#add(<args>)
-command! -nargs=+ -bar PackOpt call s:packOpt(<args>)
+command! -buffer -nargs=+ -bar Pack call packager#add(<args>)
+command! -buffer -nargs=+ -bar PackOpt call s:packOpt(<args>)
 function! s:packOpt(name, ...) abort
 	let opts = a:0 ? a:1 : {}
 	let opts.type = 'opt'
