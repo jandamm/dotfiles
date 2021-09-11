@@ -60,6 +60,7 @@ function! my#statusline#default(winnr, active) abort
 	let line .= '%=' " Break sides
 
 	" Right part
+	let line .= my#statusline#part#diagnostics(a:winnr, a:active)
 	if a:active
 		let line .= my#statusline#part#qf_count(a:winnr, a:active)
 	endif
