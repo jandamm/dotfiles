@@ -23,12 +23,16 @@ let g:lmap.b = 'Buffers'
 let g:lmap.c = { 'name': 'code' }
 nmap <silent> <Leader>c.         :AbortDispatch<CR>
 let g:lmap.c['.'] = 'Abort Dispatch'
+nmap <silent> <Leader>ca         <CMD>lua vim.lsp.buf.code_action()<CR>
+let g:lmap.c.a = 'Action'
 nmap <silent> <Leader>cc         :call my#map#leader#compile()<CR>
 let g:lmap.c.c = 'Compile'
 let g:quickfixsigns_echo_map = '<Leader>ce'
 let g:lmap.c.e = 'Error message'
 nmap <silent> <Leader>cf         :call my#map#leader#format()<CR>
 let g:lmap.c.f = 'Format'
+nmap <silent> <Leader>cl         <CMD>lua vim.lsp.diagnostic.set_loclist()<CR>
+let g:lmap.c.a = 'Load in LOC'
 nmap <silent> <Leader>cr         :call my#map#leader#run()<CR>
 let g:lmap.c.r = 'Run'
 nmap <silent> <Leader>cu         :call my#map#leader#test()<CR>

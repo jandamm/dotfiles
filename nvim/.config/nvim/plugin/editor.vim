@@ -25,6 +25,14 @@ augroup END
 " Git Messenger
 let g:git_messenger_always_into_popup = v:true
 
+" vim-qf don't open qf automatically. (Incompatible with vim-dispatch)
+let g:qf_auto_open_loclist = 0
+let g:qf_auto_open_quickfix = 0
+let g:qf_mapping_ack_style = 1
+
+" Gitsigns
+lua require('gitsigns').setup()
+
 " Quick Scope
 let g:qs_highlight_on_keys = ['f', 'F']
 

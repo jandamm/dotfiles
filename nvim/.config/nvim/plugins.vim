@@ -87,7 +87,7 @@ call packager#add('hrsh7th/vim-vsnip')
 call packager#add('hrsh7th/vim-vsnip-integ')
 
 " LSP
-Pack 'natebosch/vim-lsc'
+Pack 'neovim/nvim-lspconfig'
 
 " Languages
 Pack 'bfontaine/Brewfile.vim'

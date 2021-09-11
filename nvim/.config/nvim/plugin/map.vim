@@ -12,7 +12,9 @@ nnoremap U <C-r>
 
 nnoremap <silent> gO :call my#map#outline()<CR>
 
-" Better mappings for qf/loc list
+" Better mappings for diag/qf/loc list
+nmap [d <CMD>lua vim.lsp.diagnostic.goto_prev({enable_popup=false})<CR>
+nmap ]d <CMD>lua vim.lsp.diagnostic.goto_next({enable_popup=false})<CR>
 nmap [l <Plug>(qf_loc_previous)
 nmap ]l <Plug>(qf_loc_next)
 nmap [q <Plug>(qf_qf_previous)
