@@ -42,3 +42,16 @@ lspconfig.sourcekit.setup(default_config)
 -- TODO: ios swift server
 -- let g:lsc_server_commands['ios.swift'] = { 'command': ['neovim', 'swift', 'lsp', 'ios'], 'languageId': 'swift'}
 -- let g:lsc_server_commands.sift = ['neovim', 'swift', 'lsp']
+
+local null_ls = require('null-ls')
+null_ls.config {
+	sources = {
+		null_ls.builtins.diagnostics.vint.with {
+			extra_args = { "--enable-neovim" }
+		},
+		null_ls.builtins.diagnostics.markdownlint,
+		null_ls.builtins.diagnostics.shellcheck
+	}
+}
+
+lspconfig['null-ls'].setup {}
