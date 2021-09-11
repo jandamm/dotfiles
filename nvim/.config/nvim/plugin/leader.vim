@@ -69,8 +69,6 @@ nmap <silent> <Leader>gdf        :Gvdiffsplit!<CR>
 let g:lmap.g.d.f = 'Diff with Fugitive'
 nmap <silent> <Leader>gdk        :G ksdiffall<CR>
 let g:lmap.g.d.k = 'Kaleidoscope'
-nmap <silent> <Leader>gdo        :SignifyFold!<CR>
-let g:lmap.g.d.o = 'Show only changes'
 " }}}2
 nmap <silent> <Leader>gf         :G fetch<CR>
 nmap <silent> <Leader>gF         :G pull<CR>
@@ -78,9 +76,9 @@ nmap <silent> <Leader>gg         :cclose <BAR> lclose <BAR> G<CR>
 let g:lmap.g.g = 'Fugitive'
 " Leader G H {{{2
 let g:lmap.g.h = { 'name': 'hunk' }
-nmap <silent> <Leader>ghd        :SignifyHunkDiff<CR>
+nmap <silent> <Leader>ghd        <CMD>lua require"gitsigns".preview_hunk()<CR>
 let g:lmap.g.h.d = 'Diff'
-nmap <silent> <Leader>ghu        :SignifyHunkUndo<CR>
+nmap <silent> <Leader>ghu        <CMD>lua require"gitsigns".reset_hunk()<CR>
 let g:lmap.g.h.u = 'Undo'
 " }}}2
 " Leader G L {{{2

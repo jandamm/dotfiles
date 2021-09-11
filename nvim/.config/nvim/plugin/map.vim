@@ -57,6 +57,13 @@ snoremap <C-n> <BS>i<C-n>
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 
+" Gitsigns {{{
+
+omap ah ih
+xmap ah ih
+
+" }}}
+
 " Easy Motion {{{
 
 let g:EasyMotion_keys = 'arstneiodhqwfpluygj'
@@ -102,15 +109,6 @@ cnoremap <DOWN>     <C-n>
 
 " %% to current dir in ex mode
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
-
-" }}}
-
-" Signify hunk text object {{{
-
-omap ic <Plug>(signify-motion-inner-pending)
-xmap ic <Plug>(signify-motion-inner-visual)
-omap ac <Plug>(signify-motion-outer-pending)
-xmap ac <Plug>(signify-motion-outer-visual)
 
 " }}}
 

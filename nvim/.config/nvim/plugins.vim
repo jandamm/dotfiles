@@ -80,7 +80,7 @@ PackOpt 'arcticicestudio/nord-vim'
 call packager#add('ludovicchabant/vim-gutentags')
 
 " User Interface
-call packager#add('mhinz/vim-signify')
+Pack 'lewis6991/gitsigns.nvim'
 
 " Snippets
 call packager#add('hrsh7th/vim-vsnip')

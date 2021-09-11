@@ -11,11 +11,6 @@ augroup my_editor_group
 	autocmd WinEnter * call my#editor#winenter()
 	autocmd WinLeave * call my#editor#winleave()
 
-	" Signify FocusGained isn't working for some reason. (Disables signs)
-	" With a delay it seems to work just fine.
-	autocmd User SignifyAutocmds autocmd! signify FocusGained
-	autocmd FocusGained * call timer_start(0, {-> execute('SignifyRefresh') })
-
 	autocmd BufReadPost,BufNewFile * DetectIndent
 
 	autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup="IncSearch", timeout=500 }

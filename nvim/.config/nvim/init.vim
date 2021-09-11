@@ -28,7 +28,6 @@ set relativenumber cursorline
 set colorcolumn=120
 
 set signcolumn=yes
-let g:signify_sign_change = '△'
 
 " }}}
 
@@ -56,7 +55,6 @@ set path=.,**
 " Increase time for keyboard shortcuts a bit (default: 1000)
 set timeoutlen=1200
 
-" Update signify after x ms
 set updatetime=100
 
 " Allow changed files to be hidden
