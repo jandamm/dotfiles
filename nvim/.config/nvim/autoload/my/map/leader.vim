@@ -17,28 +17,22 @@ endfunction
 " If necessary these functions should be overwritten with:
 " my#ft#&ft#*()
 function! my#map#leader#format() abort
-	if !s:executed('format')
-		call my#format#trim()
-		call my#format#reindent()
-	endif
+	if s:executed('format') | return | endif
+
+	call my#format#trim()
+	call my#format#reindent()
 endfunction
 
 function! my#map#leader#compile() abort
-	if !s:executed('compile')
-		call s:undefined('compiler')
-	endif
+	call s:executeOrFail('compile', 'compiler')
 endfunction
 
 function! my#map#leader#run() abort
-	if !s:executed('run')
-		call s:undefined('run')
-	endif
+	call s:executeOrFail('run')
 endfunction
 
 function! my#map#leader#test() abort
-	if !s:executed('test')
-		call s:undefined('test')
-	endif
+	call s:executeOrFail('test')
 endfunction
 
 function! s:executed(func) abort
@@ -52,8 +46,11 @@ function! s:executed(func) abort
 	endfor
 endfunction
 
-function! s:undefined(type) abort
+function! s:executeOrFail(func, ...) abort
+	if s:executed(a:func) | return | endif
+
 	echohl Error
-	echo '{' . a:type . '} is not defined for [' . &filetype . ']'
+	let compilerName = a:0 ? a:1 : a:func
+	echo '{' . compilerName . '} is not defined for [' . &filetype . ']'
 	echohl NONE
 endfunction
