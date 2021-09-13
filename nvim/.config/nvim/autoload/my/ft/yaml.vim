@@ -9,9 +9,8 @@ function! my#ft#yaml#compile() abort
 		compiler gitlabci
 		Make
 	else
-		noautocmd silent write
-		" TODO: Removed AsyncDo
-		compiler yamllint
-		Make!
+		echohl Warning
+		echo 'No Compiler setup for yaml.'
+		echohl Normal
 	endif
 endfunction

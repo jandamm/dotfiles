@@ -1,15 +1,18 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
-# If no file is provided pwd will be linted and checked for config
+zparseopts -D -E -use-stdin=stdin -no-fail=fail
+
 FILE="$1"
-filename='.swiftlint.yml'
+readonly filename='.swiftlint.yml'
 
 CONFIG=$(search_file "$filename" "$FILE")
 
 # Swiftlint does not support global configs. Otherwise it will find the correct config.
-if [ -f "$CONFIG" ] && [ "$CONFIG" == "$HOME/$filename" ]
-then
-	swiftlint lint --quiet --config "$CONFIG" "$FILE"
-else
-	swiftlint lint --quiet "$FILE"
+if [ -f "$CONFIG" ] && [ "$CONFIG" = "$HOME/$filename" ]; then
+	config="--config $CONFIG"
 fi
+
+[[ -n $stdin ]] && FILE="--use-stdin"
+[[ -n $fail ]] && redir='2>&1 ; exit 0'
+
+eval "swiftlint lint --quiet $config $FILE $redir"

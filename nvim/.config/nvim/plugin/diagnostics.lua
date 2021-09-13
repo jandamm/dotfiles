@@ -47,11 +47,12 @@ local null_ls = require('null-ls')
 null_ls.config {
 	sources = {
 		require('my.lint').jsonlint,
-		null_ls.builtins.diagnostics.vint.with {
-			extra_args = { "--enable-neovim" }
-		},
 		null_ls.builtins.diagnostics.markdownlint,
 		null_ls.builtins.diagnostics.shellcheck,
+		require('my.lint').swiftlint,
+		null_ls.builtins.diagnostics.vint.with { extra_args = { "--enable-neovim" } },
+		require('my.lint').yamllint,
+		require('my.lint').zsh,
 		null_ls.builtins.code_actions.gitsigns
 	}
 }

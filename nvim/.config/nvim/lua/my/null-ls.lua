@@ -18,7 +18,7 @@ M.from_efm = function(efm, source)
 			if item.valid == 1 then
 				local col = item.col > 0 and item.col - 1 or 0
 				table.insert(diagnostics, {
-					row = item.lnum,
+					row = item.lnum or 0,
 					col = col,
 					source = source,
 					message = item.text,
