@@ -89,6 +89,7 @@ nmap <silent> <Leader>gll        :Gclog -n 100<CR>
 " }}}2
 nmap <silent> <Leader>gp         :G push<CR>
 nmap <silent> <Leader>gr         :G rebase<CR>
+nmap <silent> <Leader>gR         <CMD>G fetch <BAR>G rebase<CR>
 " w -> Who did this?
 nmap <silent> <Leader>gw         :G blame<CR>
 nmap          <Leader>g<Space>   :G<SPACE>
