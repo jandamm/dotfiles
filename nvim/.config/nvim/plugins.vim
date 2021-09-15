@@ -89,9 +89,11 @@ call packager#add('hrsh7th/vim-vsnip-integ')
 " LSP
 Pack 'neovim/nvim-lspconfig'
 Pack 'jose-elias-alvarez/null-ls.nvim'
+Pack 'kabouzeid/nvim-lspinstall'
 
 " Languages
 Pack 'bfontaine/Brewfile.vim'
+Pack 'euclidianAce/BetterLua.vim'
 Pack 'tpope/vim-git'
 " Pack 'plasticboy/vim-markdown'
 " Pack 'gabrielelana/vim-markdown'

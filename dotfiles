@@ -312,6 +312,9 @@ then
 		done
 	fi
 
+	echo 'Installing luacheck - Move to packer.nvim'
+	luarocks install luacheck
+
 	if is_update
 	then
 		echo 'Updating vim plugins'
