@@ -23,18 +23,19 @@ Pack 'nvim-lua/plenary.nvim'
 " Usage
 call packager#add('tpope/vim-surround') " Add(y)/change(c)/remove(d) surroundings
 call packager#add('tpope/vim-repeat') " Add . macro to supported plugins
-call packager#add('tpope/vim-speeddating') " Fix i_Ctrl+a for dates
 call packager#add('tpope/vim-commentary') " gc to comment in/out
 call packager#add('godlygeek/tabular') " ga to align
 call packager#add('tpope/vim-endwise') " Insert endif etc automatically
 call packager#add('tpope/vim-abolish') " Better :s/abba/bobby/g with :S/{a,A}bba/{b,B}obby/g
 call packager#add('jandamm/vim-abolisher', { 'do': 'make build' }) " Faster vim-abolish!
 call packager#add('tpope/vim-unimpaired') " Better [] mappings
+
 call packager#add('tpope/vim-fugitive') " Git interface
 call packager#add('tpope/vim-rhubarb') " Gbrowse for Github
 call packager#add('shumphrey/fugitive-gitlab.vim') " Gbrowse for GitLab
-Pack 'tommcdo/vim-fubitive'
+Pack 'tommcdo/vim-fubitive' " Gbrowse for Bitbucket
 call packager#add('tommcdo/vim-fugitive-blame-ext') " Gblame commit messages
+
 Pack 'roryokane/detectindent' " Automatically set spaces/tabs
 call packager#add('tpope/vim-eunuch') " Unix commands in vim
 call packager#add('tpope/vim-obsession') " Save sessions easily
@@ -102,12 +103,10 @@ Pack 'cespare/vim-toml'
 Pack 'keith/xcconfig.vim'
 
 " Vim Plugins
-call packager#add('junegunn/vader.vim')
 call packager#add('tpope/vim-scriptease')
 
 " iOS
 Pack 'jandamm/vim-xcode'
 
 " Misc
-Pack 'rizzatti/dash.vim'
 call packager#add('tweekmonster/startuptime.vim', { 'type': 'opt' })
