@@ -86,10 +86,9 @@ local function setup_servers()
 			config.settings = make_lua_settings()
 		end
 		if server == "sourcekit" then
-			-- TODO: ios swift server
-			-- let g:lsc_server_commands['ios.swift'] = { 'command': ['neovim', 'swift', 'lsp', 'ios'], 'languageId': 'swift'}
-			-- let g:lsc_server_commands.sift = ['neovim', 'swift', 'lsp']
-			config.filetypes = {"swift", "ios.swift", "ios"};
+			config.cmd = { 'neovim', 'swift', 'lsp' }
+			config.filetypes = { "swift" } -- also matches ios.swift
+			config.get_language_id = function() return 'swift' end
 		end
 		lspconfig[server].setup(config)
 	end

@@ -1,26 +1,33 @@
 #!/usr/bin/env bash
 
 # xcrun --sdk iphonesimulator --show-sdk-path
-xcode_version='12.5'
+xcode_version='12.5.1'
 simos_version='14.5'
-
-if [ $# -eq 0 ]
-then
-	exit 1
-fi
 
 case "$1" in
 	lsp) cmd='xcrun sourcekit-lsp' ;;
 	build)
 		cmd="swift $1"
 		apx='| sort | uniq' ;;
+	*) exit 1 ;;
 esac
 shift
 
-if [ "$1" = 'ios' ] || [ "$1" = 'ios.swift' ]
+if [ "$1" = 'ios' ] || [ "$1" = 'ios.swift' ]; then
+	ios=1
+	shift
+else
+	# Check for xcodeproj
+	setopt nullglob
+	for d in *.xc(odeproj|workspace)
+	do
+		[[ -d "$d" ]] && ios=1 && break
+	done
+fi
+
+if [[ -n $ios ]]
 then
 	ios="-Xswiftc \"-sdk\" -Xswiftc \"/Applications/Xcode-$xcode_version.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator$simos_version.sdk\" -Xswiftc \"-target\" -Xswiftc \"x86_64-apple-ios$simos_version-simulator\""
-	shift
 fi
 
 eval "$cmd $ios $NEOVIM_SWIFT_COMPILER_FLAGS $* $apx"
