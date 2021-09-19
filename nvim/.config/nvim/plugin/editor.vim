@@ -14,7 +14,6 @@ augroup my_editor_group
 	autocmd BufReadPost,BufNewFile * DetectIndent
 
 	autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup="IncSearch", timeout=500 }
-	autocmd User ProsessionPre wall
 augroup END
 
 " Git Messenger

@@ -1,6 +1,3 @@
-" No mappings for BufKill
-let g:BufKillCreateMappings = 0
-
 " Correct Y yank behavior
 nnoremap Y y$
 
