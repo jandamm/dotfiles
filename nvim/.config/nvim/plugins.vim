@@ -101,6 +101,7 @@ Pack 'tpope/vim-git'
 Pack 'keith/swift.vim'
 Pack 'cespare/vim-toml'
 Pack 'keith/xcconfig.vim'
+Pack 'jandamm/vim-zsh-completion'
 
 " Vim Plugins
 call packager#add('tpope/vim-scriptease')
