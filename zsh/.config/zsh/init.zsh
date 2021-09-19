@@ -76,6 +76,8 @@ ZGEN_COMPINIT_FLAGS='-i'
 ZGEN_CUSTOM_COMPDUMP="$XDG_DATA_HOME/zsh/zcompdump_$ZSH_VERSION"
 source $XDG_DATA_HOME/zgenom/zgenom.zsh
 
+zgenom autoupdate --background
+
 # Load plugins {{{
 
 if ! zgenom saved
