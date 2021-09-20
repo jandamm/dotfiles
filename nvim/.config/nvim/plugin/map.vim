@@ -30,8 +30,8 @@ inoremap <expr> <C-w> pumvisible() ? '<C-e>' : '<C-g>u<C-w>'
 
 " Visual mode
 
-" Quick replace with s
-xnoremap s :s/
+" Quick replace with gr
+xnoremap gr :s/
 
 xnoremap < <gv
 xnoremap > >gv
