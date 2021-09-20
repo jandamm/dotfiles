@@ -90,7 +90,6 @@ call packager#add('hrsh7th/vim-vsnip-integ')
 " LSP
 Pack 'neovim/nvim-lspconfig'
 Pack 'jose-elias-alvarez/null-ls.nvim'
-Pack 'kabouzeid/nvim-lspinstall'
 
 " Languages
 Pack 'bfontaine/Brewfile.vim'

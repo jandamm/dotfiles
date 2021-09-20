@@ -325,6 +325,9 @@ then
 
 	echo 'Updating vim-pack tags'
 	neovim-packtags
+
+	echo 'Installing/updating sumneko lua lsp'
+	neovim-install_sumneko
 fi
 
 # }}}

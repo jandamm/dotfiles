@@ -16,7 +16,7 @@ local on_attach = function(client)
 		-- Default vim K is nicer jumping to the help
 		vim.api.nvim_buf_set_keymap(0, 'n', 'K', '<CMD>lua vim.lsp.buf.hover()<CR>', {noremap = true})
 	end
-	if (client.name == 'lua') then
+	if (client.name == 'sumneko_lua') then
 		-- ctags for lua aren't nice.
 		vim.api.nvim_buf_set_keymap(0, 'n', '<C-]>', 'gd', {noremap = false})
 		vim.api.nvim_buf_set_keymap(0, 'n', '<C-w><C-]>', '<C-w>gd', {noremap = false})
@@ -71,35 +71,26 @@ end
 -- }}}
 
 local lspconfig = require('lspconfig')
-local lspinstall = require('lspinstall')
 
-local function setup_servers()
-	lspinstall.setup()
-	local servers = require'lspinstall'.installed_servers()
-	table.insert(servers, "bashls")
-	table.insert(servers, "sourcekit")
-	table.insert(servers, "vimls")
+local servers = {
+	"bashls",
+	"sourcekit",
+	"sumneko_lua",
+	"vimls",
+}
 
-	for _, server in pairs(servers) do
-		local config = make_config()
-		if server == "lua" then
-			config.settings = make_lua_settings()
-		end
-		if server == "sourcekit" then
-			config.cmd = { 'neovim', 'swift', 'lsp' }
-			config.filetypes = { "swift" } -- also matches ios.swift
-			config.get_language_id = function() return 'swift' end
-		end
-		lspconfig[server].setup(config)
+for _, server in pairs(servers) do
+	local config = make_config()
+	if server == "sumneko_lua" then
+		config.cmd = { 'lua-language-server' }
+		config.settings = make_lua_settings()
 	end
-end
-
-setup_servers()
-
--- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
-lspinstall.post_install_hook = function ()
-	setup_servers() -- reload installed servers
-	vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
+	if server == "sourcekit" then
+		config.cmd = { 'neovim', 'swift', 'lsp' }
+		config.filetypes = { "swift" } -- also matches ios.swift
+		config.get_language_id = function() return 'swift' end
+	end
+	lspconfig[server].setup(config)
 end
 
 -- Setup null-ls

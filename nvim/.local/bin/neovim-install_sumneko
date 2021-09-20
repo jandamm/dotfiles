@@ -1,0 +1,30 @@
+#!/usr/bin/env zsh
+
+dir=${XDG_DATA_HOME:-$HOME/.local/share}/nvim/sumneko/repo
+name=lua-language-server
+lsp=${dir:h}/$name
+bin=/usr/local/bin/$name
+
+# https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
+
+# clone project
+if [[ ! -d $dir ]]; then
+	git clone https://github.com/sumneko/lua-language-server $dir
+fi
+cd $dir
+git pull
+git submodule update --init --recursive
+echo
+
+# compile
+cd 3rd/luamake
+compile/install.sh
+cd ../..
+./3rd/luamake/luamake rebuild
+
+# Create and link executable
+echo "$dir/bin/macOS/lua-language-server $dir/main.lua" > $lsp
+chmod +x $lsp
+
+unlink $bin &>/dev/null
+ln -s $lsp $bin

@@ -24,6 +24,7 @@ brew 'less'
 brew 'lua'
 brew 'mas'
 brew 'neovim'
+brew 'ninja' # Used for sumneko/lua-language-server
 brew 'npm'
 brew 'python3'
 brew 'rbenv'
