@@ -137,6 +137,8 @@ imap     <expr>   <C-t>   pumvisible() ? '<Plug>(ctrlp_complete)' : '<C-t>'
 inoremap <expr>   <C-j>   pumvisible() ? '<C-n>' : '<C-j>'
 inoremap <expr>   <C-k>   pumvisible() ? '<C-p>' : '<C-k>'
 
+inoremap <expr>   <C-d>   pumvisible() ? repeat('<C-n>', 5) : '<C-d>'
+
 " }}}
 
 " Tabular {{{
