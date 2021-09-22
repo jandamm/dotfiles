@@ -37,7 +37,8 @@ else
 	# selected version is not installed
 	else
 		if ! xcodes install $selection; then
-			xcodes update
+			echo 'Updating list of available Xcode versions.'
+			xcodes update >/dev/null
 			xcodes install $selection
 		fi
 		xcodes select $selection
