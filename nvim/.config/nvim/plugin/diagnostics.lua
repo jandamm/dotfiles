@@ -24,7 +24,10 @@ local on_attach = function(client)
 	vim.api.nvim_buf_set_keymap(0, 'n', 'gd', '<CMD>lua vim.lsp.buf.definition()<CR>', {noremap = true})
 	vim.api.nvim_buf_set_keymap(0, 'n', '<C-w>gd', '<CMD>vsplit <BAR> lua vim.lsp.buf.definition()<CR>', {noremap = true})
 	vim.api.nvim_buf_set_keymap(0, 'n', 'gr', '<CMD>lua vim.lsp.buf.references()<CR>', {noremap = true})
-	vim.api.nvim_buf_set_keymap(0, 'n', 'gR', '<CMD>lua vim.lsp.buf.rename()<CR>', {noremap = true})
+	if (client.server_capabilities.renameProvider ~= nil) then
+		-- The default gR is using a mapping with :%s/...
+		vim.api.nvim_buf_set_keymap(0, 'n', 'gR', '<CMD>lua vim.lsp.buf.rename()<CR>', {noremap = true})
+	end
 	if (client.server_capabilities.completionProvider ~= nil) then
 		vim.o.omnifunc = 'v:lua.vim.lsp.omnifunc'
 	end
