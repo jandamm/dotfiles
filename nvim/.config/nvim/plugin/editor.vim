@@ -31,9 +31,6 @@ let g:qf_mapping_ack_style = 1
 " Gitsigns
 lua require('gitsigns').setup()
 
-" Quick Scope
-let g:qs_highlight_on_keys = ['f', 'F']
-
 " Undo Tree
 let g:undotree_SetFocusWhenToggle = 1
 function! g:Undotree_CustomMap() abort

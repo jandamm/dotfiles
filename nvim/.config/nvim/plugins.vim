@@ -50,8 +50,7 @@ Pack 'tommcdo/vim-exchange' " Switch text with cx
 Pack 'chrisbra/Recover.vim' " Allow comparing swap files
 Pack 'romainl/vim-qf' " Improve quickfix lists
 Pack 'tpope/vim-projectionist' " Projects in vim
-Pack 'unblevable/quick-scope' " Highlight targets for f
-Pack 'easymotion/vim-easymotion' " Faster cursor movement
+Pack 'ggandor/lightspeed.nvim' " Faster cursor movement
 Pack 'mhinz/vim-grepper'
 Pack 'sindrets/diffview.nvim'
 

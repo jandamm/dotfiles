@@ -65,13 +65,14 @@ xmap ah ih
 
 " }}}
 
-" Easy Motion {{{
+" Lightspeed {{{
 
-let g:EasyMotion_keys = 'arstneiodhqwfpluygj'
-map  <Space><Space> <Plug>(easymotion-prefix)
-nmap <ESC><ESC>     <Plug>(easymotion-overwin-line)
-omap <Space>        <Plug>(easymotion-prefix)
-omap <Space><Space> <Plug>(easymotion-bd-w)
+" TODO: Use s or gs for lightspeed?
+nnoremap gs s
+xnoremap gs s
+
+omap ; <Plug>Lightspeed_;_ft
+omap , <Plug>Lightspeed_,_ft
 
 " }}}
 
