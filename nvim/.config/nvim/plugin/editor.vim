@@ -3,6 +3,9 @@ if exists('g:loaded_editor')
 endif
 let g:loaded_editor = 1
 
+" Use vim-sandwich with surround keybindings
+runtime macros/sandwich/keymap/surround.vim
+
 augroup my_editor_group
 	au!
 	autocmd FocusLost * if bufname() !=? '' | update | endif

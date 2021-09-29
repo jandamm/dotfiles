@@ -21,7 +21,7 @@ Pack 'lewis6991/impatient.nvim'
 Pack 'nvim-lua/plenary.nvim'
 
 " Usage
-call packager#add('tpope/vim-surround') " Add(y)/change(c)/remove(d) surroundings
+Pack 'machakann/vim-sandwich' " Add(y)/change(c)/remove(d) surroundings
 call packager#add('tpope/vim-repeat') " Add . macro to supported plugins
 call packager#add('tpope/vim-commentary') " gc to comment in/out
 call packager#add('godlygeek/tabular') " ga to align
