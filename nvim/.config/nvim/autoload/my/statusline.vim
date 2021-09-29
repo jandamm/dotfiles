@@ -24,7 +24,7 @@ function! my#statusline#get(winnr, active) abort
 		return my#statusline#dirvish(a:winnr, a:active)
 	endif
 
-	if filetype ==# 'fugitive' || bufname(bufnr) =~# '^fugitive://'
+	if filetype ==# 'fugitive' || bufname(bufnr) =~# '^fugitive://' || filetype ==# 'gitcommit'
 		return my#statusline#fugitive(a:winnr, a:active)
 	endif
 
