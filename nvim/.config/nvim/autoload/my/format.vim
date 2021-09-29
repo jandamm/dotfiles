@@ -4,15 +4,11 @@ endif
 let g:autoloaded_format = 1
 
 function! my#format#default() abort
-	set tabstop=2
-	set shiftwidth=2
-	set noexpandtab
+	setlocal tabstop=2 shiftwidth=0 noexpandtab
 endfunction
 
 function! my#format#git() abort
-	set tabstop=4
-	set shiftwidth=4
-	set noexpandtab
+	setlocal tabstop=4 shiftwidth=0 noexpandtab
 endfunction
 
 function! my#format#trim() abort

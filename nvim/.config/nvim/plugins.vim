@@ -36,7 +36,7 @@ call packager#add('shumphrey/fugitive-gitlab.vim') " Gbrowse for GitLab
 Pack 'tommcdo/vim-fubitive' " Gbrowse for Bitbucket
 call packager#add('tommcdo/vim-fugitive-blame-ext') " Gblame commit messages
 
-Pack 'roryokane/detectindent' " Automatically set spaces/tabs
+Pack 'tpope/vim-sleuth' " Automatically set spaces/tabs
 call packager#add('tpope/vim-eunuch') " Unix commands in vim
 call packager#add('tpope/vim-obsession') " Save sessions easily
 call packager#add('airblade/vim-rooter') " Always cd into root of project

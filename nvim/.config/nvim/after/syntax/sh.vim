@@ -6,14 +6,14 @@
 
 syn region shDeref matchgroup=shDerefDelim start="\${" end="}" contains=@shDerefList,shDerefVarArray
 if exists('b:is_bash') || exists('b:is_kornshell') || exists('b:is_posix')
- syn region shDeref matchgroup=shDerefDelim start="\${##\=" end="}" contains=@shDerefList nextgroup=@shSpecialNoZS
- syn region shDeref matchgroup=shDerefDelim start="\${\$\$" end="}" contains=@shDerefList nextgroup=@shSpecialNoZS
+	syn region shDeref matchgroup=shDerefDelim start="\${##\=" end="}" contains=@shDerefList nextgroup=@shSpecialNoZS
+	syn region shDeref matchgroup=shDerefDelim start="\${\$\$" end="}" contains=@shDerefList nextgroup=@shSpecialNoZS
 endif
 
 if exists('b:is_kornshell') || exists('b:is_posix')
- syn region shDeref matchgroup=shDerefDelim start="\${!" end="}" contains=@shDerefVarArray
+	syn region shDeref matchgroup=shDerefDelim start="\${!" end="}" contains=@shDerefVarArray
 endif
 
 if exists('b:is_bash')
- syn region shDeref matchgroup=shDerefDelim start="\${!" end="\*\=}" contains=@shDerefList,shDerefOff
+	syn region shDeref matchgroup=shDerefDelim start="\${!" end="\*\=}" contains=@shDerefList,shDerefOff
 endif

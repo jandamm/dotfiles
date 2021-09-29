@@ -11,10 +11,14 @@ augroup my_editor_group
 	autocmd WinEnter * call my#editor#winenter()
 	autocmd WinLeave * call my#editor#winleave()
 
-	autocmd BufReadPost,BufNewFile * DetectIndent
+	autocmd Filetype * call timer_start(50, { -> s:fixSleuth() })
 
 	autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup="IncSearch", timeout=500 }
 augroup END
+
+function! s:fixSleuth() abort
+	if !&expandtab | call my#format#default() | endif
+endfunction
 
 " Git Messenger
 let g:git_messenger_always_into_popup = v:true

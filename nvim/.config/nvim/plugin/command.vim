@@ -8,7 +8,7 @@ command! -bang -nargs=* Terminal call my#command#terminal(<bang>0, <q-args>)
 command! -bar BD Sayonara!
 
 " Command to set my default tabwidth etc.
-command! IndentDefault call my#format#default()
+command! Tabs call my#format#default()
 
 " Swap two words (bang for strings)
 command! -bang -range -nargs=+ Swap call my#command#swap(<bang>0,<line1>,<line2>,<f-args>)
