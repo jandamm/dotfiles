@@ -57,9 +57,6 @@ let g:lmap.f.w = 'Save'
 
 " Leader G {{{1
 let g:lmap.g = { 'name': 'git and more' }
-let g:git_messenger_no_default_mappings = v:true
-nmap <silent> <Leader>gc         <Plug>(git-messenger)
-let g:lmap.g.c = 'Show commit'
 
 " Leader G D {{{2
 let g:lmap.g.d = { 'name': 'diff' }

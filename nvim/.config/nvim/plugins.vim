@@ -42,7 +42,6 @@ call packager#add('tpope/vim-obsession') " Save sessions easily
 call packager#add('airblade/vim-rooter') " Always cd into root of project
 call packager#add('jandamm/vim-projplugin') " Load project specific config
 call packager#add('mbbill/undotree') " Show undo history as a tree
-call packager#add('rhysd/git-messenger.vim') " Quickly show last commit message
 Pack 'mhinz/vim-sayonara' " Delete buffers but keep window alive
 call packager#add('svermeulen/vim-yoink') " Yank history
 call packager#add('jandamm/vim-leader-guide') " Show leader mappings

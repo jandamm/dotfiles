@@ -79,17 +79,8 @@ omap <Space><Space> <Plug>(easymotion-bd-w)
 
 augroup ft_mappings
 	autocmd!
-	autocmd Filetype qf,help call s:quit_mapping()
-	autocmd Filetype gitmessengerpopup call s:gitmess_quit_mapping()
+	autocmd Filetype qf,help nnoremap <silent> <buffer> gq <CMD>q<CR>
 augroup END
-
-function! s:gitmess_quit_mapping() abort
-	call s:quit_mapping()
-	nnoremap <silent> <buffer> <ESC> <CMD>q<CR>
-endfunction
-function! s:quit_mapping() abort
-	nnoremap <silent> <buffer> gq  <CMD>q<CR>
-endfunction
 
 " Show overview of fugitive mappings with g?
 let g:fuguidive_map_help = 'g?'
