@@ -64,6 +64,9 @@ export WORDCHARS='@_'
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+# Add zmv to use pattern to rename files
+autoload -Uz zmv
+
 # Load before plugins
 setopt nullglob
 for file in $ZDOTDIR/before/*.zsh
