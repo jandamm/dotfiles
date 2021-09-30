@@ -16,6 +16,19 @@ M.jsonlint = helpers.make_builtin {
 	factory = helpers.generator_factory,
 }
 
+M.kin = helpers.make_builtin {
+	method = null_ls.methods.DIAGNOSTICS,
+	filetypes = { "pbxproj" },
+	generator_opts = {
+		command = "kin",
+		args = { "$FILENAME" },
+		to_temp_file = true,
+		from_stderr = true,
+		on_output = require('my.null-ls').from_efm("%EERROR: line %l:%c %m")
+	},
+	factory = helpers.generator_factory,
+}
+
 M.swiftlint = helpers.make_builtin {
 	method = null_ls.methods.DIAGNOSTICS,
 	filetypes = { "swift", "ios", "ios.swift" },

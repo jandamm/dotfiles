@@ -101,6 +101,7 @@ local null_ls = require('null-ls')
 null_ls.config {
 	sources = {
 		require('my.lint').jsonlint,
+		require('my.lint').kin,
 		null_ls.builtins.diagnostics.luacheck, -- TODO: Use packer instead of dotfiles bin
 		null_ls.builtins.diagnostics.markdownlint,
 		null_ls.builtins.diagnostics.shellcheck,
