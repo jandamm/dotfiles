@@ -1,12 +1,4 @@
 {
-  "Function": {
-    "prefix": ["func"],
-    "body": [
-      "func ${1:name}($2) {",
-      "\t${3:$TM_SELECTED_TEXT}${0}",
-      "}"
-    ]
-  },
   "Bracket": {
     "prefix": ["{"],
     "body": ["{", "\t${0:$TM_SELECTED_TEXT}", "}"]
@@ -14,5 +6,74 @@
   "Bracket2": {
     "prefix": [" in"],
     "body": [" in", "\t${0:$TM_SELECTED_TEXT}", "}"]
+  },
+  "Class": {
+    "prefix": ["class"],
+    "body": [
+      "class ${1:name}${2: ${3:Equatable}} {",
+      "\t${4:$TM_SELECTED_TEXT}$0",
+      "}"
+    ]
+  },
+  "Enum": {
+    "prefix": ["enum"],
+    "body": [
+      "enum ${1:name}${2: ${3:Equatable}} {",
+      "\t${4:case $5}",
+      "\t${6:$TM_SELECTED_TEXT}$0",
+      "}"
+    ]
+  },
+  "Function": {
+    "prefix": ["func"],
+    "body": [
+      "func ${1:name}($2)${3: -> ${4:Void}} {",
+      "\t${5:$TM_SELECTED_TEXT}$0",
+      "}"
+    ]
+  },
+  "Get": {
+    "prefix": ["get"],
+    "body": ["get { ${1:$TM_SELECTED_TEXT} }", "${2:set}"]
+  },
+  "Guard": {
+    "prefix": ["guard"],
+    "body": ["guard ${1:case }let ${2:name} = ${3:$2} else {${5: }return ${4:nil}${6: }}$0"]
+  },
+  "For": {
+    "prefix": ["for"],
+    "body": ["for ${1:i} in $2${3: where $4} {", "\t${0:$TM_SELECTED_TEXT}", "}"]
+  },
+  "If": {
+    "prefix": ["if"],
+    "body": ["if ${1:true} {", "\t${0:$TM_SELECTED_TEXT}", "}"]
+  },
+  "Lazy": {
+    "prefix": ["lazy"],
+    "body": ["${1:private }lazy var ${2:name}: ${3:${TM_SELECTED_TEXT:Type}} = {", "\tlet ret = $3(${4:)}", "\t$0", "}()"]
+  },
+  "Let": {
+    "prefix": ["let"],
+    "body": ["${1:private }let ${2:name}${3:: Type}${4: = ${5:.init()}}"]
+  },
+  "Outlet": {
+    "prefix": ["outlet"],
+    "body": ["@IBOutlet${1: private} var ${2:name}: ${3:Type}!"]
+  },
+  "Set": {
+    "prefix": ["set"],
+    "body": ["set { ${0:$TM_SELECTED_TEXT} }"]
+  },
+  "Struct": {
+    "prefix": ["struct"],
+    "body": [
+      "struct ${1:name}${2: ${3:Equatable}} {",
+      "\t${4:$TM_SELECTED_TEXT}$0",
+      "}"
+    ]
+  },
+  "Var": {
+    "prefix": ["var"],
+    "body": ["${1:private }var ${2:name}${3:: Type}${4: = ${5:.init()}}"]
   }
 }
