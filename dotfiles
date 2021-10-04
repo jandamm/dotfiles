@@ -197,11 +197,13 @@ then
 		echo 'Updating gems'
 		bundle update
 	fi
-
-	rbenv init - --no-rehash zsh > "$XDG_DATA_HOME/zsh/generated/rbenv.zsh"
 fi
 
-rbenv rehash
+if hash rbenv &>/dev/null
+then
+	rbenv init - --no-rehash zsh > "$XDG_DATA_HOME/zsh/generated/rbenv.zsh"
+	rbenv rehash
+fi
 
 # }}}
 
