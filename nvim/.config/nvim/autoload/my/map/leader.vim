@@ -1,8 +1,3 @@
-if exists('g:autoloaded_map_leader')
-	finish
-endif
-let g:autoloaded_map_leader = 1
-
 " Toggle paste-mode and system clipboard
 function! my#map#leader#clipboard() abort
 	if &paste

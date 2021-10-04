@@ -1,8 +1,3 @@
-if exists('g:loaded_statusline_plugin')
-	finish
-endif
-let g:loaded_statusline_plugin = 1
-
 " Returns the statusline string
 " Here it is also decided if a non default statusline is overwritten.
 function! s:GetStatusLineVar(win, active) abort

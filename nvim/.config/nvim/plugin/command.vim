@@ -1,8 +1,3 @@
-if exists('g:loaded_command')
-	finish
-endif
-let g:loaded_command = 1
-
 command! -bang -nargs=* Terminal call my#command#terminal(<bang>0, <q-args>)
 
 command! -bar BD Sayonara!

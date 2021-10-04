@@ -1,8 +1,3 @@
-if exists('g:autoloaded_map')
-	finish
-endif
-let g:autoloaded_map = 1
-
 function! my#map#visualSearch(cmdtype) abort
 	let temp = @s
 	normal! gv"sy

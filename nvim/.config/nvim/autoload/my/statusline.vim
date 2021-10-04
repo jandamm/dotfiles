@@ -1,8 +1,3 @@
-if exists('g:autoloaded_statusline')
-	finish
-endif
-let g:autoloaded_statusline = 1
-
 scriptencoding utf-8
 
 let s:light_statusline_ft = ['qf', 'help', 'man']

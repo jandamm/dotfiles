@@ -1,8 +1,3 @@
-if exists('g:loaded_whitespace_plugin')
-	finish
-endif
-let g:loaded_whitespace_plugin = 1
-
 let s:no_tabs_fts = ['help', 'gitcommit', 'diff', 'fugitive']
 " Mark trailing whitespace as error (red)
 function s:MatchWhitespaceErrors()

@@ -1,8 +1,3 @@
-if exists('g:autoloaded_statusline_part')
-	finish
-endif
-let g:autoloaded_statusline_part = 1
-
 function! my#statusline#part#bufnr(winnr, active) abort
 	let c2 = a:active ? '%9*' : '%*'
 	let c3 = a:active ? '%2*' : '%8*'

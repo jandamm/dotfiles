@@ -1,8 +1,3 @@
-if exists('g:autoloaded_my_ctrlp')
-	finish
-endif
-let g:autoloaded_my_ctrlp = 1
-
 function! my#ctrlp#match(lines, input, limit, mmode, ispath, crfile, regex) abort
 	if a:regex
 		return s:ctrlp_regex_match(a:lines, a:input, a:mmode)

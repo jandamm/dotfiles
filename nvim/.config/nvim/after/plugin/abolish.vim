@@ -1,8 +1,3 @@
-if exists('g:loaded_abolish_after')
-	finish
-endif
-let g:loaded_abolish_after = 1
-
 " Abolish {inst,h,r}aed{,er,ing,y,ily} {}ead{}
 iabbrev instaed instead
 iabbrev Instaed Instead

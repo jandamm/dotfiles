@@ -1,8 +1,3 @@
-if exists('g:autoloaded_my_commands')
-	finish
-endif
-let g:autoloaded_my_commands = 1
-
 if !exists('s:terminals')
 	let s:terminals = {}
 endif

@@ -1,8 +1,3 @@
-if exists('g:autoloaded_statusline_ctrlp')
-	finish
-endif
-let g:autoloaded_statusline_ctrlp = 1
-
 scriptencoding utf-8
 
 function! my#statusline#ctrlp#main(focus, byfname, regex, prev, item, next, marked) abort

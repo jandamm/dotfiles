@@ -1,8 +1,3 @@
-if exists('g:autoloaded_editor')
-	finish
-endif
-let g:autoloaded_editor = 1
-
 function! my#editor#winenter() abort
 	if getwinvar('%', 'relativenumber', 0) | setlocal relativenumber | endif
 	if getwinvar('%', 'cursorline', 0) | setlocal cursorline | endif

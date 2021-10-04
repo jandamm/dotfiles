@@ -1,8 +1,3 @@
-if exists('g:loaded_projections')
-	finish
-endif
-let g:loaded_projections = 1
-
 " LUA {{{
 let g:projectionist_heuristics['lua/*.lua'] = {
 			\  'lua/*.lua': { 'type': 'lua' },

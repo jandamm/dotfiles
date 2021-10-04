@@ -57,8 +57,7 @@
   "../private/.config/nvim/vsnip/*.json": { "type": "snippet" },
   ".config/nvim/after/plugin/*.vim": {
     "alternate": ".config/nvim/plugin/{}.vim",
-    "related": [".config/nvim/autoload/my/{}.vim", ".config/nvim/plugin/{}.vim"],
-    "template": ["if exists('g:loaded_after_{basename}')", "\tfinish", "endif", "let g:loaded_after_{basename} = 1"]
+    "related": [".config/nvim/autoload/my/{}.vim", ".config/nvim/plugin/{}.vim"]
   },
   ".config/nvim/after/ftplugin/*.vim": {
     "alternate": ".config/nvim/ftplugin/{}.vim",

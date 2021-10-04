@@ -1,8 +1,3 @@
-if exists('g:autoloaded_map_key')
-	finish
-endif
-let g:autoloaded_map_key = 1
-
 function! my#map#key#enter() abort
 	if s:inCompletion()
 		return "\<C-y>"

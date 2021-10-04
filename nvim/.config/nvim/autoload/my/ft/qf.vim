@@ -1,8 +1,3 @@
-if exists('g:autoloaded_ft_qf')
-	finish
-endif
-let g:autoloaded_ft_qf = 1
-
 function! my#ft#qf#removeEntry(...) abort
 	let cursor = getcurpos()
 	let idx = cursor[1] - 1

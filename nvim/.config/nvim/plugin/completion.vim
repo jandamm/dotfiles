@@ -1,8 +1,3 @@
-if exists('g:loaded_my_completion')
-	finish
-endif
-let g:loaded_my_completion = 1
-
 set completeopt=menu
 set infercase
 

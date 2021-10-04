@@ -1,8 +1,3 @@
-if exists('g:autoloaded_spelling')
-	finish
-endif
-let g:autoloaded_spelling = 1
-
 function! my#spelling#toggle() abort
 	if !&spell                 " Off -> US
 		call my#spelling#en()

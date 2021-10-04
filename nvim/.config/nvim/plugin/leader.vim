@@ -1,8 +1,3 @@
-if exists('g:loaded_leader')
-	finish
-endif
-let g:loaded_leader = 1
-
 " Use Space as Leader
 let mapleader = "\<space>"
 

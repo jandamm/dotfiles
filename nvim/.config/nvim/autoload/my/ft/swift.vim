@@ -1,8 +1,3 @@
-if exists('g:autoloaded_ft_swift')
-	finish
-endif
-let g:autoloaded_ft_swift = 1
-
 function! my#ft#swift#add_compiler_flags(...) abort
 	let $NEOVIM_SWIFT_COMPILER_FLAGS .= ' '.join(a:000, ' ')
 endfunction

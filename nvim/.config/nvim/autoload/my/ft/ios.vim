@@ -1,8 +1,3 @@
-if exists('g:autoloaded_ft_ios')
-	finish
-endif
-let g:autoloaded_ft_ios = 1
-
 function! my#ft#ios#compile() abort
 	silent! wall
 	silent AbortDispatch xcode

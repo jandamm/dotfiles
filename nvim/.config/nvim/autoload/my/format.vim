@@ -1,8 +1,3 @@
-if exists('g:autoloaded_format')
-	finish
-endif
-let g:autoloaded_format = 1
-
 function! my#format#default() abort
 	setlocal tabstop=2 shiftwidth=0 noexpandtab
 endfunction

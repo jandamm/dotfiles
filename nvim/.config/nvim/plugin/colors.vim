@@ -1,8 +1,3 @@
-if exists('g:loaded_colors')
-	finish
-endif
-let g:loaded_colors = 1
-
 augroup my_colors
 	autocmd!
 	autocmd ColorScheme nord call s:nord()
