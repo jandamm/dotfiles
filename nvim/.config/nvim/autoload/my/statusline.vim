@@ -1,39 +1,5 @@
 scriptencoding utf-8
 
-let s:light_statusline_ft = ['qf', 'help', 'man']
-
-function! my#statusline#overwrite(winnr, active) abort
-	let filetype = getbufvar(winbufnr(a:winnr), '&filetype')
-	return index(s:light_statusline_ft, filetype) > -1
-endfunction
-
-function! my#statusline#get(winnr, active) abort
-	let bufnr = winbufnr(a:winnr)
-	let filetype = getbufvar(bufnr, '&filetype')
-
-	if filetype ==# 'terminal'
-		return my#statusline#terminal(a:winnr, a:active)
-	endif
-
-	if filetype ==# 'dirvish'
-		return my#statusline#dirvish(a:winnr, a:active)
-	endif
-
-	if filetype ==# 'fugitive' || bufname(bufnr) =~# '^fugitive://' || filetype ==# 'gitcommit'
-		return my#statusline#fugitive(a:winnr, a:active)
-	endif
-
-	if filetype ==# 'qf'
-		return my#statusline#qf(a:winnr, a:active)
-	endif
-
-	if index(s:light_statusline_ft, filetype) > -1
-		return my#statusline#light(a:winnr, a:active)
-	endif
-
-	return my#statusline#default(a:winnr, a:active)
-endfunction
-
 function! my#statusline#default(winnr, active) abort
 	" Left part
 	let line  = my#statusline#part#filename(a:winnr, a:active, 'Ϟ ')

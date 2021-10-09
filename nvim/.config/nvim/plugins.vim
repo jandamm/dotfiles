@@ -54,6 +54,8 @@ Pack 'ggandor/lightspeed.nvim' " Faster cursor movement
 Pack 'mhinz/vim-grepper'
 Pack 'sindrets/diffview.nvim'
 
+Pack 'jandamm/cryoline.nvim'
+
 call packager#add('justinmk/vim-dirvish')
 
 " Text Objects
