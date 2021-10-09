@@ -1,1 +1,1 @@
-command! -buffer Pretty %!jq .
+command! -buffer -nargs=? Jq %!jq <f-args>
