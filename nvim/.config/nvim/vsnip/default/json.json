@@ -2,5 +2,9 @@
   "Vsnip": {
     "prefix": ["snip", "snippet"],
     "body": ["\"${1:Name}\": {", "\t\"prefix\": [\"${2:trigger}\"],", "\t\"body\": [\"${4:expansion}\"$0]","}${3:,}"]
+  },
+  "Visual": {
+    "prefix": ["$vis", "vis", "$visual", "visual"],
+    "body": ["\\$TM_SELECTED_TEXT"]
   }
 }

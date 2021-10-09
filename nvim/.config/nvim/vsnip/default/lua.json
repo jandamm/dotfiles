@@ -1,0 +1,30 @@
+{
+  "Inspect": {
+    "prefix": ["put", "inspect"],
+    "body": ["print(vim.inspect(${0:$TM_SELECTED_TEXT}))"]
+  },
+  "Function": {
+    "prefix": ["func", "function"],
+    "body": ["${1:local }function${2: ${3:M.}${4:name}}(${5:param})", "\t${0:$TM_SELECTED_TEXT}", "end"]
+  },
+  "Local": {
+    "prefix": ["local"],
+    "body": ["local ${1:name} = ${2:${TM_SELECTED_TEXT:func}}"]
+  },
+  "If": {
+    "prefix": ["if"],
+    "body": ["if ${1:cond} then", "\t$0", "end"]
+  },
+  "For": {
+    "prefix": ["for"],
+    "body": ["for i = ${1:1}, ${2:10}, 1 do", "\t${0:$TM_SELECTED_TEXT}", "end"]
+  },
+  "For In": {
+    "prefix": ["for in", "forin"],
+    "body": ["for ${1:key}, ${2:value} in ${3:i}pairs($4) do", "\t${0:$TM_SELECTED_TEXT}", "end"]
+  },
+  "M": {
+    "prefix": ["M"],
+    "body": ["local M = {}", "", "${0:${TM_SELECTED_TEXT:func}}", "", "return M"]
+  }
+}

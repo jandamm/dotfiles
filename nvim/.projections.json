@@ -36,7 +36,10 @@
     ]
   },
   ".config/nvim/init.vim": { "type": "init" },
-  ".config/nvim/lua/my/*.lua": { "type": "lua" },
+  ".config/nvim/lua/my/*.lua": {
+    "type": "lua",
+    "template": [ "local M = {open}{close}", "", "return M" ]
+  },
   ".config/nvim/projplugin/*.vim": { "type": "projplugin" },
   ".config/nvim/plugin/*.vim": {
     "type": "plugin",
