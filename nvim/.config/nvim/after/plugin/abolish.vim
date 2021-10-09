@@ -59,6 +59,15 @@ iabbrev raedily readily
 iabbrev Raedily Readily
 iabbrev RAEDILY READILY
 
+" Abolish feaut{u,}re feature
+iabbrev feauture feature
+iabbrev Feauture Feature
+iabbrev FEAUTURE FEATURE
+
+iabbrev feautre feature
+iabbrev Feautre Feature
+iabbrev FEAUTRE FEATURE
+
 " Abolish {despa,sepe}rat{e,es,ed,ing,ely,ion,ions,or} {despe,sepa}rat{}
 iabbrev desparate desperate
 iabbrev Desparate Desperate
