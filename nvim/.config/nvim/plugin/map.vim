@@ -128,8 +128,6 @@ smap     <expr>   <C-f>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-f
 imap     <expr>   <C-b>   vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
 smap     <expr>   <C-b>   vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
 
-imap     <expr>   <C-t>   pumvisible() ? '<Plug>(ctrlp_complete)' : '<C-t>'
-
 inoremap <expr>   <C-j>   pumvisible() ? '<C-n>' : '<C-j>'
 inoremap <expr>   <C-k>   pumvisible() ? '<C-p>' : '<C-k>'
 

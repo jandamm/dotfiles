@@ -18,8 +18,6 @@
       "let current_compiler = '{}'"
     ]
   },
-  ".config/nvim/autoload/ctrlp/*.vim": { "type": "ctrlp" },
-  ".config/nvim/plugin/ctrlp.vim": { "type": "ctrlp" },
   ".config/nvim/ftdetect/*.vim": { "type": "ftdetect" },
   ".config/nvim/ftplugin/*.vim": {
     "type": "ftplugin",

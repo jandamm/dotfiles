@@ -66,9 +66,7 @@ Pack 'kana/vim-textobj-indent'
 Pack 'kana/vim-textobj-line'
 
 " Fuzzy finding
-Pack 'ctrlpvim/ctrlp.vim'
-Pack 'nixprime/cpsm', { 'do': 'env PY3=ON ./install.sh' } " Improve matching speed/accuracy for ctrlp
-Pack 'jandamm/ctrlp-complete.vim'
+" Use Telescope or fzf?
 
 " Dispatching / Async
 Pack 'tpope/vim-dispatch' " Easy dispatching of jobs to the terminal
