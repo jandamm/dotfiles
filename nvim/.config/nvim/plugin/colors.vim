@@ -21,7 +21,10 @@ function! s:nord() abort
 	execute 'hi LspDiagnosticsStatusE guibg='.s:colors.nord3.' guifg='.s:colors.nord11
 	execute 'hi LspDiagnosticsStatusW guibg='.s:colors.nord3.' guifg='.s:colors.nord13
 	execute 'hi LspDiagnosticsStatusI guibg='.s:colors.nord3.' guifg='.s:colors.nord8
-	execute 'hi LspDiagnosticsStatusH guibg='.s:colors.nord3.' guifg='.s:colors.nord10
+	execute 'hi LspDiagnosticsStatusH guibg='.s:colors.nord3.' guifg='.s:colors.nord15
+
+	execute 'hi LspDiagnosticsDefaultHint   guifg='.s:colors.nord15
+	execute 'hi LspDiagnosticsUnderlineHint guifg='.s:colors.nord15.' gui=undercurl'
 
 	execute 'hi LeaderGuideKeys            guibg='.s:colors.nord0.' guifg='.s:colors.nord13
 	execute 'hi LeaderGuideMenu            guibg='.s:colors.nord0.' guifg='.s:colors.nord7
