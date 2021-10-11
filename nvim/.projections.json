@@ -38,6 +38,7 @@
     "type": "lua",
     "template": [ "local M = {open}{close}", "", "return M" ]
   },
+  ".config/nvim/lua/my/packer.lua": { "type": "packer" },
   ".config/nvim/projplugin/*.vim": { "type": "projplugin" },
   ".config/nvim/plugin/*.vim": {
     "type": "plugin",

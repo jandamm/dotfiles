@@ -103,7 +103,7 @@ null_ls.config {
 		-- DIAGNOSTICS
 		require('my.lint').jsonlint,
 		require('my.lint').kin,
-		null_ls.builtins.diagnostics.luacheck, -- TODO: Use packer instead of dotfiles bin
+		null_ls.builtins.diagnostics.luacheck,
 		null_ls.builtins.diagnostics.markdownlint,
 		null_ls.builtins.diagnostics.shellcheck,
 		require('my.lint').swiftlint,

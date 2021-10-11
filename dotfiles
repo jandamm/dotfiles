@@ -293,20 +293,21 @@ fi
 
 if should_configure nvim
 then
-	nvim_update_file="$(mktemp)"
-	trap 'rm "$nvim_update_file"' EXIT
+	# Currently no output from vim.
+	# nvim_update_file="$(mktemp)"
+	# trap 'rm "$nvim_update_file"' EXIT
 
 	if is_install
 	then
 		mkdir -p "$XDG_DATA_HOME/nvim/undo"
 
-		if [ ! -d "$XDG_DATA_HOME/nvim/site/pack/packager/opt/vim-packager" ]
+		if [ ! -d "$XDG_DATA_HOME/nvim/site/pack/packer/opt/packer.nvim" ]
 		then
-			git clone https://github.com/kristijanhusak/vim-packager "$XDG_DATA_HOME/nvim/site/pack/packager/opt/vim-packager"
+			git clone https://github.com/wbthomason/packer.nvim.git "$XDG_DATA_HOME/nvim/site/pack/packer/opt/packer.nvim"
 		fi
 
 		echo 'Installing vim plugins'
-		nvim --headless --noplugin -u nvim/.config/nvim/plugins.vim "$nvim_update_file" "+call packager#install({ 'on_finish': \"source $DOTFILES/resources/print_update.vim\" })" &>/dev/null
+		nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 		for file in vim/spell/*.add; do
 			echo 'Compiling vim Spellfiles'
@@ -314,19 +315,19 @@ then
 		done
 	fi
 
-	echo 'Installing luacheck - Move to packer.nvim'
-	luarocks install luacheck
-
 	if is_update
 	then
 		echo 'Updating vim plugins'
-		nvim --headless --noplugin -u nvim/.config/nvim/plugins.vim "$nvim_update_file" "+call packager#update({ 'on_finish': \"source $DOTFILES/resources/print_update.vim\" })" &>/dev/null
+		nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 	fi
 
-	cat "$nvim_update_file"
+	# cat "$nvim_update_file"
 
 	echo 'Updating vim-pack tags'
 	neovim-packtags
+
+	echo 'Installing luacheck'
+	luarocks install luacheck
 
 	echo 'Installing/updating sumneko lua lsp'
 	neovim-install_sumneko
