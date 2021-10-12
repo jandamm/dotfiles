@@ -1,6 +1,6 @@
 local M = {}
 
-local qf_severities = {e=1, w=2, i=3, n=4}
+local qf_severities = { e = 1, w = 2, i = 3, n = 4 }
 
 M.from_efm = function(efm, source)
 	return function(params, done)
@@ -10,9 +10,9 @@ M.from_efm = function(efm, source)
 		end
 
 		local diagnostics = {}
-		local lines = vim.split(output, "\n")
+		local lines = vim.split(output, '\n')
 
-		local qflist = vim.fn.getqflist({ efm = efm, lines = lines })
+		local qflist = vim.fn.getqflist { efm = efm, lines = lines }
 
 		for _, item in pairs(qflist.items) do
 			if item.valid == 1 then

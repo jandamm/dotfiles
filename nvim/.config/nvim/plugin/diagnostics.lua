@@ -7,7 +7,7 @@ local groups = {
 }
 for _, sign in pairs(groups) do
 	local name = 'LspDiagnosticsSign' .. sign.name
-	vim.fn.sign_define(name, { text=sign.symbol, texthl=name, linehl='', numhl='' })
+	vim.fn.sign_define(name, { text = sign.symbol, texthl = name, linehl = '', numhl = '' })
 end
 
 -- Lsp customization {{{
