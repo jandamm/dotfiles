@@ -23,9 +23,6 @@ let g:qf_auto_open_loclist = 0
 let g:qf_auto_open_quickfix = 0
 let g:qf_mapping_ack_style = 1
 
-" Gitsigns
-lua require('gitsigns').setup()
-
 " Undo Tree
 let g:undotree_SetFocusWhenToggle = 1
 function! g:Undotree_CustomMap() abort
