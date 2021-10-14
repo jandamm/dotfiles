@@ -110,15 +110,14 @@ endfunction
 if !exists('s:qf_cache') | let s:qf_cache = {} | endif
 
 function! s:qf_cached(prefix, winnr) abort
-	" Should I use winid? Leads to less recomputation but increases cache since
-	" every new window gets its own entry.
 	let key = a:prefix ==# 'c' ? 'qf' : win_getid(a:winnr)
 	let id = s:get_list(key, 'id')
-	if has_key(s:qf_cache, key) && s:qf_cache[key]['id'] == id
+	let tick = s:get_list(key, 'changedtick')
+	if has_key(s:qf_cache, key) && s:qf_cache[key].id == id && s:qf_cache[key].tick == tick
 		return s:qf_cache[key]
 	endif
 
-	let entry = { '': 0, 'E': 0, 'W': 0, 'I': 0, 'id': id }
+	let entry = { '': 0, 'E': 0, 'W': 0, 'I': 0, 'id': id, 'tick': tick }
 	let s:qf_cache[key] = entry
 	let items = s:get_list(key, 'items')
 
