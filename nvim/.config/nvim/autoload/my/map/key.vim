@@ -48,8 +48,8 @@ function! s:shiftwidthSpaces() abort
 	if &expandtab
 		return "\<TAB>"
 	else
-		let toNextTabstop = float2nr(&shiftwidth - fmod(virtcol('.'), &shiftwidth))
+		let width = &shiftwidth ? &shiftwidth : &tabstop
+		let toNextTabstop = float2nr(width - fmod(virtcol('.'), width))
 		return repeat(' ', toNextTabstop)
 	endif
 endfunction
-
