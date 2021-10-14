@@ -127,10 +127,15 @@ local function init()
 		{
 			'romainl/vim-qf',
 			setup = function()
-				vim.g.qf_mapping_ack_style = true
 				vim.g.qf_auto_open_loclist = false
 				vim.g.qf_auto_open_quickfix = false
 			end,
+		},
+		{
+			'kevinhwang91/nvim-bqf',
+			requires = { { 'junegunn/fzf', opt = true, config = [[vim.cmd 'silent! delcommand FZF']] } },
+			wants = 'fzf',
+			ft = 'qf',
 		},
 		{
 			'https://gitlab.com/yorickpeterse/nvim-pqf',
