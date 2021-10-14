@@ -80,6 +80,8 @@ local function init()
 			end,
 			requires = 'nvim-lua/plenary.nvim',
 			tag = 'release',
+			event = 'VimEnter', -- Otherwise it produces an error when a :Git buffer is open.
+		},
 		{ 'sindrets/diffview.nvim', requires = 'kyazdani42/nvim-web-devicons', cmd = { 'DiffviewOpen', 'Diffview*' } },
 
 		-- For now fugitive is nicer since it allows jumping to old git objects as well. (Enter on emoved lines)
