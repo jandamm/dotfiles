@@ -31,7 +31,11 @@ local function init()
 		'antoinemadec/FixCursorHold.nvim',
 	}
 
-	use { 'arcticicestudio/nord-vim', opt = true }
+	-- Appearance
+	use {
+		{ 'arcticicestudio/nord-vim', opt = true },
+		{ 'kyazdani42/nvim-web-devicons' }, -- Icons for my statusline functions
+	}
 
 	-- Mappings
 	use {
@@ -76,6 +80,7 @@ local function init()
 			end,
 			requires = 'nvim-lua/plenary.nvim',
 			tag = 'release',
+		{ 'sindrets/diffview.nvim', requires = 'kyazdani42/nvim-web-devicons', cmd = { 'DiffviewOpen', 'Diffview*' } },
 
 		-- For now fugitive is nicer since it allows jumping to old git objects as well. (Enter on emoved lines)
 		-- Also fugitive jumps to the right line when enter is pressed.
@@ -87,7 +92,6 @@ local function init()
 				require('neogit').setup { integrations = { diffview = true } }
 			end,
 		},
-		{ 'sindrets/diffview.nvim', cmd = { 'DiffviewOpen', 'Diffview*' } },
 	}
 
 	-- Utilities
@@ -128,8 +132,20 @@ local function init()
 	-- Yank history
 	use 'svermeulen/vim-yoink'
 
-	-- Declare the status lines
-	use { 'jandamm/cryoline.nvim', config = require('my.config').cryoline }
+	-- UI Elements
+	use {
+		-- "default" Tabline with devicons
+		{
+			-- 'alvarosevilla95/luatab.nvim',
+			'jandamm/luatab.nvim', -- until my pr is merged
+			requires = 'kyazdani42/nvim-web-devicons',
+			config = function()
+				vim.o.tabline = "%!v:lua.require'luatab'.tabline('')"
+			end,
+		},
+		-- Declare the status lines
+		{ 'jandamm/cryoline.nvim', config = require('my.config').cryoline },
+	}
 
 	-- Better text objects
 	use {

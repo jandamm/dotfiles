@@ -2,7 +2,7 @@ scriptencoding utf-8
 
 function! my#statusline#default(winnr, active) abort
 	" Left part
-	let line  = my#statusline#part#filename(a:winnr, a:active, 'Ϟ ')
+	let line  = my#statusline#part#filename(a:winnr, a:active, 'Ϟ')
 	let line .= my#statusline#part#bufnr(a:winnr, a:active)
 
 	if a:active
@@ -32,13 +32,13 @@ function! my#statusline#default(winnr, active) abort
 endfunction
 
 function! my#statusline#light(winnr, active) abort
-	return my#statusline#part#filename(a:winnr, a:active, '', 1)
+	return my#statusline#part#filename_light(a:winnr, a:active)
 				\ .'%='
 				\ .my#statusline#part#viewport(a:winnr, a:active)
 endfunction
 
 function! my#statusline#qf(winnr, active) abort
-	return my#statusline#part#filename(a:winnr, a:active, '', 1)
+	return my#statusline#part#filename_light(a:winnr, a:active)
 				\ .my#statusline#part#qf_title(a:winnr, a:active)
 				\ .'%='
 				\ .my#statusline#part#qf_loc_count(a:winnr, a:active)
@@ -46,7 +46,7 @@ function! my#statusline#qf(winnr, active) abort
 endfunction
 
 function! my#statusline#dirvish(winnr, active) abort
-	return my#statusline#part#filename(a:winnr, a:active, 'Ϟ ')
+	return my#statusline#part#filename(a:winnr, a:active, 'Ϟ')
 				\ .my#statusline#part#bufnr(a:winnr, a:active)
 				\ .my#statusline#part#git(a:winnr, a:active)
 				\ .'%='
@@ -54,7 +54,7 @@ function! my#statusline#dirvish(winnr, active) abort
 endfunction
 
 function! my#statusline#fugitive(winnr, active) abort
-	return my#statusline#part#filename(a:winnr, a:active, 'δ ')
+	return my#statusline#part#filename(a:winnr, a:active, '')
 				\ .my#statusline#part#bufnr(a:winnr, a:active)
 				\ .my#statusline#part#git(a:winnr, a:active)
 				\ .'%='
@@ -70,7 +70,7 @@ function! my#statusline#terminal(winnr, active) abort
 	let is_gsh = match(term_title, '^[^\[]*\[gsh\]') == 0
 
 	return (a:active ? '%1*' : '')
-				\ .(is_gsh ? 'δ ' : 'λ ')
+				\ .(is_gsh ? ' ' : 'λ ')
 				\ .term_title.'%*'
 				\ .(a:active ? my#statusline#part#paste(a:winnr, a:active) : '')
 				\ .'%='

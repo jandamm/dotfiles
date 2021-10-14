@@ -1,8 +1,9 @@
+local s = require('my.symbols')
 local groups = {
-	{ name = 'Error', symbol = '✖' },
-	{ name = 'Warning', symbol = '‼' },
-	{ name = 'Information', symbol = 'i' },
-	{ name = 'Hint', symbol = '⁇' },
+	{ name = 'Error', symbol = s.E },
+	{ name = 'Warning', symbol = s.W },
+	{ name = 'Information', symbol = s.I },
+	{ name = 'Hint', symbol = s.H },
 }
 
 for _, sign in pairs(groups) do

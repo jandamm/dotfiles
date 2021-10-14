@@ -19,27 +19,28 @@ function! my#statusline#part#git(winnr, active) abort
 	return branch !=? '' ? ' ' . branch : ''
 endfunction
 
-function! my#statusline#part#filename(winnr, active, prefix, ...) abort
-	" Light mode
-	if a:0 && a:1
+function! my#statusline#part#filename_light(winnr, active) abort
+	return a:active ? '%1*%f%*' : '%f'
+endfunction
+
+function! my#statusline#part#filename(winnr, active, prefix) abort
+	let full = fnamemodify(bufname(winbufnr(a:winnr)), ':~:.')
+	let file = fnamemodify(full, ':t')
+	let ext = fnamemodify(full, ':e')
+	let path = fnamemodify(full, ':h')
+	if path ==# '.' && !empty(file)
+		" files in pwd show just filenames
 		let path = ''
-		let file = '%f'
-	else
-		let full = fnamemodify(bufname(winbufnr(a:winnr)), ':~:.')
-		let file = fnamemodify(full, ':t')
-		let path = fnamemodify(full, ':h')
-		if path ==# '.' && !empty(file)
-			" files in pwd show just filenames
-			let path = ''
-		elseif path !=# '.' && path !=# '~' || !empty(file)
-			" Don't append `/` to folders pwd and HOME
-			let path .= '/'
-		endif
+	elseif path !=# '.' && path !=# '~' || !empty(file)
+		" Don't append `/` to folders pwd and HOME
+		let path .= '/'
 	endif
+	let icon = luaeval("require'nvim-web-devicons'.get_icon(_A[1], _A[2]) or _A[3]", [file, ext, a:prefix])
+	if !empty(icon) | let icon .= ' ' | endif
 	return printf(a:active
 				\ ? '%%1*%s%%3*%%<%s%%1*%s%%*'
 				\ : '%s%%<%s%%8*%s%%*',
-				\ a:prefix, path, file)
+				\ icon, path, file)
 endfunction
 
 function! my#statusline#part#indent(winnr, active) abort
@@ -81,14 +82,13 @@ function! my#statusline#part#viewport(winnr, active) abort
 endfunction
 
 function! my#statusline#part#diagnostics(winnr, active) abort
-	let format = ' d[%s]'
 	let bufnr = winbufnr(a:winnr)
 	let line = s:diag_part('Error', bufnr, a:active)
 				\. s:diag_part('Warning', bufnr, a:active)
 				\. s:diag_part('Information', bufnr, a:active)
 				\. s:diag_part('Hint', bufnr, a:active)
 
-	return empty(line) ? '' : printf(format, substitute(line, ',$', '', ''))
+	return empty(line) ? '' : ' ' . substitute(line, ',', ' ', 'g')
 endfunction
 
 function! my#statusline#part#qf_loc_count(winnr, active) abort
@@ -160,11 +160,13 @@ function! s:diag_part(type, bufnr, active) abort
 	return s:dqf_part(c, strpart(a:type, 0, 1), a:active)
 endfunction
 
+let s:Symbols = luaeval('require("my.symbols")')
 function! s:dqf_part(count, type, active) abort
 	if a:count == 0 | return '' | endif
 	let hi = a:active ? '%#LspDiagnosticsStatus'.a:type.'#' : ''
-	let equals = empty(a:type) ? '' : '='
-	return hi.a:type.equals.a:count.'%*,'
+	let type = get(s:Symbols, a:type, '')
+	let sep = empty(type) ? '' : ' '
+	return hi.type.sep.a:count.'%*,'
 endfunction
 
 " Helper {{{
