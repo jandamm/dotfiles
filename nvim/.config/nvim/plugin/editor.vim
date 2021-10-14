@@ -18,11 +18,6 @@ function! s:fixSleuth() abort
 	if !&expandtab | call my#format#default() | endif
 endfunction
 
-" vim-qf don't open qf automatically. (Incompatible with vim-dispatch)
-let g:qf_auto_open_loclist = 0
-let g:qf_auto_open_quickfix = 0
-let g:qf_mapping_ack_style = 1
-
 " Undo Tree
 let g:undotree_SetFocusWhenToggle = 1
 function! g:Undotree_CustomMap() abort

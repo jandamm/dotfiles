@@ -25,6 +25,10 @@ function! s:nord() abort
 
 	execute 'hi LspDiagnosticsDefaultHint   guifg='.s:colors.nord15
 	execute 'hi LspDiagnosticsUnderlineHint guifg='.s:colors.nord15.' gui=undercurl'
+	hi! link DiagnosticError LspDiagnosticsDefaultError
+	hi! link DiagnosticWarn  LspDiagnosticsDefaultWarning
+	hi! link DiagnosticInfo  LspDiagnosticsDefaultInformation
+	hi! link DiagnosticHint  LspDiagnosticsDefaultHint
 
 	execute 'hi LeaderGuideKeys            guibg='.s:colors.nord0.' guifg='.s:colors.nord13
 	execute 'hi LeaderGuideMenu            guibg='.s:colors.nord0.' guifg='.s:colors.nord7

@@ -123,7 +123,23 @@ local function init()
 	}
 
 	-- Improve quickfix lists
-	use 'romainl/vim-qf'
+	use {
+		{
+			'romainl/vim-qf',
+			setup = function()
+				vim.g.qf_mapping_ack_style = true
+				vim.g.qf_auto_open_loclist = false
+				vim.g.qf_auto_open_quickfix = false
+			end,
+		},
+		{
+			'https://gitlab.com/yorickpeterse/nvim-pqf',
+			config = function()
+				local s = require 'my.symbols'
+				require('pqf').setup { signs = { error = s.E, warning = s.W, info = s.I, hint = s.H } }
+			end,
+		},
+	}
 
 	-- Netrw just in good
 	use 'justinmk/vim-dirvish'
