@@ -26,7 +26,7 @@ let g:quickfixsigns_echo_map = '<Leader>ce'
 let g:lmap.c.e = 'Error message'
 nmap <silent> <Leader>cf         :call my#map#leader#format()<CR>
 let g:lmap.c.f = 'Format'
-nmap <silent> <Leader>cl         <CMD>lua vim.lsp.diagnostic.set_loclist()<CR>
+nmap <silent> <Leader>cl         <CMD>lua vim.lsp.diagnostic.set_loclist({open_loclist = false}); vim.cmd [[lwindow]]<CR>
 let g:lmap.c.a = 'Load in LOC'
 nmap <silent> <Leader>cr         :call my#map#leader#run()<CR>
 let g:lmap.c.r = 'Run'
