@@ -101,6 +101,9 @@ function! my#statusline#part#qf_count(winnr, active) abort
 endfunction
 
 function! my#statusline#part#loc_count(winnr, active) abort
+	if s:get_list(win_getid(a:winnr), 'title') ==? 'Language Server'
+		return ''
+	endif
 	return s:qf_summary('l', a:winnr, a:active)
 endfunction
 
