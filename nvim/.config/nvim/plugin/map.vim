@@ -1,6 +1,11 @@
 " Correct Y yank behavior
 nnoremap Y y$
 
+nnoremap ; :
+xnoremap ; :
+onoremap ; :
+nnoremap @; @:
+
 " Esc clears last search
 nnoremap <silent> <C-l> :nohlsearch<CR>:diffupdate<CR>:syntax sync fromstart<CR><C-l>
 
