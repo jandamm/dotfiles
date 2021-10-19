@@ -1,40 +1,25 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 set -e
+zparseopts -D -E i=interactive -interactive=interactive
 
-function get_sha() {
-	[ "$1" ] && echo "$1"
-}
-
-function has_branch() {
-	git show-branch "$1" &>/dev/null
-}
-
-if [ "$1" = 'apply' ]; then
+if [[ $1 = 'apply' ]]; then
 	shift
+	sha=$1
 
-	# TODO: cleanup
-	# TODO: preselect oldest not pushed commit (if no sha is provided)
-
-	# $ as parameter selects the current upstream branch
-	if [ "$1" = "$" ]
-	then
-		shift
+	if [[ -z ${interactive[1]:-} && -z $sha ]]; then
 		branch="$(git remote | head -n 1)/$(git branch --show-current)"
-		if has_branch "$branch"
-		then
+		if git show-branch "$branch" &>/dev/null; then
 			sha="$branch"
 		fi
 	fi
 
-	if [ -z "$sha" ]; then
-		sha=$(get_sha "$@" || git logf --prompt='Fixup> ' --header='Select the oldest commit before a fixed commit.')
-	fi
+	: ${sha:=$(git logf --prompt='Fixup> ' --header='Select the oldest commit before a fixed commit.')}
 
 	GIT_SEQUENCE_EDITOR=true git rebase --interactive --autosquash "${sha%% *}"
 	exit
 fi
 
-sha=$(get_sha "$@" || git logf --prompt='Fixup> ')
+sha=${1:-$(git logf --prompt='Fixup> ')}
 
 git commit --fixup "${sha%% *}"

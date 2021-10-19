@@ -45,6 +45,7 @@
 
 	# Aliase for Fugitive to find/complete git-* commands
 	fixup = fixup
+	fixapply = fixup apply
 	pr-new = pr new
 	pr-update = pr update
 	unwip = unwip

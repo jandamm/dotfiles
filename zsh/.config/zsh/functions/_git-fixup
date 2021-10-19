@@ -1,12 +1,13 @@
 #compdef git-fixup
 
-function _git-fixup() {
-	# Prevent completing flags
-	if [[ ! $LBUFFER =~ '^.* \-[^ ]*$' ]]
-	then
-		_arguments '1:command:(apply)'
-		_sequence _git-rebase
-	fi
-}
-
-_git-fixup "$@"
+if [[ ! $BUFFER =~ ' apply ' ]]; then
+	_values options 'apply[apply previous fixup commits]'
+else
+	local options=(
+		'--interactive[use fzf to select rebase target]'
+		'-i[use fzf to select rebase target]'
+	)
+	_values -w options $options
+fi
+# Prevent completing flags
+[[ ! $LBUFFER =~ '^.* \-[^ ]*$' ]] && _sequence _git-rebase
