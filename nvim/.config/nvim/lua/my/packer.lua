@@ -53,6 +53,13 @@ local function init()
 		'tpope/vim-unimpaired', -- Better [] mappings
 		'tommcdo/vim-exchange', -- Switch text with cx
 		{ 'godlygeek/tabular', cmd = 'Tabularize' }, -- ga to align
+		{
+			'kwkarlwang/bufjump.nvim',
+			keys = { 'g<C-i>', 'g<C-o>' },
+			config = function()
+				require('bufjump').setup { forward = 'g<C-i>', backward = 'g<C-o>' }
+			end,
+		},
 	}
 
 	-- Commands
