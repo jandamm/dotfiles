@@ -15,8 +15,7 @@ function! my#statusline#part#case_sensitivity(winnr, active) abort
 endfunction
 
 function! my#statusline#part#git(winnr, active) abort
-	let branch = fugitive#head()
-	return branch !=? '' ? ' ' . branch : ''
+	return luaeval("require('my.statusline').git {bufnr =".winbufnr(a:winnr).'}')
 endfunction
 
 function! my#statusline#part#filename_light(winnr, active) abort
