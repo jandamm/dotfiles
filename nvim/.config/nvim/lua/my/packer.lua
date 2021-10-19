@@ -43,7 +43,12 @@ local function init()
 
 		'ggandor/lightspeed.nvim', -- Faster cursor movement
 		'machakann/vim-sandwich', -- Add(y)/change(c)/remove(d) surroundings
-		'tpope/vim-commentary', -- gc to comment in/out
+		{
+			'numToStr/Comment.nvim', -- gc to comment in/out
+			config = function()
+				require('Comment').setup { ignore = '^$', sticky = false }
+			end,
+		},
 		'tpope/vim-endwise', -- Insert endif etc automatically
 		'tpope/vim-unimpaired', -- Better [] mappings
 		'tommcdo/vim-exchange', -- Switch text with cx
