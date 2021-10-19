@@ -10,6 +10,10 @@
     ],
     "description": "Function definition template."
   },
+  "zparseopts": {
+    "prefix": ["zp", "zparse"],
+    "body": ["zparseopts -D -E ${1:-name}${2::}=${3:var}$0${4: || return}"]
+  },
   "strict": {
     "prefix": [
       "strict"
