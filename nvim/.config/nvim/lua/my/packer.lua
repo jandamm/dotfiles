@@ -113,7 +113,7 @@ local function init()
 		'aymericbeaumet/vim-symlink', -- Resolve symlinks
 		{ 'jghauser/mkdir.nvim', config = [[require('mkdir')]] }, -- Automatically create missing directories on :w
 		'ludovicchabant/vim-gutentags', -- ctags now just work
-		{ 'tweekmonster/startuptime.vim', cmd = 'StartupTime' },
+		{ 'gabebw/vim-github-link-opener', branch = 'main', keys = 'gx' }, -- Improve gx mapping
 	}
 
 	-- Session management
@@ -231,6 +231,8 @@ local function init()
 		'jandamm/vim-zsh-completion',
 		'tpope/vim-scriptease', -- Vim debugging
 	}
+
+	use { 'tweekmonster/startuptime.vim', cmd = 'StartupTime' }
 end
 
 local plugins = setmetatable({}, {
