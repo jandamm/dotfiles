@@ -211,12 +211,16 @@ local function init()
 	-- Language support
 	-- LSP
 	use {
-		{ 'neovim/nvim-lspconfig', config = require('my.config').lspconfig },
-		{ -- Linter/Formatter/Code Actions
-			'jose-elias-alvarez/null-ls.nvim',
-			after = 'nvim-lspconfig',
-			config = require('my.config').null_ls,
-			requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+		'neovim/nvim-lspconfig',
+		config = require('my.config').lspconfig,
+		requires = {
+			'folke/lua-dev.nvim', -- Config for sumneko-lua lsp
+			{
+				'jose-elias-alvarez/null-ls.nvim', -- Linter/Formatter/Code Actions
+				after = 'nvim-lspconfig',
+				config = require('my.config').null_ls,
+				requires = 'nvim-lua/plenary.nvim',
+			},
 		},
 	}
 	-- Syntax
