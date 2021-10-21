@@ -48,19 +48,6 @@ M.swiftlint = helpers.make_builtin {
 	factory = helpers.generator_factory,
 }
 
-M.yamllint = helpers.make_builtin {
-	method = null_ls.methods.DIAGNOSTICS,
-	filetypes = { 'yaml' },
-	generator_opts = {
-		command = 'yamllint',
-		args = { '-f', 'parsable', '-' },
-		to_stdin = true,
-		from_stderr = true,
-		on_output = require('my.null-ls').from_efm('%E%f:%l:%c: [error] %m,%W%f:%l:%c: [warning] %m', 'yamllint'),
-	},
-	factory = helpers.generator_factory,
-}
-
 M.zsh = helpers.make_builtin {
 	method = null_ls.methods.DIAGNOSTICS,
 	filetypes = { 'zsh' },

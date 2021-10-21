@@ -10,7 +10,7 @@ null_ls.config {
 		null_ls.builtins.diagnostics.shellcheck,
 		require('my.lint').swiftlint,
 		null_ls.builtins.diagnostics.vint.with { extra_args = { '--enable-neovim' } },
-		require('my.lint').yamllint,
+		null_ls.builtins.diagnostics.yamllint,
 		require('my.lint').zsh,
 
 		-- FORMATTING
