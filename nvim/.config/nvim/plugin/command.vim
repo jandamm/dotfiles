@@ -17,6 +17,8 @@ command! -nargs=? Vtree call my#command#tree(1,<f-args>)
 
 command! X !chmod +x "%"
 
+command! -bang -nargs=? -range=-1 -complete=customlist,fugitive#Complete GG   Dispatch<bang> git <args>
+
 command! -nargs=? -complete=dir TODO GrepperRg '--hidden' ' (FIXME|FIX|TODO|NOTE):' <f-args>
 command! -nargs=? -complete=dir MARK GrepperRg '--hidden' ' MARK:' <f-args>
 command! -nargs=? -complete=dir FIX  GrepperRg '--hidden' ' (FIXME|FIX):' <f-args>

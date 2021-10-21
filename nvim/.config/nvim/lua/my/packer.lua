@@ -76,7 +76,7 @@ local function init()
 	-- Git interface
 	use {
 		-- Fugitive
-		{ 'tpope/vim-fugitive', cmd = { 'G', 'G*' }, event = 'BufAdd */.git/index' },
+		{ 'tpope/vim-fugitive', cmd = { 'G', 'G*' }, fn = 'fugitive#Complete', event = 'BufAdd */.git/index' },
 		{ 'tpope/vim-rhubarb', after = 'vim-fugitive' }, -- Gbrowse for Github
 		{ 'shumphrey/fugitive-gitlab.vim', after = 'vim-fugitive' }, -- Gbrowse for GitLab
 		{ 'tommcdo/vim-fubitive', after = 'vim-fugitive' }, -- Gbrowse for Bitbucket
