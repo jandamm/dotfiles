@@ -16,6 +16,8 @@ require('cryoline').config {
 			or string.match(vim.api.nvim_buf_get_name(context.bufnr), '^fugitive://')
 		then
 			return 'git'
+		elseif string.match(vim.api.nvim_buf_get_name(context.bufnr), '^term://') then
+			return 'terminal'
 		end
 	end,
 	ft = {

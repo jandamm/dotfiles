@@ -17,4 +17,5 @@ augroup terminal_setup
 	" Delete git buffers to work nicely with nvr
 	autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
 	autocmd BufEnter *-hunk-edit.diff set bufhidden=delete
+	autocmd TermOpen * setlocal nonumber norelativenumber signcolumn=no
 augroup END
