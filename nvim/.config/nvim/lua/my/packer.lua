@@ -234,6 +234,7 @@ local function init()
 		'jandamm/vim-xcode',
 		'jandamm/vim-zsh-completion',
 		'tpope/vim-scriptease', -- Vim debugging
+		{ 'tjdevries/nlua.nvim', keys = 'K' }, -- nvim lua helper
 	}
 
 	use { 'tweekmonster/startuptime.vim', cmd = 'StartupTime' }

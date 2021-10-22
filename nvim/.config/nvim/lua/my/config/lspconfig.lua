@@ -1,6 +1,7 @@
+local useful_K_maps = { 'vimls', 'sumneko_lua' }
 -- Lsp customization
 local on_attach = function(client)
-	if client.name ~= 'vimls' then
+	if not vim.tbl_contains(useful_K_maps, client.name) then
 		-- Default vim K is nicer jumping to the help
 		vim.api.nvim_buf_set_keymap(0, 'n', 'K', '<CMD>lua vim.lsp.buf.hover()<CR>', { noremap = true })
 	end
