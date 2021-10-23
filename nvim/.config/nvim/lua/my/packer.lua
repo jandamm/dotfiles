@@ -179,7 +179,7 @@ local function init()
 			end,
 		},
 		-- Declare the status lines
-		{ 'jandamm/cryoline.nvim', config = require('my.config').cryoline },
+		{ 'jandamm/cryoline.nvim', config = [[require 'my.config.cryoline']] },
 	}
 
 	-- Better text objects
@@ -212,13 +212,13 @@ local function init()
 	-- LSP
 	use {
 		'neovim/nvim-lspconfig',
-		config = require('my.config').lspconfig,
+		config = [[require 'my.config.lspconfig']],
 		requires = {
 			'folke/lua-dev.nvim', -- Config for sumneko-lua lsp
 			{
 				'jose-elias-alvarez/null-ls.nvim', -- Linter/Formatter/Code Actions
 				after = 'nvim-lspconfig',
-				config = require('my.config').null_ls,
+				config = [[require 'my.config.null_ls']],
 				requires = 'nvim-lua/plenary.nvim',
 			},
 		},

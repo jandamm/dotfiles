@@ -24,5 +24,5 @@ endfunction
 
 augroup packer_auto_compile
 	autocmd!
-	autocmd BufWritePost packer.lua,*/lua/my/config/*.lua PackerCompile
+	autocmd BufWritePost packer.lua PackerCompile
 augroup END
