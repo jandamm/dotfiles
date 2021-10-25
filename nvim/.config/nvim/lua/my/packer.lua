@@ -1,6 +1,3 @@
--- Sceleton copied from wbthomason
--- https://github.com/wbthomason/dotfiles/blob/2eefb38079e294b49e4b356a0f7f8e67acf83e96/neovim/.config/nvim/lua/plugins.lua
-
 -- Fix building luarocks
 -- https://github.com/wbthomason/packer.nvim/issues/180
 vim.fn.setenv('MACOSX_DEPLOYMENT_TARGET', '11')
@@ -10,18 +7,19 @@ vim.fn.setenv('MACOSX_DEPLOYMENT_TARGET', '11')
 -- after:    only load plugin when another plugin is loaded
 -- wants:    load specified plugin before this plugin
 
-local packer = nil
 local function init()
-	if packer == nil then
-		packer = require 'packer'
-		packer.init { disable_commands = true }
+	if not package.loaded['packer'] then
+		require('packer').init {
+			max_jobs = 8, -- Maybe this fixes the issue of not updating status sometimes
+			auto_reload_compiled = false, -- Fixes breaking fugitive G and possibly others too
+		}
 	end
 
-	local use = packer.use
-	packer.reset()
+	local use = require('packer').use
+	require('packer').reset()
 
 	-- Let packer update itself
-	use { 'wbthomason/packer.nvim', opt = true }
+	use 'wbthomason/packer.nvim'
 
 	-- Apply fixes for nvim
 	use {
@@ -240,11 +238,4 @@ local function init()
 	use { 'tweekmonster/startuptime.vim', cmd = 'StartupTime' }
 end
 
-local plugins = setmetatable({}, {
-	__index = function(_, key)
-		init()
-		return packer[key]
-	end,
-})
-
-return plugins
+init()

@@ -1,28 +1,11 @@
-" You must run this or `PackerSync` whenever you make changes to your plugin configuration
-" Regenerate compiled loader file
-command! PackerCompile call s:setup() | lua require('my.packer').compile()
-
-" Remove any disabled or unused packer
-command! PackerClean call s:setup() | lua require('my.packer').clean()
-
-" Clean, then install missing packer
-command! PackerInstall call s:setup() | lua require('my.packer').install()
-
-" Clean, then update and install packer
-command! PackerUpdate call s:setup() | lua require('my.packer').update()
-
-" Perform `PackerUpdate` and then `PackerCompile`
-command! PackerSync call s:setup() | lua require('my.packer').sync()
-
-function! s:setup() abort
-	if bufname() =~# 'my/packer.lua$'
-		noautocmd write
-	endif
-	packadd packer.nvim
-	lua package.loaded['my.packer'] = nil
-endfunction
-
-augroup packer_auto_compile
+augroup my_packer
 	autocmd!
-	autocmd BufWritePost packer.lua PackerCompile
+	autocmd BufWritePost packer.lua lua package.loaded['my.packer'] = nil; require'my.packer'; vim.cmd 'PackerCompile'
 augroup END
+
+" Packer command shims
+" Create most used commands to get completion for them
+command! -nargs=* PackerCompile lua require 'my.packer'; vim.cmd('PackerCompile '..<q-args>)
+command! -nargs=* PackerInstall lua require 'my.packer'; vim.cmd('PackerInstall '..<q-args>)
+command! -nargs=* PackerSync    lua require 'my.packer'; vim.cmd('PackerSync '..<q-args>)
+autocmd my_packer CmdUndefined Packer* ++once lua require'my.packer'

@@ -301,9 +301,9 @@ then
 	then
 		mkdir -p "$XDG_DATA_HOME/nvim/undo"
 
-		if [ ! -d "$XDG_DATA_HOME/nvim/site/pack/packer/opt/packer.nvim" ]
+		if [ ! -d "$XDG_DATA_HOME/nvim/site/pack/packer/start/packer.nvim" ]
 		then
-			git clone https://github.com/wbthomason/packer.nvim.git "$XDG_DATA_HOME/nvim/site/pack/packer/opt/packer.nvim"
+			git clone https://github.com/wbthomason/packer.nvim.git "$XDG_DATA_HOME/nvim/site/pack/packer/start/packer.nvim"
 		fi
 
 		echo 'Installing vim plugins'
