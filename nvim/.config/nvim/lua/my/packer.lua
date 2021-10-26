@@ -211,7 +211,7 @@ use {
 	'neovim/nvim-lspconfig',
 	config = [[require 'my.config.lspconfig']],
 	requires = {
-		'folke/lua-dev.nvim', -- Config for sumneko-lua lsp
+		'folke/lua-dev.nvim', -- Config for sumneko-lua lsp (just needs to be in rtp)
 		{
 			'jose-elias-alvarez/null-ls.nvim', -- Linter/Formatter/Code Actions
 			after = 'nvim-lspconfig',

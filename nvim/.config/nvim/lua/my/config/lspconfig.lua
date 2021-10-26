@@ -41,7 +41,22 @@ end
 local function sumneko_lua()
 	local config = make_config()
 	config.cmd = { 'lua-language-server' }
-	return require('lua-dev').setup { lspconfig = config }
+	local runtime_path = vim.split(package.path, ';')
+	table.insert(runtime_path, 'lua/?.lua')
+	table.insert(runtime_path, 'lua/?/init.lua')
+	config.settings = {
+		Lua = {
+			runtime = { version = 'LuaJIT', path = runtime_path },
+			completion = { callSnippet = 'Replace' },
+			workspace = {
+				library = vim.api.nvim_get_runtime_file('', true),
+				maxPreload = 1000,
+				preloadFileSize = 150,
+			},
+			telemetry = { enable = false },
+		},
+	}
+	return config
 end
 
 local function sourcekit()
