@@ -11,6 +11,7 @@ if not package.loaded['packer'] then
 	require('packer').init {
 		max_jobs = 8, -- Maybe this fixes the issue of not updating status sometimes
 		auto_reload_compiled = false, -- Fixes breaking fugitive G and possibly others too
+		profile = { enable = false },
 	}
 end
 
@@ -73,11 +74,19 @@ use { 'jandamm/vim-abolisher', run = 'make build' }
 -- Git interface
 use {
 	-- Fugitive
-	{ 'tpope/vim-fugitive', cmd = { 'G', 'G*' }, fn = 'fugitive#Complete', event = 'BufAdd */.git/index' },
-	{ 'tpope/vim-rhubarb', after = 'vim-fugitive' }, -- Gbrowse for Github
-	{ 'shumphrey/fugitive-gitlab.vim', after = 'vim-fugitive' }, -- Gbrowse for GitLab
-	{ 'tommcdo/vim-fubitive', after = 'vim-fugitive' }, -- Gbrowse for Bitbucket
-	{ 'tommcdo/vim-fugitive-blame-ext', after = 'vim-fugitive' }, -- Gblame commit messages
+	{
+		'tpope/vim-fugitive',
+		cmd = { 'G', 'G*' },
+		fn = 'fugitive#Complete',
+		event = 'BufAdd */.git/index',
+		requires = {
+			{ 'tpope/vim-rhubarb', after = 'vim-fugitive' }, -- Gbrowse for Github
+			{ 'shumphrey/fugitive-gitlab.vim', after = 'vim-fugitive' }, -- Gbrowse for GitLab
+			{ 'tommcdo/vim-fubitive', after = 'vim-fugitive' }, -- Gbrowse for Bitbucket
+			{ 'tommcdo/vim-fugitive-blame-ext', after = 'vim-fugitive' }, -- Gblame commit messages
+			{ 'junegunn/gv.vim', cmd = 'GV', wants = 'vim-fugitive' }, -- Better git log
+		},
+	},
 
 	-- Other git plugins
 	{
@@ -90,17 +99,6 @@ use {
 		event = 'VimEnter', -- Otherwise it produces an error when a :Git buffer is open.
 	},
 	{ 'sindrets/diffview.nvim', requires = 'kyazdani42/nvim-web-devicons', cmd = { 'DiffviewOpen', 'Diffview*' } },
-
-	-- For now fugitive is nicer since it allows jumping to old git objects as well. (Enter on emoved lines)
-	-- Also fugitive jumps to the right line when enter is pressed.
-	{
-		'TimUntersberger/neogit',
-		disable = true,
-		requires = 'nvim-lua/plenary.nvim',
-		config = function()
-			require('neogit').setup { integrations = { diffview = true } }
-		end,
-	},
 }
 
 -- Utilities
