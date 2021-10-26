@@ -9,13 +9,6 @@ lua require('impatient')
 
 set termguicolors
 
-let g:nord_italic = 1
-let g:nord_italic_comments = 1
-let g:nord_uniform_diff_background = 1
-let g:nord_underline = 1
-
-let g:colors_name = 'nord'
-
 if !has('gui_running')
 	set guioptions=M
 endif
@@ -100,11 +93,6 @@ set scrolloff=2
 
 " Persist undo
 set undofile
-
-" Snippet directories
-let g:vsnip_snippet_dir = expand('~/.config/nvim/vsnip/default')
-
-let g:markdown_fenced_languages = ['bash=sh', 'swift', 'vim', 'zsh']
 
 " }}}
 

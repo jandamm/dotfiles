@@ -31,7 +31,17 @@ use {
 
 -- Appearance
 use {
-	{ 'arcticicestudio/nord-vim', opt = true },
+	{
+		'arcticicestudio/nord-vim',
+		opt = true,
+		setup = function()
+			vim.g.nord_italic = 1
+			vim.g.nord_italic_comments = 1
+			vim.g.nord_uniform_diff_background = 1
+			vim.g.nord_underline = 1
+			vim.cmd [[colorscheme nord]]
+		end,
+	},
 	{ 'kyazdani42/nvim-web-devicons' }, -- Icons for my statusline functions
 }
 
@@ -39,8 +49,23 @@ use {
 use {
 	'tpope/vim-repeat', -- Add . macro to supported plugins
 
-	'ggandor/lightspeed.nvim', -- Faster cursor movement
-	'machakann/vim-sandwich', -- Add(y)/change(c)/remove(d) surroundings
+	{ -- Faster cursor movement
+		'ggandor/lightspeed.nvim',
+		config = function()
+			vim.cmd [[
+				nnoremap gs s
+				xnoremap gs s
+				omap ; <Plug>Lightspeed_;_ft
+				omap , <Plug>Lightspeed_,_ft
+			]]
+		end,
+	},
+	{ -- Add(y)/change(c)/remove(d) surroundings
+		'machakann/vim-sandwich',
+		config = function()
+			vim.cmd [[runtime macros/sandwich/keymap/surround.vim]]
+		end,
+	},
 	{
 		'numToStr/Comment.nvim', -- gc to comment in/out
 		config = function()
@@ -65,7 +90,12 @@ use {
 	-- Better :s/abba/bobby/g with :S/{a,A}bba/{b,B}obby/g
 	{ 'tpope/vim-abolish', cmd = { 'S', 'Subvert' } },
 	'tpope/vim-eunuch', -- Unix commands in vim
-	{ 'mhinz/vim-grepper', cmd = 'Grepper*' }, -- Win at grep
+	{ -- Win at grep
+		'mhinz/vim-grepper',
+		cmd = { 'GrepperAck', 'Grepper*' },
+		keys = '<Plug>(GrepperOperator)',
+		setup = [[require'my.config.grepper']],
+	},
 	{ 'mhinz/vim-sayonara', cmd = 'Sayonara' }, -- Delete buffers but keep window alive
 }
 -- Faster vim-abolish!
@@ -80,11 +110,12 @@ use {
 		fn = 'fugitive#Complete',
 		event = 'BufAdd */.git/index',
 		requires = {
-			{ 'tpope/vim-rhubarb', after = 'vim-fugitive' }, -- Gbrowse for Github
-			{ 'shumphrey/fugitive-gitlab.vim', after = 'vim-fugitive' }, -- Gbrowse for GitLab
-			{ 'tommcdo/vim-fubitive', after = 'vim-fugitive' }, -- Gbrowse for Bitbucket
 			{ 'tommcdo/vim-fugitive-blame-ext', after = 'vim-fugitive' }, -- Gblame commit messages
 			{ 'junegunn/gv.vim', cmd = 'GV', wants = 'vim-fugitive' }, -- Better git log
+			-- Gbrowse:
+			{ 'tpope/vim-rhubarb', after = 'vim-fugitive' },
+			{ 'shumphrey/fugitive-gitlab.vim', after = 'vim-fugitive' },
+			{ 'tommcdo/vim-fubitive', after = 'vim-fugitive' },
 		},
 	},
 
@@ -93,6 +124,10 @@ use {
 		'lewis6991/gitsigns.nvim',
 		config = function()
 			require('gitsigns').setup()
+			vim.cmd [[
+				omap ah ih
+				xmap ah ih
+			]]
 		end,
 		requires = 'nvim-lua/plenary.nvim',
 		tag = 'release',
@@ -157,7 +192,19 @@ use {
 use 'justinmk/vim-dirvish'
 
 -- Show undo history as a tree
-use { 'mbbill/undotree', cmd = 'UndotreeToggle' }
+use {
+	'mbbill/undotree',
+	cmd = 'UndotreeToggle',
+	setup = function()
+		vim.g.undotree_SetFocusWhenToggle = 1
+		vim.cmd [[
+				function! g:Undotree_CustomMap() abort
+					map <buffer> U <C-r>
+					map <buffer> gq <CMD>UndotreeHide<CR>
+				endfunction
+			]]
+	end,
+}
 
 -- Yank history
 use 'svermeulen/vim-yoink'
@@ -180,26 +227,32 @@ use {
 -- Better text objects
 use {
 	'wellle/targets.vim',
-	{ 'kana/vim-textobj-entire', requires = 'kana/vim-textobj-user' },
-	{ 'kana/vim-textobj-indent', requires = 'kana/vim-textobj-user' },
-	{ 'kana/vim-textobj-line', requires = 'kana/vim-textobj-user' },
+	{
+		'kana/vim-textobj-user',
+		requires = {
+			'kana/vim-textobj-entire',
+			'kana/vim-textobj-indent',
+			'kana/vim-textobj-line',
+		},
+	},
 }
 
 -- Dispatch
 use {
-	{
-		'tpope/vim-dispatch',
-		cmd = { 'Dispatch', 'Make', 'Focus', 'Start' },
-		setup = function()
-			vim.g.dispatch_handlers = { 'neovim' }
-		end,
-	},
-	{ 'jandamm/vim-dispatch-neovim', after = 'vim-dispatch' },
+	'tpope/vim-dispatch',
+	cmd = { 'Dispatch', 'Make', 'Focus', 'Start' },
+	setup = function()
+		vim.g.dispatch_handlers = { 'neovim' }
+	end,
+	requires = { { 'jandamm/vim-dispatch-neovim', after = 'vim-dispatch' } },
 }
 
 -- Snippets
 use {
 	'hrsh7th/vim-vsnip',
+	setup = function()
+		vim.g.vsnip_snippet_dir = vim.fn.expand '~/.config/nvim/vsnip/default'
+	end,
 	requires = 'hrsh7th/vim-vsnip-integ',
 }
 

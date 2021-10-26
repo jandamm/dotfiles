@@ -51,4 +51,6 @@ function! s:nord() abort
 	execute 'hi helpExample  guibg='.s:colors.nord0.' guifg='.s:colors.nord10
 endfunction
 
-call s:nord()
+if get(g:, 'colors_name', '') ==# 'nord'
+	call s:nord()
+endif

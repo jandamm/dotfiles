@@ -63,24 +63,6 @@ snoremap <C-n> <BS>i<C-n>
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 
-" Gitsigns {{{
-
-omap ah ih
-xmap ah ih
-
-" }}}
-
-" Lightspeed {{{
-
-" TODO: Use s or gs for lightspeed?
-nnoremap gs s
-xnoremap gs s
-
-omap ; <Plug>Lightspeed_;_ft
-omap , <Plug>Lightspeed_,_ft
-
-" }}}
-
 " Buffer local mappings {{{
 
 augroup ft_mappings
