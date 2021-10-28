@@ -94,7 +94,7 @@ use {
 		'mhinz/vim-grepper',
 		cmd = { 'GrepperAck', 'Grepper*' },
 		keys = '<Plug>(GrepperOperator)',
-		setup = [[require'my.config.grepper']],
+		setup = [[reload 'my.config.grepper']],
 	},
 	{ 'mhinz/vim-sayonara', cmd = 'Sayonara' }, -- Delete buffers but keep window alive
 }
@@ -221,7 +221,7 @@ use {
 		end,
 	},
 	-- Declare the status lines
-	{ 'jandamm/cryoline.nvim', config = [[require 'my.config.cryoline']] },
+	{ 'jandamm/cryoline.nvim', config = [[reload 'my.config.cryoline']] },
 }
 
 -- Better text objects
@@ -260,13 +260,13 @@ use {
 -- LSP
 use {
 	'neovim/nvim-lspconfig',
-	config = [[require 'my.config.lspconfig']],
+	config = [[reload 'my.config.lspconfig']],
 	requires = {
 		'folke/lua-dev.nvim', -- Config for sumneko-lua lsp (just needs to be in rtp)
 		{
 			'jose-elias-alvarez/null-ls.nvim', -- Linter/Formatter/Code Actions
 			after = 'nvim-lspconfig',
-			config = [[require 'my.config.null_ls']],
+			config = [[reload 'my.config.null_ls']],
 			requires = 'nvim-lua/plenary.nvim',
 		},
 	},
