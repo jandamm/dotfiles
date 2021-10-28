@@ -10,7 +10,7 @@ vim.fn.setenv('MACOSX_DEPLOYMENT_TARGET', '11')
 if not package.loaded['packer'] then
 	require('packer').init {
 		max_jobs = 8, -- Maybe this fixes the issue of not updating status sometimes
-		auto_reload_compiled = false, -- Fixes breaking fugitive G and possibly others too
+		display = { keybindings = { quit = 'gq' } },
 		profile = { enable = false },
 	}
 end
