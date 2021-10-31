@@ -80,3 +80,10 @@ local lspconfig = require 'lspconfig'
 for server, get_config in pairs(servers) do
 	lspconfig[server].setup(get_config())
 end
+
+-- Disable virtual text and underline for unimportant messages
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+	virtual_text = { severity_limit = 'Warning' },
+	underline = { severity_limit = 'Warning' },
+	severity_sort = true,
+})
