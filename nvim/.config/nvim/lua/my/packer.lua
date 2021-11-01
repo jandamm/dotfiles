@@ -42,7 +42,17 @@ use {
 			vim.cmd [[colorscheme nord]]
 		end,
 	},
-	{ 'kyazdani42/nvim-web-devicons' }, -- Icons for my statusline functions
+	{ -- Icons for my statusline functions
+		'kyazdani42/nvim-web-devicons',
+		config = function()
+			require('nvim-web-devicons').setup {
+				override = {
+					Gemfile = { icon = '', color = '#701516', name = 'Rb' },
+					Podfile = { icon = '', color = '#701516', name = 'Rb' },
+				},
+			}
+		end,
+	},
 }
 
 -- Mappings
