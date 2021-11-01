@@ -223,11 +223,17 @@ use 'svermeulen/vim-yoink'
 use {
 	-- "default" Tabline with devicons
 	{
-		-- 'alvarosevilla95/luatab.nvim',
-		'jandamm/luatab.nvim', -- until my pr is merged
+		'alvarosevilla95/luatab.nvim',
 		requires = 'kyazdani42/nvim-web-devicons',
 		config = function()
-			vim.o.tabline = "%!v:lua.require'luatab'.tabline('')"
+			-- Disable highlighting
+			require('luatab.highlight').create_component_highlight_group = function() end
+			require('luatab.highlight').extract_highlight_colors = function() end
+			require('luatab').setup {
+				separator = function()
+					return ''
+				end,
+			}
 		end,
 	},
 	-- Declare the status lines
