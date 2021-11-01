@@ -247,13 +247,28 @@ use {
 	requires = { { 'jandamm/vim-dispatch-neovim', after = 'vim-dispatch' } },
 }
 
--- Snippets
+-- Completion
 use {
-	'hrsh7th/vim-vsnip',
-	setup = function()
-		vim.g.vsnip_snippet_dir = vim.fn.expand '~/.config/nvim/vsnip/default'
-	end,
-	requires = 'hrsh7th/vim-vsnip-integ',
+	'hrsh7th/nvim-cmp',
+	config = [[reload 'my.config.cmp']],
+	requires = {
+		'hrsh7th/cmp-nvim-lsp',
+		'tamago324/cmp-zsh',
+		{
+			'petertriho/cmp-git',
+			config = function()
+				require('cmp_git').setup { remotes = { 'upstream', 'origin', 'fork' } }
+			end,
+			requires = 'nvim-lua/plenary.nvim',
+		},
+
+		'onsails/lspkind-nvim',
+		{
+			'L3MON4D3/LuaSnip',
+			config = [[reload 'my.config.luasnip']],
+			requires = 'saadparwaiz1/cmp_luasnip',
+		},
+	},
 }
 
 -- Language support
@@ -280,7 +295,6 @@ use {
 	'cespare/vim-toml',
 	'keith/xcconfig.vim',
 	'jandamm/vim-xcode',
-	'jandamm/vim-zsh-completion',
 	'tpope/vim-scriptease', -- Vim debugging
 	{ 'tjdevries/nlua.nvim', keys = 'K' }, -- nvim lua helper
 }

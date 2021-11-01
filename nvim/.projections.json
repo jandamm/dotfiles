@@ -56,6 +56,7 @@
   "../private/.config/nvim/*.vim": { "type": "private" },
   ".config/nvim/syntax/*.vim": { "type": "syntax" },
   ".config/nvim/spell/*.utf-8.add": { "type": "spell" },
+  ".config/nvim/lua/my/snippets.lua": { "type": "snippet" },
   ".config/nvim/vsnip/default/*.json": { "type": "snippet" },
   "../private/.config/nvim/vsnip/*.json": { "type": "snippet" },
   ".config/nvim/after/plugin/*.vim": {

@@ -1,0 +1,42 @@
+{
+  "name": "default",
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": "gitcommit",
+        "path": "gitcommit.json"
+      },
+      {
+        "language": "global",
+        "path": "global.json"
+      },
+      {
+        "language": "json",
+        "path": "json.json"
+      },
+      {
+        "language": "lua",
+        "path": "lua.json"
+      },
+      {
+        "language": "sh",
+        "path": "sh.json"
+      },
+      {
+        "language": "swift",
+        "path": "swift.json"
+      },
+      {
+        "language": "vim",
+        "path": "vim.json"
+      },
+      {
+        "language": "zsh",
+        "path": "zsh.json"
+      }
+    ]
+  }
+}

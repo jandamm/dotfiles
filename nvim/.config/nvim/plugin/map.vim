@@ -34,8 +34,8 @@ nnoremap <silent> ]W :tablast<CR>
 " Insert mode
 
 " Make i_CTRL-u and w undoable, C-u also kills whole line
-inoremap        <C-u> <C-g>u<C-u><C-o>"_D
-inoremap <expr> <C-w> pumvisible() ? '<C-e>' : '<C-g>u<C-w>'
+inoremap <C-u> <C-g>u<C-u><C-o>"_D
+inoremap <C-w> <C-g>u<C-w>
 
 " Visual mode
 
@@ -95,31 +95,14 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " Completion {{{
 
+" TODO: Migrate to cmp config
 " Use Enter to comfirm completion
 " Enter twice adds newline without comment
 let g:endwise_no_mappings=1
-inoremap <expr>   <CR>    my#map#key#enter()
+inoremap <expr> <CR> my#map#key#enter()
 
 " Tab for indent otherwise shiftwidth spaces
-imap <expr> <TAB>   my#map#key#tab()
-xmap        <TAB>   <Plug>(vsnip-cut-text)
-" Also expand snippets in SELECT mode.
-smap <expr> <TAB>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : ''
-
-inoremap <expr>   <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-
-imap              <C-s>   <C-x><C-p>
-
-imap     <expr>   <C-f>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-x><C-f>'
-smap     <expr>   <C-f>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-f>'
-
-imap     <expr>   <C-b>   vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
-smap     <expr>   <C-b>   vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
-
-inoremap <expr>   <C-j>   pumvisible() ? '<C-n>' : '<C-j>'
-inoremap <expr>   <C-k>   pumvisible() ? '<C-p>' : '<C-k>'
-
-inoremap <expr>   <C-d>   pumvisible() ? repeat('<C-n>', 5) : '<C-d>'
+imap <expr> <TAB> my#map#key#tab()
 
 " }}}
 

@@ -1,7 +1,6 @@
 function! my#map#key#enter() abort
-	if s:inCompletion()
-		return "\<C-y>"
-	elseif s:matchesCommentsOrWhitespace(getline('.'))
+	" cmp will capture <CR> if cmp is active.
+	if s:matchesCommentsOrWhitespace(getline('.'))
 		return "\<C-u>"
 	elseif exists('*EndwiseDiscretionary')
 		return "\<CR>\<C-r>=EndwiseDiscretionary()\<CR>"
@@ -12,21 +11,17 @@ endfunction
 
 function! my#map#key#tab() abort
 	let l:before = strpart(getline('.'), 0, col('.') - 1)
-	if vsnip#expandable()
-		return "\<Plug>(vsnip-expand)"
-	elseif s:inCompletion()
-		return "\<C-n>"
+	if luasnip#expandable()
+		return "\<Plug>luasnip-expand-snippet"
+	elseif luaeval('require"cmp".visible()')
+		return "\<Plug>my-cmp-next"
 	elseif l:before ==? '' || l:before =~? '\t$'
 		return "\<TAB>"
 	elseif s:matchesComments(l:before, 0) || l:before =~? '\s$'
 		return s:shiftwidthSpaces()
 	else
-		return "\<C-x>\<C-o>"
+		return "\<Plug>my-cmp-complete"
 	endif
-endfunction
-
-function! s:inCompletion() abort
-	return pumvisible() || complete_info(['mode']).mode !=? ''
 endfunction
 
 function! s:matchesCommentsOrWhitespace(input) abort
