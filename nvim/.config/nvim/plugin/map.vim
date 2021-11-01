@@ -54,7 +54,8 @@ xnoremap * :<C-u>call my#map#visualSearch('/')<CR>/<C-r>=@/<CR><CR>
 xnoremap # :<C-u>call my#map#visualSearch('?')<CR>/<C-r>=@/<CR><CR>
 
 " Select mode
-" <C-w> deletes selection and stays goes into insert mode
+" <BS> and <C-w> deletes selection and stays goes into insert mode
+snoremap <BS>  <BS>i
 snoremap <C-w> <BS>i
 snoremap <C-p> <BS>i<C-p>
 snoremap <C-n> <BS>i<C-n>

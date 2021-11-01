@@ -31,11 +31,11 @@ require('lspconfig')['null-ls'].setup {
 	on_attach = function()
 		if require('null-ls.info').get_active_sources()[null_ls.methods.FORMATTING] then
 			vim.api.nvim_buf_set_keymap(
-			0,
-			'n',
-			'<Leader>cf',
-			'<CMD>lua vim.lsp.buf.formatting_sync()<CR>',
-			{ noremap = true }
+				0,
+				'n',
+				'<Leader>cf',
+				'<CMD>lua vim.lsp.buf.formatting_sync()<CR>',
+				{ noremap = true }
 			)
 		end
 	end,
