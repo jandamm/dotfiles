@@ -15,8 +15,8 @@ nnoremap U <C-r>
 nnoremap <silent> gO :call my#map#outline()<CR>
 
 " Poor mans Rename - no LSP (rename)
-nnoremap <expr> gR ":\<C-u>%s/".escape(expand('<cword>'), '/') ."//g\<Left>\<Left>"
-xnoremap <expr> gR ":\<C-u>%s/".escape(expand('<cword>'), '/') ."//g\<Left>\<Left>"
+nnoremap <expr> gR ":\<C-u>%s/\\<".escape(expand('<cword>'), '/') ."\\>//g\<Left>\<Left>"
+xnoremap <expr> gR ":\<C-u>%s/\\<".escape(expand('<cword>'), '/') ."\\>//g\<Left>\<Left>"
 
 " Better mappings for diag/qf/loc list
 nmap [d <CMD>lua vim.lsp.diagnostic.goto_prev({enable_popup=false})<CR>
