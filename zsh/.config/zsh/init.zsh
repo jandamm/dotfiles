@@ -79,7 +79,7 @@ ZGEN_COMPINIT_FLAGS='-i'
 ZGEN_CUSTOM_COMPDUMP="$XDG_DATA_HOME/zsh/zcompdump_$ZSH_VERSION"
 source $XDG_DATA_HOME/zgenom/zgenom.zsh
 
-zgenom autoupdate --background
+zgenom autoupdate
 
 # Load plugins {{{
 
@@ -101,11 +101,11 @@ then
 
 	zgenom load jandamm/per-directory-history # History is saved per directory
 
-	zgenom load zdharma/history-search-multi-word # History search with syntax highlighting
+	zgenom load zdharma-continuum/history-search-multi-word # History search with syntax highlighting
 
 	zgenom load jandamm/instant-repl.zsh # Quickly create a repl for the current BUFFER
 
-	zgenom load zdharma/fast-syntax-highlighting
+	zgenom load zdharma-continuum/fast-syntax-highlighting
 	zgenom load zsh-users/zsh-autosuggestions
 
 	zgenom save
