@@ -1,6 +1,6 @@
 --- Unload and require a module
 function _G.reload(module)
-	package.loaded[module] = nil
+	require'plenary.reload'.reload_module(module, true)
 	return require(module)
 end
 

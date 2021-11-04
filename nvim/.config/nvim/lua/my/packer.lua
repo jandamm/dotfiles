@@ -29,6 +29,8 @@ use {
 	'antoinemadec/FixCursorHold.nvim',
 }
 
+use { 'nvim-lua/plenary.nvim', module = 'plenary' }
+
 -- Appearance
 use {
 	{
