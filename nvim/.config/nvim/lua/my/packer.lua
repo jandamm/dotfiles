@@ -109,6 +109,7 @@ use {
 		setup = [[reload 'my.config.grepper']],
 	},
 	{ 'mhinz/vim-sayonara', cmd = 'Sayonara' }, -- Delete buffers but keep window alive
+	{ 'powerman/vim-plugin-AnsiEsc', cmd = 'AnsiEsc' },
 }
 -- Faster vim-abolish!
 use { 'jandamm/vim-abolisher', run = 'make build' }
