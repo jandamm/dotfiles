@@ -11,7 +11,7 @@ M.jsonlint = helpers.make_builtin {
 		args = { '--compact' },
 		to_stdin = true,
 		from_stderr = true,
-		on_output = require('my.null-ls').from_efm(
+		on_output = helpers.diagnostics.from_errorformat(
 			[[%ELine %l:%c,%Z\s%#Reason: %m,%C%.%#,%Eline %l\, col %c\, %m,%E%f line %l\, col %c\, %m,%-G%.%#]],
 			'jsonlint'
 		),
@@ -27,7 +27,7 @@ M.kin = helpers.make_builtin {
 		args = { '$FILENAME' },
 		to_temp_file = true,
 		from_stderr = true,
-		on_output = require('my.null-ls').from_efm '%EERROR: line %l:%c %m',
+		on_output = helpers.diagnostics.from_errorformat('%tRROR: line %l:%c %m', 'kin'),
 	},
 	factory = helpers.generator_factory,
 }
@@ -40,7 +40,7 @@ M.swiftlint = helpers.make_builtin {
 		args = { 'swiftlint', '--use-stdin', '--no-fail', '$FILENAME' }, -- filename is used to find .swiftlint.yml
 		to_stdin = true,
 		from_stderr = false,
-		on_output = require('my.null-ls').from_efm(
+		on_output = helpers.diagnostics.from_errorformat(
 			'%f:%l:%c: %trror: %m,%f:%l:%c: %tarning: %m,%f:%l: %trror: %m,%f:%l: %tarning: %m',
 			'swiftlint'
 		),
@@ -56,7 +56,7 @@ M.zsh = helpers.make_builtin {
 		args = { 'zsh', '-n', '$FILENAME' },
 		to_temp_file = true,
 		from_stderr = true,
-		on_output = require('my.null-ls').from_efm('%E%f: line %l: %m,%E%f: %l: %m,%E%f:%l: %m', 'zsh'),
+		on_output = helpers.diagnostics.from_errorformat('%E%f: line %l: %m,%E%f: %l: %m,%E%f:%l: %m', 'zsh'),
 	},
 	factory = helpers.generator_factory,
 }
