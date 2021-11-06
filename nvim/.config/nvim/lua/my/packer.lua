@@ -173,8 +173,8 @@ use {
 
 -- Show leader mappings
 use {
-	'jandamm/vim-leader-guide',
-	{ 'jandamm/vim-fuguidive', after = 'vim-leader-guide' }, -- fugitive support
+	'folke/which-key.nvim',
+	config = [[reload 'my.config.whichkey']],
 }
 
 -- Improve quickfix lists
@@ -313,7 +313,16 @@ use {
 	'keith/swift.vim',
 	'cespare/vim-toml',
 	'keith/xcconfig.vim',
-	'jandamm/vim-xcode',
+	{
+		'jandamm/vim-xcode',
+		setup = function()
+			vim.g.xcode_default_simulator = 'iPhone 11 Pro'
+			vim.g.xcode_runner_command = 'Dispatch! {cmd}'
+			vim.g.xcode_disable_xcpretty = true
+			vim.g.xcode_additional_xcargs = '-quiet 2>/dev/null'
+			vim.g.xcode_additional_xcargs_test = '2>/dev/null | xcpretty --no-utf --color'
+		end,
+	},
 	'tpope/vim-scriptease', -- Vim debugging
 	{ 'tjdevries/nlua.nvim', keys = 'K' }, -- nvim lua helper
 }
