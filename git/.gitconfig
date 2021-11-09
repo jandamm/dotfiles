@@ -39,6 +39,7 @@
 	resetp = reset --patch
 	staged = diff --staged
 	stashp = stash --patch
+	track = checkout --track
 	uncommit = reset HEAD~
 	unamend = reset --soft HEAD@{1}
 	update = fetch --all --prune
