@@ -1,7 +1,8 @@
 function! my#statusline#part#bufnr(winnr, active) abort
+	let c1 = a:active ? '%*' : '%8*'
 	let c2 = a:active ? '%9*' : '%*'
 	let c3 = a:active ? '%2*' : '%8*'
-	return ' '.c2.'('.c3.'%n'.c2.')%*'
+	return ' '.c2.'('.c1.a:winnr.c2.'|'.c3.'%n'.c2.')%*'
 endfunction
 
 function! my#statusline#part#case_sensitivity(winnr, active) abort

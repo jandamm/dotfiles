@@ -31,6 +31,17 @@ nnoremap <silent> ]w :tabnext<CR>
 nnoremap <silent> [W :tabfirst<CR>
 nnoremap <silent> ]W :tablast<CR>
 
+" Quickly jump to window number
+nnoremap <C-w>1 <CMD>1wincmd w<CR>
+nnoremap <C-w>2 <CMD>2wincmd w<CR>
+nnoremap <C-w>3 <CMD>3wincmd w<CR>
+nnoremap <C-w>4 <CMD>4wincmd w<CR>
+nnoremap <C-w>5 <CMD>5wincmd w<CR>
+nnoremap <C-w>6 <CMD>6wincmd w<CR>
+nnoremap <C-w>7 <CMD>7wincmd w<CR>
+nnoremap <C-w>8 <CMD>8wincmd w<CR>
+nnoremap <C-w>9 <CMD>9wincmd w<CR>
+
 " Insert mode
 
 " Make i_CTRL-u and w undoable, C-u also kills whole line
