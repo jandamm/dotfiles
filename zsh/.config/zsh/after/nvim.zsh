@@ -1,4 +1,4 @@
-alias ovim=$(which vim)
+alias ovim="command vim"
 alias vim="nvim"
 
 function nvim() {
@@ -8,6 +8,8 @@ function nvim() {
 		else
 			command nvim $@
 		fi
+	elif [ $# -eq 0 ]; then
+		nvr -c "Dirvish"
 	else
 		nvr $@
 	fi
@@ -23,7 +25,7 @@ function v() {
 
 function vv() {
 	if [ -n "$1" ]; then
-		zz $@ && vim
+		zz $@ && nvim
 	else
 		nvim
 	fi

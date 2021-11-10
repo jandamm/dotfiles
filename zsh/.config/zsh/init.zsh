@@ -105,6 +105,8 @@ then
 
 	zgenom load jandamm/instant-repl.zsh # Quickly create a repl for the current BUFFER
 
+	zgenom load jandamm/nvim-shell
+
 	zgenom load zdharma-continuum/fast-syntax-highlighting
 	zgenom load zsh-users/zsh-autosuggestions
 
