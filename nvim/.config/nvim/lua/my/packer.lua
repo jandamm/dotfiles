@@ -270,7 +270,7 @@ use {
 	config = [[reload 'my.config.cmp']],
 	requires = {
 		'hrsh7th/cmp-nvim-lsp',
-		'tamago324/cmp-zsh',
+		{ 'tamago324/cmp-zsh', config = [[require 'cmp_zsh'.setup { zshrc = true }]] },
 		{
 			'petertriho/cmp-git',
 			config = function()
