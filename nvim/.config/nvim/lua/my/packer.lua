@@ -34,15 +34,8 @@ use { 'nvim-lua/plenary.nvim', module = 'plenary' }
 -- Appearance
 use {
 	{
-		'arcticicestudio/nord-vim',
-		opt = true,
-		setup = function()
-			vim.g.nord_italic = 1
-			vim.g.nord_italic_comments = 1
-			vim.g.nord_uniform_diff_background = 1
-			vim.g.nord_underline = 1
-			vim.cmd [[colorscheme nord]]
-		end,
+		'rmehri01/onenord.nvim',
+		config = [[reload 'my.config.onenord']],
 	},
 	{ -- Icons for my statusline functions
 		'kyazdani42/nvim-web-devicons',
@@ -136,7 +129,12 @@ use {
 	{
 		'lewis6991/gitsigns.nvim',
 		config = function()
-			require('gitsigns').setup()
+			require('gitsigns').setup {
+				signs = {
+					add = { text = '┃' },
+					change = { text = '┃' },
+				},
+			}
 			vim.cmd [[
 				omap ah ih
 				xmap ah ih
