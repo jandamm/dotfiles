@@ -11,3 +11,5 @@ command! -range -buffer MultilineFormat
 if filereadable('Makefile')
 	let b:uses_make=1
 endif
+
+let b:textobj_function_select = function('textobj#function#swift#select')

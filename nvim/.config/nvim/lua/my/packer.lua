@@ -247,6 +247,7 @@ use {
 	{
 		'kana/vim-textobj-user',
 		requires = {
+			'kana/vim-textobj-function',
 			'kana/vim-textobj-entire',
 			'kana/vim-textobj-indent',
 			'kana/vim-textobj-line',
