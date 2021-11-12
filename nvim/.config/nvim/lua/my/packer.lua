@@ -276,6 +276,15 @@ use {
 		'hrsh7th/cmp-nvim-lsp',
 		{ 'tamago324/cmp-zsh', config = [[require 'cmp_zsh'.setup { zshrc = true }]] },
 		{
+			'hrsh7th/cmp-cmdline',
+			requires = { 'hrsh7th/cmp-buffer' },
+			config = function()
+				require('cmp').setup.cmdline('/', {
+					sources = { { name = 'buffer' } },
+				})
+			end,
+		},
+		{
 			'petertriho/cmp-git',
 			config = function()
 				require('cmp_git').setup { remotes = { 'upstream', 'origin', 'fork' } }

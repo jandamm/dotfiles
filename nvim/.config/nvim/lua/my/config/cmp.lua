@@ -33,7 +33,10 @@ cmp.setup {
 
 		-- TODO: Maybe migrate my#map#key#enter()
 		['<CR>'] = cmp.mapping.confirm { select = true },
-		['<C-e>'] = cmp.mapping.abort(),
+		['<C-e>'] = cmp.mapping {
+			i = cmp.mapping.abort(),
+			c = cmp.mapping.close(),
+		},
 		['<C-w>'] = close_and_default,
 	},
 	sources = cmp.config.sources {
