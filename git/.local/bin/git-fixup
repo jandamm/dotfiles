@@ -4,17 +4,15 @@ set -e
 zparseopts -D -E i=interactive -interactive=interactive
 
 if [[ $1 = 'apply' ]]; then
-	shift
-	sha=$1
-
-	if [[ -z ${interactive[1]:-} && -z $sha ]]; then
-		branch="$(git remote | head -n 1)/$(git branch --show-current)"
-		if git show-branch "$branch" &>/dev/null; then
-			sha="$branch"
-		fi
+	if [[ -n $2 ]]; then
+		sha=$2
+	elif [[ -z $interactive ]]; then
+		# Use everything not pushed to upstream
+		sha='@{u}'
+	else
+		# Interactively select commit
+		sha=$(git logf --prompt='Fixup> ' --header='Select the oldest commit before a fixed commit.')
 	fi
-
-	: ${sha:=$(git logf --prompt='Fixup> ' --header='Select the oldest commit before a fixed commit.')}
 
 	GIT_SEQUENCE_EDITOR=true git rebase --interactive --autosquash "${sha%% *}"
 	exit
