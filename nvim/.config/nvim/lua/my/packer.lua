@@ -57,6 +57,9 @@ use {
 	{ -- Faster cursor movement
 		'ggandor/lightspeed.nvim',
 		config = function()
+			require('lightspeed').setup {
+				exit_after_idle_msecs = {}, -- don't exit when idle
+			}
 			vim.cmd [[
 				nnoremap gs s
 				xnoremap gs s
