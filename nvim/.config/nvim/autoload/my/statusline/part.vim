@@ -85,8 +85,7 @@ function! my#statusline#part#diagnostics(winnr, active) abort
 	let bufnr = winbufnr(a:winnr)
 	let line = s:diag_part('Error', bufnr, a:active)
 				\. s:diag_part('Warning', bufnr, a:active)
-				\. s:diag_part('Information', bufnr, a:active)
-				\. s:diag_part('Hint', bufnr, a:active)
+				\. s:diag_part_info_hint(bufnr, a:active)
 
 	return empty(line) ? '' : ' ' . substitute(line, ',', ' ', 'g')
 endfunction
@@ -155,6 +154,12 @@ endfunction
 function! s:qf_part(data, type, active) abort
 	let c = a:data[a:type]
 	return s:dqf_part(c, a:type, a:active)
+endfunction
+
+function! s:diag_part_info_hint(bufnr, active) abort
+	let c = luaeval('vim.lsp.diagnostic.get_count('.a:bufnr.', "Information")')
+	let c += luaeval('vim.lsp.diagnostic.get_count('.a:bufnr.', "Hint")')
+	return s:dqf_part(c, 'I', a:active)
 endfunction
 
 function! s:diag_part(type, bufnr, active) abort

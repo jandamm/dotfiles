@@ -16,7 +16,6 @@ require('onenord').setup {
 		LSPDiagnosticsStatusE = status(colors.error),
 		LSPDiagnosticsStatusW = status(colors.warn),
 		LSPDiagnosticsStatusI = status(colors.info),
-		LSPDiagnosticsStatusH = status(colors.hint),
 		TabLine = { fg = colors.fg, bg = colors.active },
 		TabLineSel = { fg = colors.cyan, bg = colors.highlight },
 		Whitespace = { fg = colors.selection },
@@ -25,9 +24,13 @@ require('onenord').setup {
 }
 
 vim.cmd [[
+	colorscheme onenord
 	hi! link DiagnosticError LspDiagnosticsDefaultError
 	hi! link DiagnosticWarn  LspDiagnosticsDefaultWarning
 	hi! link DiagnosticInfo  LspDiagnosticsDefaultInformation
 	hi! link DiagnosticHint  LspDiagnosticsDefaultHint
-	colorscheme onenord
+	hi! link LspDiagnosticsDefaultHint LspDiagnosticsDefaultInformation
+	hi! link LspDiagnosticsFloatingHint LspDiagnosticsFloatingInformation
+	hi! link LspDiagnosticsVirtualTextHint LspDiagnosticsVirtualTextInformation
+	hi! link LspDiagnosticsSignHint LspDiagnosticsSignInformation
 ]]
