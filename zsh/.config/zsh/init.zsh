@@ -85,6 +85,8 @@ zgenom autoupdate
 
 if ! zgenom saved
 then
+	zgenom load jandamm/zgenom-ext-run
+
 	zgenom load fnune/base16-fzf bash/base16-nord.config # base16-theme
 	zgenom load romkatv/powerlevel10k powerlevel10k # Prompt theme
 	zgenom load jandamm/vi-mode.zsh # Show line cursor in vi mode
@@ -93,6 +95,10 @@ then
 	zgenom bin raylee/tldr-sh-client tldr
 
 	zgenom load jandamm/git-pr
+	zgenom bin tj/git-extras --glob 'bin/^git-pr'
+	zgenom load tj/git-extras etc/git-extras-completion.zsh
+	zgenom run tj/git-extras PREFIX=$ZPFX/git-extras make
+	zgenom bin $ZPFX/git-extras/bin --glob '^git-pr'
 
 	zgenom load zsh-users/zsh-completions # Load more completions
 
