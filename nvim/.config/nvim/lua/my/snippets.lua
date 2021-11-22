@@ -8,8 +8,18 @@ local choice = luasnip.choice_node
 local dynamic = luasnip.dynamic_node
 local helper = require 'my.snippets.helper'
 
+--- Insert matching pair and place trigger inside
+local function snip_pair(start, stop)
+	return snip(start, { text(start), insert(0, ''), text(stop or start) })
+end
+
 luasnip.snippets = {
 	all = {
+		snip('{', { text { '{', '\t' }, insert(0, ''), text { '', '}' } }),
+		snip_pair('(', ')'),
+		snip_pair('[', ']'),
+		snip_pair '"',
+		snip_pair "'",
 		snip('test this', {
 			text 'some test',
 			insert(1, ' place'),
