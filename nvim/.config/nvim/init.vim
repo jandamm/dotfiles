@@ -115,9 +115,6 @@ set mouse=a
 " Do not redraw screen while executing macros
 set lazyredraw
 
-let g:yoinkMaxItems = 50
-let g:yoinkSyncNumberedRegisters = 1
-
 " }}}
 
 " Search {{{

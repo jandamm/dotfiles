@@ -221,7 +221,26 @@ use {
 }
 
 -- Yank history
-use 'svermeulen/vim-yoink'
+use {
+	'AckslD/nvim-neoclip.lua',
+	requires = { 'tami5/sqlite.lua', module = 'sqlite' },
+	config = function()
+		require('neoclip').setup {
+			history = 500,
+			enable_persistant_history = true,
+			filter = function(clip)
+				local concat = table.concat(clip.event.regcontents, '')
+				return not string.match(concat, '^%s*$')
+			end,
+			keys = {
+				i = {
+					paste = '<c-h>',
+					paste_behind = '<c-k>',
+				},
+			},
+		}
+	end,
+}
 
 -- UI Elements
 use {
