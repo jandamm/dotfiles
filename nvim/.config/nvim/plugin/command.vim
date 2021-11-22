@@ -1,7 +1,5 @@
 command! -bang -nargs=* Terminal call my#command#terminal(<bang>0, <q-args>)
 
-command! -bar BD Sayonara!
-
 " Command to set my default tabwidth etc.
 command! Tabs call my#format#default()
 
