@@ -25,7 +25,7 @@ local on_attach = function(client)
 	end
 	if client.server_capabilities.completionProvider ~= nil then
 		vim.o.omnifunc = 'v:lua.vim.lsp.omnifunc'
-		local cmp = prequire('cmp')
+		local cmp = prequire 'cmp'
 		if cmp then
 			cmp.setup.buffer { sources = { { name = 'nvim_lsp' }, { name = 'luasnip' } } }
 		end
@@ -51,7 +51,11 @@ local function sumneko_lua()
 	config.settings = {
 		Lua = {
 			runtime = { version = 'LuaJIT', path = runtime_path },
-			completion = { callSnippet = 'Replace' }, -- Don't show snippet and duplicate function
+			completion = {
+				callSnippet = 'Replace', -- Don't show snippet and duplicate function
+				showWord = 'Disable',
+				workspaceWord = false,
+			},
 			workspace = {
 				library = vim.api.nvim_get_runtime_file('', true),
 				maxPreload = 1000,
