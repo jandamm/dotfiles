@@ -71,7 +71,7 @@ require('which-key').register {
 		p = {
 			name = 'project',
 			d = { [[winnr('$') == 1 ? ":Dirvish!\<CR>" : ":Dirvish\<CR>"]], 'Directory', expr = true },
-			p = { ':Session<Space>', 'Session', silent = false },
+			p = { '<CMD>Telescope sessions<CR>', 'Session', silent = false },
 			t = { ':tjump<Space>/', 'Tags', silent = false },
 			w = { '<CMD>wall<CR>', 'Save' },
 		},
