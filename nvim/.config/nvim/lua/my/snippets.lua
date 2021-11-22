@@ -13,6 +13,33 @@ local function snip_pair(start, stop)
 	return snip(start, { text(start), insert(0, ''), text(stop or start) })
 end
 
+--- Shared between plug and use
+local function plugin()
+	return {
+		text { '{', "\t'" },
+		insert(1, 'repo'),
+		text { "',", '' },
+		choice(2, {
+			node(nil, { text "\tcmd = { '", insert(1, 'Cmd'), text { "' },", '' } }),
+			text '',
+		}),
+		choice(3, {
+			node(nil, { text "\trequires = { '", insert(1, 'repo'), text { "' },", '' } }),
+			text '',
+		}),
+		choice(4, {
+			node(nil, { text { '\tsetup = function()', '\t\t' }, insert(1), text { '', '\tend,', '' } }),
+			text '',
+		}),
+		choice(5, {
+			node(nil, { text { '\tconfig = function()', '\t\t' }, insert(1), text { '', '\tend,', '' } }),
+			node(nil, { text "\tconfig = [[reload 'my.config.", insert(1, 'plugin'), text { "']],", '' } }),
+			text '',
+		}),
+		text '}',
+	}
+end
+
 luasnip.snippets = {
 	all = {
 		snip('{', { text { '{', '\t' }, insert(0, ''), text { '', '}' } }),
@@ -34,6 +61,8 @@ luasnip.snippets = {
 			helper.vis_or_insert(1),
 			text '))',
 		}),
+		snip('use', { text 'use ', node(1, plugin()) }),
+		snip('plug', { node(1, plugin()), text ',' }),
 		-- A snippet wich checks the current line for `local`
 		-- Could be used for function snippet to decide if local should be added or not.
 		snip('ss', {
