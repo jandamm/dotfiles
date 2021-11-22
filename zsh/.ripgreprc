@@ -3,6 +3,8 @@
 --glob=!.tagroot
 --glob=!.vimroot
 --glob=!Pod/*
+--glob=!Pods/*
 --glob=!*.spl
+--glob=!*.xcassets
 --glob=!*.zwc
 --glob=!.tags*
