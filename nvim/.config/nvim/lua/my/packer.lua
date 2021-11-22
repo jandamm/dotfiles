@@ -261,6 +261,13 @@ use {
 	},
 	-- Declare the status lines
 	{ 'jandamm/cryoline.nvim', config = [[reload 'my.config.cryoline']] },
+	-- Override vim.ui.notify
+	{
+		'rcarriga/nvim-notify',
+		config = function()
+			vim.notify = require 'notify'
+		end,
+	},
 }
 
 -- Better text objects
