@@ -3,8 +3,7 @@ vim.g.mapleader = ' '
 require('which-key').register {
 	['<leader>'] = {
 		name = 'Leader',
-		-- TODO: Replace with Telescope
-		b = { ':ls<CR>:buffer<Space>', 'Buffers', silent = false },
+		b = { '<CMD>lua require"telescope.builtin".buffers()<CR>', 'Buffers', silent = false },
 		c = {
 			name = 'code',
 			['.'] = { '<CMD>AbortDispatch<CR>', 'Abort Dispatch' },
@@ -20,21 +19,22 @@ require('which-key').register {
 		},
 		f = {
 			name = 'file',
-			-- TODO: Replace with Telescope
-			-- nnoremap <leader>fs :sfind *
-			-- nnoremap <leader>fv :vert sfind *
-			-- nnoremap <leader>ft :tabfind *
-			-- nnoremap <leader>fF :find <C-R>=expand('%:h').'/*'<CR>
-			-- nnoremap <leader>fS :sfind <C-R>=expand('%:h').'/*'<CR>
-			-- nnoremap <leader>fV :vert sfind <C-R>=expand('%:h').'/*'<CR>
-			-- nnoremap <leader>fT :tabfind <C-R>=expand('%:h').'/*'<CR>
 			d = { [[winnr('$') == 1 ? ":Dirvish! %\<CR>" : ":Dirvish %\<CR>"]], 'Directory', expr = true },
-			f = { ':find *', 'Find file' },
+			f = {
+				'<CMD>lua require("telescope.builtin").find_files{find_command={"rg", "--ignore", "--hidden", "--files"}}<CR>',
+				'Files',
+			},
+			F = {
+				'<CMD>lua require("telescope.builtin").find_files{cwd=require("telescope.utils").buffer_dir(),find_command={"rg", "--ignore", "--hidden", "--files"}}<CR>',
+				'Files from current file',
+			},
 			o = { '<CMD>!open %<CR>', 'Open externally' },
+			r = { '<CMD>Telescope frecency default_text=:CWD:<CR>', 'Recents' },
 			w = { '<CMD>update<CR>', 'Save' },
 		},
 		g = {
 			name = 'git',
+			b = { '<CMD>Telescope git_branches<CR>', 'Branches' },
 			d = {
 				name = 'diff',
 				d = { '<CMD>DiffviewOpen<CR>', 'Diff' },

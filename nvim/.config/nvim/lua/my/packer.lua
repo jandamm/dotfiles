@@ -268,6 +268,29 @@ use {
 	requires = { { 'jandamm/vim-dispatch-neovim', after = 'vim-dispatch' } },
 }
 
+-- Fuzzy finder
+use {
+	'nvim-telescope/telescope.nvim',
+	cmd = 'Telescope',
+	module = 'telescope',
+	config = [[reload 'my.config.telescope']],
+	requires = {
+		'nvim-lua/plenary.nvim',
+		{
+			'nvim-telescope/telescope-fzf-native.nvim',
+			run = 'make',
+			config = [[require('telescope').load_extension 'fzf']],
+			after = 'telescope.nvim',
+		},
+		{
+			'nvim-telescope/telescope-frecency.nvim',
+			after = 'telescope.nvim',
+			config = [[require('telescope').load_extension 'frecency']],
+			requires = 'tami5/sqlite.lua',
+		},
+	},
+}
+
 -- Completion
 use {
 	'hrsh7th/nvim-cmp',
