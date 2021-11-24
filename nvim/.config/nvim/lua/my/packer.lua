@@ -353,16 +353,28 @@ use {
 -- Language support
 -- LSP
 use {
-	'neovim/nvim-lspconfig',
-	config = [[reload 'my.config.lspconfig']],
-	requires = {
-		'folke/lua-dev.nvim', -- Config for sumneko-lua lsp (just needs to be in rtp)
-		{
-			'jose-elias-alvarez/null-ls.nvim', -- Linter/Formatter/Code Actions
-			after = 'nvim-lspconfig',
-			config = [[reload 'my.config.null_ls']],
-			requires = 'nvim-lua/plenary.nvim',
+	{
+		'neovim/nvim-lspconfig',
+		config = [[reload 'my.config.lspconfig']],
+		requires = {
+			'folke/lua-dev.nvim', -- Config for sumneko-lua lsp (just needs to be in rtp)
+			{
+				'jose-elias-alvarez/null-ls.nvim', -- Linter/Formatter/Code Actions
+				after = 'nvim-lspconfig',
+				config = [[reload 'my.config.null_ls']],
+				requires = 'nvim-lua/plenary.nvim',
+			},
 		},
+	},
+	{
+		'kosayoda/nvim-lightbulb',
+		config = function()
+			vim.fn.sign_define(
+				'LightBulbSign',
+				{ text = require('my.symbols').bulb, texthl = 'ErrorMsg', linehl = '', numhl = '' }
+			)
+			vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb{ ignore = {'null-ls'}}]]
+		end,
 	},
 }
 -- Syntax
