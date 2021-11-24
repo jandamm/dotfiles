@@ -48,6 +48,7 @@ cask 'alacritty'
 cask 'dash'
 cask 'font-jetbrains-mono'
 cask 'font-jetbrains-mono-nerd-font'
+cask 'kitty'
 cask 'vimr'
 
 mas 'Vimari', id: 1480933944
