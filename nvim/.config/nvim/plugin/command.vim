@@ -3,6 +3,8 @@ command! -bang -nargs=* Terminal call my#command#terminal(<bang>0, <q-args>)
 " Command to set my default tabwidth etc.
 command! Tabs call my#format#default()
 
+command! -nargs=+ Open call system('open <q-args>')
+
 " Swap two words (bang for strings)
 command! -bang -range -nargs=+ Swap call my#command#swap(<bang>0,<line1>,<line2>,<f-args>)
 
