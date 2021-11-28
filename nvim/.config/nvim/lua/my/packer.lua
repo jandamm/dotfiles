@@ -153,7 +153,6 @@ use {
 -- Utilities
 use {
 	'tpope/vim-sleuth', -- Automatically set spaces/tabs
-	'chrisbra/Recover.vim', -- Allow comparing swap files
 	'aymericbeaumet/vim-symlink', -- Resolve symlinks
 	{ 'jghauser/mkdir.nvim', config = [[require('mkdir')]] }, -- Automatically create missing directories on :w
 	'ludovicchabant/vim-gutentags', -- ctags now just work
