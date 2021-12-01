@@ -37,9 +37,9 @@ require('my.map').register {
 			b = { '<CMD>Telescope git_branches<CR>', 'Branches' },
 			d = {
 				name = 'diff',
-				d = { '<CMD>DiffviewOpen<CR>', 'Diff' },
-				f = { '<CMD>Gvdiffsplit!<CR>', 'Diff with Fugitive' },
+				d = { '<CMD>Gvdiffsplit!<CR>', 'Diff' },
 				k = { '<CMD>Git ksdiffall<CR>', 'Kaleidoscope' },
+				p = { '<CMD>DiffviewOpen<CR>', 'Diff project' },
 			},
 			f = { '<CMD>GG fetch<CR>', 'Fetch' },
 			F = { '<CMD>GG pull<CR>', 'Pull' },
