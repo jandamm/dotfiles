@@ -16,7 +16,7 @@ endfunction
 function! my#ft#swift#build() abort
 	silent! wall
 	let ios = &filetype =~# 'ios' ? 'ios ' : ''
-	execute 'Dispatch -compiler=swiftpm neovim swift build '.ios
+	execute 'Dispatch -compiler=swiftpm neovim swift build --uniq '.ios
 endfunction
 
 function! my#ft#swift#compile() abort

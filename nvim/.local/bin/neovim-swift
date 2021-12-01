@@ -1,10 +1,13 @@
 #!/usr/bin/env zsh
 
+zparseopts -D -E -uniq=uniq || exit
+
 case "$1" in
 	lsp) cmd='xcrun sourcekit-lsp' ;;
 	build)
 		cmd="swift $1"
-		apx='| sort | uniq' ;;
+		if [[ -n $uniq ]] apx='| sort | uniq'
+		;;
 	*) exit 1 ;;
 esac
 shift
