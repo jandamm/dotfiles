@@ -1,6 +1,6 @@
 vim.g.mapleader = ' '
 
-require('which-key').register {
+require('my.map').register {
 	['<leader>'] = {
 		name = 'Leader',
 		b = { '<CMD>lua require"telescope.builtin".buffers()<CR>', 'Buffers', silent = false },
