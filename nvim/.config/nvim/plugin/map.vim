@@ -68,8 +68,13 @@ xnoremap # :<C-u>call my#map#visualSearch('?')<CR>/<C-r>=@/<CR><CR>
 " <BS> and <C-w> deletes selection and stays goes into insert mode
 snoremap <BS>  <BS>i
 snoremap <C-w> <BS>i
+" <C-p>/<C-n> start word completion
 snoremap <C-p> <BS>i<C-p>
 snoremap <C-n> <BS>i<C-n>
+" <C-a>/<C-e> go to beginning/end of selection (as long as first char is
+" selected)
+snoremap <C-a> <ESC>i
+snoremap <C-e> <C-g>o<ESC>a
 
 " Repeat replace
 nnoremap & :&&<CR>

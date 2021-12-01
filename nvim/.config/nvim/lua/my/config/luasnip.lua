@@ -13,8 +13,8 @@ vim.cmd [[
 		smap <silent><expr> <C-f> luasnip#jumpable(1)     ? '<Plug>luasnip-jump-next'   : '<C-f>'
 		imap <silent><expr> <C-b> luasnip#jumpable(-1)    ? '<Plug>luasnip-jump-prev'   : '<C-b>'
 		smap <silent><expr> <C-b> luasnip#jumpable(-1)    ? '<Plug>luasnip-jump-prev'   : '<C-b>'
-		imap <silent><expr> <C-e> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
-		smap <silent><expr> <C-e> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
+		imap <silent><expr> <C-t> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-t>'
+		smap <silent><expr> <C-t> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-t>'
 		imap <silent><expr> <C-s> luasnip#choice_active() ? '<Plug>luasnip-prev-choice' : '<C-x><C-p>'
 		smap <silent><expr> <C-s> luasnip#choice_active() ? '<Plug>luasnip-prev-choice' : '<C-x><C-p>'
 ]]
