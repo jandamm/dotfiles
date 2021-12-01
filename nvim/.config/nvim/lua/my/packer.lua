@@ -9,7 +9,7 @@ vim.fn.setenv('MACOSX_DEPLOYMENT_TARGET', '11')
 
 if not package.loaded['packer'] then
 	require('packer').init {
-		max_jobs = 8, -- Maybe this fixes the issue of not updating status sometimes
+		max_jobs = 8, -- This fixes the issue of status hanging
 		display = { keybindings = { quit = 'gq' } },
 		profile = { enable = false },
 	}
@@ -17,6 +17,7 @@ end
 
 local use = require('packer').use
 require('packer').reset()
+unload 'my' -- Reset my config
 
 -- Let packer update itself
 use 'wbthomason/packer.nvim'
