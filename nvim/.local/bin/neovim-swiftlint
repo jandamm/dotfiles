@@ -8,11 +8,12 @@ readonly filename='.swiftlint.yml'
 CONFIG=$(search_file "$filename" "$FILE")
 
 # Swiftlint does not support global configs. Otherwise it will find the correct config.
-if [ -f "$CONFIG" ] && [ "$CONFIG" = "$HOME/$filename" ]; then
+# Doesn't work when using stdin.
+if [[ -f "$CONFIG" ]] && [[ -n $stdin || "$CONFIG" = "$HOME/$filename" ]]; then
 	config="--config $CONFIG"
 fi
 
-[[ -n $stdin ]] && FILE="--use-stdin"
-[[ -n $fail ]] && redir='2>&1 ; exit 0'
+if [[ -n $stdin ]] FILE="--use-stdin"
+if [[ -n $fail ]] redir='2>&1 ; exit 0'
 
 eval "swiftlint lint --quiet $config $FILE $redir"
