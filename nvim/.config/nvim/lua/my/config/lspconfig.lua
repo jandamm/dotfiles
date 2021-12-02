@@ -7,8 +7,7 @@ local on_attach = function(client)
 	end
 	if client.name == 'sumneko_lua' then
 		-- ctags for lua aren't nice.
-		vim.api.nvim_buf_set_keymap(0, 'n', '<C-]>', 'gd', { noremap = false })
-		vim.api.nvim_buf_set_keymap(0, 'n', '<C-w><C-]>', '<C-w>gd', { noremap = false })
+		vim.o.tagfunc = [[v:lua.vim.lsp.tagfunc]]
 	end
 	vim.api.nvim_buf_set_keymap(0, 'n', 'gd', '<CMD>lua vim.lsp.buf.definition()<CR>', { noremap = true })
 	vim.api.nvim_buf_set_keymap(
@@ -90,8 +89,9 @@ for server, get_config in pairs(servers) do
 end
 
 -- Disable virtual text and underline for unimportant messages
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-	virtual_text = { severity_limit = 'Warning' },
-	underline = { severity_limit = 'Warning' },
+local severities = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN }
+vim.diagnostic.config {
+	virtual_text = { severity = severities },
+	underline = { severity = severities },
 	severity_sort = true,
-})
+}

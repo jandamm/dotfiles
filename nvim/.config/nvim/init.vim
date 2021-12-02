@@ -78,7 +78,6 @@ if exists('+breakindent')
 	set breakindent
 	set breakindentopt=shift:2
 endif
-set nojoinspaces
 
 " Allow folder specific tags with .root or .tagroot file
 let g:gutentags_project_root=['.root', '.tagroot']
@@ -122,10 +121,6 @@ set lazyredraw
 set incsearch
 set ignorecase
 set smartcase
-
-" Highlight/preview replaces
-if has('nvim')
-	set inccommand=split
-endif
+set inccommand=split
 
 " }}}

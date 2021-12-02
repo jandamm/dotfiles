@@ -1,13 +1,7 @@
-" Correct Y yank behavior
-nnoremap Y y$
-
 nnoremap ; :
 xnoremap ; :
 onoremap ; :
 nnoremap @; @:
-
-" Esc clears last search
-nnoremap <silent> <C-l> :nohlsearch<CR>:diffupdate<CR>:syntax sync fromstart<CR><C-l>
 
 " Remap U Redo
 nnoremap U <C-r>
@@ -19,8 +13,8 @@ nnoremap <expr> gR ":\<C-u>%s/\\<".escape(expand('<cword>'), '/') ."\\>//g\<Left
 xnoremap <expr> gR ":\<C-u>%s/\\<".escape(expand('<cword>'), '/') ."\\>//g\<Left>\<Left>"
 
 " Better mappings for diag/qf/loc list
-nmap [d <CMD>lua vim.lsp.diagnostic.goto_prev({enable_popup=false})<CR>
-nmap ]d <CMD>lua vim.lsp.diagnostic.goto_next({enable_popup=false})<CR>
+nmap [d <CMD>lua vim.diagnostic.goto_prev({float=false})<CR>
+nmap ]d <CMD>lua vim.diagnostic.goto_next({float=false})<CR>
 nmap [l <Plug>(qf_loc_previous)
 nmap ]l <Plug>(qf_loc_next)
 nmap [q <Plug>(qf_qf_previous)

@@ -11,8 +11,12 @@ require('my.map').register {
 			c = { '<CMD>call my#map#leader#compile()<CR>', 'Compile' },
 			f = { '<CMD>call my#map#leader#format()<CR>', 'Format' },
 			l = {
-				'<CMD>lua vim.lsp.diagnostic.set_loclist({open_loclist = false}); vim.cmd [[lwindow]]<CR>',
+				'<CMD>lua vim.diagnostic.setloclist({open_loclist = false}); vim.cmd [[lwindow]]<CR>',
 				'Diagnostics',
+			},
+			q = {
+				'<CMD>lua vim.diagnostic.setqflist({open_loclist = false}); vim.cmd [[cwindow]]<CR>',
+				'Diagnostics in QF',
 			},
 			r = { '<CMD>call my#map#leader#run()<CR>', 'Run' },
 			u = { '<CMD>call my#map#leader#test()<CR>', 'Test' },

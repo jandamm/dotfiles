@@ -13,9 +13,9 @@ require('onenord').setup {
 		User3 = status(colors.dark_blue),
 		User8 = status(colors.light_gray, 'bold'),
 		User9 = status(colors.gray),
-		LSPDiagnosticsStatusE = status(colors.error),
-		LSPDiagnosticsStatusW = status(colors.warn),
-		LSPDiagnosticsStatusI = status(colors.info),
+		DiagnosticStatusE = status(colors.error),
+		DiagnosticStatusW = status(colors.warn),
+		DiagnosticStatusI = status(colors.info),
 		TabLine = { fg = colors.fg, bg = colors.active },
 		TabLineSel = { fg = colors.cyan, bg = colors.highlight },
 		Whitespace = { fg = colors.selection },
@@ -25,12 +25,9 @@ require('onenord').setup {
 
 vim.cmd [[
 	colorscheme onenord
-	hi! link DiagnosticError LspDiagnosticsDefaultError
-	hi! link DiagnosticWarn  LspDiagnosticsDefaultWarning
-	hi! link DiagnosticInfo  LspDiagnosticsDefaultInformation
-	hi! link DiagnosticHint  LspDiagnosticsDefaultHint
-	hi! link LspDiagnosticsDefaultHint LspDiagnosticsDefaultInformation
-	hi! link LspDiagnosticsFloatingHint LspDiagnosticsFloatingInformation
-	hi! link LspDiagnosticsVirtualTextHint LspDiagnosticsVirtualTextInformation
-	hi! link LspDiagnosticsSignHint LspDiagnosticsSignInformation
+	hi! link DiagnosticHint            DiagnosticInfo
+	hi! link DiagnosticFloatingHint    DiagnosticFloatingInfo
+	hi! link DiagnosticSignHint        DiagnosticSignInfo
+	hi! link DiagnosticUnderlineHint   DiagnosticUnderlineInfo
+	hi! link DiagnosticVirtualTextHint DiagnosticVirtualTextInfo
 ]]

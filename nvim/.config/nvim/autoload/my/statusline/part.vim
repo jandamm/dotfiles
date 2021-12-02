@@ -156,21 +156,24 @@ function! s:qf_part(data, type, active) abort
 	return s:dqf_part(c, a:type, a:active)
 endfunction
 
+function! s:diag_count(bufnr, severity) abort
+	return luaeval('#vim.diagnostic.get('.a:bufnr.',{severity=vim.lsp.protocol.DiagnosticSeverity["'.a:severity.'"]})')
+endfunction
+
 function! s:diag_part_info_hint(bufnr, active) abort
-	let c = luaeval('vim.lsp.diagnostic.get_count('.a:bufnr.', "Information")')
-	let c += luaeval('vim.lsp.diagnostic.get_count('.a:bufnr.', "Hint")')
+	let c = s:diag_count(a:bufnr, 'Information') + s:diag_count(a:bufnr, 'Hint')
 	return s:dqf_part(c, 'I', a:active)
 endfunction
 
 function! s:diag_part(type, bufnr, active) abort
-	let c = luaeval('vim.lsp.diagnostic.get_count('.a:bufnr.', "'.a:type.'")')
+	let c = s:diag_count(a:bufnr, a:type)
 	return s:dqf_part(c, strpart(a:type, 0, 1), a:active)
 endfunction
 
 let s:Symbols = luaeval('require("my.symbols")')
 function! s:dqf_part(count, type, active) abort
 	if a:count == 0 | return '' | endif
-	let hi = a:active ? '%#LspDiagnosticsStatus'.a:type.'#' : ''
+	let hi = a:active ? '%#DiagnosticStatus'.a:type.'#' : ''
 	let type = get(s:Symbols, a:type, '')
 	let sep = empty(type) ? '' : ' '
 	return hi.type.sep.a:count.'%*,'
