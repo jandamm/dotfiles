@@ -382,6 +382,14 @@ use {
 	'bfontaine/Brewfile.vim',
 	'euclidianAce/BetterLua.vim',
 	'tpope/vim-git',
+	{
+		'gabrielelana/vim-markdown',
+		setup = function()
+			vim.g.markdown_enable_mappings = false
+			vim.g.markdown_enable_spell_checking = false
+			vim.g.markdown_enable_input_abbreviations = false
+		end,
+	},
 	'keith/swift.vim',
 	'cespare/vim-toml',
 	'keith/xcconfig.vim',
