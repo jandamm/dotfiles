@@ -18,6 +18,7 @@ end
 local use = require('packer').use
 require('packer').reset()
 unload 'my' -- Reset my config
+vim.cmd [[autocmd! my_config]]
 
 -- Let packer update itself
 use 'wbthomason/packer.nvim'
@@ -108,6 +109,7 @@ use {
 	{ 'famiu/bufdelete.nvim', cmd = { 'Bdelete', 'Bwipeout' } }, -- Delete buffers but keep window alive
 	{ 'powerman/vim-plugin-AnsiEsc', cmd = 'AnsiEsc' },
 }
+
 -- Faster vim-abolish!
 use { 'jandamm/vim-abolisher', run = 'make build' }
 
@@ -373,7 +375,9 @@ use {
 				'LightBulbSign',
 				{ text = require('my.symbols').bulb, texthl = 'ErrorMsg', linehl = '', numhl = '' }
 			)
-			vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb{ ignore = {'null-ls'}}]]
+			vim.cmd [[
+				autocmd my_config CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb{ ignore = {'null-ls'}}
+			]]
 		end,
 	},
 }

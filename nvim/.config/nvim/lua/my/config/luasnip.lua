@@ -20,10 +20,7 @@ vim.cmd [[
 ]]
 
 vim.cmd [[
-	augroup my_luasnip
-		autocmd!
-		autocmd BufWritePost */lua/my/snippets.lua lua reload 'my.snippets'; vim.schedule(function() print('Reloaded snippets.') end)
-	augroup END
+	autocmd my_config BufWritePost */lua/my/snippets.lua lua reload 'my.snippets'; vim.schedule(function() vim.notify('Reloaded snippets.') end)
 ]]
 
 reload 'my.snippets'
