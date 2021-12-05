@@ -24,11 +24,10 @@ local on_attach = function(client)
 	end
 	if client.server_capabilities.completionProvider ~= nil then
 		vim.o.omnifunc = 'v:lua.vim.lsp.omnifunc'
-		local cmp = prequire 'cmp'
-		if cmp then
-			cmp.setup.buffer { sources = { { name = 'nvim_lsp' }, { name = 'luasnip' } } }
-		end
 	end
+
+	-- Call plugin specific config
+	require('my.lsp').on_attach(client)
 end
 
 local function make_config()

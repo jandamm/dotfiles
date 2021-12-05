@@ -11,11 +11,3 @@ function _G.reload(module)
 	unload(module)
 	return require(module)
 end
-
---- Load an module if it is available
----@param module string
----@return string
-function _G.prequire(module)
-	local ok, mod = pcall(require, module)
-	return ok and mod
-end

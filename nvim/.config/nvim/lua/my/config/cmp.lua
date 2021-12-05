@@ -39,11 +39,16 @@ cmp.setup {
 		},
 		['<C-w>'] = close_and_default,
 	},
+	experimental = { ghost_text = true },
 	sources = cmp.config.sources {
-		-- { name = 'nvim_lsp' }, -- lsp is enabled in lsp on_attach
 		{ name = 'cmp_git' },
 		{ name = 'zsh' },
 		{ name = 'luasnip' },
 	},
-	experimental = { ghost_text = true },
 }
+
+require('my.lsp').register_on_attach(function(client)
+	if client.server_capabilities.completionProvider ~= nil then
+		require('cmp').setup.buffer { sources = { { name = 'nvim_lsp' }, { name = 'luasnip' } } }
+	end
+end)
