@@ -9,6 +9,14 @@ local on_attach = function(client)
 		-- ctags for lua aren't nice.
 		vim.o.tagfunc = [[v:lua.vim.lsp.tagfunc]]
 	end
+	-- TODO: This should be part of telescope config
+	-- Since telescope is lazy loaded it cannot be part of config.
+	-- I've created a feature request for an always key.
+	if client.name == 'sourcekit' then
+		vim.api.nvim_buf_set_keymap(0, 'n', '<leader>pt', '<CMD>Telescope lsp_dynamic_workspace_symbols<CR>', { noremap = true })
+	else
+		vim.api.nvim_buf_set_keymap(0, 'n', '<leader>pt', '<CMD>Telescope lsp_workspace_symbols<CR>', { noremap = true })
+	end
 	vim.api.nvim_buf_set_keymap(0, 'n', 'gd', '<CMD>lua vim.lsp.buf.definition()<CR>', { noremap = true })
 	vim.api.nvim_buf_set_keymap(
 		0,
