@@ -407,6 +407,11 @@ use {
 			},
 		},
 	},
+	-- Reduce noice of diagnostics
+	{
+		'https://gitlab.com/yorickpeterse/nvim-dd',
+		config = [[require('dd').setup()]],
+	},
 	{
 		'kosayoda/nvim-lightbulb',
 		config = function()
