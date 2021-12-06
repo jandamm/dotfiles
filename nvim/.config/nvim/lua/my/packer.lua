@@ -300,6 +300,15 @@ use {
 			vim.notify = require 'notify'
 		end,
 	},
+	-- Override vim.ui.input and vim.ui.select
+	{
+		'stevearc/dressing.nvim',
+		config = function()
+			require('dressing').setup {
+				input = { insert_only = false },
+			}
+		end,
+	},
 }
 
 -- Better text objects
