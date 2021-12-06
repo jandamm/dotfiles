@@ -82,7 +82,6 @@ use {
 			require('Comment').setup { ignore = '^$', sticky = false }
 		end,
 	},
-	'tpope/vim-endwise', -- Insert endif etc automatically
 	'tpope/vim-unimpaired', -- Better [] mappings
 	'tommcdo/vim-exchange', -- Switch text with cx
 	{ 'godlygeek/tabular', cmd = 'Tabularize' }, -- ga to align
@@ -91,6 +90,20 @@ use {
 		keys = { 'g<C-i>', 'g<C-o>' },
 		config = function()
 			require('bufjump').setup { forward = 'g<C-i>', backward = 'g<C-o>' }
+		end,
+	},
+}
+
+-- Editing
+use {
+	'tpope/vim-endwise', -- Insert endif etc automatically
+	-- Automatically add matching parens etc
+	{
+		'windwp/nvim-autopairs',
+		config = function()
+			local pairs = require 'nvim-autopairs'
+			pairs.map_cr = function() end -- Use my own <CR> mapping
+			pairs.setup {}
 		end,
 	},
 }

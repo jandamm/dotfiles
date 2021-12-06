@@ -2,10 +2,10 @@ function! my#map#key#enter() abort
 	" cmp will capture <CR> if cmp is active.
 	if s:matchesCommentsOrWhitespace(getline('.'))
 		return "\<C-u>"
-	elseif exists('*EndwiseDiscretionary')
-		return "\<CR>\<C-r>=EndwiseDiscretionary()\<CR>"
 	else
-		return "\<CR>"
+		let autopairs = luaeval('pcall(require,"nvim-autopairs")') ? luaeval('require("nvim-autopairs").autopairs_cr()') : "\<CR>"
+		let endwise = exists('*EndwiseDiscretionary') ? "\<C-r>=EndwiseDiscretionary()\<CR>" : ''
+		return autopairs . endwise
 	endif
 endfunction
 
