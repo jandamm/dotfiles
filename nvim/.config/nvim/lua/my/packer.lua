@@ -158,14 +158,31 @@ use {
 	'tpope/vim-sleuth', -- Automatically set spaces/tabs
 	'aymericbeaumet/vim-symlink', -- Resolve symlinks
 	{ 'jghauser/mkdir.nvim', config = [[require('mkdir')]] }, -- Automatically create missing directories on :w
-	'ludovicchabant/vim-gutentags', -- ctags now just work
+	-- ctags now just work
+	{
+		'ludovicchabant/vim-gutentags',
+		setup = [[vim.g.gutentags_project_root = { '.root', '.tagroot' }]],
+	},
 	{ 'gabebw/vim-github-link-opener', branch = 'main', keys = 'gx' }, -- Improve gx mapping
 }
 
 -- Session management
 use {
 	'tpope/vim-obsession',
-	'airblade/vim-rooter', -- Always cd into root of project
+	-- Always cd into root of project
+	{
+		'airblade/vim-rooter',
+		setup = function()
+			vim.cmd [[
+				" Don't print current dir
+				let g:rooter_silent_chdir = 1
+				" Prefer .root file over .vimroot over submodule over .git folder
+				let g:rooter_patterns = ['.root', '.vimroot', '.git', '.git/']
+				" Change cwd for current window only
+				let g:rooter_cd_cmd = 'lcd'
+			]]
+		end,
+	},
 }
 
 -- Project management

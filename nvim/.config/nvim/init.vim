@@ -63,7 +63,6 @@ set splitright
 set noexpandtab " Use tabs
 set shiftwidth=2 " Size of shifting code
 set tabstop=2 " Size of Tab
-let g:detectindent_preferred_indent = 2
 
 " Show statusline always
 set laststatus=2
@@ -75,19 +74,8 @@ set list
 " Wrapping lines
 set wrap
 set linebreak
-if exists('+breakindent')
-	set breakindent
-	set breakindentopt=shift:2
-endif
-
-" Allow folder specific tags with .root or .tagroot file
-let g:gutentags_project_root=['.root', '.tagroot']
-" Don't print current dir
-let g:rooter_silent_chdir = 1
-" Prefer .root file over .vimroot over submodule over .git folder
-let g:rooter_patterns = ['.root', '.vimroot', '.git', '.git/']
-" Change cwd for current window only
-let g:rooter_cd_cmd = 'lcd'
+set breakindent
+set breakindentopt=shift:2
 
 " Always show two lines above/below the cursor
 set scrolloff=2
