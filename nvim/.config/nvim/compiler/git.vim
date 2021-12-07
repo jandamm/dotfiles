@@ -7,8 +7,8 @@ if exists('current_compiler')
 endif
 let current_compiler = 'git'
 
-let s:cpo_save = &cpotions
-set cpotions-=C
+let s:cpo_save = &cpoptions
+set cpoptions-=C
 
 if exists('g:fugitive_git_executable')
 	execute 'CompilerSet makeprg='.escape(g:fugitive_git_executable, ' "\')
@@ -36,5 +36,5 @@ CompilerSet errorformat=
 			\%+ECONFLICT\ %.%#,
 			\%\\w%\\t%f
 
-let &cpotions = s:cpo_save
+let &cpoptions = s:cpo_save
 unlet s:cpo_save
