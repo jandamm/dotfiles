@@ -170,13 +170,17 @@ use {
 use {
 	'tpope/vim-sleuth', -- Automatically set spaces/tabs
 	'aymericbeaumet/vim-symlink', -- Resolve symlinks
-	{ 'jghauser/mkdir.nvim', config = [[require('mkdir')]] }, -- Automatically create missing directories on :w
+	-- Automatically create missing directories on :w
+	{ 'jghauser/mkdir.nvim', config = [[require('mkdir')]] },
 	-- ctags now just work
 	{
 		'ludovicchabant/vim-gutentags',
 		setup = [[vim.g.gutentags_project_root = { '.root', '.tagroot' }]],
 	},
-	{ 'gabebw/vim-github-link-opener', branch = 'main', keys = 'gx' }, -- Improve gx mapping
+	-- Improve gx mapping
+	{ 'gabebw/vim-github-link-opener', branch = 'main', keys = 'gx' },
+	-- Prevent opening files in some special buffers
+	{ 'stevearc/stickybuf.nvim', config = [[require("stickybuf").setup()]] },
 }
 
 -- Session management
