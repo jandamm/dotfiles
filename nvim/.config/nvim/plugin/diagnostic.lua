@@ -11,12 +11,16 @@ for _, sign in pairs(groups) do
 	vim.fn.sign_define(name, { text = sign.symbol, texthl = name, linehl = '', numhl = '' })
 end
 
--- Disable diagnostics in insert mode
+-- Disable diagnostic in insert mode
 -- TODO: Use ModeChanged when released
 vim.cmd [[
-	augroup diagnostics
+	command -bar DiagnosticOn  lua require'my.diagnostic'.on()
+	command -bar DiagnosticOff lua require'my.diagnostic'.off()
+	command -bar Diagnostic    lua require'my.diagnostic'.toggle()
+
+	augroup my_diagnostic
 		autocmd!
-		autocmd InsertEnter * lua vim.diagnostic.hide()
-		autocmd InsertLeave * lua vim.diagnostic.show()
+		autocmd InsertEnter * lua require'my.diagnostic'.auto(true)
+		autocmd InsertLeave * lua require'my.diagnostic'.auto(false)
 	augroup END
 ]]
