@@ -1,6 +1,6 @@
 augroup my_packer
 	autocmd!
-	autocmd BufWritePost */lua/my/packer.lua lua reload 'my.packer'; vim.cmd 'PackerCompile'
+	autocmd BufWritePost */lua/my/packer.lua,*/lua/my/config/*.lua lua reload 'my.packer'; vim.cmd 'PackerCompile'
 augroup END
 
 " Packer command shims
