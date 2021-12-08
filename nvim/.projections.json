@@ -40,6 +40,7 @@
   },
   ".config/nvim/lua/my/config/*.lua": { "type": "lconfig" },
   ".config/nvim/lua/my/packer.lua": { "type": "packer" },
+  ".config/nvim/lua/telescope/_extensions/*.lua": { "type": "telescope" },
   ".config/nvim/projplugin/*.vim": { "type": "projplugin" },
   ".config/nvim/plugin/*.vim": {
     "type": "plugin",
