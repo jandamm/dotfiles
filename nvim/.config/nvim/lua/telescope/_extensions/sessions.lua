@@ -7,8 +7,8 @@ local displayer = require('telescope.pickers.entry_display').create {
 
 local make_display = function(entry)
 	return displayer {
-		{ entry.path .. '/', 'Normal' },
-		{ entry.name, 'Operator' },
+		{ entry.path .. '/', 'Operator' },
+		{ entry.name, 'Function' },
 	}
 end
 
@@ -43,7 +43,7 @@ return require('telescope').register_extension {
 				sorter = require('telescope.config').values.generic_sorter(opts),
 				attach_mappings = function(prompt_bufnr)
 					actions.select_default:replace(function()
-						local selection = require('telescope.actions.state').get_selected_entry(prompt_bufnr)
+						local selection = require('telescope.actions.state').get_selected_entry()
 						actions.close(prompt_bufnr)
 						vim.fn['my#sessions#load'](0, selection.value)
 					end)
