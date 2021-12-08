@@ -66,7 +66,7 @@ require('my.map').register {
 		},
 		o = {
 			name = 'open',
-			-- nmap <silent> <Leader>od         :Dash<CR>
+			d = { '<CMD>Dash<CR>', 'Dash' },
 			g = { '<CMD>Gsh<CR>', 'Gsh' },
 			G = { '<CMD>Gsh!<CR>', 'Gsh split' },
 			t = { '<CMD>Terminal<CR>', 'Terminal' },

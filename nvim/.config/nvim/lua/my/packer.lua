@@ -359,6 +359,12 @@ use {
 			config = [[require('telescope').load_extension 'frecency']],
 			requires = 'tami5/sqlite.lua',
 		},
+		{
+			'mrjones2014/dash.nvim',
+			run = 'make install',
+			after = 'telescope.nvim',
+			cmd = 'Dash',
+		},
 	},
 }
 
