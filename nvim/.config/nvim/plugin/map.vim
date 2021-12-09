@@ -81,9 +81,6 @@ augroup ft_mappings
 	autocmd Filetype qf,help nnoremap <silent> <buffer> gq <CMD>q<CR>
 augroup END
 
-" Show overview of fugitive mappings with g?
-let g:fuguidive_map_help = 'g?'
-
 " }}}
 
 " Command line {{{

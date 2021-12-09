@@ -18,8 +18,6 @@ require('which-key').setup {
 	},
 }
 
-vim.cmd [[highlight! link WhichKeyFloat FloatBorder]]
-
 -- require('which-key').register({
 -- 	z = 'lightspeed',
 -- }, { mode = 'o' })
