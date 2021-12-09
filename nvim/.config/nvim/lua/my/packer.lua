@@ -21,7 +21,7 @@ unload 'my' -- Reset my config
 vim.cmd [[autocmd! my_config]]
 
 -- Let packer update itself
-use 'wbthomason/packer.nvim'
+use { 'wbthomason/packer.nvim', setup = [[reload 'my.config.packer']] }
 
 -- Apply fixes for nvim
 use {
@@ -84,7 +84,7 @@ use {
 	},
 	'tpope/vim-unimpaired', -- Better [] mappings
 	'tommcdo/vim-exchange', -- Switch text with cx
-	{ 'godlygeek/tabular', cmd = 'Tabularize' }, -- ga to align
+	{ 'godlygeek/tabular', cmd = 'Tabularize', setup = [[reload 'my.config.tabular']] }, -- ga to align
 	{
 		'kwkarlwang/bufjump.nvim',
 		keys = { 'g<C-i>', 'g<C-o>' },
@@ -96,7 +96,7 @@ use {
 
 -- Editing
 use {
-	'tpope/vim-endwise', -- Insert endif etc automatically
+	{ 'tpope/vim-endwise', setup = [[vim.g.endwise_no_mappings=true]] }, -- Insert endif etc automatically
 	-- Automatically add matching parens etc
 	{
 		'windwp/nvim-autopairs',
@@ -134,6 +134,9 @@ use {
 		cmd = { 'G', 'G*' },
 		fn = 'fugitive#Complete',
 		event = 'BufAdd */.git/index',
+		setup = function()
+			vim.cmd [[autocmd my_config BufEnter */.git/index Git]]
+		end,
 		requires = {
 			{ 'tommcdo/vim-fugitive-blame-ext', after = 'vim-fugitive' }, -- Gblame commit messages
 			{ 'junegunn/gv.vim', cmd = 'GV', wants = 'vim-fugitive' }, -- Better git log
@@ -168,7 +171,13 @@ use {
 
 -- Utilities
 use {
-	'tpope/vim-sleuth', -- Automatically set spaces/tabs
+	-- Automatically set spaces/tabs
+	{
+		'tpope/vim-sleuth',
+		setup = function()
+			vim.cmd [[autocmd my_config Filetype * lua vim.schedule(function() if not vim.o.expandtab then vim.fn['my#format#default']() end end)]]
+		end,
+	},
 	'aymericbeaumet/vim-symlink', -- Resolve symlinks
 	-- Automatically create missing directories on :w
 	{ 'jghauser/mkdir.nvim', config = [[require('mkdir')]] },
@@ -221,6 +230,14 @@ use {
 		setup = function()
 			vim.g.qf_auto_open_loclist = false
 			vim.g.qf_auto_open_quickfix = false
+
+			-- TODO: migrate to lua
+			vim.cmd [[
+				nmap [l <Plug>(qf_loc_previous)
+				nmap ]l <Plug>(qf_loc_next)
+				nmap [q <Plug>(qf_qf_previous)
+				nmap ]q <Plug>(qf_qf_next)
+			]]
 		end,
 	},
 	{

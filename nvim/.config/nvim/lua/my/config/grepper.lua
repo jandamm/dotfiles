@@ -7,3 +7,8 @@ vim.g.grepper = {
 		grepformat = [[%f|%l col %c|%m]],
 	},
 }
+
+vim.cmd [[
+	nmap <silent> g/ <Plug>(GrepperOperator)
+	xmap <silent> g/ <Plug>(GrepperOperator)
+]]

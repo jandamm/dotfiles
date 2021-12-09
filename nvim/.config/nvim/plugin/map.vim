@@ -12,13 +12,9 @@ nnoremap <silent> gO :call my#map#outline()<CR>
 nnoremap <expr> gR ":\<C-u>%s/\\<".escape(expand('<cword>'), '/') ."\\>//g\<Left>\<Left>"
 xnoremap <expr> gR ":\<C-u>%s/\\<".escape(expand('<cword>'), '/') ."\\>//g\<Left>\<Left>"
 
-" Better mappings for diag/qf/loc list
-nmap [d <CMD>lua vim.diagnostic.goto_prev({float=false})<CR>
-nmap ]d <CMD>lua vim.diagnostic.goto_next({float=false})<CR>
-nmap [l <Plug>(qf_loc_previous)
-nmap ]l <Plug>(qf_loc_next)
-nmap [q <Plug>(qf_qf_previous)
-nmap ]q <Plug>(qf_qf_next)
+" Better mappings for diagnostic jumping
+nmap [d <CMD>lua vim.diagnostic.goto_prev()<CR>
+nmap ]d <CMD>lua vim.diagnostic.goto_next()<CR>
 
 nnoremap <silent> [w :tabprevious<CR>
 nnoremap <silent> ]w :tabnext<CR>
@@ -105,29 +101,10 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 " TODO: Migrate to cmp config
 " Use Enter to comfirm completion
 " Enter twice adds newline without comment
-let g:endwise_no_mappings=1
 inoremap <expr> <CR> my#map#key#enter()
 
 " Tab for indent otherwise shiftwidth spaces
 imap <expr> <TAB> my#map#key#tab()
-
-" }}}
-
-" Tabular {{{
-
-nmap ga :Tabularize<SPACE>/
-xmap ga :Tabularize<SPACE>/
-
-nmap gav :Tabularize<SPACE>/\V
-xmap gav :Tabularize<SPACE>/\V
-
-for shortcut in [':', '=', ',', '.']
-	execute 'nmap ga'.shortcut.' <CMD>Tabularize /\V'.shortcut.'<CR>'
-	execute 'xmap ga'.shortcut.' :Tabularize /\V'.shortcut.'<CR>'
-endfor
-
-" Set ga to gA (ga is Tabularize, gA is print ascii)
-nnoremap gA ga
 
 " }}}
 

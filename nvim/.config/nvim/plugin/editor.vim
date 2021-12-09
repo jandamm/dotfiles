@@ -8,13 +8,5 @@ augroup my_editor_group
 
 	autocmd VimResized * wincmd =
 
-	autocmd BufEnter */.git/index Git
-
-	autocmd Filetype * call timer_start(50, { -> s:fixSleuth() })
-
 	autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup="IncSearch", timeout=500 }
 augroup END
-
-function! s:fixSleuth() abort
-	if !&expandtab | call my#format#default() | endif
-endfunction

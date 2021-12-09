@@ -112,4 +112,7 @@ set ignorecase
 set smartcase
 set inccommand=split
 
+set grepprg=ack\ -s\ -H\ --column
+set grepformat=%f:%l:%c:%m,%f:%l:%m
+
 " }}}
