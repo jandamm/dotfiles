@@ -33,12 +33,12 @@ require('my.map').register {
 				'Files from current file',
 			},
 			o = { '<CMD>!open %<CR>', 'Open externally' },
-			r = { '<CMD>Telescope frecency default_text=:CWD:<CR>', 'Recents' },
+			r = { '<CMD>lua require("telescope").extensions.frecency.frecency({default_text=":CWD:"})<CR>', 'Recents' },
 			w = { '<CMD>update<CR>', 'Save' },
 		},
 		g = {
 			name = 'git',
-			b = { '<CMD>Telescope git_branches<CR>', 'Branches' },
+			b = { '<CMD>lua require("telescope.builtin").git_branches()<CR>', 'Branches' },
 			d = {
 				name = 'diff',
 				d = { '<CMD>Gvdiffsplit!<CR>', 'Diff' },
@@ -75,7 +75,7 @@ require('my.map').register {
 		p = {
 			name = 'project',
 			d = { [[winnr('$') == 1 ? ":Dirvish!\<CR>" : ":Dirvish\<CR>"]], 'Directory', expr = true },
-			p = { '<CMD>Telescope sessions<CR>', 'Session', silent = false },
+			p = { '<CMD>lua require("telescope").extensions.sessions.sessions()<CR>', 'Session', silent = false },
 			t = { ':tjump<Space>/', 'Tags', silent = false },
 			w = { '<CMD>wall<CR>', 'Save' },
 		},
@@ -93,7 +93,7 @@ require('my.map').register {
 			s = { '<CMD>call my#spelling#toggle()<CR>', 'Spelling' },
 			u = { '<CMD>UndotreeToggle<CR>', 'Undotree' },
 		},
-		y = { '<CMD>Telescope neoclip default<CR>', 'Clipboard' },
+		y = { '<CMD>lua require("telescope").extensions.neoclip.default() <CR>', 'Clipboard' },
 		['<C-i>'] = { ':Session<Space>', 'Sessions', silent = false },
 		['?'] = { ':GrepperRg<Space>', 'Rg', silent = false },
 		['/'] = { ':GrepperAck<Space>', 'Ack', silent = false },
