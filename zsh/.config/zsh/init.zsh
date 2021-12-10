@@ -92,10 +92,8 @@ then
 	zgenom load jandamm/vi-mode.zsh # Show line cursor in vi mode
 
 	zgenom clone skywind3000/z.lua
-	zgenom bin raylee/tldr-sh-client tldr
 
 	zgenom load jandamm/git-pr
-	zgenom bin tj/git-extras --glob 'bin/^git-pr'
 	zgenom load tj/git-extras etc/git-extras-completion.zsh
 	zgenom run tj/git-extras PREFIX=$ZPFX/git-extras make
 	zgenom bin $ZPFX/git-extras/bin --glob '^git-pr'

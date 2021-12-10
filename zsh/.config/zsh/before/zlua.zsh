@@ -3,3 +3,6 @@ export _ZL_ROOT_MARKERS=".git,.svn,.hg,.root,.vimroot"
 
 export _ZL_DATA="$XDG_DATA_HOME/zsh/zlua"
 export _ZL_HYPHEN=1
+
+alias zb='z -b'
+alias zz='z -I'

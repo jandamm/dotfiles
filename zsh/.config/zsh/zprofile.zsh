@@ -16,10 +16,3 @@ fpath=(
 	"$XDG_DATA_HOME/zsh/generated/functions"
 	$fpath
 )
-
-# Where I keep my projects
-export PROJECTS="$HOME/Projects/"
-
-if [ "$(uname -s)" = "Darwin" ]
-then export ZSHRC_CONFIG_USER='MAC'
-fi
