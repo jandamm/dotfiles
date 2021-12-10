@@ -135,7 +135,10 @@ use {
 		fn = 'fugitive#Complete',
 		event = 'BufAdd */.git/index',
 		setup = function()
-			vim.cmd [[autocmd my_config BufEnter */.git/index Git]]
+			vim.cmd [[
+				autocmd my_config BufEnter */.git/index Git
+				autocmd my_config BufReadPost fugitive://* nmap <buffer> gq <CMD>Bdelete<CR>
+			]]
 		end,
 		requires = {
 			{ 'tommcdo/vim-fugitive-blame-ext', after = 'vim-fugitive' }, -- Gblame commit messages
