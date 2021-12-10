@@ -361,6 +361,11 @@ use {
 	'nvim-telescope/telescope.nvim',
 	cmd = 'Telescope',
 	module = 'telescope',
+	setup = function()
+		require('my.lsp').register_on_attach(function()
+			require('my.map').buffer.map('<leader>pt', '<CMD>Telescope lsp_dynamic_workspace_symbols<CR>', 'Search symbol')
+		end)
+	end,
 	config = [[reload 'my.config.telescope']],
 	requires = {
 		'nvim-lua/plenary.nvim',
