@@ -3,10 +3,6 @@
     "prefix": ["put", "inspect"],
     "body": ["print(vim.inspect(${0:$TM_SELECTED_TEXT}))"]
   },
-  "Function": {
-    "prefix": ["func", "function"],
-    "body": ["${1:local }function${2: ${3:M.}${4:name}}(${5:param})", "\t${0:$TM_SELECTED_TEXT}", "end"]
-  },
   "Local": {
     "prefix": ["local"],
     "body": ["local ${1:name} = ${2:${TM_SELECTED_TEXT:func}}"]

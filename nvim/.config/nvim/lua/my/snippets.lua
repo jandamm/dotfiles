@@ -63,16 +63,32 @@ luasnip.snippets = {
 		}),
 		snip('use', { text 'use ', node(1, plugin()) }),
 		snip('plug', { node(1, plugin()), text ',' }),
-		-- A snippet wich checks the current line for `local`
-		-- Could be used for function snippet to decide if local should be added or not.
-		snip('ss', {
-			dynamic(1, function(_, _, _)
-				local line = string.sub(vim.api.nvim_get_current_line(), 0, vim.api.nvim_win_get_cursor(0)[2])
-				if line == 'local ' then
-					return node(nil, text 'hiho')
+		snip('func', {
+			dynamic(1, function(_, snippet)
+				local line = helper.env.before(snippet)
+				if line == '' then
+					return node(nil, choice(1, { text 'local ', text '' }))
+				elseif line:match '^%s*$' then
+					return node(nil, choice(1, { text '', text 'local ' }))
 				end
-				return node(nil, text(line))
+				return node(nil, text '')
 			end, {}),
+			text 'function',
+			dynamic(2, function(args, snippet)
+				local line = helper.env.before(snippet)
+				local is_local = line:match '^%s*local%s*$'
+				if not is_local and not line:match '^%s*$' then
+					return node(nil, text '')
+				elseif not is_local and args[1][1] ~= 'local ' then
+					return node(nil, { choice(1, { text ' M.', text ' ' }), insert(2, 'name') })
+				end
+				return node(nil, { text ' ', insert(1, 'name') })
+			end, { 1 }),
+			text '(',
+			insert(3, 'param'),
+			text { ')', '\t' },
+			helper.vis_or_insert(4),
+			text { '', 'end' },
 		}),
 	},
 }
