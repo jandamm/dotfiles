@@ -68,7 +68,7 @@ set tabstop=2 " Size of Tab
 set laststatus=2
 
 " Show tabs and trailing whitespace
-set listchars=tab:⟩‐,trail:·
+set listchars=tab:⟩·\ ,trail:·,lead:\ ,multispace:·
 set list
 
 " Wrapping lines
