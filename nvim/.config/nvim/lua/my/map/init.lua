@@ -22,15 +22,20 @@ local function flatten(prefix, mappings)
 	end
 	return flattened
 end
-local function check(table)
-	local ok, new_map = pcall(vim.tbl_extend, 'error', map, table)
+local function check(table, opts)
+	local mode = opts and opts.mode or 'n'
+	if not map[mode] then
+		map[mode] = table
+		return
+	end
+	local ok, new_map = pcall(vim.tbl_extend, 'error', map[mode], table)
 	if not ok then
 		vim.notify('There are duplicates in the mappings. See :messages', 'Error')
 		for key, _ in pairs(table) do
-			print('Possible conflict for this mapping: ' .. key)
+			print('Possible conflict for this mapping: ' .. key .. 'in mode: ' .. mode)
 		end
 	else
-		map = new_map
+		map[mode] = new_map
 	end
 end
 
@@ -42,7 +47,7 @@ if not installed then
 end
 
 function M.map(key, mapping, name, opts)
-	check { [key] = true }
+	check({ [key] = true }, opts)
 	return register({ [key] = { mapping, name } }, opts)
 end
 function M.buffer.map(key, mapping, name, opts)
@@ -57,7 +62,7 @@ function M.buffer.name(key, name, opts)
 end
 
 function M.register(mapping, opts)
-	check(flatten(opts and opts.prefix or '', mapping))
+	check(flatten(opts and opts.prefix or '', mapping), opts)
 	return register(mapping, opts)
 end
 function M.buffer.register(mapping, opts)
