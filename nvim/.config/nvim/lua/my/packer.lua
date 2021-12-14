@@ -37,7 +37,12 @@ use { 'nvim-lua/plenary.nvim', module = 'plenary' }
 use {
 	{
 		'rmehri01/onenord.nvim',
+		opt = true,
 		config = [[reload 'my.config.onenord']],
+	},
+	{
+		'EdenEast/nightfox.nvim',
+		config = [[reload 'my.config.nightfox']],
 	},
 	{ -- Icons for my statusline functions
 		'kyazdani42/nvim-web-devicons',
