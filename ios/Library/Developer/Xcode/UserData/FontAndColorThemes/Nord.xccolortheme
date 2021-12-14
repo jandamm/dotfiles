@@ -5,23 +5,23 @@
 	<key>DVTConsoleDebuggerInputTextColor</key>
 	<string>0.816187 0.837374 0.894673 1</string>
 	<key>DVTConsoleDebuggerInputTextFont</key>
-	<string>JetBrainsMono-Bold - 14.0</string>
+	<string>JetBrainsMono-Bold - 15.0</string>
 	<key>DVTConsoleDebuggerOutputTextColor</key>
 	<string>0.816187 0.837374 0.894673 1</string>
 	<key>DVTConsoleDebuggerOutputTextFont</key>
-	<string>JetBrainsMonoNL-Regular - 14.0</string>
+	<string>JetBrainsMonoNL-Regular - 15.0</string>
 	<key>DVTConsoleDebuggerPromptTextColor</key>
 	<string>0.450991 0.556703 0.711154 1</string>
 	<key>DVTConsoleDebuggerPromptTextFont</key>
-	<string>JetBrainsMonoNL-Regular - 14.0</string>
+	<string>JetBrainsMonoNL-Regular - 15.0</string>
 	<key>DVTConsoleExectuableInputTextColor</key>
 	<string>0.816187 0.837374 0.894673 1</string>
 	<key>DVTConsoleExectuableInputTextFont</key>
-	<string>JetBrainsMonoNL-Italic - 14.0</string>
+	<string>JetBrainsMonoNL-Italic - 15.0</string>
 	<key>DVTConsoleExectuableOutputTextColor</key>
 	<string>0.48763 0.698625 0.777955 1</string>
 	<key>DVTConsoleExectuableOutputTextFont</key>
-	<string>JetBrainsMono-Bold - 14.0</string>
+	<string>JetBrainsMono-Bold - 15.0</string>
 	<key>DVTConsoleTextBackgroundColor</key>
 	<string>0.138852 0.15161 0.193536 1</string>
 	<key>DVTConsoleTextInsertionPointColor</key>
@@ -32,6 +32,8 @@
 	<string>0.506519 0.684472 0.678581 1</string>
 	<key>DVTFontAndColorVersion</key>
 	<integer>1</integer>
+	<key>DVTFontSizeModifier</key>
+	<integer>1</integer>
 	<key>DVTLineSpacing</key>
 	<real>1.1000000238418579</real>
 	<key>DVTMarkupTextBackgroundColor</key>
@@ -39,37 +41,37 @@
 	<key>DVTMarkupTextBorderColor</key>
 	<string>0.8832 0.8832 0.8832 1</string>
 	<key>DVTMarkupTextCodeFont</key>
-	<string>SFMono-Regular - 10.0</string>
+	<string>SFMono-Regular - 11.0</string>
 	<key>DVTMarkupTextEmphasisColor</key>
 	<string>0 0 0 1</string>
 	<key>DVTMarkupTextEmphasisFont</key>
-	<string>.SFNS-RegularItalic - 13.0</string>
+	<string>.SFNS-RegularItalic - 14.0</string>
 	<key>DVTMarkupTextInlineCodeColor</key>
 	<string>0 0 0 0.7</string>
 	<key>DVTMarkupTextLinkColor</key>
 	<string>0.055 0.055 1 1</string>
 	<key>DVTMarkupTextLinkFont</key>
-	<string>.SFNS-Regular - 13.0</string>
+	<string>.SFNS-Regular - 14.0</string>
 	<key>DVTMarkupTextNormalColor</key>
 	<string>0 0 0 1</string>
 	<key>DVTMarkupTextNormalFont</key>
-	<string>.SFNS-Regular - 13.0</string>
+	<string>.SFNS-Regular - 14.0</string>
 	<key>DVTMarkupTextOtherHeadingColor</key>
 	<string>0 0 0 0.5</string>
 	<key>DVTMarkupTextOtherHeadingFont</key>
-	<string>.SFNS-Regular - 19.4</string>
+	<string>.SFNS-Regular - 19.2</string>
 	<key>DVTMarkupTextPrimaryHeadingColor</key>
 	<string>0 0 0 1</string>
 	<key>DVTMarkupTextPrimaryHeadingFont</key>
-	<string>.SFNS-Regular - 35.4</string>
+	<string>.SFNS-Regular - 32.2</string>
 	<key>DVTMarkupTextSecondaryHeadingColor</key>
 	<string>0 0 0 1</string>
 	<key>DVTMarkupTextSecondaryHeadingFont</key>
-	<string>.SFNS-Regular - 25.8</string>
+	<string>.SFNS-Regular - 24.4</string>
 	<key>DVTMarkupTextStrongColor</key>
 	<string>0 0 0 1</string>
 	<key>DVTMarkupTextStrongFont</key>
-	<string>.SFNS-Bold - 13.0</string>
+	<string>.SFNS-Bold - 14.0</string>
 	<key>DVTScrollbarMarkerAnalyzerColor</key>
 	<string>0.403922 0.372549 1 1</string>
 	<key>DVTScrollbarMarkerBreakpointColor</key>
@@ -156,59 +158,59 @@
 	<key>DVTSourceTextSyntaxFonts</key>
 	<dict>
 		<key>xcode.syntax.attribute</key>
-		<string>JetBrainsMonoNL-Regular - 14.0</string>
+		<string>JetBrainsMonoNL-Regular - 15.0</string>
 		<key>xcode.syntax.character</key>
-		<string>JetBrainsMonoNL-Regular - 14.0</string>
+		<string>JetBrainsMonoNL-Regular - 15.0</string>
 		<key>xcode.syntax.comment</key>
-		<string>JetBrainsMonoNL-Regular - 14.0</string>
+		<string>JetBrainsMonoNL-Regular - 15.0</string>
 		<key>xcode.syntax.comment.doc</key>
-		<string>JetBrainsMonoNL-Regular - 14.0</string>
+		<string>JetBrainsMonoNL-Regular - 15.0</string>
 		<key>xcode.syntax.comment.doc.keyword</key>
-		<string>JetBrainsMonoNL-Regular - 14.0</string>
+		<string>JetBrainsMonoNL-Regular - 15.0</string>
 		<key>xcode.syntax.declaration.other</key>
-		<string>JetBrainsMonoNL-Regular - 14.0</string>
+		<string>JetBrainsMonoNL-Regular - 15.0</string>
 		<key>xcode.syntax.declaration.type</key>
-		<string>JetBrainsMonoNL-Regular - 14.0</string>
+		<string>JetBrainsMonoNL-Regular - 15.0</string>
 		<key>xcode.syntax.identifier.class</key>
-		<string>JetBrainsMonoNL-Regular - 14.0</string>
+		<string>JetBrainsMonoNL-Regular - 15.0</string>
 		<key>xcode.syntax.identifier.class.system</key>
-		<string>JetBrainsMonoNL-Regular - 14.0</string>
+		<string>JetBrainsMonoNL-Regular - 15.0</string>
 		<key>xcode.syntax.identifier.constant</key>
-		<string>JetBrainsMonoNL-Bold - 14.0</string>
+		<string>JetBrainsMonoNL-Bold - 15.0</string>
 		<key>xcode.syntax.identifier.constant.system</key>
-		<string>JetBrainsMono-Bold - 14.0</string>
+		<string>JetBrainsMono-Bold - 15.0</string>
 		<key>xcode.syntax.identifier.function</key>
-		<string>JetBrainsMonoNL-Regular - 14.0</string>
+		<string>JetBrainsMonoNL-Regular - 15.0</string>
 		<key>xcode.syntax.identifier.function.system</key>
-		<string>JetBrainsMonoNL-Regular - 14.0</string>
+		<string>JetBrainsMonoNL-Regular - 15.0</string>
 		<key>xcode.syntax.identifier.macro</key>
-		<string>JetBrainsMonoNL-Italic - 14.0</string>
+		<string>JetBrainsMonoNL-Italic - 15.0</string>
 		<key>xcode.syntax.identifier.macro.system</key>
-		<string>JetBrainsMonoNL-Regular - 14.0</string>
+		<string>JetBrainsMonoNL-Regular - 15.0</string>
 		<key>xcode.syntax.identifier.type</key>
-		<string>JetBrainsMonoNL-Regular - 14.0</string>
+		<string>JetBrainsMonoNL-Regular - 15.0</string>
 		<key>xcode.syntax.identifier.type.system</key>
-		<string>JetBrainsMonoNL-Regular - 14.0</string>
+		<string>JetBrainsMonoNL-Regular - 15.0</string>
 		<key>xcode.syntax.identifier.variable</key>
-		<string>JetBrainsMonoNL-Italic - 14.0</string>
+		<string>JetBrainsMonoNL-Italic - 15.0</string>
 		<key>xcode.syntax.identifier.variable.system</key>
-		<string>JetBrainsMonoNL-Italic - 14.0</string>
+		<string>JetBrainsMonoNL-Italic - 15.0</string>
 		<key>xcode.syntax.keyword</key>
-		<string>JetBrainsMonoNL-Regular - 14.0</string>
+		<string>JetBrainsMonoNL-Regular - 15.0</string>
 		<key>xcode.syntax.mark</key>
-		<string>JetBrainsMonoNL-Bold - 14.0</string>
+		<string>JetBrainsMonoNL-Bold - 15.0</string>
 		<key>xcode.syntax.markup.code</key>
-		<string>JetBrainsMonoNL-Bold - 14.0</string>
+		<string>JetBrainsMonoNL-Bold - 15.0</string>
 		<key>xcode.syntax.number</key>
-		<string>JetBrainsMonoNL-Regular - 14.0</string>
+		<string>JetBrainsMonoNL-Regular - 15.0</string>
 		<key>xcode.syntax.plain</key>
-		<string>JetBrainsMonoNL-Regular - 14.0</string>
+		<string>JetBrainsMonoNL-Regular - 15.0</string>
 		<key>xcode.syntax.preprocessor</key>
-		<string>JetBrainsMonoNL-Regular - 14.0</string>
+		<string>JetBrainsMonoNL-Regular - 15.0</string>
 		<key>xcode.syntax.string</key>
-		<string>JetBrainsMonoNL-Regular - 14.0</string>
+		<string>JetBrainsMonoNL-Regular - 15.0</string>
 		<key>xcode.syntax.url</key>
-		<string>JetBrainsMonoNL-Italic - 14.0</string>
+		<string>JetBrainsMonoNL-Italic - 15.0</string>
 	</dict>
 </dict>
 </plist>
