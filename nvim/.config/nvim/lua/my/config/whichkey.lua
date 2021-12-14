@@ -9,20 +9,16 @@ require('which-key').setup {
 	},
 	operators = { gc = 'Comments' },
 	key_labels = {
-		['<leader>'] = ' ',
-		['<space>'] = ' ',
-		['<CR>'] = ' ',
-		['<Tab>'] = ' ',
-		['<BS>'] = ' ',
-		-- ['<BS>'] = ' ',
+		['<leader>'] = '⎵',
+		['<space>'] = '⎵',
+		['<CR>'] = '',
+		['<Tab>'] = '',
+		['<BS>'] = '',
 	},
 }
 
 -- require('which-key').register({
 -- 	z = 'lightspeed',
 -- }, { mode = 'o' })
--- require('which-key').register {
--- 	g = { c = { name = 'wow', c = 'hey' } }
--- }
 
 reload 'my.config.whichkey.leader'
