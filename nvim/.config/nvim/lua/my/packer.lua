@@ -200,16 +200,12 @@ use {
 	'tpope/vim-obsession',
 	-- Always cd into root of project
 	{
-		'airblade/vim-rooter',
-		setup = function()
-			vim.cmd [[
-				" Don't print current dir
-				let g:rooter_silent_chdir = 1
-				" Prefer .root file over .vimroot over submodule over .git folder
-				let g:rooter_patterns = ['.root', '.vimroot', '.git', '.git/']
-				" Change cwd for current window only
-				let g:rooter_cd_cmd = 'lcd'
-			]]
+		'ahmedkhalf/project.nvim',
+		config = function()
+			require('project_nvim').setup {
+				detection_methods = { 'pattern', 'lsp' },
+				patterns = { '.root', '.vimroot', '.git', '.git/', 'Makefile', 'package.json' },
+			}
 		end,
 	},
 }
