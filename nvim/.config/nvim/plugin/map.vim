@@ -5,6 +5,7 @@ nnoremap @; @:
 
 " Remap U Redo
 nnoremap U <C-r>
+nnoremap <C-r> U
 
 nnoremap <silent> gO :call my#map#outline()<CR>
 
