@@ -177,7 +177,14 @@ use {
 		tag = 'release',
 		event = 'VimEnter', -- Otherwise it produces an error when a :Git buffer is open.
 	},
-	{ 'sindrets/diffview.nvim', requires = 'kyazdani42/nvim-web-devicons', cmd = { 'DiffviewOpen', 'Diffview*' } },
+	{
+		'sindrets/diffview.nvim',
+		requires = 'kyazdani42/nvim-web-devicons',
+		cmd = { 'DiffviewOpen', 'Diffview*' },
+		config = function()
+			vim.cmd [[autocmd my_config Filetype DiffviewFiles lua require'my.map'.buffer.map('gq', '<CMD>tabclose<CR>', 'Close Diffview')]]
+		end,
+	},
 }
 
 -- Utilities
