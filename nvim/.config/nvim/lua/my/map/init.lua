@@ -1,11 +1,10 @@
 -- Helper to add mappings from elsewhere which does not error when whichkey
 -- isn't installed
 
--- NOTE: Using buffer = 0 might not work when the mapping is created before VimEnter
-
-local M = {
-	buffer = {},
-}
+local installed, whichkey = pcall(require, 'which-key')
+if not installed then
+	vim.notify('Which-Key is not installed. Some mappings might be missing.', 'Error')
+end
 
 -- Check global mappings for conflicts
 local map = {}
@@ -23,7 +22,8 @@ local function flatten(prefix, mappings)
 	return flattened
 end
 local function check(table, opts)
-	local mode = opts and opts.mode or 'n'
+	table = flatten(opts.prefix or '', table)
+	local mode = opts.mode
 	if not map[mode] then
 		map[mode] = table
 		return
@@ -38,37 +38,83 @@ local function check(table, opts)
 		map[mode] = new_map
 	end
 end
-
-local installed, whichkey = pcall(require, 'which-key')
-local register = installed and whichkey.register or function() end
-
-if not installed then
-	vim.notify('Which-Key is not installed. Some mappings might be missing.', 'Error')
+local function copy(table, last)
+	return last and table or vim.deepcopy(table)
 end
 
-function M.map(key, mapping, name, opts)
-	check({ [key] = true }, opts)
-	return register({ [key] = { mapping, name } }, opts)
-end
-function M.buffer.map(key, mapping, name, opts)
-	return register({ [key] = { mapping, name, buffer = vim.api.nvim_get_current_buf() } }, opts)
-end
+local function register(mappings, buffer, modes, opts)
+	if not installed then
+		return
+	end
 
-function M.name(key, name, opts)
-	return register({ [key] = name }, opts)
-end
-function M.buffer.name(key, name, opts)
-	return register({ [key] = { name, buffer = vim.api.nvim_get_current_buf() } }, opts)
-end
-
-function M.register(mapping, opts)
-	check(flatten(opts and opts.prefix or '', mapping), opts)
-	return register(mapping, opts)
-end
-function M.buffer.register(mapping, opts)
 	opts = opts or {}
-	opts.buffer = vim.api.nvim_get_current_buf()
-	return register(mapping, opts)
+	modes = type(modes) == 'string' and { modes } or modes or { 'n' }
+
+	local n = #modes
+	for i, mode in ipairs(modes) do
+		opts.mode = mode
+		if buffer then
+			-- NOTE: Using buffer = 0 might not work when the mapping is created before VimEnter
+			opts.buffer = vim.api.nvim_get_current_buf()
+		else
+			check(mappings, opts)
+		end
+		local last = i == n
+		whichkey.register(copy(mappings, last), copy(opts, last))
+	end
+end
+
+local M = { buffer = {} }
+
+---Define one mapping
+---@param key string Trigger
+---@param mapping string Execution
+---@param name string WhichKey Label
+---@param modes string|table Default is { 'n' }
+---@param opts table WhichKey Opts
+function M.map(key, mapping, name, modes, opts)
+	register({ [key] = { mapping, name } }, false, modes, opts)
+end
+---Define one mapping for the active buffer
+---@param key string Trigger
+---@param mapping string Execution
+---@param name string WhichKey Label
+---@param modes string|table Default is { 'n' }
+---@param opts table WhichKey Opts
+function M.buffer.map(key, mapping, name, modes, opts)
+	register({ [key] = { mapping, name } }, true, modes, opts)
+end
+
+---Name one mapping
+---@param key string Trigger
+---@param name string WhichKey Label
+---@param modes string|table Default is { 'n' }
+---@param opts table WhichKey Opts
+function M.name(key, name, modes, opts)
+	register({ [key] = name }, false, modes, opts)
+end
+---Name one mapping for the active buffer
+---@param key string Trigger
+---@param name string WhichKey Label
+---@param modes string|table Default is { 'n' }
+---@param opts table WhichKey Opts
+function M.buffer.name(key, name, modes, opts)
+	register({ [key] = name }, true, modes, opts)
+end
+
+---Wrapper around whichkey
+---@param reg table WhichKey mapping table
+---@param modes string|table Default is { 'n' }
+---@param opts table WhichKey Opts
+function M.register(reg, modes, opts)
+	register(reg, false, modes, opts)
+end
+---Wrapper around whichkey for the active buffer
+---@param reg table WhichKey mapping table
+---@param modes string|table Default is { 'n' }
+---@param opts table WhichKey Opts
+function M.buffer.register(reg, modes, opts)
+	register(reg, true, modes, opts)
 end
 
 return M
