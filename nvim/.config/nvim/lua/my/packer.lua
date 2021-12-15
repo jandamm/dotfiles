@@ -67,12 +67,15 @@ use {
 			require('lightspeed').setup {
 				exit_after_idle_msecs = {}, -- don't exit when idle
 			}
-			vim.cmd [[
-				nnoremap gs s
-				xnoremap gs s
-				omap ; <Plug>Lightspeed_;_ft
-				omap , <Plug>Lightspeed_,_ft
-			]]
+			require('my.map').register({
+				x = 'Lightspeed exclusive',
+				X = 'Lightspeed exclusive backwards',
+				z = 'Lightspeed',
+				Z = 'Lightspeed backwards',
+				[';'] = { '<Plug>Lightspeed_;_ft', 'Repeat latest f or t' },
+				[','] = { '<Plug>Lightspeed_,_ft', 'Repeat latest f or t in opposite direction' },
+			}, 'o')
+			require('my.map').map('gs', 's', 'Delete characters and start insert', { 'n', 'x' })
 		end,
 	},
 	{ -- Add(y)/change(c)/remove(d) surroundings
@@ -88,7 +91,7 @@ use {
 		end,
 	},
 	'tpope/vim-unimpaired', -- Better [] mappings
-	'tommcdo/vim-exchange', -- Switch text with cx
+	{ 'tommcdo/vim-exchange', config = [[require('my.map').name('cx', 'Exchange')]] }, -- Switch text with cx
 	{ 'godlygeek/tabular', cmd = 'Tabularize', setup = [[reload 'my.config.tabular']] }, -- ga to align
 	{
 		'kwkarlwang/bufjump.nvim',

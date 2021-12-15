@@ -17,8 +17,4 @@ require('which-key').setup {
 	},
 }
 
--- require('which-key').register({
--- 	z = 'lightspeed',
--- }, { mode = 'o' })
-
 reload 'my.config.whichkey.leader'
