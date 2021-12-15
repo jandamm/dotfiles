@@ -33,6 +33,7 @@ require('cryoline').config {
 		terminal = function(context)
 			return vim.fn['my#statusline#terminal'](context.winnr, context.active)
 		end,
+		DiffviewFiles = function() end,
 		qf = function(context)
 			return vim.fn['my#statusline#qf'](context.winnr, context.active)
 		end,
