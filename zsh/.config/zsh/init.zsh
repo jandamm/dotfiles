@@ -85,6 +85,7 @@ zgenom autoupdate
 
 if ! zgenom saved
 then
+	zgenom load jandamm/zgenom-ext-eval
 	zgenom load jandamm/zgenom-ext-run
 
 	zgenom load fnune/base16-fzf bash/base16-nord.config # base16-theme
@@ -92,6 +93,7 @@ then
 	zgenom load jandamm/vi-mode.zsh # Show line cursor in vi mode
 
 	zgenom clone skywind3000/z.lua
+	zgenom eval "$(lua $(zgenom api clone_dir skywind3000/z.lua)/z.lua --init zsh enhanced)"
 
 	zgenom load jandamm/git-pr
 	zgenom load tj/git-extras etc/git-extras-completion.zsh
