@@ -100,11 +100,11 @@ do
 			else
 				set +e
 				shimmer --quiet 'dotfiles-' "$@"
-				if [[ $? -ge 254 ]]
-				then
+				ret=$?
+				if [[ $ret -ge 254 ]]; then
 					quit_setup
 				else
-					exit $?
+					exit $ret
 				fi
 			fi
 			;;
