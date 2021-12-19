@@ -13,6 +13,38 @@ local function snip_pair(start, stop)
 	return snip(start, { text(start), insert(0, ''), text(stop or start) })
 end
 
+local function find_override_func(line_nr, lookback)
+	line_nr = line_nr - 1
+	local lines = vim.api.nvim_buf_get_lines(0, math.max(line_nr - lookback, 0), line_nr, false)
+	for i = #lines, 1, -1 do
+		local raw = lines[i]
+		if raw:find ' func ' then
+			return raw:match('override .*func (.*)', 1)
+		end
+	end
+end
+
+local function remove_type_brackets(rest)
+	local comma = rest:find(', ', nil, true)
+	if not comma then
+		return ''
+	end
+	local bracket = rest:find('(', nil, true)
+	return comma < bracket and rest or rest:sub(rest:find(')', nil, true) or 0, -1)
+end
+
+local function find_parameter(rest, i)
+	local param_end = rest:find(': ', nil, true)
+	if not param_end then
+		return i, ''
+	end
+	local param = vim.split(rest:sub(0, param_end - 1), ' ')
+	return (i or 0) + 1,
+		param[1],
+		param[2],
+		remove_type_brackets(rest:sub(param_end + 2, -1)):match(', (.*: .*)$', 1) or ''
+end
+
 --- Shared between plug and use
 local function plugin()
 	return {
@@ -89,6 +121,30 @@ luasnip.snippets = {
 			text { ')', '\t' },
 			helper.vis_or_insert(4),
 			text { '', 'end' },
+		}),
+	},
+	swift = {
+		snip('super', {
+			text 'super.',
+			dynamic(1, function(_, snippet)
+				local line = find_override_func(snippet.env.TM_LINE_NUMBER, 7)
+				if not line then
+					return text ''
+				end
+				local bracket = line:find('(', nil, true)
+				local nodes = { text(line:match('([^(<]*)', 1) .. '(') }
+				local i, param, name, rest = find_parameter(line:sub(bracket + 1, -1))
+				while param ~= '' do
+					name = name or param
+					param = param == '_' and '' or param .. ': '
+					param = i > 1 and ', ' .. param or param
+					table.insert(nodes, text(param))
+					table.insert(nodes, insert(i, name))
+					i, param, name, rest = find_parameter(rest, i)
+				end
+				table.insert(nodes, text ')')
+				return node(nil, nodes)
+			end, {}),
 		}),
 	},
 }
