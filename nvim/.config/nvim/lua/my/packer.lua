@@ -472,10 +472,23 @@ use {
 		end,
 	},
 }
+-- TreeSitter
+use {
+	'jandamm/nvim-treesitter',
+	branch = 'swift',
+	run = ':TSUpdate',
+	requires = { { 'nvim-treesitter/playground', cmd = 'TSPlaygroundToggle' } },
+	config = function()
+		require('nvim-treesitter.configs').setup {
+			ensure_installed = { 'bash', 'comment', 'lua', 'query', 'regex', 'swift', 'vim', 'yaml' },
+			highlight = { enable = true },
+			playground = { enable = true },
+		}
+	end,
+}
 -- Syntax
 use {
 	'bfontaine/Brewfile.vim',
-	'euclidianAce/BetterLua.vim',
 	'tpope/vim-git',
 	{
 		'gabrielelana/vim-markdown',
