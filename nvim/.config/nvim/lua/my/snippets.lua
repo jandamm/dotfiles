@@ -46,28 +46,51 @@ local function find_parameter(rest, i)
 end
 
 --- Shared between plug and use
+local function conf(single)
+	local indent = single and '' or '\t'
+	return {
+		choice(1, {
+			node(nil, { text(indent .. "cmd = { '"), insert(1, 'Cmd'), text { "' },", '' } }),
+			text '',
+		}),
+		choice(2, {
+			node(nil, { text(indent .. "requires = { '"), insert(1, 'repo'), text { "' },", '' } }),
+			text '',
+		}),
+		choice(3, {
+			node(
+				nil,
+				{ text { indent .. 'setup = function()', indent .. '\t' }, insert(1), text { '', indent .. 'end,', '' } }
+			),
+			text '',
+		}),
+	}
+end
+local function config(single)
+	local indent = single and '' or '\t'
+	local newline = text(single and '' or { '', '' })
+	local nodes = {
+		node(
+			nil,
+			{ text { indent .. 'config = function()', indent .. '\t' }, insert(1), text { '', indent .. 'end,' }, newline }
+		),
+		node(nil, { text(indent .. "config = [[reload 'my.config."), insert(1, 'plugin'), text "']],", newline }),
+	}
+	if not single then
+		table.insert(nodes, text '')
+	end
+	return { choice(1, nodes) }
+end
 local function plugin()
 	return {
 		text { '{', "\t'" },
 		insert(1, 'repo'),
 		text { "',", '' },
 		choice(2, {
-			node(nil, { text "\tcmd = { '", insert(1, 'Cmd'), text { "' },", '' } }),
 			text '',
+			node(nil, conf()),
 		}),
-		choice(3, {
-			node(nil, { text "\trequires = { '", insert(1, 'repo'), text { "' },", '' } }),
-			text '',
-		}),
-		choice(4, {
-			node(nil, { text { '\tsetup = function()', '\t\t' }, insert(1), text { '', '\tend,', '' } }),
-			text '',
-		}),
-		choice(5, {
-			node(nil, { text { '\tconfig = function()', '\t\t' }, insert(1), text { '', '\tend,', '' } }),
-			node(nil, { text "\tconfig = [[reload 'my.config.", insert(1, 'plugin'), text { "']],", '' } }),
-			text '',
-		}),
+		node(3, config()),
 		text '}',
 	}
 end
@@ -95,6 +118,8 @@ luasnip.snippets = {
 		}),
 		snip('use', { text 'use ', node(1, plugin()) }),
 		snip('plug', { node(1, plugin()), text ',' }),
+		snip('conf', conf(true)),
+		snip('config', config(true)),
 		snip('func', {
 			dynamic(1, function(_, snippet)
 				local line = helper.env.before(snippet)
