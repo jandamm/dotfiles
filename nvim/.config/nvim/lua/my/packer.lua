@@ -129,6 +129,7 @@ use {
 	},
 	{ 'famiu/bufdelete.nvim', cmd = { 'Bdelete', 'Bwipeout' } }, -- Delete buffers but keep window alive
 	{ 'powerman/vim-plugin-AnsiEsc', cmd = 'AnsiEsc' },
+	{ 'sQVe/sort.nvim', cmd = 'Sort', config = [[require('sort').setup {}]] }, -- Like :sort but works for selections
 }
 
 -- Faster vim-abolish!
