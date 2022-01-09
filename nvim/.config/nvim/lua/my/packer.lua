@@ -66,15 +66,18 @@ use {
 		config = function()
 			require('lightspeed').setup {
 				exit_after_idle_msecs = {}, -- don't exit when idle
+				force_beacons_into_match_width = true,
 			}
 			require('my.map').register({
 				x = 'Lightspeed exclusive',
 				X = 'Lightspeed exclusive backwards',
 				z = 'Lightspeed',
 				Z = 'Lightspeed backwards',
-				[';'] = { '<Plug>Lightspeed_;_ft', 'Repeat latest f or t' },
-				[','] = { '<Plug>Lightspeed_,_ft', 'Repeat latest f or t in opposite direction' },
 			}, 'o')
+			require('my.map').register({
+				[';'] = 'Repeat latest f or t',
+				[','] = 'Repeat latest f or t in opposite direction',
+			}, { 'n', 'o', 'x' })
 			require('my.map').map('gs', 's', 'Delete characters and start insert', { 'n', 'x' })
 		end,
 	},

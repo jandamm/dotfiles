@@ -1,8 +1,3 @@
-nnoremap ; :
-xnoremap ; :
-onoremap ; :
-nnoremap @; @:
-
 " Remap U Redo
 nnoremap U <C-r>
 nnoremap <C-r> U
