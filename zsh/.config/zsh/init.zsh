@@ -85,6 +85,8 @@ zgenom autoupdate
 
 if ! zgenom saved
 then
+	zgenom compdef
+
 	zgenom load jandamm/zgenom-ext-eval
 	zgenom load jandamm/zgenom-ext-run
 
