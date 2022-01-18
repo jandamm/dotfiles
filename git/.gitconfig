@@ -3,7 +3,7 @@
 	email = mail@jandamm.de
 
 [core]
-	pager = my_delta
+	pager = delta
 	excludesfile = ~/.config/git/gitignore
 
 [init]
@@ -14,7 +14,7 @@
 	helper = osxkeychain
 
 [interactive]
-	diffFilter = my_delta --color-only
+	diffFilter = delta --color-only
 
 [alias]
 	adde = add --edit
@@ -97,3 +97,13 @@
 # Tools
 [github]
 	user = jandamm
+
+[delta]
+	syntax-theme = Nord
+	plus-style = syntax "#39423E"
+	plus-emph-style = normal "#597052"
+	minus-style = syntax "#44353E"
+	minus-emph-style = normal "#7A4951"
+	max-line-distance = 1
+	keep-plus-minus-markers = true
+	highlight-removed = true

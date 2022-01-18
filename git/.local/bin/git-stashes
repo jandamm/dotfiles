@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-preview="git stash show \$(echo {} | sed 's/stash@{\(.*\)}: .*/\1/') --color -p | my_delta"
+preview="git stash show \$(echo {} | sed 's/stash@{\(.*\)}: .*/\1/') --color -p | delta"
 
 git stash list | fzf +1 --preview="$preview" | sed 's/stash@{\(.*\)}: .*/stash@{\1}/'
