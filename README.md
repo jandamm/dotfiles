@@ -3,6 +3,7 @@
 ## Full installation
 
 - `git clone git@github.com:jandamm/dotfiles.git ~/.dotfiles`
+- `# cd ~/.dotfiles && git clone git@github.com:jandamm/dotfiles_private.git ~/.private`
 - `cd ~/.dotfiles && ./dotfiles install`
 
 ### Use zsh from Homebrew as login shell
