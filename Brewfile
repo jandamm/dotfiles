@@ -23,6 +23,7 @@ brew 'gnu-sed'
 brew 'jq'
 brew 'less'
 brew 'lua'
+brew 'luarocks'
 brew 'mas'
 brew 'neovim'
 brew 'ninja' # Used for sumneko/lua-language-server

@@ -4,6 +4,7 @@
 
 - `git clone git@github.com:jandamm/dotfiles.git ~/.dotfiles`
 - `# cd ~/.dotfiles && git clone git@github.com:jandamm/dotfiles_private.git ~/.private`
+- Make sure Xcode is installed and `sudo xcode-select -p "your Xcode path"` is run
 - `cd ~/.dotfiles && ./dotfiles install`
 
 ### Use zsh from Homebrew as login shell

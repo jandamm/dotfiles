@@ -5,3 +5,4 @@
 --ignore=^\.vimroot
 --ignore=^\.tagroot
 --ignore=^\.projections\.json
+--ignore=^.*\.zwc

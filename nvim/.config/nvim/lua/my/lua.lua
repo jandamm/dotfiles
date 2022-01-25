@@ -1,7 +1,12 @@
 ---Unload a module
 ---@param module string
 function _G.unload(module)
-	require('plenary.reload').reload_module(module, true)
+	local ok, plenary = pcall(require, 'plenary.reload')
+	if ok then
+		plenary.reload_module(module, true)
+	else
+		package.loaded[module] = nil
+	end
 end
 
 ---Unload and require a module

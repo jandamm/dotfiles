@@ -8,6 +8,7 @@ vim.fn.setenv('MACOSX_DEPLOYMENT_TARGET', '11')
 -- wants:    load specified plugin before this plugin
 
 if not package.loaded['packer'] then
+	vim.cmd 'packadd packer.nvim'
 	require('packer').init {
 		max_jobs = 8, -- This fixes the issue of status hanging
 		display = { keybindings = { quit = 'gq' } },
@@ -21,7 +22,7 @@ unload 'my' -- Reset my config
 vim.cmd [[autocmd! my_config]]
 
 -- Let packer update itself
-use { 'wbthomason/packer.nvim', setup = [[reload 'my.config.packer']] }
+use { 'wbthomason/packer.nvim', opt = true, setup = [[reload 'my.config.packer']] }
 
 -- Apply fixes for nvim
 use {

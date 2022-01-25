@@ -7,7 +7,10 @@ if [ -z "$DOTFILES" ]
 then
 	echo "Not yet set up. Sourcing zprofile"
 	# shellcheck source=zsh/.config/zsh/zprofile.zsh
-	source "${0%/*}zsh/.config/zsh/zprofile.zsh"
+	source "${0%/*}/zsh/.config/zsh/zprofile.zsh"
+	# TODO: Migrate this script to zsh
+	# Hack for bash in this script
+	PATH="$(zsh -c "source ${0%/*}/zsh/.config/zsh/zprofile.zsh && "'echo $PATH')"
 fi
 
 # Possible configurations {{{
@@ -123,12 +126,13 @@ has_mode || quit_setup
 
 # Install homebrew if not available
 if ! hash brew &>/dev/null; then
+	mkdir -p /usr/local/bin
 	url='https://raw.githubusercontent.com/Homebrew/install/master/install.sh'
 	echo 'Install homebrew before continuing with this setup.'
 	echo "Do you wish to install brew now? ($url)"
 	read -rp "(y/n): " yn
-	case ${yn^^} in
-		Y) /bin/bash -c "$(curl -fsSL $url)";;
+	case $yn in
+		[Yy]) /bin/bash -c "$(curl -fsSL $url)";;
 		*) exit 1;;
 	esac
 fi
@@ -186,7 +190,11 @@ then
 	then
 		echo "Installing missing ruby with rbenv"
 		# installs ruby version in ~/.ruby-version
-		rbenv install --skip-existing
+		if [[ -e "$HOME/.ruby-version" ]]; then
+			rbenv install --skip-existing
+		else
+			rbenv install --skip-existing "$(< "$DOTFILES/ruby/.ruby-version")"
+		fi
 
 		echo 'Installing gems'
 		bundle install
@@ -201,6 +209,7 @@ fi
 
 if hash rbenv &>/dev/null
 then
+	mkdir -p "$XDG_DATA_HOME/zsh/generated"
 	rbenv init - --no-rehash zsh > "$XDG_DATA_HOME/zsh/generated/rbenv.zsh"
 	rbenv rehash
 fi
@@ -307,7 +316,7 @@ then
 		fi
 
 		echo 'Installing vim plugins'
-		nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+		nvim -c 'autocmd User PackerComplete quitall' -c 'lua require "my.packer"' -c 'PackerSync'
 
 		for file in vim/spell/*.add; do
 			echo 'Compiling vim Spellfiles'
@@ -318,19 +327,21 @@ then
 	if is_update
 	then
 		echo 'Updating vim plugins'
-		nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+		nvim -c 'autocmd User PackerComplete quitall' -c 'lua require "my.packer"' -c 'PackerSync'
+		# nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 	fi
 
 	# cat "$nvim_update_file"
 
 	echo 'Updating vim-pack tags'
-	neovim-packtags
+	"$DOTFILES"/nvim/.local/bin/neovim-packtags
 
 	echo 'Installing luacheck'
 	luarocks install luacheck
 
 	echo 'Installing/updating sumneko lua lsp'
-	neovim-install_sumneko
+	"$DOTFILES"/nvim/.local/bin/neovim-install_sumneko
+fi
 fi
 
 # }}}
@@ -348,12 +359,12 @@ then
 	then
 		mkdir -p "$XDG_CACHE_HOME/zsh"
 		mkdir -p "$XDG_DATA_HOME/zsh/generated"
-		git clone https://github.com/jandamm/zgenom.git "$XDG_DATA_HOME/zgenom"
+		if [[ ! -e "$XDG_DATA_HOME/zgenom/.git" ]]; then
+			git clone https://github.com/jandamm/zgenom.git "$XDG_DATA_HOME/zgenom"
+		fi
 
 		echo 'Installing zsh plugins'
 		zsh -c "source $DOTFILES/zsh/.config/zsh/.zshrc"
-
-		generate_zlua
 	fi
 
 	if is_update
@@ -366,8 +377,6 @@ then
 
 		echo 'Updating zsh plugins'
 		zsh -c "source $XDG_DATA_HOME/zgenom/zgenom.zsh && zgenom update"
-
-		generate_zlua
 
 		echo 'Recreate zsh plugins cache'
 		zsh -c "source $DOTFILES/zsh/.config/zsh/init.zsh"
@@ -400,11 +409,12 @@ if is_install
 then
 	echo '' && echo 'Do you want to use zsh from homebrew as your default shell?'
 	read -rp "(y/n): " yn
-	if [ "${yn^^}" = 'Y' ]
-	then
-		sudo sh -c 'echo "/usr/local/bin/zsh" >> /etc/shells'
-		chsh -s /usr/local/bin/zsh
-	fi
+	case $yn in
+		[Yy])
+			sudo sh -c 'echo "/opt/homebrew/bin/zsh" >> /etc/shells'
+			chsh -s /opt/homebrew/bin/zsh
+			;;
+	esac
 fi
 
 # vim:set foldmethod=marker:

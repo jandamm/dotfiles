@@ -1,7 +1,7 @@
 scriptencoding utf-8
 
 " This makes loading lua plugins much faster.
-lua require('impatient')
+lua pcall(require,'impatient')
 lua require('my.lua')
 augroup my_config | augroup END
 
