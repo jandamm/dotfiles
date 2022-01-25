@@ -1,6 +1,17 @@
 -- Setup null-ls
 local null_ls = require 'null-ls'
-null_ls.config {
+local all_formatter
+local function has_formatter(filetype)
+	if not all_formatter then
+		all_formatter = null_ls.get_source { method = null_ls.methods.FORMATTING }
+	end
+	for _, formatter in pairs(all_formatter) do
+		if formatter.filetypes[filetype] then
+			return true
+		end
+	end
+end
+null_ls.setup {
 	sources = {
 		-- DIAGNOSTICS
 		require('my.lint').jsonlint,
@@ -25,11 +36,8 @@ null_ls.config {
 		-- CODE_ACTIONS
 		null_ls.builtins.code_actions.gitsigns,
 	},
-}
-
-require('lspconfig')['null-ls'].setup {
 	on_attach = function()
-		if require('null-ls.info').get_active_sources()[null_ls.methods.FORMATTING] then
+		if has_formatter(vim.o.filetype) then
 			vim.api.nvim_buf_set_keymap(
 				0,
 				'n',
@@ -40,3 +48,4 @@ require('lspconfig')['null-ls'].setup {
 		end
 	end,
 }
+

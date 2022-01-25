@@ -304,10 +304,12 @@ use {
 				return not string.match(concat, '^%s*$')
 			end,
 			keys = {
-				i = {
-					paste = '<c-h>',
-					paste_behind = '<c-k>',
-				},
+				telescope = {
+					i = {
+						paste = '<c-h>',
+						paste_behind = '<c-k>',
+					},
+				}
 			},
 		}
 	end,
@@ -449,13 +451,13 @@ use {
 		config = [[reload 'my.config.lspconfig']],
 		requires = {
 			'folke/lua-dev.nvim', -- Config for sumneko-lua lsp (just needs to be in rtp)
-			{
-				'jose-elias-alvarez/null-ls.nvim', -- Linter/Formatter/Code Actions
-				after = 'nvim-lspconfig',
-				config = [[reload 'my.config.null_ls']],
-				requires = 'nvim-lua/plenary.nvim',
-			},
 		},
+	},
+	{
+		'jose-elias-alvarez/null-ls.nvim', -- Linter/Formatter/Code Actions
+		after = 'nvim-lspconfig',
+		config = [[reload 'my.config.null_ls']],
+		requires = 'nvim-lua/plenary.nvim',
 	},
 	-- Reduce noice of diagnostics
 	{
