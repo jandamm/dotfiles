@@ -8,6 +8,8 @@ export XDG_CACHE_HOME="$HOME/.cache"
 path=(
 	"$HOME/.local/bin"
 	"/usr/local/Cellar/node/15.0.1/bin"
+	"/opt/homebrew/bin"
+	"/opt/homebrew/sbin"
 	$path
 	"/usr/local/sbin"
 )
