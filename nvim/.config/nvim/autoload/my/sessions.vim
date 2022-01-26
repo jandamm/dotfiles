@@ -1,5 +1,9 @@
 let s:sessions_dir = expand('$XDG_DATA_HOME/nvim/session/')
 
+if !isdirectory(s:sessions_dir)
+	call mkdir(s:sessions_dir, 'p')
+endif
+
 " Create a session for the current dir
 function! my#sessions#make(bang) abort
 	if exists('g:this_obsession')
