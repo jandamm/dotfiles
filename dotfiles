@@ -342,6 +342,17 @@ then
 	echo 'Installing/updating sumneko lua lsp'
 	"$DOTFILES"/nvim/.local/bin/neovim-install_sumneko
 fi
+
+# }}}
+
+# OSX {{{
+
+if is_install && should_configure osx
+then
+	echo 'Set Dock to show instantly with mouse hover.'
+	defaults write com.apple.dock autohide-delay -float 0
+	defaults write com.apple.dock autohide-time-modifier -float 0.4
+	killall Dock
 fi
 
 # }}}
