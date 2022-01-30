@@ -1,4 +1,3 @@
-source 'https://rubygems.org' do
-  gem 'neovim'
-  gem 'xcpretty'
-end
+source "https://rubygems.org"
+gem 'neovim'
+gem 'xcpretty'
