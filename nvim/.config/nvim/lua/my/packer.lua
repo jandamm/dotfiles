@@ -310,7 +310,7 @@ use {
 						paste = '<c-h>',
 						paste_behind = '<c-k>',
 					},
-				}
+				},
 			},
 		}
 	end,
@@ -480,8 +480,7 @@ use {
 }
 -- TreeSitter
 use {
-	'jandamm/nvim-treesitter',
-	branch = 'swift',
+	'nvim-treesitter/nvim-treesitter',
 	run = ':TSUpdate',
 	requires = { { 'nvim-treesitter/playground', cmd = 'TSPlaygroundToggle' } },
 	config = function()
@@ -504,7 +503,6 @@ use {
 			vim.g.markdown_enable_input_abbreviations = false
 		end,
 	},
-	'keith/swift.vim',
 	'cespare/vim-toml',
 	'keith/xcconfig.vim',
 	{
