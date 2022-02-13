@@ -1,1 +1,1 @@
-autocmd Filetype swift if !empty(glob(getcwd(), '*.xcodeproj')) | set filetype=ios.swift | endif
+autocmd Filetype swift if !empty(globpath(getcwd(), '*.xcodeproj')) | set filetype=ios.swift | endif
