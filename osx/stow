@@ -1,4 +1,4 @@
 #!/usr/bin/env zsh
 
-dotfiles-stow-copy osx DefaultKeyBinding.dict
+# dotfiles-stow-copy osx DefaultKeyBinding.dict
 dotfiles-stow-copy osx userSettings.json
