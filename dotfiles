@@ -13,6 +13,8 @@ then
 	PATH="$(zsh -c "source ${0%/*}/zsh/.config/zsh/zprofile.zsh && "'echo $PATH')"
 fi
 
+brew_dir='/opt/homebrew'
+
 # Possible configurations {{{
 
 all_config=( brew gem npm pip )
@@ -178,7 +180,7 @@ then
 fi
 
 # uninstall git completions as zsh completions are way better!
-rm /usr/local/share/zsh/site-functions/_git 2>/dev/null || true
+rm $brew_dir/share/zsh/site-functions/_git 2>/dev/null || true
 
 # }}}
 
@@ -430,8 +432,8 @@ then
 	read -rp "(y/n): " yn
 	case $yn in
 		[Yy])
-			sudo sh -c 'echo "/opt/homebrew/bin/zsh" >> /etc/shells'
-			chsh -s /opt/homebrew/bin/zsh
+			sudo sh -c 'echo "$brew_dir/bin/zsh" >> /etc/shells'
+			chsh -s $brew_dir/bin/zsh
 			;;
 	esac
 fi
