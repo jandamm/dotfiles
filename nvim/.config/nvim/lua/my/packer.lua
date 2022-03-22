@@ -369,6 +369,7 @@ use {
 			'kana/vim-textobj-entire',
 			'kana/vim-textobj-indent',
 			'kana/vim-textobj-line',
+			'Julian/vim-textobj-variable-segment',
 		},
 	},
 }
