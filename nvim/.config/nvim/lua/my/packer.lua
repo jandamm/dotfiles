@@ -410,6 +410,16 @@ use {
 			after = 'telescope.nvim',
 			cmd = 'Dash',
 		},
+		{
+			'mrjones2014/tldr.nvim',
+			after = 'telescope.nvim',
+			cmd = 'Tldr',
+			config = function()
+				require('tldr').setup {
+					tldr_args = '--color always',
+				}
+			end,
+		},
 	},
 }
 

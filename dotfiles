@@ -357,6 +357,14 @@ fi
 
 # }}}
 
+# TLDR {{{
+
+if hash tldr &>/dev/null; then
+	tldr --update
+fi
+
+# }}}
+
 # ZSH {{{
 
 function zgenom_comp() {
