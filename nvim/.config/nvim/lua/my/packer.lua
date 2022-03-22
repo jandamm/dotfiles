@@ -76,6 +76,10 @@ use {
 				Z = 'Lightspeed backwards',
 			}, 'o')
 			require('my.map').register({
+				['<leader>s'] = { '<Plug>Lightspeed_gs', 'Lightspeed window' },
+				['<leader>S'] = { '<Plug>Lightspeed_gS', 'Lightspeed window' },
+			}, 'n')
+			require('my.map').register({
 				[';'] = 'Repeat latest f or t',
 				[','] = 'Repeat latest f or t in opposite direction',
 			}, { 'n', 'o', 'x' })
