@@ -97,6 +97,8 @@ then
 	zgenom clone skywind3000/z.lua
 	zgenom eval "$(lua $(zgenom api clone_dir skywind3000/z.lua)/z.lua --init zsh enhanced)"
 
+	zgenom load mattmc3/zman
+
 	zgenom load jandamm/git-pr
 	zgenom load tj/git-extras etc/git-extras-completion.zsh
 	zgenom run tj/git-extras PREFIX=$ZPFX/git-extras make
