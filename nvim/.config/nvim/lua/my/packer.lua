@@ -502,7 +502,7 @@ use {
 	requires = { { 'nvim-treesitter/playground', cmd = 'TSPlaygroundToggle' } },
 	config = function()
 		require('nvim-treesitter.configs').setup {
-			ensure_installed = { 'bash', 'comment', 'lua', 'query', 'regex', 'swift', 'vim', 'yaml' },
+			ensure_installed = { 'bash', 'comment', 'lua', 'query', 'regex', 'ruby', 'swift', 'vim', 'yaml' },
 			highlight = { enable = true },
 			playground = { enable = true },
 		}
