@@ -305,7 +305,7 @@ use {
 	config = function()
 		require('neoclip').setup {
 			history = 500,
-			enable_persistant_history = true,
+			enable_persistent_history = true,
 			filter = function(clip)
 				local concat = table.concat(clip.event.regcontents, '')
 				return not string.match(concat, '^%s*$')

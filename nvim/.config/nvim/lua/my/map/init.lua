@@ -71,7 +71,7 @@ local M = { buffer = {} }
 ---@param mapping string Execution
 ---@param name string WhichKey Label
 ---@param modes string|table Default is { 'n' }
----@param opts table WhichKey Opts
+---@param opts table? WhichKey Opts
 function M.map(key, mapping, name, modes, opts)
 	register({ [key] = { mapping, name } }, false, modes, opts)
 end
@@ -80,7 +80,7 @@ end
 ---@param mapping string Execution
 ---@param name string WhichKey Label
 ---@param modes string|table Default is { 'n' }
----@param opts table WhichKey Opts
+---@param opts table? WhichKey Opts
 function M.buffer.map(key, mapping, name, modes, opts)
 	register({ [key] = { mapping, name } }, true, modes, opts)
 end
@@ -89,7 +89,7 @@ end
 ---@param key string Trigger
 ---@param name string WhichKey Label
 ---@param modes string|table Default is { 'n' }
----@param opts table WhichKey Opts
+---@param opts table? WhichKey Opts
 function M.name(key, name, modes, opts)
 	register({ [key] = name }, false, modes, opts)
 end
@@ -97,7 +97,7 @@ end
 ---@param key string Trigger
 ---@param name string WhichKey Label
 ---@param modes string|table Default is { 'n' }
----@param opts table WhichKey Opts
+---@param opts table? WhichKey Opts
 function M.buffer.name(key, name, modes, opts)
 	register({ [key] = name }, true, modes, opts)
 end
@@ -105,14 +105,14 @@ end
 ---Wrapper around whichkey
 ---@param reg table WhichKey mapping table
 ---@param modes string|table Default is { 'n' }
----@param opts table WhichKey Opts
+---@param opts table? WhichKey Opts
 function M.register(reg, modes, opts)
 	register(reg, false, modes, opts)
 end
 ---Wrapper around whichkey for the active buffer
 ---@param reg table WhichKey mapping table
 ---@param modes string|table Default is { 'n' }
----@param opts table WhichKey Opts
+---@param opts table? WhichKey Opts
 function M.buffer.register(reg, modes, opts)
 	register(reg, true, modes, opts)
 end
