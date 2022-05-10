@@ -340,9 +340,6 @@ then
 
 	echo 'Installing luacheck'
 	luarocks install luacheck
-
-	echo 'Installing/updating sumneko lua lsp'
-	"$DOTFILES"/nvim/.local/bin/neovim-install_sumneko
 fi
 
 # }}}
