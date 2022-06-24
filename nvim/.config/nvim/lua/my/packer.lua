@@ -512,6 +512,7 @@ use {
 use {
 	'bfontaine/Brewfile.vim',
 	'tpope/vim-git',
+	'fladson/vim-kitty',
 	{
 		'gabrielelana/vim-markdown',
 		setup = function()
