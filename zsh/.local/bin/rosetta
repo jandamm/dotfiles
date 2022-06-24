@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+set -eu
+eval "arch -arch x86_64 /bin/zsh -c '$*'"
