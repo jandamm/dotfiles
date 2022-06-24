@@ -16,14 +16,16 @@ require('nightfox').setup {
 		},
 	},
 	groups = { -- Override highlight groups
-		User1 = status('palette.cyan', 'bold'),
-		User2 = status 'palette.yellow',
-		User3 = status 'palette.blue.dim',
-		User8 = status('palette.comment', 'bold'),
-		User9 = status 'palette.black.bright',
-		DiagnosticStatusE = status 'palette.red',
-		DiagnosticStatusW = status 'palette.yellow',
-		DiagnosticStatusI = status 'palette.blue',
+		all = {
+			User1 = status('palette.cyan', 'bold'),
+			User2 = status 'palette.yellow',
+			User3 = status 'palette.blue.dim',
+			User8 = status('palette.comment', 'bold'),
+			User9 = status 'palette.black.bright',
+			DiagnosticStatusE = status 'palette.red',
+			DiagnosticStatusW = status 'palette.yellow',
+			DiagnosticStatusI = status 'palette.blue',
+		},
 	},
 }
 

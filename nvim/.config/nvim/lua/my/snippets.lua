@@ -66,6 +66,7 @@ local function conf(single)
 		}),
 	}
 end
+
 local function config(single)
 	local indent = single and '' or '\t'
 	local newline = text(single and '' or { '', '' })
@@ -81,6 +82,7 @@ local function config(single)
 	end
 	return { choice(1, nodes) }
 end
+
 local function plugin()
 	return {
 		text { '{', "\t'" },
