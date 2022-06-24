@@ -97,84 +97,86 @@ local function plugin()
 	}
 end
 
-luasnip.snippets = {
-	all = {
-		snip('{', { text { '{', '\t' }, insert(0, ''), text { '', '}' } }),
-		snip_pair('(', ')'),
-		snip_pair('[', ']'),
-		snip_pair '"',
-		snip_pair "'",
-		snip('test this', {
-			text 'some test',
-			insert(1, ' place'),
-			text { ' end', 'new' },
-			helper.copy(1),
-			choice(2, { text 'ad', text 'bd' }),
-		}),
-	},
-	lua = {
-		snip('put', {
-			text 'print(vim.inspect(',
-			helper.vis_or_insert(1),
-			text '))',
-		}),
-		snip('use', { text 'use ', node(1, plugin()) }),
-		snip('plug', { node(1, plugin()), text ',' }),
-		snip('conf', conf(true)),
-		snip('config', config(true)),
-		snip('func', {
-			dynamic(1, function(_, snippet)
-				local line = helper.env.before(snippet)
-				if line == '' then
-					return node(nil, choice(1, { text 'local ', text '' }))
-				elseif line:match '^%s*$' then
-					return node(nil, choice(1, { text '', text 'local ' }))
-				end
+luasnip.cleanup()
+
+luasnip.add_snippets('all', {
+	snip('{', { text { '{', '\t' }, insert(0, ''), text { '', '}' } }),
+	snip_pair('(', ')'),
+	snip_pair('[', ']'),
+	snip_pair '"',
+	snip_pair "'",
+	snip('#env', { text { '#!/usr/bin/env ' }, insert(0, 'zsh') }),
+	snip(
+		'todo',
+		{ func(function(_)
+			return string.format(vim.bo.commentstring, ' TODO: ')
+		end, { 1 }), helper.vis_or_insert(1) }
+	),
+})
+
+luasnip.add_snippets('lua', {
+	snip('put', {
+		text 'print(vim.inspect(',
+		helper.vis_or_insert(1),
+		text '))',
+	}),
+	snip('use', { text 'use ', node(1, plugin()) }),
+	snip('plug', { node(1, plugin()), text ',' }),
+	snip('conf', conf(true)),
+	snip('config', config(true)),
+	snip('func', {
+		dynamic(1, function(_, snippet)
+			local line = helper.env.before(snippet)
+			if line == '' then
+				return node(nil, choice(1, { text 'local ', text '' }))
+			elseif line:match '^%s*$' then
+				return node(nil, choice(1, { text '', text 'local ' }))
+			end
+			return node(nil, text '')
+		end, {}),
+		text 'function',
+		dynamic(2, function(args, snippet)
+			local line = helper.env.before(snippet)
+			local is_local = line:match '^%s*local%s*$'
+			if not is_local and not line:match '^%s*$' then
 				return node(nil, text '')
-			end, {}),
-			text 'function',
-			dynamic(2, function(args, snippet)
-				local line = helper.env.before(snippet)
-				local is_local = line:match '^%s*local%s*$'
-				if not is_local and not line:match '^%s*$' then
-					return node(nil, text '')
-				elseif not is_local and args[1][1] ~= 'local ' then
-					return node(nil, { choice(1, { text ' M.', text ' ' }), insert(2, 'name') })
-				end
-				return node(nil, { text ' ', insert(1, 'name') })
-			end, { 1 }),
-			text '(',
-			insert(3, 'param'),
-			text { ')', '\t' },
-			helper.vis_or_insert(4),
-			text { '', 'end' },
-		}),
-	},
-	swift = {
-		snip('super', {
-			text 'super.',
-			dynamic(1, function(_, snippet)
-				local line = find_override_func(snippet.env.TM_LINE_NUMBER, 7)
-				if not line then
-					return text ''
-				end
-				local bracket = line:find('(', nil, true)
-				local nodes = { text(line:match('([^(<]*)', 1) .. '(') }
-				local i, param, name, rest = find_parameter(line:sub(bracket + 1, -1))
-				while param ~= '' do
-					name = name or param
-					param = param == '_' and '' or param .. ': '
-					param = i > 1 and ', ' .. param or param
-					table.insert(nodes, text(param))
-					table.insert(nodes, insert(i, name))
-					i, param, name, rest = find_parameter(rest, i)
-				end
-				table.insert(nodes, text ')')
-				return node(nil, nodes)
-			end, {}),
-		}),
-	},
-}
+			elseif not is_local and args[1][1] ~= 'local ' then
+				return node(nil, { choice(1, { text ' M.', text ' ' }), insert(2, 'name') })
+			end
+			return node(nil, { text ' ', insert(1, 'name') })
+		end, { 1 }),
+		text '(',
+		insert(3, 'param'),
+		text { ')', '\t' },
+		helper.vis_or_insert(4),
+		text { '', 'end' },
+	}),
+})
+
+luasnip.add_snippets('swift', {
+	snip('super', {
+		text 'super.',
+		dynamic(1, function(_, snippet)
+			local line = find_override_func(snippet.env.TM_LINE_NUMBER, 7)
+			if not line then
+				return node(nil, text '')
+			end
+			local bracket = line:find('(', nil, true)
+			local nodes = { text(line:match('([^(<]*)', 1) .. '(') }
+			local i, param, name, rest = find_parameter(line:sub(bracket + 1, -1))
+			while param ~= '' do
+				name = name or param
+				param = param == '_' and '' or param .. ': '
+				param = i > 1 and ', ' .. param or param
+				table.insert(nodes, text(param))
+				table.insert(nodes, insert(i, name))
+				i, param, name, rest = find_parameter(rest, i)
+			end
+			table.insert(nodes, text ')')
+			return node(nil, nodes)
+		end, {}),
+	}),
+})
 
 require('luasnip/loaders/from_vscode').lazy_load { paths = { './vsnip/default' } }
 require('luasnip/loaders/from_vscode').lazy_load { paths = { './vsnip/private' } }
