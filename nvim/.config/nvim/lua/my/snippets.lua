@@ -154,6 +154,11 @@ luasnip.add_snippets('lua', {
 })
 
 luasnip.add_snippets('swift', {
+	snip('defer', {
+		text 'defer { ',
+		helper.vis_or_insert(1),
+		text ' }',
+	}),
 	snip('super', {
 		text 'super.',
 		dynamic(1, function(_, snippet)
