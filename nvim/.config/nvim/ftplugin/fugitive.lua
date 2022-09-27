@@ -5,5 +5,7 @@ require('my.map').buffer.register({
 	pu = { '.GG pr update ', 'Update PR' },
 }, 'n', { noremap = false, silent = false })
 
+vim.cmd [[nmap <buffer> p <Cmd>lua require("which-key").show("p", {mode = "n", auto = true})<CR>]]
+
 -- Overwrite fugitives p with which key
-vim.cmd [[autocmd User FugitiveChanged ++once nmap <buffer> p <Cmd>lua require("which-key").show("p", {mode = "n", auto = true})<CR>]]
+-- vim.cmd [[autocmd User FugitiveChanged ++once nmap <buffer> p <Cmd>lua require("which-key").show("p", {mode = "n", auto = true})<CR>]]
