@@ -521,6 +521,7 @@ use {
 			vim.g.markdown_enable_input_abbreviations = false
 		end,
 	},
+	'darfink/vim-plist',
 	'cespare/vim-toml',
 	'keith/xcconfig.vim',
 	{
