@@ -46,8 +46,8 @@
     "type": "lua",
     "template": ["local M = {open}{close}", "", "return M"]
   },
+  ".config/nvim/lua/my/packer.lua": { "type": "config" },
   ".config/nvim/lua/my/config/*.lua": { "type": "config" },
-  ".config/nvim/lua/my/packer.lua": { "type": "packer" },
   ".config/nvim/lua/telescope/_extensions/*.lua": { "type": "telescope" },
   ".config/nvim/projplugin/*.vim": { "type": "projplugin" },
   ".config/nvim/plugin/*.vim": {
