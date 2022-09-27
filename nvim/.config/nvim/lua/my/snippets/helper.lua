@@ -16,9 +16,13 @@ local M = {
 ---@param placeholder? string
 function M.vis_or_insert(jump, placeholder)
 	return dynamic(jump, function(_, snippet)
-		local vis = snippet.env.TM_SELECTED_TEXT[1]
-		if vis then
-			return node(nil, { text(vis), insert(1) })
+		local vis = snippet.env.TM_SELECTED_TEXT
+		if vis and vis[1] then
+			if #vis == 1 then
+				return node(nil, { text(vis), insert(1) })
+			else
+				return node(nil, { text { '', '' }, text(vis), insert(1), text { '', '' } })
+			end
 		else
 			return node(nil, { insert(1, placeholder or '') })
 		end
