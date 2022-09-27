@@ -150,9 +150,9 @@ use {
 	-- Fugitive
 	{
 		'tpope/vim-fugitive',
-		cmd = { 'G', 'G*' },
-		fn = 'fugitive#Complete',
-		event = 'BufAdd */.git/index',
+		-- cmd = { 'G', 'G*' },
+		-- fn = 'fugitive#Complete',
+		-- event = 'BufAdd */.git/index',
 		setup = function()
 			vim.cmd [[
 				autocmd my_config BufEnter */.git/index Git
