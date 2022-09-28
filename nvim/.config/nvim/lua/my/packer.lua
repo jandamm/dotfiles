@@ -96,8 +96,6 @@ use {
 		'numToStr/Comment.nvim', -- gc to comment in/out
 		config = function()
 			require('Comment').setup { ignore = '^$', sticky = false }
-			local ft = require 'Comment.ft'
-			ft.set('ios.swift', ft.lang('swift'))
 		end,
 	},
 	'tpope/vim-unimpaired', -- Better [] mappings
