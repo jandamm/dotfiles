@@ -2,7 +2,7 @@ alias ovim="command vim"
 alias vim="nvim"
 
 function nvim() {
-	if [ -u $NVIM_LISTEN_ADDRESS ]; then
+	if [ -u $NVIM ]; then
 		if [ $# -eq 0 ]; then
 			command nvim -c 'Session!'
 		else
