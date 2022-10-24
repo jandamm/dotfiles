@@ -13,15 +13,19 @@ local function snip_pair(start, stop)
 	return snip(start, { text(start), insert(0, ''), text(stop or start) })
 end
 
-local function find_override_func(line_nr, lookback)
+local function find_matching(line_nr, lookback, match)
 	line_nr = line_nr - 1
 	local lines = vim.api.nvim_buf_get_lines(0, math.max(line_nr - lookback, 0), line_nr, false)
 	for i = #lines, 1, -1 do
 		local raw = lines[i]
 		if raw:find ' func ' then
-			return raw:match('override .*func (.*)', 1)
+			return raw:match(match, 1)
 		end
 	end
+end
+
+local function find_override_func(line_nr, lookback)
+	find_matching(line_nr, lookback, 'override .*func (.*)')
 end
 
 local function remove_type_brackets(rest)
@@ -158,6 +162,14 @@ luasnip.add_snippets('swift', {
 		text 'defer { ',
 		helper.vis_or_insert(1),
 		text ' }',
+	}),
+	snip('file', {
+		text 'file: ',
+		choice(1, { text 'StaticString = #file', text 'file', text 'StaticString = #file, line: UInt = #line', text 'file, line: line' }),
+	}),
+	snip('line', {
+		text 'line: ',
+		choice(1, { text 'UInt = #line', text 'line' }),
 	}),
 	snip('super', {
 		text 'super.',
