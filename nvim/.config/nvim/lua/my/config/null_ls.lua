@@ -11,6 +11,7 @@ local function has_formatter(filetype)
 		end
 	end
 end
+
 null_ls.setup {
 	sources = {
 		-- DIAGNOSTICS
@@ -38,14 +39,7 @@ null_ls.setup {
 	},
 	on_attach = function()
 		if has_formatter(vim.o.filetype) then
-			vim.api.nvim_buf_set_keymap(
-				0,
-				'n',
-				'<Leader>cf',
-				'<CMD>lua vim.lsp.buf.formatting_sync()<CR>',
-				{ noremap = true }
-			)
+			vim.api.nvim_buf_set_keymap(0, 'n', '<Leader>cf', '<CMD>lua vim.lsp.buf.format()<CR>', { noremap = true })
 		end
 	end,
 }
-
