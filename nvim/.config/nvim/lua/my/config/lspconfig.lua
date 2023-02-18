@@ -1,4 +1,4 @@
-local useful_K_maps = { 'vimls', 'sumneko_lua' }
+local useful_K_maps = { 'vimls', 'lua_ls' }
 local map = require('my.map').buffer.map
 
 -- Lsp customization
@@ -7,7 +7,7 @@ local on_attach = function(client)
 		-- Default vim K is nicer jumping to the help
 		map('K', '<CMD>lua vim.lsp.buf.hover()<CR>', 'Hover')
 	end
-	if client.name == 'sumneko_lua' then
+	if client.name == 'lua_ls' then
 		-- ctags for lua aren't nice.
 		vim.o.tagfunc = [[v:lua.vim.lsp.tagfunc]]
 	end
@@ -36,7 +36,7 @@ local function make_config()
 	}
 end
 
-local function sumneko_lua()
+local function lua_ls()
 	local config = make_config()
 	config.cmd = { 'lua-language-server' }
 	local runtime_path = vim.split(package.path, ';')
@@ -74,7 +74,7 @@ end
 local servers = {
 	bashls = make_config,
 	sourcekit = sourcekit,
-	sumneko_lua = sumneko_lua,
+	lua_ls = lua_ls,
 	vimls = make_config,
 }
 

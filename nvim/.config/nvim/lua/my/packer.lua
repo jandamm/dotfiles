@@ -100,7 +100,11 @@ use {
 	},
 	'tpope/vim-unimpaired', -- Better [] mappings
 	{ 'tommcdo/vim-exchange', config = [[require('my.map').name('cx', 'Exchange')]] }, -- Switch text with cx
-	{ 'godlygeek/tabular', cmd = 'Tabularize', setup = [[reload 'my.config.tabular']] }, -- ga to align
+	{
+		'godlygeek/tabular',
+		cmd = 'Tabularize',
+		setup = [[reload 'my.config.tabular']],
+	}, -- ga to align
 	{
 		'kwkarlwang/bufjump.nvim',
 		keys = { 'g<C-i>', 'g<C-o>' },

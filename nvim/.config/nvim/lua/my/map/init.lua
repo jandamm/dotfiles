@@ -32,7 +32,7 @@ local function check(table, opts)
 	if not ok then
 		vim.notify('There are duplicates in the mappings. See :messages', 'Error')
 		for key, _ in pairs(table) do
-			print('Possible conflict for this mapping: ' .. key .. 'in mode: ' .. mode)
+			print('Possible conflict for this mapping: ' .. key .. ' in mode: ' .. mode)
 		end
 	else
 		map[mode] = new_map
@@ -104,7 +104,7 @@ end
 
 ---Wrapper around whichkey
 ---@param reg table WhichKey mapping table
----@param modes string|table Default is { 'n' }
+---@param modes string?|table? Default is { 'n' }
 ---@param opts table? WhichKey Opts
 function M.register(reg, modes, opts)
 	register(reg, false, modes, opts)

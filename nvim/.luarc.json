@@ -80,6 +80,7 @@
         "/Users/jandamm/.local/share/nvim/site/pack/packer/start/vim-textobj-function/after",
         "/Users/jandamm/.local/share/nvim/site/pack/packer/opt/vim-qf/after",
         "/Users/jandamm/.config/nvim/after",
-        "${3rd}/luassert/library"
+        "${3rd}/luassert/library",
+        "${3rd}/luv/library"
     ]
 }
