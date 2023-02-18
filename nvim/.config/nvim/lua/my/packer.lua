@@ -547,6 +547,7 @@ use {
 use {
 	'bfontaine/Brewfile.vim',
 	'tpope/vim-git',
+	'NoahTheDuke/vim-just',
 	'fladson/vim-kitty',
 	{
 		'gabrielelana/vim-markdown',
