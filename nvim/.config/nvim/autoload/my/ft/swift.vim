@@ -3,14 +3,19 @@ function! my#ft#swift#add_compiler_flags(...) abort
 endfunction
 
 function! my#ft#swift#format() abort
-	call my#ft#swift#swiftformat('%')
+	call my#ft#swift#swiftformat('1', '$')
 endfunction
 
-function! my#ft#swift#swiftformat(path) abort
+function! my#ft#swift#swiftformat(l1, l2) abort
 	let cursor = getcurpos()
-	silent execute '0,$!neovim-swiftformat ' . a:path
+	let range = a:l1 . ',' . a:l2
+	let fragment = ''
+	if range !=? '1,$' && range !=? '1,' . line('$')
+		let fragment = ' --fragment true'
+	endif
+	silent execute range . '!neovim-swiftformat ' . bufname() . fragment
 	call setpos('.', cursor)
-	echo line('$') . ' lines formatted'
+	echo 1 + a:l2 - a:l1 . ' lines formatted'
 endfunction
 
 function! my#ft#swift#build() abort

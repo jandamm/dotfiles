@@ -1,4 +1,4 @@
-command! -buffer -nargs=* SwiftFormat call my#ft#swift#swiftformat('<args>')
+command! -buffer -range=% SwiftFormat call my#ft#swift#swiftformat(<line1>,<line2>)
 setlocal formatprg=neovim\ swiftformat\ %\ --fragment\ true
 
 lua require'my.map'.buffer.map('<Leader>cb', '<CMD>call my#ft#swift#build()<CR>', 'Build with spm')
