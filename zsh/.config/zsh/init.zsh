@@ -123,6 +123,11 @@ then
 
 	rbenv rehash
 
+	# Currently the script is broken. Should be fixed when this is live:
+	# https://github.com/apple/swift-package-manager/pull/5852
+	# The script in this pr is working fine. Then the script can be removed from functions.
+	# swift package completion-tool generate-zsh-script > "$XDG_CONFIG_HOME/zsh/functions/_zsh"
+
 	zgenom compile "$HOME/.zshenv"
 	zgenom compile "$XDG_CONFIG_HOME/zsh"
 	zgenom compile "$XDG_DATA_HOME/zsh/generated"
