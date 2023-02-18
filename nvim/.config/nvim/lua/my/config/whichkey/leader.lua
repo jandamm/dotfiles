@@ -57,6 +57,7 @@ require('my.map').register {
 				name = 'log',
 				f = { '<CMD>GV!<CR>', 'File' },
 				l = { '<CMD>GV<CR>', 'Log' },
+				a = { '<CMD>GV --all<CR>', 'Log all branches' },
 			},
 			p = { '<CMD>GG push<CR>', 'Push' },
 			r = { '<CMD>GG rebase<CR>', 'Rebase' },
