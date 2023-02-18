@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+set -eu
+
+readonly remote=${1:-origin}
+readonly branch=$(git current)
+
+git branch --set-upstream-to=$remote/$branch $branch

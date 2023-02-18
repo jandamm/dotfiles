@@ -23,6 +23,7 @@
 	amendZZ = amend --no-edit
 	bclean = !git branch --merged | egrep -v '(^\\*|master|main|develop)' | xargs git branch -d
 	bcleanr = !git branch -r --merged | egrep -v '(^\\*|master|main|develop)' | tr '/' ' ' | xargs -n 2 git push --delete
+	current = !git rev-parse --abbrev-ref HEAD
 	develop = switch develop
 	ksdiff = difftool -t ksdiff
 	ksdiffall = ksdiff --no-prompt
@@ -35,7 +36,7 @@
 	main = switch main
 	master = switch master
 	pick = cherry-pick
-	publish = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
+	publish = !git push -u origin $(git current)
 	resetp = reset --patch
 	staged = diff --staged
 	stashp = stash --patch
