@@ -18,8 +18,8 @@ let g:projectionist_heuristics['.gitlab-ci.yml'] = {
 " }}}
 
 " cocoa pods {{{
-let g:projectionist_heuristics['Podfile'] = {
-			\  'Podfile' : { 'type': 'pods' },
+let g:projectionist_heuristics['Podfile*'] = {
+			\  'Podfile*' : { 'type': 'pods' },
 			\ }
 " }}}
 
