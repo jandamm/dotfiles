@@ -151,6 +151,8 @@ if is_install; then
 		echo 'Installing brew "stow"'
 		brew install stow
 	fi
+
+	brew analytics off
 fi
 
 # }}}
