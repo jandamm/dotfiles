@@ -431,7 +431,7 @@ then
 	read -rp "(y/n): " yn
 	case $yn in
 		[Yy])
-			sudo sh -c 'echo "$brew_dir/bin/zsh" >> /etc/shells'
+			sudo sh -c "echo '$brew_dir/bin/zsh' >> /etc/shells"
 			chsh -s $brew_dir/bin/zsh
 			;;
 	esac
