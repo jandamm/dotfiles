@@ -57,4 +57,5 @@ cask 'font-sf-pro'
 cask 'kitty'
 cask 'xcodes'
 
+mas 'Things', id: 904280696
 mas 'Vimari', id: 1480933944
