@@ -92,7 +92,7 @@
 
 # Pulling
 [pull]
-	rebase = false
+	rebase = true
 	ff = true
 
 # Tools
