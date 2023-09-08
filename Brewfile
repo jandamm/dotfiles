@@ -54,6 +54,7 @@ cask 'font-jetbrains-mono-nerd-font'
 cask 'font-sf-compact'
 cask 'font-sf-mono'
 cask 'font-sf-pro'
+cask 'intellij-idea-ce' # only as mergetool
 cask 'kitty'
 cask 'xcodes'
 

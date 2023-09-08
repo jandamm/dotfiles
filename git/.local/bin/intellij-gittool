@@ -1,0 +1,15 @@
+#!/usr/bin/env zsh
+
+LOCAL=${1:a}
+REMOTE=${2:a}
+
+if [[ $# -eq 2 || $# -eq 3 ]]; then
+	"/Applications/IntelliJ IDEA CE.app/Contents/MacOS/idea" diff "$LOCAL" "$REMOTE" &>/dev/null
+elif [[ $# -eq 4 ]]; then
+	BASE=${3:a}
+	MERGED=${4:a}
+	"/Applications/IntelliJ IDEA CE.app/Contents/MacOS/idea" merge "$LOCAL" "$REMOTE" "$BASE" "$MERGED" &>/dev/null
+else
+	echo 'Wrong usage. Provide either two or four args.'
+	exit 1
+fi

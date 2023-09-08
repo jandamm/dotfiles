@@ -68,11 +68,13 @@
 
 # Diffing
 [diff]
-	tool = fugitive
+	tool = ksdiff
 [difftool "fugitive"]
 	cmd = nvim -f -c \"Gvdiff\" \"$MERGED\"
 [difftool "ksdiff"]
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[difftool "intellij"]
+	cmd = intellij-gittool \"$LOCAL\" \"$REMOTE\"
 [color "diff"]
 	meta = blue
 	frag = yellow bold
@@ -80,14 +82,18 @@
 # Merging
 [merge]
 	ff = false
-	tool = fugitive
+	tool = intellij
 [mergetool]
 	# Don't ask before opening the next file
 	prompt = false
+	keepBackup = false
 [mergetool "fugitive"]
 	cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
 [mergetool "ksdiff"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
+[mergetool "intellij"]
+	cmd = intellij-gittool \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
 	trustExitCode = true
 
 # Pulling
