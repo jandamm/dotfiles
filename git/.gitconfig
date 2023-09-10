@@ -25,6 +25,7 @@
 	bcleanr = !git branch -r --merged | egrep -v '(^\\*|master|main|develop)' | tr '/' ' ' | xargs -n 2 git push --delete
 	current = !git rev-parse --abbrev-ref HEAD
 	develop = switch develop
+	fullhash = !git rev-list -n1 ${1:-head}
 	ksdiff = difftool -t ksdiff
 	ksdiffall = ksdiff --no-prompt
 	ksmerge = mergetool -t ksdiff
