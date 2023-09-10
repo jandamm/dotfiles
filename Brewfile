@@ -56,6 +56,7 @@ cask 'font-sf-mono'
 cask 'font-sf-pro'
 cask 'intellij-idea-ce' # only as mergetool
 cask 'kitty'
+cask 'tower'
 cask 'xcodes'
 
 mas 'Things', id: 904280696

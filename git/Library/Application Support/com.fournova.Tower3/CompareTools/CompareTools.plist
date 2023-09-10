@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>ApplicationIdentifier</key>
+		<string>com.jetbrains.intellij.ce</string>
+		<key>ApplicationName</key>
+		<string>IntelliJ</string>
+		<key>DisplayName</key>
+		<string>IntelliJ</string>
+		<key>Identifier</key>
+		<string>intellij</string>
+		<key>LaunchScript</key>
+		<string>intellij.sh</string>
+		<key>SupportsDiffChangeset</key>
+		<false/>
+		<key>SupportsMergeTool</key>
+		<true/>
+	</dict>
+</array>
+</plist>

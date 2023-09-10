@@ -69,7 +69,7 @@
 
 # Diffing
 [diff]
-	tool = ksdiff
+	tool = tower
 [difftool "fugitive"]
 	cmd = nvim -f -c \"Gvdiff\" \"$MERGED\"
 [difftool "ksdiff"]
@@ -83,7 +83,7 @@
 # Merging
 [merge]
 	ff = false
-	tool = intellij
+	tool = tower
 [mergetool]
 	# Don't ask before opening the next file
 	prompt = false
