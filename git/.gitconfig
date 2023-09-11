@@ -1,10 +1,14 @@
 [user]
-	name = Jan Dammshäuser
+	name = Jan Dammshäuser
 	email = mail@jandamm.de
+	signingkey = BB9B5CCF29E5AE9BC35402279464202029D0B9DB
 
 [core]
 	pager = delta
 	excludesfile = ~/.config/git/gitignore
+
+[advice]
+	skippedCherryPicks = false
 
 [init]
 	templatedir = ~/.config/git/template
@@ -59,6 +63,7 @@
 [commit]
 	verbose = true
 	template = ~/.config/git/commit_message_template
+	gpgsign = true
 [format]
 	pretty = default
 
@@ -102,6 +107,11 @@
 	rebase = true
 	ff = true
 
+# GPG
+[gpg]
+	program = /opt/homebrew/bin/gpg
+	format = openpgp
+
 # Tools
 [github]
 	user = jandamm
@@ -115,5 +125,3 @@
 	max-line-distance = 1
 	keep-plus-minus-markers = true
 	highlight-removed = true
-[advice]
-	skippedCherryPicks = false
