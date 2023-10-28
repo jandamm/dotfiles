@@ -1,6 +1,6 @@
 # Default options for fzf
 # - Use reverse layout
-# - Preview using bat or exa
+# - Preview using bat or eza
 # - Quit when no selection is possible
 # - Select when only one selection is possible
 # - Bind alt-n/j to move preview down
@@ -9,7 +9,7 @@
 # - Bind alt-z to hide preview
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"'
 --layout=reverse
---preview "([ -f {} ] && bat --color=always {}) || ([ -d {} ] && exa -G1 {}) || echo {}"
+--preview "([ -f {} ] && bat --color=always {}) || ([ -d {} ] && eza -G1 {}) || echo {}"
 --exit-0
 --select-1
 --bind="˚:preview-up+preview-up+preview-up+preview-up+preview-up,π:preview-up"

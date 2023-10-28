@@ -13,7 +13,7 @@ brew 'aria2' # Faster downloads for xcodes
 brew 'bat'
 brew 'boost' # Used for vim cpsm
 brew 'coreutils'
-brew 'exa'
+brew 'eza'
 brew 'fd'
 brew 'fzf'
 brew 'gh'
