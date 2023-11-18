@@ -162,7 +162,7 @@ compdef _gnu_generic \
 	fd fzf \
 	ksdiff \
 	pod \
-	swiftformat \
+	swiftformat swiftc\
 	xcpretty xed
 
 compdef g=git
