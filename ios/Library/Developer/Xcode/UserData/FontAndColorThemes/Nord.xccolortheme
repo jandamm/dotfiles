@@ -5,7 +5,7 @@
 	<key>DVTConsoleDebuggerInputTextColor</key>
 	<string>0.816187 0.837374 0.894673 1</string>
 	<key>DVTConsoleDebuggerInputTextFont</key>
-	<string>JetBrainsMono-Bold - 15.0</string>
+	<string>JetBrainsMono-Regular_Bold - 15.0</string>
 	<key>DVTConsoleDebuggerOutputTextColor</key>
 	<string>0.816187 0.837374 0.894673 1</string>
 	<key>DVTConsoleDebuggerOutputTextFont</key>
@@ -21,15 +21,13 @@
 	<key>DVTConsoleExectuableOutputTextColor</key>
 	<string>0.48763 0.698625 0.777955 1</string>
 	<key>DVTConsoleExectuableOutputTextFont</key>
-	<string>JetBrainsMono-Bold - 15.0</string>
+	<string>JetBrainsMono-Regular_Bold - 15.0</string>
 	<key>DVTConsoleTextBackgroundColor</key>
 	<string>0.138852 0.15161 0.193536 1</string>
 	<key>DVTConsoleTextInsertionPointColor</key>
 	<string>0.816187 0.837374 0.894673 1</string>
 	<key>DVTConsoleTextSelectionColor</key>
 	<string>0.207823 0.228868 0.298817 0.796387</string>
-	<key>DVTDebuggerInstructionPointerColor</key>
-	<string>0.506519 0.684472 0.678581 1</string>
 	<key>DVTFontAndColorVersion</key>
 	<integer>1</integer>
 	<key>DVTFontSizeModifier</key>
@@ -150,6 +148,16 @@
 		<string>0.816187 0.837374 0.894673 1</string>
 		<key>xcode.syntax.preprocessor</key>
 		<string>0.320664 0.420666 0.61863 1</string>
+		<key>xcode.syntax.regex</key>
+		<string>0.574309 0.70253 0.464919 1</string>
+		<key>xcode.syntax.regex.capturename</key>
+		<string>0.811098 0.837647 0.894541 1</string>
+		<key>xcode.syntax.regex.charname</key>
+		<string>0.816187 0.837374 0.894673 1</string>
+		<key>xcode.syntax.regex.number</key>
+		<string>0.638894 0.47419 0.620239 1</string>
+		<key>xcode.syntax.regex.other</key>
+		<string>0.816187 0.837374 0.894673 1</string>
 		<key>xcode.syntax.string</key>
 		<string>0.574309 0.70253 0.464919 1</string>
 		<key>xcode.syntax.url</key>
@@ -158,59 +166,69 @@
 	<key>DVTSourceTextSyntaxFonts</key>
 	<dict>
 		<key>xcode.syntax.attribute</key>
-		<string>JetBrainsMonoNL-Regular - 15.0</string>
+		<string>JetBrainsMono-Regular - 15.0</string>
 		<key>xcode.syntax.character</key>
-		<string>JetBrainsMonoNL-Regular - 15.0</string>
+		<string>JetBrainsMono-Regular - 15.0</string>
 		<key>xcode.syntax.comment</key>
-		<string>JetBrainsMonoNL-Regular - 15.0</string>
+		<string>JetBrainsMono-Regular - 15.0</string>
 		<key>xcode.syntax.comment.doc</key>
-		<string>JetBrainsMonoNL-Regular - 15.0</string>
+		<string>JetBrainsMono-Regular - 15.0</string>
 		<key>xcode.syntax.comment.doc.keyword</key>
-		<string>JetBrainsMonoNL-Regular - 15.0</string>
+		<string>JetBrainsMono-Regular - 15.0</string>
 		<key>xcode.syntax.declaration.other</key>
-		<string>JetBrainsMonoNL-Regular - 15.0</string>
+		<string>JetBrainsMono-Regular - 15.0</string>
 		<key>xcode.syntax.declaration.type</key>
-		<string>JetBrainsMonoNL-Regular - 15.0</string>
+		<string>JetBrainsMono-Regular - 15.0</string>
 		<key>xcode.syntax.identifier.class</key>
-		<string>JetBrainsMonoNL-Regular - 15.0</string>
+		<string>JetBrainsMono-Regular - 15.0</string>
 		<key>xcode.syntax.identifier.class.system</key>
-		<string>JetBrainsMonoNL-Regular - 15.0</string>
+		<string>JetBrainsMono-Regular - 15.0</string>
 		<key>xcode.syntax.identifier.constant</key>
-		<string>JetBrainsMonoNL-Bold - 15.0</string>
+		<string>JetBrainsMono-Regular_Bold - 15.0</string>
 		<key>xcode.syntax.identifier.constant.system</key>
-		<string>JetBrainsMono-Bold - 15.0</string>
+		<string>JetBrainsMono-Regular_Bold - 15.0</string>
 		<key>xcode.syntax.identifier.function</key>
-		<string>JetBrainsMonoNL-Regular - 15.0</string>
+		<string>JetBrainsMono-Regular - 15.0</string>
 		<key>xcode.syntax.identifier.function.system</key>
-		<string>JetBrainsMonoNL-Regular - 15.0</string>
+		<string>JetBrainsMono-Regular - 15.0</string>
 		<key>xcode.syntax.identifier.macro</key>
-		<string>JetBrainsMonoNL-Italic - 15.0</string>
+		<string>JetBrainsMono-Italic - 15.0</string>
 		<key>xcode.syntax.identifier.macro.system</key>
-		<string>JetBrainsMonoNL-Regular - 15.0</string>
+		<string>JetBrainsMono-Regular - 15.0</string>
 		<key>xcode.syntax.identifier.type</key>
-		<string>JetBrainsMonoNL-Regular - 15.0</string>
+		<string>JetBrainsMono-Regular - 15.0</string>
 		<key>xcode.syntax.identifier.type.system</key>
-		<string>JetBrainsMonoNL-Regular - 15.0</string>
+		<string>JetBrainsMono-Italic - 15.0</string>
 		<key>xcode.syntax.identifier.variable</key>
-		<string>JetBrainsMonoNL-Italic - 15.0</string>
+		<string>JetBrainsMono-Italic - 15.0</string>
 		<key>xcode.syntax.identifier.variable.system</key>
-		<string>JetBrainsMonoNL-Italic - 15.0</string>
+		<string>JetBrainsMono-Italic - 15.0</string>
 		<key>xcode.syntax.keyword</key>
-		<string>JetBrainsMonoNL-Regular - 15.0</string>
+		<string>JetBrainsMono-Regular - 15.0</string>
 		<key>xcode.syntax.mark</key>
-		<string>JetBrainsMonoNL-Bold - 15.0</string>
+		<string>JetBrainsMono-Regular_Bold - 15.0</string>
 		<key>xcode.syntax.markup.code</key>
-		<string>JetBrainsMonoNL-Bold - 15.0</string>
+		<string>JetBrainsMono-Regular_Bold - 15.0</string>
 		<key>xcode.syntax.number</key>
-		<string>JetBrainsMonoNL-Regular - 15.0</string>
+		<string>JetBrainsMono-Regular - 15.0</string>
 		<key>xcode.syntax.plain</key>
-		<string>JetBrainsMonoNL-Regular - 15.0</string>
+		<string>JetBrainsMono-Regular - 15.0</string>
 		<key>xcode.syntax.preprocessor</key>
-		<string>JetBrainsMonoNL-Regular - 15.0</string>
+		<string>JetBrainsMono-Regular - 15.0</string>
+		<key>xcode.syntax.regex</key>
+		<string>JetBrainsMono-Regular - 15.0</string>
+		<key>xcode.syntax.regex.capturename</key>
+		<string>JetBrainsMono-Regular - 15.0</string>
+		<key>xcode.syntax.regex.charname</key>
+		<string>JetBrainsMono-Regular - 15.0</string>
+		<key>xcode.syntax.regex.number</key>
+		<string>JetBrainsMono-Regular - 15.0</string>
+		<key>xcode.syntax.regex.other</key>
+		<string>JetBrainsMono-Regular - 15.0</string>
 		<key>xcode.syntax.string</key>
-		<string>JetBrainsMonoNL-Regular - 15.0</string>
+		<string>JetBrainsMono-Regular - 15.0</string>
 		<key>xcode.syntax.url</key>
-		<string>JetBrainsMonoNL-Italic - 15.0</string>
+		<string>JetBrainsMono-Italic - 15.0</string>
 	</dict>
 </dict>
 </plist>
