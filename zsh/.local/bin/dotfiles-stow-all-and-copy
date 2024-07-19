@@ -1,0 +1,21 @@
+#!/usr/bin/env zsh
+
+# This stows all files in the given directory
+# All files provided afterwards are copied instead of linked.
+# This is useful for scripts of sandboxed apps. Those scripts need to be copied instead of linked.
+
+# Should have dir and at least one file. Otherwise stow can used directly
+if [[ $# -lt 2 ]]; then
+	echo "Wrong usage" >&2
+	exit 1
+fi
+
+dir="$1" && shift
+stow="stow $dir --ignore ^stow"
+
+for file in $@; do
+	stow="$stow --ignore $file$"
+	dotfiles-stow-copy $dir $file
+done
+
+eval $stow
