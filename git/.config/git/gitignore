@@ -4,3 +4,4 @@ tags
 tags.*
 *.zwc
 Session.vim
+.DS_Store
