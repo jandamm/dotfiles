@@ -131,3 +131,7 @@
 	max-line-distance = 1
 	keep-plus-minus-markers = true
 	highlight-removed = true
+[filter "osa"]
+	clean = osagitfilter clean %f
+	smudge = osagitfilter smudge %f
+	required = true
