@@ -506,12 +506,12 @@ use {
 			'folke/lua-dev.nvim', -- Config for sumneko-lua lsp (just needs to be in rtp)
 		},
 	},
-	{
-		'jose-elias-alvarez/null-ls.nvim', -- Linter/Formatter/Code Actions
-		after = 'nvim-lspconfig',
-		config = [[reload 'my.config.null_ls']],
-		requires = 'nvim-lua/plenary.nvim',
-	},
+	-- {
+	-- 	'jose-elias-alvarez/null-ls.nvim', -- Linter/Formatter/Code Actions
+	-- 	after = 'nvim-lspconfig',
+	-- 	config = [[reload 'my.config.null_ls']],
+	-- 	requires = 'nvim-lua/plenary.nvim',
+	-- },
 	-- Reduce noice of diagnostics
 	{
 		'https://gitlab.com/yorickpeterse/nvim-dd',

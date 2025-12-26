@@ -1,9 +1,7 @@
 tap 'homebrew/bundle'
-tap 'homebrew/cask'
 tap 'homebrew/cask-drivers'
 tap 'homebrew/cask-fonts'
 tap 'homebrew/cask-versions'
-tap 'homebrew/core'
 
 # Third party taps
 tap 'robotsandpencils/made'
@@ -31,6 +29,8 @@ brew 'mas'
 brew 'neovim'
 brew 'npm'
 brew 'pinentry-mac' # used for gpg
+brew 'prettier'
+brew 'prettierd'
 brew 'python3'
 brew 'rbenv'
 brew 'renameutils'
